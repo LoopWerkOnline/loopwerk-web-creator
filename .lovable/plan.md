@@ -60,14 +60,12 @@ Alle getoonde cijfers komen letterlijk uit jullie intake; ik verzin er niets bij
 6. **SEO & responsive.** Per pagina unieke title, meta description en Open Graph-tags, semantische HTML, één H1 per pagina, mobiel-first.
 7. **Controle.** Preview doorlopen en build valideren.
 
-## Wat ik van jou nodig heb
+## Nog open
 
-- Logo (bij voorkeur SVG of PNG met transparantie)
+- **Logo in vectorvorm.** Ik teken de lockup na als SVG op basis van jouw screenshot. Heb je later alsnog het originele bestand, dan wissel ik het één-op-één om.
+- **Copper-tint.** In jouw bericht staat `#FF6F4E`, in je eigen designdocument `#A65C33` (warmer/gedempter). Ik houd `#FF6F4E` aan tenzij je zegt dat de gedempte variant beter bij de rest past — dat is één instelling in het designsysteem.
+- **Contactgegevens** (e-mailadres, telefoonnummer, eventueel KvK) voor de contactpagina en footer.
 
-- Eventuele screenshots van de SSPW-configurator voor de casepagina
-- Concrete resultaten van die case (bijv. bespaarde tijd of aantal leads), als je die wilt tonen
-
-Je kunt dit later uploaden; ik verwerk het zodra het er is.
 
 ## Contactformulier
 
