@@ -9,7 +9,9 @@ const copper = "var(--copper)";
 const ink = "var(--ink)";
 
 /** Rechte lijn (geautomatiseerd) versus zigzag met afleidingen (handmatig). */
-export function FocusVsChaos({ className }: { className?: string }) {
+export function FocusVsChaos({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+  const base = tone === "dark" ? "var(--cream)" : ink;
+  const rail = tone === "dark" ? sage : forest;
   const chaos = [
     [250, 30],
     [310, 70],
@@ -34,28 +36,28 @@ export function FocusVsChaos({ className }: { className?: string }) {
 
   return (
     <svg viewBox="0 0 400 470" className={className} role="img" aria-label="Vergelijking: geautomatiseerd proces versus handmatig proces met onderbrekingen">
-      <text x="6" y="18" className="eyebrow" fill={forest} fontSize="11">
+      <text x="6" y="18" className="eyebrow" fill={rail} fontSize="11">
         GEAUTOMATISEERD
       </text>
-      <text x="248" y="18" className="eyebrow" fill={ink} fontSize="11" opacity="0.6">
+      <text x="248" y="18" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
         HANDMATIG
       </text>
 
-      <line x1="70" y1="40" x2="70" y2="420" stroke={forest} strokeWidth="2.5" />
+      <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" />
       {[40, 166, 293, 420].map((y) => (
         <circle key={y} cx="70" cy={y} r="8" fill={copper} />
       ))}
 
-      <path d={path} fill="none" stroke={ink} strokeOpacity="0.45" strokeWidth="2" strokeLinejoin="round" />
+      <path d={path} fill="none" stroke={base} strokeOpacity="0.45" strokeWidth="2" strokeLinejoin="round" />
       {chaos.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill={i % 3 === 0 ? ink : sage} />
+        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill={i % 3 === 0 ? base : sage} opacity={i % 3 === 0 ? 0.85 : 0.6} />
       ))}
       {noise.map(([x, y], i) => (
         <circle key={`n${i}`} cx={x} cy={y} r="5" fill={sage} opacity="0.75" />
       ))}
 
-      <g fontSize="11" fill={ink} opacity="0.7">
-        <line x1="24" y1="450" x2="52" y2="450" stroke={forest} strokeWidth="2.5" />
+      <g fontSize="11" fill={base} opacity="0.7">
+        <line x1="24" y1="450" x2="52" y2="450" stroke={rail} strokeWidth="2.5" />
         <text x="60" y="454">Doorlooptijd</text>
         <circle cx="170" cy="450" r="6" fill={copper} />
         <text x="182" y="454">Stap</text>
