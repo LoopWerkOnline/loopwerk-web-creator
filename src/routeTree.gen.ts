@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DienstenRoute = DienstenRouteImport.update({
+  id: '/diensten',
+  path: '/diensten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WerkwijzeRoute = WerkwijzeRouteImport.update({
+  id: '/werkwijze',
+  path: '/werkwijze',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/diensten': typeof DienstenRoute
+  '/werkwijze': typeof WerkwijzeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/diensten': typeof DienstenRoute
+  '/werkwijze': typeof WerkwijzeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/diensten': typeof DienstenRoute
+  '/werkwijze': typeof WerkwijzeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/diensten' | '/werkwijze'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/diensten' | '/werkwijze'
+  id: '__root__' | '/' | '/diensten' | '/werkwijze'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DienstenRoute: typeof DienstenRoute
+  WerkwijzeRoute: typeof WerkwijzeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/diensten': {
+      id: '/diensten'
+      path: '/diensten'
+      fullPath: '/diensten'
+      preLoaderRoute: typeof DienstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/werkwijze': {
+      id: '/werkwijze'
+      path: '/werkwijze'
+      fullPath: '/werkwijze'
+      preLoaderRoute: typeof WerkwijzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DienstenRoute: DienstenRoute,
+  WerkwijzeRoute: WerkwijzeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
