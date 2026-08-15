@@ -34,10 +34,10 @@ export function FocusVsChaos({ className }: { className?: string }) {
 
   return (
     <svg viewBox="0 0 400 470" className={className} role="img" aria-label="Vergelijking: geautomatiseerd proces versus handmatig proces met onderbrekingen">
-      <text x="70" y="18" textAnchor="middle" className="eyebrow" fill={forest} fontSize="11">
+      <text x="6" y="18" className="eyebrow" fill={forest} fontSize="11">
         GEAUTOMATISEERD
       </text>
-      <text x="290" y="18" textAnchor="middle" className="eyebrow" fill={ink} fontSize="11" opacity="0.6">
+      <text x="248" y="18" className="eyebrow" fill={ink} fontSize="11" opacity="0.6">
         HANDMATIG
       </text>
 
