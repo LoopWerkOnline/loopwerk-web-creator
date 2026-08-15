@@ -2,57 +2,70 @@
 
 ## Product
 
-Een complete bedrijfswebsite voor **Loopwerk** — praktische digitale tools en automatiseringen voor Nederlandse bedrijven, gebouwd met AI. Doel: bezoekers overtuigen en omzetten in aanvragen/gesprekken.
+Een complete bedrijfswebsite voor **Loopwerk** — praktische digitale tools en automatiseringen voor Nederlandse bedrijven, gebouwd met AI. Doel: bezoekers zien in één oogopslag wat Loopwerk voor hen kan betekenen en krijgen het gevoel dat hún probleem opgelost wordt.
 
-## Inspiratie uit jouw voorbeelden
+## Visuele richting
 
-Beide referenties (Lotgenoten Media, CLUB49) delen een herkenbare stijl die we als richting nemen:
+Gebaseerd op jouw voorbeelden (Lotgenoten Media, CLUB49) en de aangeleverde infographic-screenshots:
 
-- Donker, hoog contrast, grote vette typografie met korte krachtige statements ("Schaal wat kan. Bescherm wat telt.")
-- Concrete cijfers en bewijs prominent in beeld (aantallen, reviews, resultaten)
-- Duidelijke, herhaalde call-to-action door de hele pagina
-- Secties die een methodiek/systeem uitleggen in genummerde stappen
-- Ruime beeldvoering en rustige, gerichte animatie
-
-Loopwerk krijgt een eigen invulling hiervan: zakelijk en technisch geloofwaardig, niet "hustle"-achtig.
+- **Zwart/wit, hoog contrast.** Diep zwarte vlakken, wit als hoofdkleur, één accentkleur uit jouw huisstijl voor CTA's en markeringen.
+- **Infographics als dragende beeldtaal.** Geen stockfoto's, maar zelfgetekende SVG-diagrammen in de stijl van jouw voorbeelden: puntenlijnen, verbindingen, iconenrijen met korte labels. Denk: "8 uur handmatig werk" versus "40 minuten geautomatiseerd", opgebouwd als visuele vergelijking.
+- **Handgeschreven accenten.** Koppen combineren een strakke sans-serif met handgeschreven woorden en onderstrepingen/omcirkelingen als markering — persoonlijk en gemaakt, niet gegenereerd.
+- **Rust en ruimte.** Veel witruimte (zwartruimte), grote typografie, korte krachtige statements. Terughoudende animatie: elementen die rustig in beeld tekenen, niets dat opdringt.
+- **Vertrouwen.** Concrete cijfers, echte case-informatie en heldere uitleg in plaats van vage AI-beloftes.
 
 ## Sitestructuur (aparte pagina's, elk met eigen SEO)
 
 | Pagina | Inhoud |
 | --- | --- |
-| `/` Home | Hero met waardepropositie, probleem/oplossing, diensten in het kort, werkwijze, resultaten, CTA |
-| `/diensten` | Uitgebreide uitleg per dienst: AI-automatiseringen, maatwerk tools, integraties/koppelingen |
-| `/werkwijze` | Stapsgewijs proces van intake tot oplevering en beheer |
-| `/cases` | Praktijkvoorbeelden van gebouwde tools en behaalde tijdwinst |
-| `/over-ons` | Verhaal achter Loopwerk, visie op AI, team |
+| `/` Home | Hero met scherpe waardepropositie, probleem/oplossing als infographic, diensten in het kort, werkwijze, uitgelichte case (SSPW), CTA |
+| `/diensten` | Per dienst uitgewerkt: maatwerk tools & configurators, AI-automatiseringen, koppelingen/integraties. Elk met een eigen infographic |
+| `/werkwijze` | Het proces van intake tot oplevering en beheer, visueel als stappenlijn |
+| `/cases` | Overzicht van gebouwde tools |
+| `/cases/sspw-zwembadconfigurator` | Uitgewerkte case (zie hieronder) |
+| `/over-ons` | Verhaal achter Loopwerk, visie op AI, wie erachter zit |
 | `/contact` | Contactformulier en directe contactgegevens |
 
 Gedeelde navigatie en footer in de root-layout.
 
+## Uitgelichte case: SSPW zwembadconfigurator
+
+Als bewijsstuk krijgt deze case een eigen pagina, opgebouwd als verhaal:
+
+1. **De situatie** — offertes voor zwembaden zijn complex en kosten veel handmatig uitzoekwerk.
+2. **De oplossing** — een configurator in 3 stappen waarmee de bezoeker zelf zijn zwembad samenstelt, met per optie helder wat inbegrepen is en wat erbij komt kijken.
+3. **Het resultaat** — de eigenaar ontvangt automatisch een conceptofferte met alle klantgegevens; elke aanvraag wordt opgeslagen als lead.
+4. **Infographic** — de flow van de drie stappen naar offerte + leadopslag, in de zwart/wit-diagramstijl.
+5. Link naar de live tool op sspw.nl.
+
+Deze case wordt ook op de homepage samengevat als concreet voorbeeld van "dit soort tools bouwen wij".
+
 ## Aanpak
 
-1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage, gebaseerd op jouw huisstijl en de stijl van de voorbeeldsites. Jij kiest er één.
-2. **Designsysteem.** De gekozen richting wordt vastgelegd als kleur-, typografie- en spacing-tokens, zodat alle pagina's consistent zijn.
+1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage binnen deze zwart/wit-infographic-stijl met handgeschreven accenten. Jij kiest er één.
+2. **Designsysteem.** De gekozen richting wordt vastgelegd als kleur-, typografie- en spacing-tokens, inclusief het handgeschreven lettertype, zodat alle pagina's consistent zijn.
 3. **Bouwen.** Eerst de homepage volledig, daarna de overige pagina's in dezelfde stijl.
-4. **Content.** Nederlandse teksten, jouw logo, kleuren en afbeeldingen. Waar jij nog geen materiaal hebt, gebruik ik gegenereerde beelden en overtuigende conceptteksten die jij later kunt aanscherpen.
-5. **SEO & responsive.** Per pagina unieke title, meta description en Open Graph-tags, semantische HTML, één H1 per pagina, mobiel-first.
-6. **Controle.** Preview doorlopen en build valideren.
+4. **Infographics.** De diagrammen bouw ik als schaalbare SVG in de code (scherp op elk scherm, snel, en later aanpasbaar) in plaats van als platte afbeelding.
+5. **Content.** Nederlandse teksten, jouw logo en kleuren. Waar materiaal ontbreekt schrijf ik overtuigende conceptteksten die jij kunt aanscherpen — zonder verzonnen cijfers of reviews.
+6. **SEO & responsive.** Per pagina unieke title, meta description en Open Graph-tags, semantische HTML, één H1 per pagina, mobiel-first.
+7. **Controle.** Preview doorlopen en build valideren.
 
 ## Wat ik van jou nodig heb
 
 - Logo (bij voorkeur SVG of PNG met transparantie)
 - Merkkleuren (hex-codes)
-- Beeldmateriaal dat je wilt gebruiken
-- Eventueel bestaande teksten of dienstomschrijvingen
+- Eventuele screenshots van de SSPW-configurator voor de casepagina
+- Concrete resultaten van die case (bijv. bespaarde tijd of aantal leads), als je die wilt tonen
 
-Je kunt dit in een volgend bericht uploaden; ik verwerk het tijdens de bouw.
+Je kunt dit later uploaden; ik verwerk het zodra het er is.
 
 ## Contactformulier
 
-Voor een werkend formulier dat aanvragen opslaat en/of e-mail verstuurt, zet ik Lovable Cloud aan (database + serverfuncties, geen extern account nodig). Zonder Cloud wordt het een `mailto`-link. Standaard ga ik uit van een werkend formulier met Cloud.
+Voor een werkend formulier dat aanvragen opslaat en/of doorstuurt per e-mail zet ik Lovable Cloud aan (database + serverfuncties, geen extern account nodig). Standaard ga ik hiervan uit.
 
 ## Techniek
 
 - TanStack Start met React, file-based routing per pagina
 - Tailwind CSS met semantische designtokens in `src/styles.css`
+- Infographics als inline SVG-componenten
 - Responsive, snel en toegankelijk
