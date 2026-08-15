@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
+import { Route as CasesIndexRouteImport } from './routes/cases.index'
+import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,87 @@ const DienstenRoute = DienstenRouteImport.update({
   path: '/diensten',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OverOnsRoute = OverOnsRouteImport.update({
+  id: '/over-ons',
+  path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WerkwijzeRoute = WerkwijzeRouteImport.update({
   id: '/werkwijze',
   path: '/werkwijze',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CasesIndexRoute = CasesIndexRouteImport.update({
+  id: '/cases/',
+  path: '/cases/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesSspwZwembadconfiguratorRoute =
+  CasesSspwZwembadconfiguratorRouteImport.update({
+    id: '/cases/sspw-zwembadconfigurator',
+    path: '/cases/sspw-zwembadconfigurator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diensten': typeof DienstenRoute
+  '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/cases/': typeof CasesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/diensten': typeof DienstenRoute
+  '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/cases': typeof CasesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/diensten': typeof DienstenRoute
+  '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/cases/': typeof CasesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/diensten' | '/werkwijze'
+  fullPaths:
+    | '/'
+    | '/diensten'
+    | '/over-ons'
+    | '/werkwijze'
+    | '/cases/sspw-zwembadconfigurator'
+    | '/cases/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/diensten' | '/werkwijze'
-  id: '__root__' | '/' | '/diensten' | '/werkwijze'
+  to:
+    | '/'
+    | '/diensten'
+    | '/over-ons'
+    | '/werkwijze'
+    | '/cases/sspw-zwembadconfigurator'
+    | '/cases'
+  id:
+    | '__root__'
+    | '/'
+    | '/diensten'
+    | '/over-ons'
+    | '/werkwijze'
+    | '/cases/sspw-zwembadconfigurator'
+    | '/cases/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DienstenRoute: typeof DienstenRoute
+  OverOnsRoute: typeof OverOnsRoute
   WerkwijzeRoute: typeof WerkwijzeRoute
+  CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
+  CasesIndexRoute: typeof CasesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +125,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DienstenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/over-ons': {
+      id: '/over-ons'
+      path: '/over-ons'
+      fullPath: '/over-ons'
+      preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/werkwijze': {
       id: '/werkwijze'
       path: '/werkwijze'
       fullPath: '/werkwijze'
       preLoaderRoute: typeof WerkwijzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/': {
+      id: '/cases/'
+      path: '/cases'
+      fullPath: '/cases/'
+      preLoaderRoute: typeof CasesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/sspw-zwembadconfigurator': {
+      id: '/cases/sspw-zwembadconfigurator'
+      path: '/cases/sspw-zwembadconfigurator'
+      fullPath: '/cases/sspw-zwembadconfigurator'
+      preLoaderRoute: typeof CasesSspwZwembadconfiguratorRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +159,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DienstenRoute: DienstenRoute,
+  OverOnsRoute: OverOnsRoute,
   WerkwijzeRoute: WerkwijzeRoute,
+  CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
+  CasesIndexRoute: CasesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
