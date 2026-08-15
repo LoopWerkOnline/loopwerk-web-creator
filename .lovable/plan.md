@@ -34,17 +34,22 @@ Gedeelde navigatie en footer in de root-layout.
 
 ## Uitgelichte case: SSPW zwembadconfigurator
 
-Als bewijsstuk krijgt deze case een eigen pagina, opgebouwd als verhaal:
+Als bewijsstuk krijgt deze case een eigen pagina, opgebouwd als verhaal en gevoed door de cijfers uit jullie intake bij SSPW:
 
-1. **De situatie** — offertes voor zwembaden zijn complex en kosten veel handmatig uitzoekwerk.
-2. **De oplossing** — een configurator in 3 stappen waarmee de bezoeker zelf zijn zwembad samenstelt, met per optie helder wat inbegrepen is en wat erbij komt kijken.
-3. **Het resultaat** — de eigenaar ontvangt automatisch een conceptofferte met alle klantgegevens; elke aanvraag wordt opgeslagen als lead.
-4. **Infographic** — de flow van de drie stappen naar offerte + leadopslag, in de zwart/wit-diagramstijl.
-5. Link naar de live tool op sspw.nl.
+1. **De situatie in cijfers** — 20 serieuze aanvragen per maand, 10 à 15 showroomgesprekken van elk ~1 uur, plus ~1 uur opvolging per gesprek. Circa 7 gesprekken lopen dood op prijs, 3 worden klant. Gemiddelde orderwaarde € 30.000. Belangrijkste afhaakredenen: te duur of concurrent.
+2. **De kern van het probleem** — visueel gemaakt als infographic: van ~20 tot 30 uur gesprek- en opvolgtijd per maand gaat een groot deel op aan mensen die op prijs afhaken. Die selectie kan vóór het gesprek plaatsvinden in plaats van erna.
+3. **De oplossing** — een configurator in 3 stappen (Formaat → Uitvoering → Prijsindicatie) waarmee de bezoeker zelf zijn zwembad samenstelt, met per stap helder wat standaard inbegrepen is en wat een optie kost.
+4. **Het resultaat** — de bezoeker kent zijn prijsbandbreedte vóór het contact; SSPW ontvangt automatisch een conceptofferte met alle klantgegevens en elke aanvraag wordt opgeslagen als lead. Gesprekken gaan daardoor over uitvoering in plaats van over budget.
+5. **Beeld** — de aangeleverde screenshots van de drie stappen, in een nette browser-frame-presentatie, plus een SVG-flowdiagram van stap 1 → 2 → 3 → conceptofferte + lead.
+6. Link naar de live configurator.
 
-Deze case wordt ook op de homepage samengevat als concreet voorbeeld van "dit soort tools bouwen wij".
+Op de homepage wordt deze case kort samengevat als concreet bewijs: "dit soort tools bouwen wij".
+
+Alle getoonde cijfers komen letterlijk uit jullie intake; ik verzin er niets bij. Waar we een besparing claimen, reken ik die transparant door vanuit deze cijfers.
 
 ## Aanpak
+
+
 
 1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage binnen dit palet en deze infographic-stijl met handgeschreven accenten. Jij kiest er één.
 2. **Designsysteem.** De vijf kleuren worden vastgelegd als semantische designtokens (achtergrond, tekst, merkkleur, rustig vlak, primaire actie), samen met typografie en spacing, inclusief het handgeschreven lettertype — zodat alle pagina's consistent zijn.
