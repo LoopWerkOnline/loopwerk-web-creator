@@ -55,7 +55,7 @@ Deze case wordt ook op de homepage samengevat als concreet voorbeeld van "dit so
 ## Wat ik van jou nodig heb
 
 - Logo (bij voorkeur SVG of PNG met transparantie)
-- Merkkleuren (hex-codes)
+
 - Eventuele screenshots van de SSPW-configurator voor de casepagina
 - Concrete resultaten van die case (bijv. bespaarde tijd of aantal leads), als je die wilt tonen
 
