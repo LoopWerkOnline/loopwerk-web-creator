@@ -60,7 +60,8 @@ function Index() {
 
         {/* Cijferbalk */}
         <div className="border-t border-cream/15">
-          <div className="mx-auto grid max-w-6xl gap-px bg-cream/15 px-5 sm:grid-cols-3">
+          <div className="mx-auto max-w-6xl px-5">
+           <div className="grid gap-px bg-cream/15 sm:grid-cols-3">
             {[
               { k: "20 u", v: "handwerk per maand bij één klant" },
               { k: "3 stappen", v: "van aanvraag naar conceptofferte" },
@@ -71,6 +72,7 @@ function Index() {
                 <p className="mt-2 text-sm text-cream/65">{s.v}</p>
               </div>
             ))}
+           </div>
           </div>
         </div>
       </section>
