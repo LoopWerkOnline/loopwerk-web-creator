@@ -32,7 +32,7 @@ function CaseSSPW() {
       <Section>
         <Eyebrow>Case · Sun Sauna &amp; Poolworld</Eyebrow>
         <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-          Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span> naar voren
+          Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span>{" "}naar voren
           haalt
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink/75">

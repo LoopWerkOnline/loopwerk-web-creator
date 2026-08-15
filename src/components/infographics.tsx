@@ -129,7 +129,7 @@ export function LeadFunnel({ className }: { className?: string }) {
             <text x={x + w / 2} y={y + 24} textAnchor="middle" fontSize="15" fill={highlight ? "#fff" : ink}>
               {r.value}
             </text>
-            <text x="60" y={y + 54} fontSize="12" fill={ink} opacity="0.65">
+            <text x="210" y={y + 54} textAnchor="middle" fontSize="12" fill={ink} opacity="0.65">
               {r.label}
             </text>
           </g>
