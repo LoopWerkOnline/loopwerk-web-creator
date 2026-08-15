@@ -22,16 +22,19 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-cream">
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-20 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-28 md:pt-24">
+      {/* Hero — donker statement */}
+      <section className="bg-ink text-cream">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-24">
           <div>
-            <Eyebrow>Workflows. Connected.</Eyebrow>
-            <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.2rem]">
+            <p className="eyebrow flex items-center gap-3 text-sage">
+              <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
+              Workflows. Connected.
+            </p>
+            <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.4rem]">
               Uw proces kost te veel <span className="hand text-[1.15em]">handwerk</span>. Dat lossen
               wij op.
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/75">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
               LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Geen
               vaag AI-verhaal, maar één werkende oplossing voor het knelpunt dat u elke week tijd
               kost.
@@ -45,16 +48,33 @@ function Index() {
               </Link>
               <Link
                 to="/cases/sspw-zwembadconfigurator"
-                className="rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+                className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
               >
                 Bekijk een echte tool
               </Link>
             </div>
           </div>
 
-          <FocusVsChaos className="mx-auto w-full max-w-sm" />
+          <FocusVsChaos tone="dark" className="mx-auto w-full max-w-sm" />
+        </div>
+
+        {/* Cijferbalk */}
+        <div className="border-t border-cream/15">
+          <div className="mx-auto grid max-w-6xl gap-px bg-cream/15 px-5 sm:grid-cols-3">
+            {[
+              { k: "20 u", v: "handwerk per maand bij één klant" },
+              { k: "3 stappen", v: "van aanvraag naar conceptofferte" },
+              { k: "1 tool", v: "per knelpunt, geen platform" },
+            ].map((s) => (
+              <div key={s.k} className="bg-ink py-8 sm:px-6">
+                <p className="font-display text-4xl text-copper md:text-5xl">{s.k}</p>
+                <p className="mt-2 text-sm text-cream/65">{s.v}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
 
       {/* Herkenbaar probleem */}
       <Section tone="shell">
