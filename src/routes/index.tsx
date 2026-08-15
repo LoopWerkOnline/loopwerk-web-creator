@@ -1,24 +1,146 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Section, Eyebrow } from "@/components/Section";
+import { FocusVsChaos, ThreePillars, LeadFunnel } from "@/components/infographics";
+
+const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
+const description =
+  "Wij bouwen praktische tools en automatiseringen die handmatig werk uit uw proces halen. Van zwembadconfigurator tot offerteflow: werk dat vanaf dag één tijd bespaart.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      {/* Hero */}
+      <section className="bg-cream">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-20 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-28 md:pt-24">
+          <div>
+            <Eyebrow>Workflows. Connected.</Eyebrow>
+            <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.2rem]">
+              Uw proces kost te veel <span className="hand text-[1.15em]">handwerk</span>. Dat lossen
+              wij op.
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/75">
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Geen
+              vaag AI-verhaal, maar één werkende oplossing voor het knelpunt dat u elke week tijd
+              kost.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Plan een gesprek
+              </Link>
+              <Link
+                to="/cases/sspw-zwembadconfigurator"
+                className="rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+              >
+                Bekijk een echte tool
+              </Link>
+            </div>
+          </div>
+
+          <FocusVsChaos className="mx-auto w-full max-w-sm" />
+        </div>
+      </section>
+
+      {/* Herkenbaar probleem */}
+      <Section tone="shell">
+        <Eyebrow>Herkenbaar?</Eyebrow>
+        <h2 className="mt-6 max-w-3xl text-4xl leading-tight md:text-5xl">
+          Het werk gebeurt, maar het kost u elke week uren die nergens naartoe gaan.
+        </h2>
+        <div className="mt-14 grid gap-px overflow-hidden rounded-xl bg-line md:grid-cols-3">
+          {[
+            {
+              t: "Alles gaat via mail en Excel",
+              d: "Gegevens worden meerdere keren overgetypt. Eén fout en het hele traject loopt vertraging op.",
+            },
+            {
+              t: "Offertes maken duurt te lang",
+              d: "Elke aanvraag wordt handmatig uitgerekend, ook de aanvragen die uiteindelijk niets worden.",
+            },
+            {
+              t: "Leads verdwijnen tussen wal en schip",
+              d: "Er is geen plek waar aanvragen automatisch landen, dus opvolging hangt af van geheugen.",
+            },
+          ].map((c) => (
+            <div key={c.t} className="bg-cream p-8">
+              <h3 className="text-2xl">{c.t}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink/70">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Aanpak in drie beelden */}
+      <Section tone="ink">
+        <div className="text-center">
+          <p className="eyebrow text-sage">Onze aanpak</p>
+          <h2 className="mx-auto mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
+            Klein beginnen, meteen resultaat.
+          </h2>
+        </div>
+        <ThreePillars className="mt-16" />
+        <p className="mt-16 text-center text-lg text-cream/70">
+          Geen jarenlang traject. Eén knelpunt, één tool, meetbaar tijdwinst.
+        </p>
+      </Section>
+
+      {/* Case */}
+      <Section>
+        <div className="grid gap-14 md:grid-cols-[1fr_1fr] md:items-center">
+          <div>
+            <Eyebrow>Case · SSPW</Eyebrow>
+            <h2 className="mt-6 text-4xl leading-tight md:text-5xl">
+              Een zwembadconfigurator die <span className="hand text-[1.1em]">voorselecteert</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-ink/75">
+              Sun Sauna &amp; Poolworld kreeg 20 serieuze aanvragen per maand. Tien daarvan werden
+              showroomgesprekken van een uur, plus een uur opvolging. Zeven haakten alsnog af op
+              prijs. Die selectie hoort vóór het gesprek te gebeuren, niet erna.
+            </p>
+            <Link
+              to="/cases/sspw-zwembadconfigurator"
+              className="mt-8 inline-flex rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Lees de case
+            </Link>
+          </div>
+          <LeadFunnel className="w-full" />
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <Section tone="shell">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-4xl leading-tight md:text-5xl">
+            Vertel ons waar het werk blijft hangen.
+          </h2>
+          <p className="mt-5 text-lg text-ink/70">
+            U hoeft de oplossing nog niet te kennen. Eén gesprek is genoeg om te zien of hier een
+            tool onder zit.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex rounded-full bg-copper px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            Plan een gesprek
+          </Link>
+        </div>
+      </Section>
+    </>
   );
 }
