@@ -43,8 +43,9 @@ Deze case wordt ook op de homepage samengevat als concreet voorbeeld van "dit so
 
 ## Aanpak
 
-1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage binnen deze zwart/wit-infographic-stijl met handgeschreven accenten. Jij kiest er één.
-2. **Designsysteem.** De gekozen richting wordt vastgelegd als kleur-, typografie- en spacing-tokens, inclusief het handgeschreven lettertype, zodat alle pagina's consistent zijn.
+1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage binnen dit palet en deze infographic-stijl met handgeschreven accenten. Jij kiest er één.
+2. **Designsysteem.** De vijf kleuren worden vastgelegd als semantische designtokens (achtergrond, tekst, merkkleur, rustig vlak, primaire actie), samen met typografie en spacing, inclusief het handgeschreven lettertype — zodat alle pagina's consistent zijn.
+
 3. **Bouwen.** Eerst de homepage volledig, daarna de overige pagina's in dezelfde stijl.
 4. **Infographics.** De diagrammen bouw ik als schaalbare SVG in de code (scherp op elk scherm, snel, en later aanpasbaar) in plaats van als platte afbeelding.
 5. **Content.** Nederlandse teksten, jouw logo en kleuren. Waar materiaal ontbreekt schrijf ik overtuigende conceptteksten die jij kunt aanscherpen — zonder verzonnen cijfers of reviews.
