@@ -8,11 +8,14 @@ Een complete bedrijfswebsite voor **Loopwerk** — praktische digitale tools en 
 
 Gebaseerd op jouw voorbeelden (Lotgenoten Media, CLUB49) en de aangeleverde infographic-screenshots:
 
-- **Kleurpalet.** Cream `#FCF5ED` als basisvlak, dark ink `#1F241F` voor tekst en donkere secties, forest green `#496049` als merkkleur voor vlakken en diagrammen, soft sage `#BAC2B1` voor rustige achtergronden en lijnen, copper orange `#FF6F4E` uitsluitend voor primaire acties en accenten. Het contrast tussen crème en dark ink neemt de rol over van het zwart/wit in jouw voorbeelden — warmer, maar even scherp.
-- **Infographics als dragende beeldtaal.** Geen stockfoto's, maar zelfgetekende SVG-diagrammen in de stijl van jouw voorbeelden: puntenlijnen, verbindingen, iconenrijen met korte labels — in forest green en sage op crème, met copper als markering van het beslissende punt. Denk: "8 uur handmatig werk" versus "40 minuten geautomatiseerd", opgebouwd als visuele vergelijking.
-- **Handgeschreven accenten.** Koppen combineren een strakke sans-serif met handgeschreven woorden en onderstrepingen/omcirkelingen in copper — persoonlijk en gemaakt, niet gegenereerd.
+- **Kleurpalet.** Cream `#FCF5ED` als basisvlak, dark ink `#1F241F` voor tekst en donkere secties, forest green `#496049` als merkkleur voor vlakken en diagrammen, soft sage `#BAC2B1` voor rustige achtergronden en lijnen, copper `#FF6F4E` uitsluitend voor primaire acties en accenten. Het contrast tussen crème en dark ink neemt de rol over van het zwart/wit in jouw voorbeelden — warmer, maar even scherp.
+- **Typografie.** Instrument Serif voor koppen (dezelfde editorial rust als in de SSPW-configurator), Instrument Sans voor bodytekst en UI, plus een handgeschreven schrift als accent.
+- **Infographics als dragende beeldtaal.** Geen stockfoto's, maar zelfgetekende SVG-diagrammen in de stijl van jouw voorbeelden: puntenlijnen, verbindingen, iconenrijen met korte labels — in forest green en sage op crème, met copper als markering van het beslissende punt.
+- **Handgeschreven accenten.** Koppen combineren de serif met handgeschreven woorden en onderstrepingen/omcirkelingen in copper — persoonlijk en gemaakt, niet gegenereerd. Terughoudend ingezet: enkele woorden per pagina, niet elke kop.
 - **Rust en ruimte.** Veel witruimte, grote typografie, korte krachtige statements. Afwisseling tussen lichte crème-secties en enkele diepe dark-ink-secties voor ritme. Terughoudende animatie: elementen die rustig in beeld tekenen, niets dat opdringt.
-- **Vertrouwen.** Concrete cijfers, echte case-informatie en heldere uitleg in plaats van vage AI-beloftes.
+- **Vertrouwen.** Concrete cijfers, echte case-informatie en heldere uitleg in plaats van vage AI-beloftes. Geen stockfoto's, geen AI-agency clichés.
+- **Logo.** De bestaande LoopWerk-lockup (donkergroen/copper kruis + "WORKFLOWS. CONNECTED.") blijft leidend. Omdat er alleen een screenshot is, teken ik het logo na als schone SVG in de merkkleuren, zodat het scherp is op elk scherm en werkt op zowel crème als dark ink.
+
 
 
 ## Sitestructuur (aparte pagina's, elk met eigen SEO)
