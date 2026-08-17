@@ -84,23 +84,35 @@ function CaseSSPW() {
             {
               t: "Stap 1 — Formaat",
               d: "Kies een veelgebruikte maat of geef eigen afmetingen door. Direct zichtbaar wat standaard is inbegrepen.",
+              img: sspwStap1,
+              alt: "Stap 1 van de configurator: formaat kiezen met een overzicht van wat standaard is inbegrepen",
             },
             {
               t: "Stap 2 — Uitvoering",
               d: "Trap, verlichting, filtering, waterbehandeling en afdekking. Per optie de meerprijs, in een lopende samenvatting.",
+              img: sspwStap2,
+              alt: "Stap 2 van de configurator: opties kiezen met meerprijzen en een meelopende samenvatting",
             },
             {
               t: "Stap 3 — Prijsindicatie",
               d: "De bezoeker laat zijn gegevens achter en ziet de prijsbandbreedte. SSPW krijgt de conceptofferte binnen.",
+              img: sspwStap3,
+              alt: "Stap 3 van de configurator: gegevensformulier voor de prijsindicatie",
             },
           ].map((s) => (
             <div key={s.t}>
-              <h3 className="text-2xl text-cream">{s.t}</h3>
+              <BrowserFrame src={s.img} alt={s.alt} label={s.t} />
+              <h3 className="mt-5 text-2xl text-cream">{s.t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.d}</p>
             </div>
           ))}
         </div>
+        <p className="mt-8 text-xs text-cream/50">
+          Schermafbeeldingen uit de werkende configurator; de tool staat klaar voor livegang bij
+          SSPW.
+        </p>
       </Section>
+
 
       <Section tone="shell">
         <Eyebrow>Het resultaat</Eyebrow>
