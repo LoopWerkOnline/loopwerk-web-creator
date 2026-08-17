@@ -1,79 +1,89 @@
-# Plan: Loopwerk website
+# Plan: inhoud uit "Aanzet Levi" doorvoeren op de site
 
-## Product
+Het document is geen herstart, maar een aanscherping. De kern die nu op de site ontbreekt:
+**bekend probleem → bestaande oplossingsrichting → passend maken voor het bedrijf**, plus een
+tweede binnenkomstroute via **sectoren** voor bedrijven die hun probleem nog niet benoemen.
+Ook belangrijk: SSPW eerlijk als "implementatie in voorbereiding" tonen in plaats van als
+afgerond resultaat.
 
-Een complete bedrijfswebsite voor **Loopwerk** — praktische digitale tools en automatiseringen voor Nederlandse bedrijven, gebouwd met AI. Doel: bezoekers zien in één oogopslag wat Loopwerk voor hen kan betekenen en krijgen het gevoel dat hún probleem opgelost wordt.
+## Wat er verandert in de structuur
 
-## Visuele richting
+Huidige navigatie: Home · Diensten · Werkwijze · Cases · Over ons · Contact
+Nieuwe navigatie: **Home · Oplossingen · Sectoren · Cases · Hoe we werken · Over Loopwerk · Contact**
 
-Gebaseerd op jouw voorbeelden (Lotgenoten Media, CLUB49) en de aangeleverde infographic-screenshots:
-
-- **Kleurpalet.** Cream `#FCF5ED` als basisvlak, dark ink `#1F241F` voor tekst en donkere secties, forest green `#496049` als merkkleur voor vlakken en diagrammen, soft sage `#BAC2B1` voor rustige achtergronden en lijnen, copper `#FF6F4E` uitsluitend voor primaire acties en accenten. Het contrast tussen crème en dark ink neemt de rol over van het zwart/wit in jouw voorbeelden — warmer, maar even scherp.
-- **Typografie.** Instrument Serif voor koppen (dezelfde editorial rust als in de SSPW-configurator), Instrument Sans voor bodytekst en UI, plus een handgeschreven schrift als accent.
-- **Infographics als dragende beeldtaal.** Geen stockfoto's, maar zelfgetekende SVG-diagrammen in de stijl van jouw voorbeelden: puntenlijnen, verbindingen, iconenrijen met korte labels — in forest green en sage op crème, met copper als markering van het beslissende punt.
-- **Handgeschreven accenten.** Koppen combineren de serif met handgeschreven woorden en onderstrepingen/omcirkelingen in copper — persoonlijk en gemaakt, niet gegenereerd. Terughoudend ingezet: enkele woorden per pagina, niet elke kop.
-- **Rust en ruimte.** Veel witruimte, grote typografie, korte krachtige statements. Afwisseling tussen lichte crème-secties en enkele diepe dark-ink-secties voor ritme. Terughoudende animatie: elementen die rustig in beeld tekenen, niets dat opdringt.
-- **Vertrouwen.** Concrete cijfers, echte case-informatie en heldere uitleg in plaats van vage AI-beloftes. Geen stockfoto's, geen AI-agency clichés.
-- **Logo.** De bestaande LoopWerk-lockup (donkergroen/copper kruis + "WORKFLOWS. CONNECTED.") blijft leidend. Omdat er alleen een screenshot is, teken ik het logo na als schone SVG in de merkkleuren, zodat het scherp is op elk scherm en werkt op zowel crème als dark ink.
-
-
-
-## Sitestructuur (aparte pagina's, elk met eigen SEO)
-
-| Pagina | Inhoud |
+| Nu | Straks |
 | --- | --- |
-| `/` Home | Hero met scherpe waardepropositie, probleem/oplossing als infographic, diensten in het kort, werkwijze, uitgelichte case (SSPW), CTA |
-| `/diensten` | Per dienst uitgewerkt: maatwerk tools & configurators, AI-automatiseringen, koppelingen/integraties. Elk met een eigen infographic |
-| `/werkwijze` | Het proces van intake tot oplevering en beheer, visueel als stappenlijn |
-| `/cases` | Overzicht van gebouwde tools |
-| `/cases/sspw-zwembadconfigurator` | Uitgewerkte case (zie hieronder) |
-| `/over-ons` | Verhaal achter Loopwerk, visie op AI, wie erachter zit |
-| `/contact` | Contactformulier en directe contactgegevens |
+| `/diensten` | wordt `/oplossingen` — overzicht van de 6 oplossingsrichtingen uit het document, elk met eigen subpagina |
+| — | `/oplossingen/slimme-offerteflow` (uitgelicht) + subpagina's voor de overige richtingen |
+| — | `/sectoren` overzicht + 5 sectorpagina's (bouw & installatie, maakindustrie & machinebouw, handel & groothandel, mobiliteit & transport, maatwerk & projectverkoop) |
+| `/werkwijze` | wordt `/hoe-we-werken`, met nadruk op wat standaard is en waar maatwerk begint |
+| `/cases` | zelfde plek, casestructuur uit het document (situatie → probleem → oplossing → maatwerk → nieuwe werkwijze → status) |
+| `/over-ons` | wordt `/over-loopwerk` |
 
-Gedeelde navigatie en footer in de root-layout.
+Oude URL's blijven werken via een redirect, zodat de gedeelde preview-link en eventuele
+verwijzingen niet breken.
 
-## Uitgelichte case: SSPW zwembadconfigurator
+Vaste CTA overal: **"Bespreek je proces"** (vervangt "Plan een gesprek").
 
-Als bewijsstuk krijgt deze case een eigen pagina, opgebouwd als verhaal en gevoed door de cijfers uit jullie intake bij SSPW:
+## Homepage in de volgorde uit het document
 
-1. **De situatie in cijfers** — 20 serieuze aanvragen per maand, 10 à 15 showroomgesprekken van elk ~1 uur, plus ~1 uur opvolging per gesprek. Circa 7 gesprekken lopen dood op prijs, 3 worden klant. Gemiddelde orderwaarde € 30.000. Belangrijkste afhaakredenen: te duur of concurrent.
-2. **De kern van het probleem** — visueel gemaakt als infographic: van ~20 tot 30 uur gesprek- en opvolgtijd per maand gaat een groot deel op aan mensen die op prijs afhaken. Die selectie kan vóór het gesprek plaatsvinden in plaats van erna.
-3. **De oplossing** — een configurator in 3 stappen (Formaat → Uitvoering → Prijsindicatie) waarmee de bezoeker zelf zijn zwembad samenstelt, met per stap helder wat standaard inbegrepen is en wat een optie kost.
-4. **Het resultaat** — de bezoeker kent zijn prijsbandbreedte vóór het contact; SSPW ontvangt automatisch een conceptofferte met alle klantgegevens en elke aanvraag wordt opgeslagen als lead. Gesprekken gaan daardoor over uitvoering in plaats van over budget.
-5. **Beeld** — de aangeleverde screenshots van de drie stappen, in een nette browser-frame-presentatie, plus een SVG-flowdiagram van stap 1 → 2 → 3 → conceptofferte + lead.
-6. Link naar de live configurator.
+1. Hero — "Minder handwerk in processen die iedere week terugkomen."
+2. Herkenningsblok — het verhaal van de aanvraag die vier handmatige stappen kost
+3. Oplossingen — de zes richtingen kort, doorklikbaar
+4. Sectoren — vertaalslag naar het soort bedrijf van de bezoeker
+5. Uitgelichte oplossing — Slimme Offerteflow, concreet gemaakt met een infographic
+6. Cases — SSPW als bewijs van wat we bouwen
+7. Hoe we werken — standaard versus maatwerk
+8. Over Loopwerk
+9. CTA — Bespreek je proces
 
-Op de homepage wordt deze case kort samengevat als concreet bewijs: "dit soort tools bouwen wij".
+De cijferbalk met "20 u handwerk" verhuist naar de SSPW-case: dat zijn cijfers van die klant,
+niet van Loopwerk. Op de homepage komt daarvoor in de plaats het herkenningsblok.
 
-Alle getoonde cijfers komen letterlijk uit jullie intake; ik verzin er niets bij. Waar we een besparing claimen, reken ik die transparant door vanuit deze cijfers.
+## Tone of voice
 
-## Aanpak
+Alle bestaande teksten gaan langs de niet/wel-tabel uit het document: geen "digitale
+transformatie", geen geclaimde resultaten, wel concrete stappen. Ook de aanspreekvorm wordt
+consistent: het document schrijft "je/jullie", de huidige site "u". Zie de vraag hieronder.
 
+## Eerlijk over status
 
+De SSPW-case krijgt bovenaan een duidelijke statusmelding: implementatie in voorbereiding.
+De intakecijfers blijven staan als beschrijving van de uitgangssituatie, niet als behaald
+resultaat. Zodra de tool live is, vullen we tijd, volledigheid van aanvragen en conversie aan.
 
-1. **Designrichtingen.** Ik genereer 3 visuele richtingen voor de homepage binnen dit palet en deze infographic-stijl met handgeschreven accenten. Jij kiest er één.
-2. **Designsysteem.** De vijf kleuren worden vastgelegd als semantische designtokens (achtergrond, tekst, merkkleur, rustig vlak, primaire actie), samen met typografie en spacing, inclusief het handgeschreven lettertype — zodat alle pagina's consistent zijn.
+## Infographics
 
-3. **Bouwen.** Eerst de homepage volledig, daarna de overige pagina's in dezelfde stijl.
-4. **Infographics.** De diagrammen bouw ik als schaalbare SVG in de code (scherp op elk scherm, snel, en later aanpasbaar) in plaats van als platte afbeelding.
-5. **Content.** Nederlandse teksten, jouw logo en kleuren. Waar materiaal ontbreekt schrijf ik overtuigende conceptteksten die jij kunt aanscherpen — zonder verzonnen cijfers of reviews.
-6. **SEO & responsive.** Per pagina unieke title, meta description en Open Graph-tags, semantische HTML, één H1 per pagina, mobiel-first.
-7. **Controle.** Preview doorlopen en build valideren.
-
-## Nog open
-
-- **Logo in vectorvorm.** Ik teken de lockup na als SVG op basis van jouw screenshot. Heb je later alsnog het originele bestand, dan wissel ik het één-op-één om.
-- **Copper-tint.** In jouw bericht staat `#FF6F4E`, in je eigen designdocument `#A65C33` (warmer/gedempter). Ik houd `#FF6F4E` aan tenzij je zegt dat de gedempte variant beter bij de rest past — dat is één instelling in het designsysteem.
-- **Contactgegevens** (e-mailadres, telefoonnummer, eventueel KvK) voor de contactpagina en footer.
-
-
-## Contactformulier
-
-Voor een werkend formulier dat aanvragen opslaat en/of doorstuurt per e-mail zet ik Lovable Cloud aan (database + serverfuncties, geen extern account nodig). Standaard ga ik hiervan uit.
+Nieuwe SVG-diagrammen in dezelfde stijl:
+- **Basis + maatwerk** — een bestaande bouwsteen die per bedrijf wordt aangevuld met producten,
+  regels, uitzonderingen en systemen
+- **Slimme offerteflow** — van vraag naar complete aanvraag naar voorstel
+- **Herkenning** — de vier handmatige stappen rondom één aanvraag
 
 ## Techniek
 
-- TanStack Start met React, file-based routing per pagina
-- Tailwind CSS met semantische designtokens in `src/styles.css`
-- Infographics als inline SVG-componenten
-- Responsive, snel en toegankelijk
+- Nieuwe routes onder `src/routes/`, oude paden als redirect
+- Oplossings- en sectorcontent in één datamodule, zodat overzicht, subpagina's en homepageblokken
+  uit dezelfde bron komen
+- Per pagina unieke title, meta description en Open Graph-tags
+- Bestaand designsysteem en contactformulier blijven ongewijzigd
+
+## Volgorde van uitvoeren
+
+1. Navigatie, routes en redirects
+2. Homepage herbouwen in de nieuwe volgorde
+3. Oplossingen-overzicht en -subpagina's
+4. Sectorenpagina's
+5. Cases herschrijven volgens het vaste stramien, inclusief SSPW-status
+6. Hoe we werken en Over Loopwerk aanscherpen
+7. Nieuwe infographics
+8. Preview doorlopen en build valideren
+
+## Nog vast te leggen
+
+- **Aanspreekvorm**: het document gebruikt "je/jullie", de site nu "u". Ik stel voor de hele site
+  om te zetten naar "je/jullie" — past beter bij de nuchtere toon.
+- **Sectoren**: alle vijf publiceren, of eerst de twee waar jullie nu actief op inzetten?
+- **Oplossingen**: krijgen alle zes een eigen subpagina, of alleen de Slimme Offerteflow en de
+  rest als blok op het overzicht?
+- **Cases**: is SSPW voorlopig de enige case?
