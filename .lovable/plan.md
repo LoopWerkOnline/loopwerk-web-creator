@@ -58,7 +58,22 @@ Nieuwe SVG-diagrammen in dezelfde stijl:
 - **Basis + maatwerk** — een bestaande bouwsteen die per bedrijf wordt aangevuld met producten,
   regels, uitzonderingen en systemen
 - **Slimme offerteflow** — van vraag naar complete aanvraag naar voorstel
-- **Herkenning** — de vier handmatige stappen rondom één aanvraag
+
+## Screenshots van de SSPW-configurator
+
+De live tool (offer-calculator-sspw.vercel.app) is doorlopen; van elke stap zijn schermafbeeldingen
+beschikbaar. Die gebruik ik als bewijsmateriaal:
+
+- **Casepagina SSPW** — de drie stappen onder elkaar in een strak browserframe, elk met een korte
+  uitleg ernaast: welk deel van het gesprek deze stap vervangt.
+- **Homepage, blok "uitgelichte oplossing"** — één bijgesneden detail (de optielijst met
+  meerprijzen) naast de tekst over de Slimme Offerteflow.
+- **Oplossingspagina Slimme Offerteflow** — dezelfde beelden, uitgebreider toegelicht.
+
+De screenshots worden als CDN-asset opgenomen, met alt-teksten en lazy loading. Het prijsscherm na
+verzending ontbreekt nog: dat vraagt een echte formulierinzending bij SSPW. Aan te leveren door
+jullie, of ik verstuur eenmalig een duidelijk herkenbare testaanvraag.
+
 
 ## Techniek
 
