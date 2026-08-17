@@ -142,7 +142,7 @@ function CaseSSPW() {
             to="/contact"
             className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Zoiets voor uw bedrijf?
+            Zoiets voor jullie bedrijf?
           </Link>
           <a
             href="https://www.sspw.nl"
