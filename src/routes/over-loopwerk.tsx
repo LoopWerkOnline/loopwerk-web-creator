@@ -67,7 +67,7 @@ function OverLoopwerk() {
               {beliefs.map((b) => (
                 <div key={b.title} className="border-t border-line pt-5">
                   <h3 className="text-lg">{b.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{b.body}</p>
+                  <p className="mt-2 text-base leading-relaxed text-ink/70">{b.body}</p>
                 </div>
               ))}
             </div>
@@ -115,7 +115,7 @@ function OverLoopwerk() {
             to="/contact"
             className="justify-self-start rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Plan een gesprek
+            Bespreek je proces
           </Link>
         </div>
       </Section>

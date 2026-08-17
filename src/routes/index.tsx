@@ -51,7 +51,7 @@ function Index() {
                 to="/contact"
                 className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Plan een gesprek
+                Bespreek je proces
               </Link>
               <Link
                 to="/cases/sspw-zwembadconfigurator"
@@ -74,7 +74,7 @@ function Index() {
             ].map((s) => (
               <div key={s.k} className="bg-ink p-7">
                 <p className="text-3xl text-copper">{s.k}</p>
-                <p className="mt-2 text-sm leading-relaxed text-cream/65">{s.v}</p>
+                <p className="mt-2 text-base leading-relaxed text-cream/65">{s.v}</p>
               </div>
             ))}
           </div>
@@ -126,8 +126,8 @@ function Index() {
               className="flex flex-col bg-cream p-8 transition-colors hover:bg-shell"
             >
               <span className="eyebrow text-copper">{s.n}</span>
-              <h3 className="mt-3 text-xl">{s.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{s.short}</p>
+              <h3 className="mt-3 text-2xl">{s.title}</h3>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
             </Link>
           ))}
         </div>
@@ -147,8 +147,8 @@ function Index() {
                 params={{ slug: s.slug }}
                 className="grid gap-2 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_1.6fr] md:items-baseline md:px-4"
               >
-                <h3 className="text-xl">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-ink/70">{s.short}</p>
+                <h3 className="text-2xl md:text-3xl">{s.title}</h3>
+                <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
               </Link>
             </li>
           ))}
@@ -227,7 +227,7 @@ function Index() {
           ].map((s) => (
             <div key={s.n} className="border-t border-line pt-6">
               <span className="eyebrow text-copper">{s.n}</span>
-              <h3 className="mt-3 text-xl">{s.t}</h3>
+              <h3 className="mt-3 text-2xl">{s.t}</h3>
               <p className="mt-2 leading-relaxed text-ink/70">{s.b}</p>
             </div>
           ))}
@@ -254,7 +254,7 @@ function Index() {
                 to="/contact"
                 className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Plan een gesprek
+                Bespreek je proces
               </Link>
               <Link
                 to="/over-loopwerk"

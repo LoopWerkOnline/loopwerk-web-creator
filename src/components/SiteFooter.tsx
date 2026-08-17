@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Logo variant="cream" />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream/70">
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-cream/70">
               Wij bouwen praktische digitale tools en automatiseringen voor Nederlandse bedrijven.
               Werk dat elke week terugkomt, hoeft niet elke week handwerk te zijn.
             </p>
