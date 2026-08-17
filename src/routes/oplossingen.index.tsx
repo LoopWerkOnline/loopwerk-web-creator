@@ -73,7 +73,7 @@ function OplossingenPage() {
             to="/contact"
             className="justify-self-start rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Plan een gesprek
+            Bespreek je proces
           </Link>
         </div>
       </Section>

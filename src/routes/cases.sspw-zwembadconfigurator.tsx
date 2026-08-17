@@ -48,7 +48,7 @@ function CaseSSPW() {
           {facts.map((f) => (
             <div key={f.k} className="rounded-xl border border-line bg-cream p-7">
               <p className="font-display text-4xl text-forest">{f.k}</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink/70">{f.v}</p>
+              <p className="mt-2 text-base leading-relaxed text-ink/70">{f.v}</p>
             </div>
           ))}
         </div>
@@ -105,7 +105,7 @@ function CaseSSPW() {
             <div key={s.t}>
               <BrowserFrame src={s.img} alt={s.alt} label={s.t} />
               <h3 className="mt-5 text-2xl text-cream">{s.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.d}</p>
+              <p className="mt-3 text-base leading-relaxed text-cream/70">{s.d}</p>
             </div>
           ))}
         </div>

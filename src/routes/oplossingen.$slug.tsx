@@ -165,7 +165,7 @@ function SolutionPage() {
               to="/contact"
               className="mt-8 inline-block rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Plan een gesprek
+              Bespreek je proces
             </Link>
           </div>
           <div>

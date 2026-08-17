@@ -94,8 +94,8 @@ function SectorPage() {
               className="flex flex-col bg-cream p-8 transition-colors hover:bg-shell"
             >
               <span className="eyebrow text-copper">{s!.n}</span>
-              <h2 className="mt-3 text-xl">{s!.title}</h2>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{s!.short}</p>
+              <h2 className="mt-3 text-2xl">{s!.title}</h2>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s!.short}</p>
             </Link>
           ))}
         </div>
@@ -117,7 +117,7 @@ function SectorPage() {
               to="/contact"
               className="mt-8 inline-block rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Plan een gesprek
+              Bespreek je proces
             </Link>
           </div>
           <div>
