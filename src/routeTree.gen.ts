@@ -19,6 +19,7 @@ import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
 import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
 import { Route as SectorenIndexRouteImport } from './routes/sectoren.index'
+import { Route as SectorenSlugRouteImport } from './routes/sectoren.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -71,6 +72,11 @@ const SectorenIndexRoute = SectorenIndexRouteImport.update({
   path: '/sectoren/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectorenSlugRoute = SectorenSlugRouteImport.update({
+  id: '/sectoren/$slug',
+  path: '/sectoren/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
   '/sectoren/': typeof SectorenIndexRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
   '/sectoren': typeof SectorenIndexRoute
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
   '/sectoren/': typeof SectorenIndexRoute
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases/'
     | '/oplossingen/'
     | '/sectoren/'
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases'
     | '/oplossingen'
     | '/sectoren'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases/'
     | '/oplossingen/'
     | '/sectoren/'
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   WerkwijzeRoute: typeof WerkwijzeRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
+  SectorenSlugRoute: typeof SectorenSlugRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
   SectorenIndexRoute: typeof SectorenIndexRoute
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectorenIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectoren/$slug': {
+      id: '/sectoren/$slug'
+      path: '/sectoren/$slug'
+      fullPath: '/sectoren/$slug'
+      preLoaderRoute: typeof SectorenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   WerkwijzeRoute: WerkwijzeRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,
+  SectorenSlugRoute: SectorenSlugRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
   SectorenIndexRoute: SectorenIndexRoute,
