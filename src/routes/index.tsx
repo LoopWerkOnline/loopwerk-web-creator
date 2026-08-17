@@ -39,7 +39,7 @@ function Index() {
             </p>
             <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.4rem]">
               Werk dat elke week terugkomt, hoeft geen{" "}
-              <span className="hand text-[1.15em]">handwerk</span> te blijven
+              <span className="hand text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
               LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. We
