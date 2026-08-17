@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const title = "Contact — plan een gesprek met LoopWerk";
 const description =
-  "Vertel waar het werk in uw proces blijft hangen. Eén gesprek is genoeg om te zien of hier een tool onder zit.";
+  "Vertel waar het werk in jullie proces blijft hangen. Eén gesprek is genoeg om te zien of hier een tool onder zit.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -61,7 +61,7 @@ function Contact() {
               Vertel ons eerst waar het <span className="hand text-[1.1em]">werk zit</span>
             </h1>
             <p className="mt-7 text-lg leading-relaxed text-ink/75">
-              U hoeft de oplossing nog niet te kennen. Beschrijf uw proces of het knelpunt, dan
+              Je hoeft de oplossing nog niet te kennen. Beschrijf jullie proces of het knelpunt, dan
               komen wij met een voorstel voor de eerste stap.
             </p>
             <ul className="mt-10 space-y-4 text-ink/75">
@@ -82,7 +82,7 @@ function Contact() {
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
                 <span className="text-sm font-medium">Naam *</span>
-                <input name="name" required className={field} placeholder="Uw voor- en achternaam" />
+                <input name="name" required className={field} placeholder="Je voor- en achternaam" />
               </label>
               <label className="block">
                 <span className="text-sm font-medium">E-mailadres *</span>
@@ -103,7 +103,7 @@ function Contact() {
                   required
                   rows={5}
                   className={field}
-                  placeholder="Beschrijf kort uw proces of het knelpunt."
+                  placeholder="Beschrijf kort jullie proces of het knelpunt."
                 />
               </label>
             </div>
@@ -118,7 +118,7 @@ function Contact() {
 
             {status === "sent" ? (
               <p className="mt-4 text-sm text-forest">
-                Dank u — uw bericht is binnen. Wij reageren binnen één werkdag.
+                Dankjewel — je bericht is binnen. We reageren binnen één werkdag.
               </p>
             ) : null}
             {status === "error" ? (
@@ -128,7 +128,7 @@ function Contact() {
             ) : null}
 
             <p className="mt-4 text-xs text-ink/55">
-              Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren.
+              Je gegevens gebruiken we alleen om op je aanvraag te reageren.
             </p>
           </form>
         </div>

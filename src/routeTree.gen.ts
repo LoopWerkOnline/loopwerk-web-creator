@@ -12,10 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
+import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
+import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
+import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
+import { Route as SectorenIndexRouteImport } from './routes/sectoren.index'
+import { Route as SectorenSlugRouteImport } from './routes/sectoren.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +36,16 @@ const ContactRoute = ContactRouteImport.update({
 const DienstenRoute = DienstenRouteImport.update({
   id: '/diensten',
   path: '/diensten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HoeWeWerkenRoute = HoeWeWerkenRouteImport.update({
+  id: '/hoe-we-werken',
+  path: '/hoe-we-werken',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OverLoopwerkRoute = OverLoopwerkRouteImport.update({
+  id: '/over-loopwerk',
+  path: '/over-loopwerk',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OverOnsRoute = OverOnsRouteImport.update({
@@ -53,34 +69,72 @@ const CasesSspwZwembadconfiguratorRoute =
     path: '/cases/sspw-zwembadconfigurator',
     getParentRoute: () => rootRouteImport,
   } as any)
+const OplossingenIndexRoute = OplossingenIndexRouteImport.update({
+  id: '/oplossingen/',
+  path: '/oplossingen/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OplossingenSlugRoute = OplossingenSlugRouteImport.update({
+  id: '/oplossingen/$slug',
+  path: '/oplossingen/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectorenIndexRoute = SectorenIndexRouteImport.update({
+  id: '/sectoren/',
+  path: '/sectoren/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectorenSlugRoute = SectorenSlugRouteImport.update({
+  id: '/sectoren/$slug',
+  path: '/sectoren/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/hoe-we-werken': typeof HoeWeWerkenRoute
+  '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases/': typeof CasesIndexRoute
+  '/oplossingen/': typeof OplossingenIndexRoute
+  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/hoe-we-werken': typeof HoeWeWerkenRoute
+  '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases': typeof CasesIndexRoute
+  '/oplossingen': typeof OplossingenIndexRoute
+  '/sectoren': typeof SectorenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/hoe-we-werken': typeof HoeWeWerkenRoute
+  '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
+  '/sectoren/$slug': typeof SectorenSlugRoute
   '/cases/': typeof CasesIndexRoute
+  '/oplossingen/': typeof OplossingenIndexRoute
+  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,38 +142,62 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/diensten'
+    | '/hoe-we-werken'
+    | '/over-loopwerk'
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases/'
+    | '/oplossingen/'
+    | '/sectoren/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
     | '/diensten'
+    | '/hoe-we-werken'
+    | '/over-loopwerk'
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases'
+    | '/oplossingen'
+    | '/sectoren'
   id:
     | '__root__'
     | '/'
     | '/contact'
     | '/diensten'
+    | '/hoe-we-werken'
+    | '/over-loopwerk'
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
+    | '/sectoren/$slug'
     | '/cases/'
+    | '/oplossingen/'
+    | '/sectoren/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRoute
+  HoeWeWerkenRoute: typeof HoeWeWerkenRoute
+  OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
   WerkwijzeRoute: typeof WerkwijzeRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
+  OplossingenSlugRoute: typeof OplossingenSlugRoute
+  SectorenSlugRoute: typeof SectorenSlugRoute
   CasesIndexRoute: typeof CasesIndexRoute
+  OplossingenIndexRoute: typeof OplossingenIndexRoute
+  SectorenIndexRoute: typeof SectorenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -143,6 +221,20 @@ declare module '@tanstack/react-router' {
       path: '/diensten'
       fullPath: '/diensten'
       preLoaderRoute: typeof DienstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoe-we-werken': {
+      id: '/hoe-we-werken'
+      path: '/hoe-we-werken'
+      fullPath: '/hoe-we-werken'
+      preLoaderRoute: typeof HoeWeWerkenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/over-loopwerk': {
+      id: '/over-loopwerk'
+      path: '/over-loopwerk'
+      fullPath: '/over-loopwerk'
+      preLoaderRoute: typeof OverLoopwerkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/over-ons': {
@@ -173,6 +265,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesSspwZwembadconfiguratorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/oplossingen/': {
+      id: '/oplossingen/'
+      path: '/oplossingen'
+      fullPath: '/oplossingen/'
+      preLoaderRoute: typeof OplossingenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/oplossingen/$slug': {
+      id: '/oplossingen/$slug'
+      path: '/oplossingen/$slug'
+      fullPath: '/oplossingen/$slug'
+      preLoaderRoute: typeof OplossingenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectoren/': {
+      id: '/sectoren/'
+      path: '/sectoren'
+      fullPath: '/sectoren/'
+      preLoaderRoute: typeof SectorenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectoren/$slug': {
+      id: '/sectoren/$slug'
+      path: '/sectoren/$slug'
+      fullPath: '/sectoren/$slug'
+      preLoaderRoute: typeof SectorenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -180,10 +300,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRoute,
+  HoeWeWerkenRoute: HoeWeWerkenRoute,
+  OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,
   WerkwijzeRoute: WerkwijzeRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
+  OplossingenSlugRoute: OplossingenSlugRoute,
+  SectorenSlugRoute: SectorenSlugRoute,
   CasesIndexRoute: CasesIndexRoute,
+  OplossingenIndexRoute: OplossingenIndexRoute,
+  SectorenIndexRoute: SectorenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

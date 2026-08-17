@@ -1,11 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { FocusVsChaos, ThreePillars, LeadFunnel } from "@/components/infographics";
+import { BrowserFrame } from "@/components/BrowserFrame";
+import { FocusVsChaos, ManualSteps, BaseAndCustom, ConfiguratorFlow } from "@/components/infographics";
+import { sspwStap2 } from "@/lib/assets";
+import { solutions, sectors } from "@/lib/content";
 
 const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
 const description =
-  "Wij bouwen praktische tools en automatiseringen die handmatig werk uit uw proces halen. Van zwembadconfigurator tot offerteflow: werk dat vanaf dag één tijd bespaart.";
+  "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,15 +17,19 @@ export const Route = createFileRoute("/")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
 });
 
 function Index() {
+  const featured = solutions.find((s) => s.featured)!;
+
   return (
     <>
-      {/* Hero — donker statement */}
+      {/* Hero */}
       <section className="bg-ink text-cream">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-24">
           <div>
@@ -31,13 +38,13 @@ function Index() {
               Workflows. Connected.
             </p>
             <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.4rem]">
-              Uw proces kost te veel <span className="hand text-[1.15em]">handwerk</span>. Dat lossen
-              wij op.
+              Werk dat elke week terugkomt, hoeft geen{" "}
+              <span className="hand text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
-              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Geen
-              vaag AI-verhaal, maar één werkende oplossing voor het knelpunt dat u elke week tijd
-              kost.
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. We
+              beginnen bij een probleem dat we herkennen, zetten een bestaande basis in en maken die
+              passend voor jullie proces.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
@@ -58,109 +65,208 @@ function Index() {
           <FocusVsChaos tone="dark" className="mx-auto w-full max-w-sm" />
         </div>
 
-        {/* Cijferbalk */}
-        <div className="border-t border-cream/15">
-          <div className="mx-auto max-w-6xl px-5">
-           <div className="grid gap-px bg-cream/15 sm:grid-cols-3">
+        <div className="mx-auto max-w-6xl px-5 pb-16">
+          <div className="grid gap-px overflow-hidden rounded-xl border border-cream/15 bg-cream/15 sm:grid-cols-3">
             {[
-              { k: "20 u", v: "handwerk per maand bij één klant" },
-              { k: "3 stappen", v: "van aanvraag naar conceptofferte" },
-              { k: "1 tool", v: "per knelpunt, geen platform" },
+              { k: "20 u", v: "handwerk per maand dat we bij één klant weghaalden" },
+              { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
+              { k: "1 tool", v: "die vanaf dag één in gebruik is" },
             ].map((s) => (
-              <div key={s.k} className="bg-ink py-8 sm:px-6">
-                <p className="font-display text-4xl text-copper md:text-5xl">{s.k}</p>
-                <p className="mt-2 text-sm text-cream/65">{s.v}</p>
+              <div key={s.k} className="bg-ink p-7">
+                <p className="text-3xl text-copper">{s.k}</p>
+                <p className="mt-2 text-sm leading-relaxed text-cream/65">{s.v}</p>
               </div>
             ))}
-           </div>
           </div>
         </div>
       </section>
 
+      {/* Herkenning */}
+      <Section>
+        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
+          <div>
+            <Eyebrow tone="copper">Herkenbaar?</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+              Eén klantvraag, vier keer handwerk
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Informatie opvragen bij de klant, opties en prijzen bij elkaar zoeken, gegevens
+              overtypen in een ander systeem en later nog eens opvolgen. Elk stuk kost weinig tijd.
+              Bij elkaar kost het je week.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Wij halen die stappen eruit waar dat kan, en maken de stappen die blijven een stuk
+              lichter.
+            </p>
+          </div>
+          <ManualSteps className="w-full" />
+        </div>
+      </Section>
 
-      {/* Herkenbaar probleem */}
+      {/* Oplossingen */}
       <Section tone="shell">
-        <Eyebrow>Herkenbaar?</Eyebrow>
-        <h2 className="mt-6 max-w-3xl text-4xl leading-tight md:text-5xl">
-          Het werk gebeurt, maar het kost u elke week uren die nergens naartoe gaan.
-        </h2>
-        <div className="mt-14 grid gap-px overflow-hidden rounded-xl bg-line md:grid-cols-3">
-          {[
-            {
-              t: "Alles gaat via mail en Excel",
-              d: "Gegevens worden meerdere keren overgetypt. Eén fout en het hele traject loopt vertraging op.",
-            },
-            {
-              t: "Offertes maken duurt te lang",
-              d: "Elke aanvraag wordt handmatig uitgerekend, ook de aanvragen die uiteindelijk niets worden.",
-            },
-            {
-              t: "Leads verdwijnen tussen wal en schip",
-              d: "Er is geen plek waar aanvragen automatisch landen, dus opvolging hangt af van geheugen.",
-            },
-          ].map((c) => (
-            <div key={c.t} className="bg-cream p-8">
-              <h3 className="text-2xl">{c.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/70">{c.d}</p>
-            </div>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <Eyebrow>Oplossingen</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+              Bekende problemen, waar we al een richting voor hebben
+            </h2>
+          </div>
+          <Link to="/oplossingen" className="text-sm font-semibold text-forest underline underline-offset-4">
+            Alle oplossingen
+          </Link>
+        </div>
+
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
+          {solutions.map((s) => (
+            <Link
+              key={s.slug}
+              to="/oplossingen/$slug"
+              params={{ slug: s.slug }}
+              className="flex flex-col bg-cream p-8 transition-colors hover:bg-shell"
+            >
+              <span className="eyebrow text-copper">{s.n}</span>
+              <h3 className="mt-3 text-xl">{s.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{s.short}</p>
+            </Link>
           ))}
         </div>
       </Section>
 
-      {/* Aanpak in drie beelden */}
-      <Section tone="ink">
-        <div className="text-center">
-          <p className="eyebrow text-sage">Onze aanpak</p>
-          <h2 className="mx-auto mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
-            Klein beginnen, meteen resultaat.
-          </h2>
+      {/* Sectoren */}
+      <Section>
+        <Eyebrow>Sectoren</Eyebrow>
+        <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+          We kennen het werk waar de tijd in gaat zitten
+        </h2>
+        <ul className="mt-10 divide-y divide-line border-y border-line">
+          {sectors.map((s) => (
+            <li key={s.slug}>
+              <Link
+                to="/sectoren/$slug"
+                params={{ slug: s.slug }}
+                className="grid gap-2 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_1.6fr] md:items-baseline md:px-4"
+              >
+                <h3 className="text-xl">{s.title}</h3>
+                <p className="text-sm leading-relaxed text-ink/70">{s.short}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Uitgelichte oplossing */}
+      <Section tone="shell">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
+          <div>
+            <Eyebrow tone="copper">Uitgelicht</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">{featured.title}</h2>
+            <p className="mt-4 leading-relaxed text-ink/70">{featured.intro}</p>
+            <ul className="mt-8 space-y-4">
+              {featured.base.map((b) => (
+                <li key={b} className="flex gap-3 leading-relaxed text-ink/80">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" aria-hidden="true" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/oplossingen/$slug"
+              params={{ slug: featured.slug }}
+              className="mt-8 inline-block text-sm font-semibold text-forest underline underline-offset-4"
+            >
+              Bekijk de slimme offerteflow
+            </Link>
+          </div>
+          <div>
+            <BrowserFrame
+              src={sspwStap2}
+              alt="Stap 2 van de zwembadconfigurator: opties kiezen met een meelopende samenvatting"
+              label="Zwembadconfigurator — stap 2"
+            />
+            <ConfiguratorFlow className="mt-8 w-full" />
+          </div>
         </div>
-        <ThreePillars className="mt-16" />
-        <p className="mt-16 text-center text-lg text-cream/70">
-          Geen jarenlang traject. Eén knelpunt, één tool, meetbaar tijdwinst.
-        </p>
       </Section>
 
       {/* Case */}
       <Section>
-        <div className="grid gap-14 md:grid-cols-[1fr_1fr] md:items-center">
+        <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center">
           <div>
-            <Eyebrow>Case · SSPW</Eyebrow>
-            <h2 className="mt-6 text-4xl leading-tight md:text-5xl">
-              Een zwembadconfigurator die <span className="hand text-[1.1em]">voorselecteert</span>
+            <Eyebrow>Case</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+              SSPW: van elk gesprek opnieuw uitvragen naar een complete aanvraag
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink/75">
-              Sun Sauna &amp; Poolworld kreeg 20 serieuze aanvragen per maand. Tien daarvan werden
-              showroomgesprekken van een uur, plus een uur opvolging. Zeven haakten alsnog af op
-              prijs. Die selectie hoort vóór het gesprek te gebeuren, niet erna.
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Twintig serieuze aanvragen per maand, tien showroomgesprekken van een uur en toch
+              zeven trajecten die stukliepen op prijs. De configurator laat de klant vooraf zelf
+              samenstellen — inclusief wat inbegrepen is en wat extra kost.
             </p>
             <Link
               to="/cases/sspw-zwembadconfigurator"
-              className="mt-8 inline-flex rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="mt-8 inline-block text-sm font-semibold text-forest underline underline-offset-4"
             >
               Lees de case
             </Link>
           </div>
-          <LeadFunnel className="w-full" />
+          <BaseAndCustom className="w-full" />
         </div>
       </Section>
 
-      {/* CTA */}
+      {/* Hoe we werken */}
       <Section tone="shell">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl leading-tight md:text-5xl">
-            Vertel ons waar het werk blijft hangen.
-          </h2>
-          <p className="mt-5 text-lg text-ink/70">
-            U hoeft de oplossing nog niet te kennen. Eén gesprek is genoeg om te zien of hier een
-            tool onder zit.
+        <Eyebrow>Hoe we werken</Eyebrow>
+        <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+          Kijken wat er gebeurt, bepalen wat het waard is, dan pas bouwen
+        </h2>
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {[
+            { n: "01", t: "Proces doorlopen", b: "We kijken mee met hoe het nu gaat en waar de tijd blijft hangen." },
+            { n: "02", t: "Waarde bepalen", b: "Levert het te weinig op, dan zeggen we dat voordat er iets gebouwd wordt." },
+            { n: "03", t: "Bouwen en bijstellen", b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen." },
+          ].map((s) => (
+            <div key={s.n} className="border-t border-line pt-6">
+              <span className="eyebrow text-copper">{s.n}</span>
+              <h3 className="mt-3 text-xl">{s.t}</h3>
+              <p className="mt-2 leading-relaxed text-ink/70">{s.b}</p>
+            </div>
+          ))}
+        </div>
+        <Link to="/hoe-we-werken" className="mt-10 inline-block text-sm font-semibold text-forest underline underline-offset-4">
+          De volledige werkwijze
+        </Link>
+      </Section>
+
+      {/* Over + CTA */}
+      <Section tone="ink">
+        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
+          <div>
+            <Eyebrow tone="sage">Over LoopWerk</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+              Nuchter, concreet en eerlijk over wat iets oplevert
+            </h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-cream/70">
+              Je praat met de mensen die het ook bouwen. Geen rapporten waar niemand op zit te
+              wachten, maar iets werkends om op te reageren.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Plan een gesprek
+              </Link>
+              <Link
+                to="/over-loopwerk"
+                className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+              >
+                Over LoopWerk
+              </Link>
+            </div>
+          </div>
+          <p className="hand text-3xl text-sage">
+            Vertel wat er nu handmatig gaat — dan zeggen wij of er iets te winnen valt.
           </p>
-          <Link
-            to="/contact"
-            className="mt-8 inline-flex rounded-full bg-copper px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Plan een gesprek
-          </Link>
         </div>
       </Section>
     </>

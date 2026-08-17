@@ -5,10 +5,11 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
 const nav = [
-  { to: "/diensten", label: "Diensten" },
-  { to: "/werkwijze", label: "Werkwijze" },
+  { to: "/oplossingen", label: "Oplossingen" },
+  { to: "/sectoren", label: "Sectoren" },
   { to: "/cases", label: "Cases" },
-  { to: "/over-ons", label: "Over ons" },
+  { to: "/hoe-we-werken", label: "Hoe we werken" },
+  { to: "/over-loopwerk", label: "Over LoopWerk" },
 ] as const;
 
 export function SiteHeader() {
@@ -21,7 +22,7 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {nav.map((item) => (
             <Link
               key={item.to}
@@ -42,7 +43,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="md:hidden"
+          className="lg:hidden"
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -51,7 +52,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="border-t border-border bg-background lg:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
             {[...nav, { to: "/contact", label: "Contact" } as const].map((item) => (
               <Link

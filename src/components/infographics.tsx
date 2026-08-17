@@ -178,3 +178,75 @@ export function ThreePillars({ className }: { className?: string }) {
     </div>
   );
 }
+
+/** Bestaande basis + maatwerk: één bouwsteen die per bedrijf wordt aangevuld. */
+export function BaseAndCustom({ className }: { className?: string }) {
+  const parts = ["Producten", "Regels", "Uitzonderingen", "Systemen"];
+  return (
+    <svg viewBox="0 0 520 300" className={className} role="img" aria-label="Een bestaande basis wordt aangevuld met producten, regels, uitzonderingen en systemen van het bedrijf">
+      <rect x="26" y="96" width="150" height="108" rx="8" fill={forest} opacity="0.12" stroke={forest} strokeWidth="2" />
+      <text x="101" y="140" textAnchor="middle" fontSize="15" fill={ink} fontFamily="var(--font-display)">
+        Bestaande
+      </text>
+      <text x="101" y="164" textAnchor="middle" fontSize="15" fill={ink} fontFamily="var(--font-display)">
+        basis
+      </text>
+
+      {parts.map((p, i) => {
+        const y = 30 + i * 62;
+        return (
+          <g key={p}>
+            <path d={`M300 ${y + 18} C 250 ${y + 18}, 236 150, 186 150`} fill="none" stroke={sage} strokeWidth="2" strokeDasharray="5 7" />
+            <rect x="300" y={y} width="194" height="38" rx="19" fill="none" stroke={forest} strokeWidth="1.5" />
+            <text x="397" y={y + 24} textAnchor="middle" fontSize="13" fill={ink}>
+              {p}
+            </text>
+          </g>
+        );
+      })}
+
+      <circle cx="186" cy="150" r="9" fill={copper} />
+      <text x="26" y="248" fontSize="12" fill={ink} opacity="0.6">
+        Wat we al hebben
+      </text>
+      <text x="300" y="290" fontSize="12" fill={ink} opacity="0.6">
+        Wat we per bedrijf passend maken
+      </text>
+    </svg>
+  );
+}
+
+/** Herkenning: vier handmatige stappen rondom één aanvraag. */
+export function ManualSteps({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+  const base = tone === "dark" ? "var(--cream)" : ink;
+  const rail = tone === "dark" ? sage : forest;
+  const steps = ["Informatie ophalen", "Opties en prijzen zoeken", "Gegevens overtypen", "Later opvolgen"];
+  return (
+    <svg viewBox="0 0 560 190" className={className} role="img" aria-label="Vier handmatige stappen na één klantvraag: informatie ophalen, prijzen zoeken, gegevens overtypen en opvolgen">
+      <text x="6" y="22" fontSize="13" fill={base} opacity="0.65">
+        Eén klantvraag
+      </text>
+      <line x1="10" y1="70" x2="546" y2="70" stroke={rail} strokeWidth="2" strokeDasharray="6 8" />
+      {steps.map((s, i) => {
+        const x = 74 + i * 136;
+        return (
+          <g key={s}>
+            <circle cx={x} cy="70" r="16" fill={i === 3 ? copper : tone === "dark" ? "var(--ink)" : "var(--cream)"} stroke={i === 3 ? copper : rail} strokeWidth="2" />
+            <text x={x} y="75" textAnchor="middle" fontSize="13" fill={i === 3 ? "#fff" : base} fontFamily="var(--font-display)">
+              {i + 1}
+            </text>
+            <text x={x} y="112" textAnchor="middle" fontSize="12" fill={base} opacity="0.75">
+              {s.split(" ").slice(0, 2).join(" ")}
+            </text>
+            <text x={x} y="130" textAnchor="middle" fontSize="12" fill={base} opacity="0.75">
+              {s.split(" ").slice(2).join(" ")}
+            </text>
+          </g>
+        );
+      })}
+      <text x="6" y="176" fontSize="12" fill={base} opacity="0.55">
+        Iedere week opnieuw
+      </text>
+    </svg>
+  );
+}
