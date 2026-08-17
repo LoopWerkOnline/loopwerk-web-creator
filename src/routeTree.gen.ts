@@ -17,6 +17,7 @@ import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
+import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,6 +60,11 @@ const OplossingenIndexRoute = OplossingenIndexRouteImport.update({
   path: '/oplossingen/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OplossingenSlugRoute = OplossingenSlugRouteImport.update({
+  id: '/oplossingen/$slug',
+  path: '/oplossingen/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
 }
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/over-ons': typeof OverOnsRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
+  '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesByTo: FileRoutesByTo
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
     | '/cases'
     | '/oplossingen'
   id:
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
+    | '/oplossingen/$slug'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesById: FileRoutesById
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   OverOnsRoute: typeof OverOnsRoute
   WerkwijzeRoute: typeof WerkwijzeRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
+  OplossingenSlugRoute: typeof OplossingenSlugRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
 }
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OplossingenIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/oplossingen/$slug': {
+      id: '/oplossingen/$slug'
+      path: '/oplossingen/$slug'
+      fullPath: '/oplossingen/$slug'
+      preLoaderRoute: typeof OplossingenSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   OverOnsRoute: OverOnsRoute,
   WerkwijzeRoute: WerkwijzeRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
+  OplossingenSlugRoute: OplossingenSlugRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
 }
