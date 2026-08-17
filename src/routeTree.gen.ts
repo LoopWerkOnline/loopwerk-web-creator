@@ -18,6 +18,7 @@ import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
 import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
+import { Route as SectorenIndexRouteImport } from './routes/sectoren.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -65,6 +66,11 @@ const OplossingenSlugRoute = OplossingenSlugRouteImport.update({
   path: '/oplossingen/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectorenIndexRoute = SectorenIndexRouteImport.update({
+  id: '/sectoren/',
+  path: '/sectoren/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
+  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
+  '/sectoren': typeof SectorenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -99,6 +107,7 @@ export interface FileRoutesById {
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
+  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
     | '/oplossingen/$slug'
     | '/cases/'
     | '/oplossingen/'
+    | '/sectoren/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -123,6 +133,7 @@ export interface FileRouteTypes {
     | '/oplossingen/$slug'
     | '/cases'
     | '/oplossingen'
+    | '/sectoren'
   id:
     | '__root__'
     | '/'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/oplossingen/$slug'
     | '/cases/'
     | '/oplossingen/'
+    | '/sectoren/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -146,6 +158,7 @@ export interface RootRouteChildren {
   OplossingenSlugRoute: typeof OplossingenSlugRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
+  SectorenIndexRoute: typeof SectorenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -213,6 +226,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OplossingenSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectoren/': {
+      id: '/sectoren/'
+      path: '/sectoren'
+      fullPath: '/sectoren/'
+      preLoaderRoute: typeof SectorenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -226,6 +246,7 @@ const rootRouteChildren: RootRouteChildren = {
   OplossingenSlugRoute: OplossingenSlugRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
+  SectorenIndexRoute: SectorenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
