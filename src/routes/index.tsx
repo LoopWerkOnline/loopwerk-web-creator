@@ -42,9 +42,7 @@ function Index() {
               <span className="hand text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
-              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. We
-              beginnen bij een probleem dat we herkennen, zetten een bestaande basis in en maken die
-              passend voor jullie proces.
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
