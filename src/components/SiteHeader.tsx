@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import { Logo } from "./Logo";
 import { solutions, sectors } from "@/lib/content";
@@ -35,25 +35,41 @@ export function SiteHeader() {
               Oplossingen
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
             </Link>
-            <div className="pointer-events-none absolute -left-6 top-full w-80 pt-4 opacity-0 transition-all group-hover:pointer-events-auto group-hover:opacity-100">
-              <div className="rounded-xl border border-border/70 bg-background/95 p-2 shadow-lg backdrop-blur">
-                <div className="border-b border-border/70 px-4 py-3">
+            <div className="pointer-events-none absolute left-1/2 top-full w-[min(58rem,90vw)] -translate-x-1/2 pt-4 opacity-0 transition-all group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="rounded-2xl border border-border/70 bg-background/98 p-6 shadow-xl backdrop-blur">
+                <div className="mb-4 flex items-baseline justify-between gap-4 border-b border-border/70 pb-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
+                    Oplossingen
+                  </p>
                   <Link
                     to="/oplossingen"
-                    className="text-sm font-semibold text-foreground hover:text-forest"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest hover:text-copper"
                   >
                     Alle oplossingen
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
-                <ul className="py-2">
+                <ul className="grid grid-cols-2 gap-1">
                   {solutions.map((s) => (
                     <li key={s.slug}>
                       <Link
                         to="/oplossingen/$slug"
                         params={{ slug: s.slug }}
-                        className="block rounded-lg px-4 py-2.5 text-sm font-medium text-foreground/75 transition-colors hover:bg-secondary hover:text-foreground"
+                        className="group/item flex gap-3 rounded-xl p-3 transition-colors hover:bg-secondary"
                       >
-                        {s.title}
+                        <span className="mt-0.5 text-xs font-semibold text-copper">{s.n}</span>
+                        <span className="min-w-0">
+                          <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
+                            {s.title}
+                            <ArrowRight
+                              className="h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover/item:translate-x-0 group-hover/item:opacity-100"
+                              aria-hidden="true"
+                            />
+                          </span>
+                          <span className="mt-1 block text-sm leading-snug text-foreground/60">
+                            {s.short}
+                          </span>
+                        </span>
                       </Link>
                     </li>
                   ))}
@@ -72,25 +88,38 @@ export function SiteHeader() {
               Sectoren
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
             </Link>
-            <div className="pointer-events-none absolute -left-6 top-full w-80 pt-4 opacity-0 transition-all group-hover:pointer-events-auto group-hover:opacity-100">
-              <div className="rounded-xl border border-border/70 bg-background/95 p-2 shadow-lg backdrop-blur">
-                <div className="border-b border-border/70 px-4 py-3">
+            <div className="pointer-events-none absolute left-1/2 top-full w-[min(52rem,90vw)] -translate-x-1/2 pt-4 opacity-0 transition-all group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="rounded-2xl border border-border/70 bg-background/98 p-6 shadow-xl backdrop-blur">
+                <div className="mb-4 flex items-baseline justify-between gap-4 border-b border-border/70 pb-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
+                    Sectoren
+                  </p>
                   <Link
                     to="/sectoren"
-                    className="text-sm font-semibold text-foreground hover:text-forest"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest hover:text-copper"
                   >
                     Alle sectoren
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
-                <ul className="py-2">
+                <ul className="grid grid-cols-2 gap-1">
                   {sectors.map((s) => (
                     <li key={s.slug}>
                       <Link
                         to="/sectoren/$slug"
                         params={{ slug: s.slug }}
-                        className="block rounded-lg px-4 py-2.5 text-sm font-medium text-foreground/75 transition-colors hover:bg-secondary hover:text-foreground"
+                        className="group/item block rounded-xl p-3 transition-colors hover:bg-secondary"
                       >
-                        {s.title}
+                        <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
+                          {s.title}
+                          <ArrowRight
+                            className="h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover/item:translate-x-0 group-hover/item:opacity-100"
+                            aria-hidden="true"
+                          />
+                        </span>
+                        <span className="mt-1 block text-sm leading-snug text-foreground/60">
+                          {s.short}
+                        </span>
                       </Link>
                     </li>
                   ))}
