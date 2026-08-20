@@ -5,7 +5,7 @@ import { sectors } from "@/lib/content";
 
 const title = "Sectoren — LoopWerk";
 const description =
-  "Bouw & installatie, maakindustrie, handel, mobiliteit en maatwerkverkoop: waar in deze sectoren onnodig handwerk ontstaat en wat eraan te doen is.";
+  "Bouw & installatie, maakindustrie, handel en mobiliteit: waar in deze sectoren onnodig handwerk ontstaat en wat eraan te doen is.";
 
 export const Route = createFileRoute("/sectoren/")({
   head: () => ({

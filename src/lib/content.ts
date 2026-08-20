@@ -254,26 +254,6 @@ export const sectors: Sector[] = [
     solutions: ["slimme-offerteflow", "opvolging-automatiseren", "gegevens-automatisch-verwerken"],
     custom: "Jullie uitvoeringen, toeslagen en de doorlooptijd die je richting klant wilt communiceren.",
   },
-  {
-    slug: "maatwerk-en-projectverkoop",
-    title: "Maatwerk & projectverkoop",
-    short:
-      "Verkoop waarbij eerst wensen, maten, opties en uitvoering duidelijk moeten zijn voordat er een prijs kan komen.",
-    intro:
-      "Bij projectverkoop zit de tijd vooraan: in het uitvragen, uitzoeken en doorrekenen. Precies daar valt de meeste winst te halen.",
-    seen: [
-      "Elk traject begint met hetzelfde vragenrondje.",
-      "Showroom- of adviesgesprekken van een uur of langer.",
-      "Een deel van de gesprekken loopt dood op budget.",
-    ],
-    friction: [
-      "De prijsvraag komt pas na het gesprek op tafel.",
-      "Voorstellen worden per klant opnieuw opgebouwd.",
-      "Aanvragen worden niet als lead vastgelegd.",
-    ],
-    solutions: ["slimme-offerteflow", "calculaties-en-prijsindicaties", "opvolging-automatiseren"],
-    custom: "Jullie assortiment, prijsopbouw en de manier waarop jullie een klant willen begeleiden.",
-  },
 ];
 
 export function solutionBySlug(slug: string) {
