@@ -89,12 +89,11 @@ function Index() {
             </h2>
             <p className="mt-4 leading-relaxed text-ink/70">
               Informatie opvragen bij de klant, opties en prijzen bij elkaar zoeken, gegevens
-              overtypen in een ander systeem en later nog eens opvolgen. Elk stuk kost weinig tijd.
-              Bij elkaar kost het je week.
+              verwerken in een ander systeem en later nog eens opvolgen. Elk stuk kost weinig tijd.
+              Bij elkaar meer dan je denkt.
             </p>
             <p className="mt-4 leading-relaxed text-ink/70">
-              Wij halen die stappen eruit waar dat kan, en maken de stappen die blijven een stuk
-              lichter.
+              Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
           </div>
           <ManualSteps className="w-full" />
