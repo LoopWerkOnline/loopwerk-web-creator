@@ -209,6 +209,7 @@ export const sectors: Sector[] = [
     slug: "maakindustrie-en-machinebouw",
     title: "Maakindustrie & machinebouw",
     short: "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
+    flowLabel: "configureren zonder engineering",
     image: "/__l5e/assets-v1/ef85d15a-b9a4-4176-aa2f-6f708552594a/sector-machinebouw.jpg",
     imageAlt: "Rupsvoertuig met bak op een terrein in de mist",
     intro:
@@ -230,6 +231,7 @@ export const sectors: Sector[] = [
     slug: "handel-en-groothandel",
     title: "Handel & groothandel",
     short: "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
+    flowLabel: "prijs en voorwaarden helder",
     image: "/__l5e/assets-v1/4134bf38-95f7-44cd-bb60-19d54c44ab1e/sector-handel.jpg",
     imageAlt: "Afgewerkte badkamer met sanitair en tegelwerk",
     intro:
@@ -251,6 +253,7 @@ export const sectors: Sector[] = [
     slug: "mobiliteit-en-transport",
     title: "Mobiliteit & transport",
     short: "Configuraties, specificaties, aanvragen, offertes en administratieve opvolging.",
+    flowLabel: "opties helder uitgeschreven",
     image: "/__l5e/assets-v1/181b0c5c-509d-4f99-af57-cb0859f5348e/sector-transport.jpg",
     imageAlt: "Vrachtwagen met oplegger op de snelweg bij zonsondergang",
     intro:
