@@ -150,7 +150,7 @@ function Index() {
 
                 {s.flowLabel && (
                   <div className="pointer-events-none absolute inset-y-0 left-[45%] right-[18rem] hidden items-center justify-center px-6 md:flex">
-                    <div className="relative h-24 w-full">
+                    <div className="relative h-28 w-full">
                       <svg
                         className="absolute inset-0 h-full w-full overflow-visible"
                         viewBox="0 0 200 56"
