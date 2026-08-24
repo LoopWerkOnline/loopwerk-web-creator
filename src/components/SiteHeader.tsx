@@ -172,8 +172,8 @@ export function SiteHeader() {
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={showMenu}
           onClick={() => setOpen((v) => !v)}
-          onMouseEnter={cancelHoverClose}
-          onMouseLeave={startHoverClose}
+          onMouseOver={cancelHoverClose}
+          onMouseOut={startHoverClose}
         >
           {showMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
