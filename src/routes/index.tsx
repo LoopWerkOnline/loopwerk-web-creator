@@ -142,28 +142,29 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_1fr_18rem] md:gap-8 md:px-4"
+                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_10rem_18rem] md:gap-6 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
                 {s.flowLabel && (
-                  <div className="relative hidden h-20 items-center justify-center md:flex">
+                  <div className="relative hidden h-24 items-center justify-center md:flex">
                     <svg
                       className="absolute inset-0 h-full w-full overflow-visible"
-                      viewBox="0 0 200 40"
+                      viewBox="0 0 200 48"
                       preserveAspectRatio="none"
                       aria-hidden="true"
                     >
                       <path
-                        d="M0,20 C50,20 70,5 100,20 S150,35 200,20"
+                        d="M0,24 C18,8 38,40 58,24 S94,4 118,28 S154,12 178,30 S196,18 200,24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeDasharray="6 4"
-                        className="text-copper/50"
+                        strokeWidth="2"
+                        strokeDasharray="5 4"
+                        strokeLinecap="round"
+                        className="text-copper"
                       />
-                      <circle cx="0" cy="20" r="2.5" className="fill-copper/70" />
-                      <circle cx="200" cy="20" r="2.5" className="fill-copper/70" />
+                      <circle cx="0" cy="24" r="3" className="fill-copper" />
+                      <circle cx="200" cy="24" r="3" className="fill-copper" />
                     </svg>
                     <span className="hand relative z-10 rotate-[-2deg] text-xl md:text-2xl">
                       {s.flowLabel}
