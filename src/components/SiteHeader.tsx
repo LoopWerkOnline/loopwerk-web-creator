@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import { Logo } from "./Logo";
@@ -15,7 +15,26 @@ const plainNav: NavItem[] = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<"oplossingen" | "sectoren" | null>(null);
+  const [hovered, setHovered] = useState(false);
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showMenu = open || hovered;
+
+  const startHoverClose = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHovered(false), 200);
+  };
+
+  const cancelHoverClose = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setHovered(true);
+  };
+
+  const closeMenu = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setOpen(false);
+    setHovered(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
@@ -151,113 +170,60 @@ export function SiteHeader() {
           type="button"
           className="lg:hidden"
           aria-label={open ? "Menu sluiten" : "Menu openen"}
+          aria-expanded={showMenu}
           onClick={() => setOpen((v) => !v)}
+          onMouseOver={cancelHoverClose}
+          onMouseOut={startHoverClose}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {showMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {open ? (
-        <div className="border-t border-border bg-background lg:hidden">
+      {showMenu ? (
+        <div
+          className="border-t border-border bg-background lg:hidden"
+          onMouseOver={cancelHoverClose}
+          onMouseOut={startHoverClose}
+        >
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
-            {/* Oplossingen mobile */}
-            <div className="flex flex-col">
-              <button
-                type="button"
-                onClick={() =>
-                  setMobileExpanded((prev) => (prev === "oplossingen" ? null : "oplossingen"))
-                }
-                className="flex items-center justify-between rounded-md px-2 py-3 text-left text-base font-medium text-foreground/80 hover:bg-secondary"
-              >
-                Oplossingen
-                <ChevronDown
-                  className={`h-5 w-5 text-foreground/60 transition-transform ${mobileExpanded === "oplossingen" ? "rotate-180" : ""}`}
-                  aria-hidden="true"
-                />
-              </button>
-              {mobileExpanded === "oplossingen" ? (
-                <ul className="ml-4 border-l border-border/70 pl-2">
-                  <li>
-                    <Link
-                      to="/oplossingen"
-                      onClick={() => setOpen(false)}
-                      className="block rounded-md px-2 py-2.5 text-sm font-semibold text-foreground/80 hover:bg-secondary"
-                    >
-                      Alle oplossingen
-                    </Link>
-                  </li>
-                  {solutions.map((s) => (
-                    <li key={s.slug}>
-                      <Link
-                        to="/oplossingen/$slug"
-                        params={{ slug: s.slug }}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-md px-2 py-2.5 text-sm text-foreground/70 hover:bg-secondary hover:text-foreground"
-                      >
-                        {s.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </div>
-
-            {/* Sectoren mobile */}
-            <div className="flex flex-col">
-              <button
-                type="button"
-                onClick={() =>
-                  setMobileExpanded((prev) => (prev === "sectoren" ? null : "sectoren"))
-                }
-                className="flex items-center justify-between rounded-md px-2 py-3 text-left text-base font-medium text-foreground/80 hover:bg-secondary"
-              >
-                Sectoren
-                <ChevronDown
-                  className={`h-5 w-5 text-foreground/60 transition-transform ${mobileExpanded === "sectoren" ? "rotate-180" : ""}`}
-                  aria-hidden="true"
-                />
-              </button>
-              {mobileExpanded === "sectoren" ? (
-                <ul className="ml-4 border-l border-border/70 pl-2">
-                  <li>
-                    <Link
-                      to="/sectoren"
-                      onClick={() => setOpen(false)}
-                      className="block rounded-md px-2 py-2.5 text-sm font-semibold text-foreground/80 hover:bg-secondary"
-                    >
-                      Alle sectoren
-                    </Link>
-                  </li>
-                  {sectors.map((s) => (
-                    <li key={s.slug}>
-                      <Link
-                        to="/sectoren/$slug"
-                        params={{ slug: s.slug }}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-md px-2 py-2.5 text-sm text-foreground/70 hover:bg-secondary hover:text-foreground"
-                      >
-                        {s.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </div>
-
-            {plainNav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
-              >
-                {item.label}
-              </Link>
-            ))}
-
+            <Link
+              to="/oplossingen"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Oplossingen
+            </Link>
+            <Link
+              to="/sectoren"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Voor wie
+            </Link>
+            <Link
+              to="/cases"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Cases
+            </Link>
+            <Link
+              to="/hoe-we-werken"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Hoe we werken
+            </Link>
+            <Link
+              to="/over-loopwerk"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Over LoopWerk
+            </Link>
             <Link
               to="/contact"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               className="mt-2 rounded-full bg-copper px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
