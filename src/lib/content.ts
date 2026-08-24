@@ -49,7 +49,7 @@ export const solutions: Solution[] = [
     n: "02",
     title: "Aanvragen compleet binnenkrijgen",
     short:
-      "Informatie eerder en gestructureerd verzamelen, zodat er minder heen en weer nodig is.",
+      "Informatie eerder en gestructureerd verzamelen, zodat er minder heen en weer contact nodig is.",
     intro:
       "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Als je vooraf weet welke gegevens je nodig hebt, kun je die ook vooraf vragen.",
     signals: [
