@@ -142,20 +142,20 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_10rem_18rem] md:gap-6 md:px-4"
+                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_12rem_18rem] md:gap-6 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
                 {s.flowLabel && (
-                  <div className="relative hidden h-24 items-center justify-center md:flex">
+                  <div className="relative hidden h-28 items-center justify-center md:flex">
                     <svg
                       className="absolute inset-0 h-full w-full overflow-visible"
-                      viewBox="0 0 200 48"
+                      viewBox="0 0 200 56"
                       preserveAspectRatio="none"
                       aria-hidden="true"
                     >
                       <path
-                        d="M0,24 C18,8 38,40 58,24 S94,4 118,28 S154,12 178,30 S196,18 200,24"
+                        d="M0,28 C12,12 28,44 44,28 S72,8 96,32 S124,16 148,36 S176,12 200,28"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -163,10 +163,10 @@ function Index() {
                         strokeLinecap="round"
                         className="text-copper"
                       />
-                      <circle cx="0" cy="24" r="3" className="fill-copper" />
-                      <circle cx="200" cy="24" r="3" className="fill-copper" />
+                      <circle cx="0" cy="28" r="3" className="fill-copper" />
+                      <circle cx="200" cy="28" r="3" className="fill-copper" />
                     </svg>
-                    <span className="hand relative z-10 rotate-[-2deg] text-xl md:text-2xl">
+                    <span className="hand relative z-10 max-w-[10rem] rounded-full bg-cream/90 px-3 py-1 text-center text-lg leading-tight text-copper">
                       {s.flowLabel}
                     </span>
                   </div>
