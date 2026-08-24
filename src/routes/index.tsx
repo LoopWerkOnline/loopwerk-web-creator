@@ -142,9 +142,35 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group grid items-center gap-6 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_18rem] md:px-4"
+                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_1fr_18rem] md:gap-8 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
+
+                {s.flowLabel && (
+                  <div className="relative hidden h-20 items-center justify-center md:flex">
+                    <svg
+                      className="absolute inset-0 h-full w-full overflow-visible"
+                      viewBox="0 0 200 40"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M0,20 C50,20 70,5 100,20 S150,35 200,20"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeDasharray="6 4"
+                        className="text-copper/50"
+                      />
+                      <circle cx="0" cy="20" r="2.5" className="fill-copper/70" />
+                      <circle cx="200" cy="20" r="2.5" className="fill-copper/70" />
+                    </svg>
+                    <span className="hand relative z-10 rotate-[-2deg] text-xl md:text-2xl">
+                      {s.flowLabel}
+                    </span>
+                  </div>
+                )}
+
                 {s.image ? (
                   <div className="flip-scene h-40 w-full md:h-32">
                     <div className="flip-inner h-full w-full">
