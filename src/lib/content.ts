@@ -165,6 +165,9 @@ export type Sector = {
   slug: string;
   title: string;
   short: string;
+  /** Sfeerbeeld voor de sectorkaart op de homepage. */
+  image?: string;
+  imageAlt?: string;
   intro: string;
   /** Wat we binnen dit soort bedrijven vaak zien gebeuren. */
   seen: string[];
@@ -181,6 +184,8 @@ export const sectors: Sector[] = [
     slug: "bouw-en-installatie",
     title: "Bouw & installatie",
     short: "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
+    image: "/__l5e/assets-v1/dc327e92-719e-4781-8022-db0710361100/sector-bouw.jpg",
+    imageAlt: "Vakman metselt een wand op een bouwplaats",
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
     seen: [
@@ -201,6 +206,8 @@ export const sectors: Sector[] = [
     slug: "maakindustrie-en-machinebouw",
     title: "Maakindustrie & machinebouw",
     short: "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
+    image: "/__l5e/assets-v1/ef85d15a-b9a4-4176-aa2f-6f708552594a/sector-machinebouw.jpg",
+    imageAlt: "Rupsvoertuig met bak op een terrein in de mist",
     intro:
       "Een aanvraag is pas te beoordelen als de technische uitgangspunten kloppen. Dat uitvragen kost engineeringtijd die je liever aan het werk zelf besteedt.",
     seen: [
@@ -220,6 +227,8 @@ export const sectors: Sector[] = [
     slug: "handel-en-groothandel",
     title: "Handel & groothandel",
     short: "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
+    image: "/__l5e/assets-v1/4134bf38-95f7-44cd-bb60-19d54c44ab1e/sector-handel.jpg",
+    imageAlt: "Afgewerkte badkamer met sanitair en tegelwerk",
     intro:
       "Veel vragen zijn variaties op dezelfde vraag: wat kost dit bij deze afname, onder welke voorwaarden en wanneer is het er?",
     seen: [
@@ -239,6 +248,8 @@ export const sectors: Sector[] = [
     slug: "mobiliteit-en-transport",
     title: "Mobiliteit & transport",
     short: "Configuraties, specificaties, aanvragen, offertes en administratieve opvolging.",
+    image: "/__l5e/assets-v1/181b0c5c-509d-4f99-af57-cb0859f5348e/sector-transport.jpg",
+    imageAlt: "Vrachtwagen met oplegger op de snelweg bij zonsondergang",
     intro:
       "Van opbouw tot uitvoering: de keuzes liggen vast, maar het samenstellen en doorrekenen gebeurt nog met de hand.",
     seen: [
