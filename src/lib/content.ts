@@ -206,6 +206,8 @@ export const sectors: Sector[] = [
     slug: "maakindustrie-en-machinebouw",
     title: "Maakindustrie & machinebouw",
     short: "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
+    image: "/__l5e/assets-v1/ef85d15a-b9a4-4176-aa2f-6f708552594a/sector-machinebouw.jpg",
+    imageAlt: "Rupsvoertuig met bak op een terrein in de mist",
     intro:
       "Een aanvraag is pas te beoordelen als de technische uitgangspunten kloppen. Dat uitvragen kost engineeringtijd die je liever aan het werk zelf besteedt.",
     seen: [
