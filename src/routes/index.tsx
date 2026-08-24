@@ -142,42 +142,38 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group relative flex items-center justify-between gap-4 py-7 transition-colors hover:bg-shell md:gap-0 md:px-4"
+                className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_18rem] md:gap-6 md:px-4"
               >
-                <h3 className="z-10 text-2xl md:w-[45%] md:text-right md:text-3xl">
-                  {s.title}
-                </h3>
+                <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
                 {s.flowLabel && (
-                  <div className="pointer-events-none absolute inset-y-0 left-[45%] right-[18rem] hidden items-center justify-center px-6 md:flex">
-                    <div className="relative h-28 w-full">
-                      <svg
-                        className="absolute inset-0 h-full w-full overflow-visible"
-                        viewBox="0 0 200 56"
-                        preserveAspectRatio="none"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M0,28 C12,12 28,44 44,28 S72,8 96,32 S124,16 148,36 S176,12 200,28"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeDasharray="5 4"
-                          strokeLinecap="round"
-                          className="text-copper"
-                        />
-                        <circle cx="0" cy="28" r="3" className="fill-copper" />
-                        <circle cx="200" cy="28" r="3" className="fill-copper" />
-                      </svg>
-                      <span className="hand absolute left-1/2 top-1/2 z-10 max-w-[12rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-copper/20 bg-cream px-4 py-2 text-center text-base leading-tight text-copper shadow-sm">
-                        {s.flowLabel}
-                      </span>
-                    </div>
+                  <div className="relative hidden h-28 items-center justify-center md:flex">
+                    <svg
+                      className="absolute inset-0 h-full w-full overflow-visible"
+                      viewBox="0 0 200 56"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M0,28 C12,12 28,44 44,28 S72,8 96,32 S124,16 148,36 S176,12 200,28"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeDasharray="5 4"
+                        strokeLinecap="round"
+                        className="text-copper"
+                      />
+                      <circle cx="0" cy="28" r="3" className="fill-copper" />
+                      <circle cx="200" cy="28" r="3" className="fill-copper" />
+                    </svg>
+                    <span className="hand relative z-10 max-w-[12rem] rounded-full border border-copper/20 bg-cream px-4 py-2 text-center text-base leading-tight text-copper shadow-sm">
+                      {s.flowLabel}
+                    </span>
                   </div>
                 )}
 
                 {s.image ? (
-                  <div className="flip-scene z-10 h-40 w-full md:h-32 md:w-[18rem]">
+                  <div className="flip-scene h-40 w-full md:h-32">
                     <div className="flip-inner h-full w-full">
                       <img
                         src={s.image}
@@ -191,7 +187,7 @@ function Index() {
                     </div>
                   </div>
                 ) : (
-                  <p className="z-10 text-base leading-relaxed text-ink/70 md:w-[18rem]">{s.short}</p>
+                  <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
                 )}
               </Link>
             </li>
