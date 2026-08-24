@@ -184,6 +184,8 @@ export const sectors: Sector[] = [
     slug: "bouw-en-installatie",
     title: "Bouw & installatie",
     short: "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
+    image: "/__l5e/assets-v1/dc327e92-719e-4781-8022-db0710361100/sector-bouw.jpg",
+    imageAlt: "Vakman metselt een wand op een bouwplaats",
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
     seen: [
