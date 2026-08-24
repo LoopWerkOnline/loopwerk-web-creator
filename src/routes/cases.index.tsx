@@ -54,7 +54,7 @@ function Cases() {
               src={sspwZwembad}
               alt="Bouwkundig zwembad in de tuin bij een woning"
               loading="lazy"
-              className="w-full rounded-xl object-cover"
+              className="mx-auto aspect-[16/9] w-full max-w-2xl rounded-xl object-cover"
             />
           </div>
         </article>
