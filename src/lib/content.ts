@@ -165,6 +165,9 @@ export type Sector = {
   slug: string;
   title: string;
   short: string;
+  /** Sfeerbeeld voor de sectorkaart op de homepage. */
+  image?: string;
+  imageAlt?: string;
   intro: string;
   /** Wat we binnen dit soort bedrijven vaak zien gebeuren. */
   seen: string[];
