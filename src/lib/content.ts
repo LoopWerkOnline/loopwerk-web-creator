@@ -24,7 +24,7 @@ export const solutions: Solution[] = [
     n: "01",
     title: "Slimme offerteflow",
     short:
-      "Klanten vooraf de relevante vragen en keuzes laten doorlopen, zodat sales met meer informatie begint.",
+      "Laat klanten vooraf relevante vragen en keuzes doorlopen, zodat sales direct met de juiste informatie start.",
     intro:
       "Bij verkoop waar eerst maten, opties en uitvoering duidelijk moeten zijn, gaat het eerste gesprek vaak op aan uitvragen. Dat deel kan de klant grotendeels zelf doorlopen — mits je hem goed door de keuzes leidt.",
     signals: [
