@@ -231,7 +231,7 @@ export function ManualSteps({ className, tone = "light" }: { className?: string;
         const x = 74 + i * 136;
         return (
           <g key={s}>
-            <circle cx={x} cy="70" r="16" fill={i === 3 ? copper : tone === "dark" ? "var(--ink)" : "var(--cream)"} stroke={i === 3 ? copper : rail} strokeWidth="2" />
+            <circle cx={x} cy="70" r="16" fill={i === 3 ? copper : tone === "dark" ? "var(--ink-hero)" : "var(--cream)"} stroke={i === 3 ? copper : rail} strokeWidth="2" />
             <text x={x} y="75" textAnchor="middle" fontSize="13" fill={i === 3 ? "#fff" : base} fontFamily="var(--font-display)">
               {i + 1}
             </text>
