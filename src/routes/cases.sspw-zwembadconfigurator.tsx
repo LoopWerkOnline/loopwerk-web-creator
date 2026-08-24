@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { ConfiguratorFlow, LeadFunnel } from "@/components/infographics";
-import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
+import { sspwStap1, sspwStap2, sspwStap3, sspwZwembad } from "@/lib/assets";
 
 const title = "Case: zwembadconfigurator voor SSPW | LoopWerk";
 const description =
