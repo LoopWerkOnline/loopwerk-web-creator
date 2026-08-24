@@ -182,8 +182,8 @@ export function SiteHeader() {
       {showMenu ? (
         <div
           className="border-t border-border bg-background lg:hidden"
-          onMouseEnter={cancelHoverClose}
-          onMouseLeave={startHoverClose}
+          onMouseOver={cancelHoverClose}
+          onMouseOut={startHoverClose}
         >
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
             <Link
