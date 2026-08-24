@@ -142,15 +142,32 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="grid gap-2 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_1.6fr] md:items-baseline md:px-4"
+                className="group grid items-center gap-6 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_18rem] md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
-                <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
+                {s.image ? (
+                  <div className="flip-scene h-40 w-full md:h-32">
+                    <div className="flip-inner h-full w-full">
+                      <img
+                        src={s.image}
+                        alt={s.imageAlt ?? s.title}
+                        loading="lazy"
+                        className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
+                      />
+                      <div className="flip-face flip-back absolute inset-0 flex items-center rounded-lg bg-ink-hero p-5">
+                        <p className="text-sm leading-relaxed text-cream/85">{s.short}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
+                )}
               </Link>
             </li>
           ))}
         </ul>
       </Section>
+
 
       {/* Uitgelichte oplossing */}
       <Section tone="shell">
