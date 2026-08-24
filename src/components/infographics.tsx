@@ -39,9 +39,10 @@ export function FocusVsChaos({ className, tone = "light" }: { className?: string
       <text x="6" y="18" className="eyebrow" fill={rail} fontSize="11">
         GEAUTOMATISEERD
       </text>
-      <text x="248" y="18" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
+      <text x="250" y="18" textAnchor="middle" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
         HANDMATIG
       </text>
+
 
       <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" />
       {[40, 166, 293, 420].map((y) => (
