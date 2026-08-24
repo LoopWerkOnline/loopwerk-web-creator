@@ -166,14 +166,21 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <button
-          type="button"
+        <div
           className="lg:hidden"
-          aria-label={open ? "Menu sluiten" : "Menu openen"}
-          onClick={() => setOpen((v) => !v)}
+          onMouseEnter={cancelHoverClose}
+          onMouseLeave={startHoverClose}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <button
+            type="button"
+            className="lg:hidden"
+            aria-label={open ? "Menu sluiten" : "Menu openen"}
+            aria-expanded={showMenu}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {showMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open ? (
