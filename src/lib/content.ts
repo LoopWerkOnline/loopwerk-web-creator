@@ -227,6 +227,8 @@ export const sectors: Sector[] = [
     slug: "handel-en-groothandel",
     title: "Handel & groothandel",
     short: "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
+    image: "/__l5e/assets-v1/4134bf38-95f7-44cd-bb60-19d54c44ab1e/sector-handel.jpg",
+    imageAlt: "Afgewerkte badkamer met sanitair en tegelwerk",
     intro:
       "Veel vragen zijn variaties op dezelfde vraag: wat kost dit bij deze afname, onder welke voorwaarden en wanneer is het er?",
     seen: [
