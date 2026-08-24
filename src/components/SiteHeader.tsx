@@ -85,7 +85,7 @@ export function SiteHeader() {
               className="flex items-center gap-1 text-sm font-medium text-foreground/75 transition-colors hover:text-foreground"
               activeProps={{ className: "text-foreground" }}
             >
-              Sectoren
+              Voor wie
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
             </Link>
             <div className="pointer-events-none absolute left-1/2 top-full w-[min(52rem,90vw)] -translate-x-1/2 pt-4 opacity-0 transition-all group-hover:pointer-events-auto group-hover:opacity-100">
