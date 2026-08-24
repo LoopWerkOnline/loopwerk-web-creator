@@ -78,7 +78,13 @@ function CaseSSPW() {
         <h2 className="mt-5 max-w-3xl text-4xl leading-tight md:text-5xl">
           Drie stappen naar een conceptofferte
         </h2>
-        <div className="mt-12 rounded-2xl bg-cream p-8 md:p-12">
+        <img
+          src={sspwZwembad}
+          alt="Bouwkundig zwembad in de tuin bij een woning"
+          loading="lazy"
+          className="mt-12 aspect-[16/9] w-full rounded-2xl object-cover"
+        />
+        <div className="mt-8 rounded-2xl bg-cream p-8 md:p-12">
           <ConfiguratorFlow className="w-full" />
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
