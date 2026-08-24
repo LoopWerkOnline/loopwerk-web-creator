@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { ConfiguratorFlow } from "@/components/infographics";
+import { sspwZwembad } from "@/lib/assets";
 
 const title = "Cases — tools die wij bouwden | LoopWerk";
 const description =
@@ -50,7 +50,12 @@ function Cases() {
                 Lees de case
               </Link>
             </div>
-            <ConfiguratorFlow className="w-full" />
+            <img
+              src={sspwZwembad}
+              alt="Bouwkundig zwembad in de tuin bij een woning"
+              loading="lazy"
+              className="w-full rounded-xl object-cover"
+            />
           </div>
         </article>
 
