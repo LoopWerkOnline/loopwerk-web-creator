@@ -35,7 +35,7 @@ export function FocusVsChaos({ className, tone = "light" }: { className?: string
   ];
 
   return (
-    <svg viewBox="0 0 400 470" className={className} role="img" aria-label="Vergelijking: geautomatiseerd proces versus handmatig proces met onderbrekingen">
+    <svg viewBox="-16 0 416 470" className={className} role="img" aria-label="Vergelijking: geautomatiseerd proces versus handmatig proces met onderbrekingen">
       <text x="70" y="18" textAnchor="middle" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
         GEAUTOMATISEERD
       </text>
