@@ -70,7 +70,7 @@ function Index() {
               { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
               { k: "1 tool", v: "die vanaf dag één in gebruik is" },
             ].map((s) => (
-              <div key={s.k} className="bg-ink p-7">
+              <div key={s.k} className="bg-ink-hero p-7">
                 <p className="text-3xl text-copper">{s.k}</p>
                 <p className="mt-2 text-base leading-relaxed text-cream/65">{s.v}</p>
               </div>
