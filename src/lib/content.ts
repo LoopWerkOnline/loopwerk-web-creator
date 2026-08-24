@@ -165,6 +165,8 @@ export type Sector = {
   slug: string;
   title: string;
   short: string;
+  /** Korte handgeschreven tag die de sectorrij op de homepage verbindt. */
+  flowLabel?: string;
   /** Sfeerbeeld voor de sectorkaart op de homepage. */
   image?: string;
   imageAlt?: string;
@@ -184,6 +186,7 @@ export const sectors: Sector[] = [
     slug: "bouw-en-installatie",
     title: "Bouw & installatie",
     short: "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
+    flowLabel: "van opname naar offerte",
     image: "/__l5e/assets-v1/dc327e92-719e-4781-8022-db0710361100/sector-bouw.jpg",
     imageAlt: "Vakman metselt een wand op een bouwplaats",
     intro:
