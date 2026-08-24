@@ -5,7 +5,7 @@ import { solutions } from "@/lib/content";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink text-cream">
+    <footer className="bg-ink-hero text-cream">
       <div className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>

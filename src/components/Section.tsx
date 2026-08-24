@@ -12,7 +12,7 @@ export function Section({
   const tones = {
     cream: "bg-cream text-ink",
     shell: "bg-shell text-ink",
-    ink: "bg-ink text-cream",
+    ink: "bg-ink-hero text-cream",
   } as const;
 
   return (
