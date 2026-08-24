@@ -15,7 +15,26 @@ const plainNav: NavItem[] = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<"oplossingen" | "sectoren" | null>(null);
+  const [hovered, setHovered] = useState(false);
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showMenu = open || hovered;
+
+  const startHoverClose = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHovered(false), 200);
+  };
+
+  const cancelHoverClose = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setHovered(true);
+  };
+
+  const closeMenu = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setOpen(false);
+    setHovered(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
