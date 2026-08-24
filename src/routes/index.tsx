@@ -30,7 +30,7 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ink text-cream">
+      <section className="bg-ink-hero text-cream">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-24">
           <div>
             <p className="eyebrow flex items-center gap-3 text-sage">
