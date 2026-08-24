@@ -248,6 +248,8 @@ export const sectors: Sector[] = [
     slug: "mobiliteit-en-transport",
     title: "Mobiliteit & transport",
     short: "Configuraties, specificaties, aanvragen, offertes en administratieve opvolging.",
+    image: "/__l5e/assets-v1/181b0c5c-509d-4f99-af57-cb0859f5348e/sector-transport.jpg",
+    imageAlt: "Vrachtwagen met oplegger op de snelweg bij zonsondergang",
     intro:
       "Van opbouw tot uitvoering: de keuzes liggen vast, maar het samenstellen en doorrekenen gebeurt nog met de hand.",
     seen: [
