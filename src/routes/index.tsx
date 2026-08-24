@@ -142,7 +142,7 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_12rem_18rem] md:gap-6 md:px-4"
+                className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_18rem] md:gap-6 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
@@ -166,7 +166,7 @@ function Index() {
                       <circle cx="0" cy="28" r="3" className="fill-copper" />
                       <circle cx="200" cy="28" r="3" className="fill-copper" />
                     </svg>
-                    <span className="hand relative z-10 max-w-[10rem] rounded-full bg-cream/90 px-3 py-1 text-center text-lg leading-tight text-copper">
+                    <span className="hand relative z-10 max-w-[12rem] rounded-full border border-copper/20 bg-cream px-4 py-2 text-center text-base leading-tight text-copper shadow-sm">
                       {s.flowLabel}
                     </span>
                   </div>
