@@ -13,35 +13,36 @@ export function FocusVsChaos({ className, tone = "light" }: { className?: string
   const base = tone === "dark" ? "var(--cream)" : ink;
   const rail = tone === "dark" ? sage : forest;
   const chaos = [
-    [250, 30],
-    [310, 70],
-    [232, 120],
-    [300, 168],
+    [250, 40],
+    [310, 78],
+    [232, 125],
+    [300, 170],
     [340, 210],
-    [268, 252],
-    [200, 296],
-    [280, 330],
-    [236, 380],
-    [312, 420],
+    [268, 250],
+    [200, 292],
+    [280, 325],
+    [236, 373],
+    [312, 412],
   ];
   const path = chaos.map((p, i) => `${i === 0 ? "M" : "L"}${p[0]} ${p[1]}`).join(" ");
   const noise = [
-    [190, 96],
-    [352, 118],
-    [206, 200],
+    [190, 102],
+    [352, 124],
+    [206, 204],
     [356, 292],
-    [178, 350],
-    [352, 372],
+    [178, 348],
+    [352, 368],
   ];
 
   return (
     <svg viewBox="0 0 400 470" className={className} role="img" aria-label="Vergelijking: geautomatiseerd proces versus handmatig proces met onderbrekingen">
-      <text x="6" y="18" className="eyebrow" fill={rail} fontSize="11">
+      <text x="70" y="18" textAnchor="middle" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
         GEAUTOMATISEERD
       </text>
       <text x="250" y="18" textAnchor="middle" className="eyebrow" fill={base} fontSize="11" opacity="0.6">
         HANDMATIG
       </text>
+
 
 
       <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" />
