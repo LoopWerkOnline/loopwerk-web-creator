@@ -232,29 +232,6 @@ function Index() {
         </div>
       </Section>
 
-      {/* Case */}
-      <Section>
-        <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center">
-          <div>
-            <Eyebrow>Case</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
-              SSPW: van elk gesprek opnieuw uitvragen naar een complete aanvraag
-            </h2>
-            <p className="mt-4 leading-relaxed text-ink/70">
-              Twintig serieuze aanvragen per maand, tien showroomgesprekken van een uur en toch
-              zeven trajecten die stukliepen op prijs. De configurator laat de klant vooraf zelf
-              samenstellen — inclusief wat inbegrepen is en wat extra kost.
-            </p>
-            <Link
-              to="/cases/sspw-zwembadconfigurator"
-              className="mt-8 inline-block text-sm font-semibold text-forest underline underline-offset-4"
-            >
-              Lees de case
-            </Link>
-          </div>
-          <BaseAndCustom className="w-full" />
-        </div>
-      </Section>
 
       {/* Hoe we werken */}
       <Section tone="shell">
