@@ -33,7 +33,7 @@ function OplossingenPage() {
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
           We beginnen zelden bij nul. De problemen die we tegenkomen lijken op elkaar: informatie
-          die te laat compleet is, prijzen die met de hand worden opgezocht, gegevens die worden
+          die te laat compleet is, prijzen die handmatig worden opgezocht, gegevens die worden
           overgetypt. Daar hebben we werkende bouwstenen voor. Wat per bedrijf verschilt, maken we
           op maat.
         </p>
