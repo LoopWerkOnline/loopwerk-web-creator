@@ -172,7 +172,7 @@ function Index() {
                   </div>
                 )}
 
-                <div className="md:max-w-[18rem] md:justify-self-end">
+                <div className="w-full md:w-[18rem] md:justify-self-end">
                   {s.image ? (
                     <div className="flip-scene h-40 w-full md:h-32">
                       <div className="flip-inner h-full w-full">
