@@ -171,6 +171,8 @@ export const solutions: Solution[] = [
       "De analyse van jullie proces: waar zit de tijd echt?",
       "Een eerlijk antwoord als automatiseren de moeite niet waard is.",
     ],
+    image: "/__l5e/assets-v1/0ff2a748-96ac-47a2-bb5b-234c24128d6f/oplossing-6.jpg",
+    imageAlt: "Ondernemer maakt aantekeningen in een notitieblok",
   },
 ];
 
