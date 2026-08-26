@@ -16,6 +16,9 @@ export type Solution = {
   /** Waar het maatwerk begint. */
   custom: string[];
   featured?: boolean;
+  /** Sfeerbeeld voor de oplossingsslider. */
+  image?: string;
+  imageAlt?: string;
 };
 
 export const solutions: Solution[] = [
