@@ -20,3 +20,5 @@ De rasterweergave met zes oplossingskaarten op de pagina "Oplossingen" wordt een
 - Foto's worden via de asset-CLI naar de CDN gezet en als pointer opgenomen; een optioneel `image`/`imageAlt`-veld komt bij `Solution` in `src/lib/content.ts`.
 - De slider wordt een kleine client-component (scroll-snap container + knoppen), zonder extra library, in lijn met de bestaande stijl (border-line, cream/shell, copper accenten).
 - Alleen `src/routes/oplossingen.index.tsx`, `src/lib/content.ts` en een nieuwe slidercomponent worden aangeraakt; de detailpagina's blijven ongewijzigd.
+
+De tekst onder de kopjes moet wel blijven
