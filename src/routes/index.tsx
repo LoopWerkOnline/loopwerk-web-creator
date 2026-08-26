@@ -142,7 +142,7 @@ function Index() {
               <Link
                 to="/sectoren/$slug"
                 params={{ slug: s.slug }}
-                className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_18rem] md:gap-6 md:px-4"
+                className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_1fr] md:gap-6 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
@@ -172,23 +172,25 @@ function Index() {
                   </div>
                 )}
 
-                {s.image ? (
-                  <div className="flip-scene h-40 w-full md:h-32">
-                    <div className="flip-inner h-full w-full">
-                      <img
-                        src={s.image}
-                        alt={s.imageAlt ?? s.title}
-                        loading="lazy"
-                        className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
-                      />
-                      <div className="flip-face flip-back absolute inset-0 flex items-center rounded-lg bg-ink-hero p-5">
-                        <p className="text-sm leading-relaxed text-cream/85">{s.short}</p>
+                <div className="md:max-w-[18rem] md:justify-self-end">
+                  {s.image ? (
+                    <div className="flip-scene h-40 w-full md:h-32">
+                      <div className="flip-inner h-full w-full">
+                        <img
+                          src={s.image}
+                          alt={s.imageAlt ?? s.title}
+                          loading="lazy"
+                          className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
+                        />
+                        <div className="flip-face flip-back absolute inset-0 flex items-center rounded-lg bg-ink-hero p-5">
+                          <p className="text-sm leading-relaxed text-cream/85">{s.short}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
-                )}
+                  ) : (
+                    <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
+                  )}
+                </div>
               </Link>
             </li>
           ))}
