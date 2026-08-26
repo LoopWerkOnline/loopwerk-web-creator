@@ -200,7 +200,7 @@ function Index() {
 
       {/* Uitgelichte oplossing */}
       <Section tone="shell">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-start">
           <div>
             <Eyebrow tone="copper">Uitgelicht</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">{featured.title}</h2>
