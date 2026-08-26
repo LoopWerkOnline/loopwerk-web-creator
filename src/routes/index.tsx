@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
-import { FocusVsChaos, ManualSteps, BaseAndCustom, ConfiguratorFlow } from "@/components/infographics";
+import { FocusVsChaos, ManualSteps, ConfiguratorFlow } from "@/components/infographics";
 import { sspwStap2 } from "@/lib/assets";
 import { solutions, sectors } from "@/lib/content";
 
