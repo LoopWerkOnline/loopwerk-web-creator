@@ -58,6 +58,14 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm text-cream/75">
               <li>Nederland</li>
               <li>
+                <a
+                  href="mailto:info@loopwerkonline.nl"
+                  className="underline underline-offset-4 hover:text-cream"
+                >
+                  info@loopwerkonline.nl
+                </a>
+              </li>
+              <li>
                 <Link to="/contact" className="underline underline-offset-4 hover:text-cream">
                   Stuur een bericht
                 </Link>
