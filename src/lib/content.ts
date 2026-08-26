@@ -26,7 +26,7 @@ export const solutions: Solution[] = [
     short:
       "Laat klanten vooraf relevante vragen en keuzes doorlopen, zodat sales direct met de juiste informatie start.",
     intro:
-      "Bij verkoop waar eerst maten, opties en uitvoering duidelijk moeten zijn, gaat het eerste gesprek vaak op aan uitvragen. Dat deel kan de klant grotendeels zelf doorlopen — mits je hem goed door de keuzes leidt.",
+      "Het eerste verkoopgesprek draait vaak vooral om het verzamelen van basisinformatie. Door klanten vooraf gericht door maten, opties en uitvoering te leiden, blijft er meer tijd over voor het echte gesprek.",
     signals: [
       "Het eerste gesprek gaat vooral over informatie ophalen, niet over de opdracht.",
       "Aanvragen komen binnen zonder maten, wensen of budgetkader.",
