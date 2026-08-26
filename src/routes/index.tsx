@@ -234,10 +234,10 @@ function Index() {
 
 
       {/* Hoe we werken */}
-      <Section tone="shell">
+      <Section tone="cream">
         <Eyebrow>Hoe we werken</Eyebrow>
         <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-          Kijken wat er gebeurt, bepalen wat het waard is, dan pas bouwen
+          Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {[
