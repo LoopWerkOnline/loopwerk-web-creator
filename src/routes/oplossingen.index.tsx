@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { BaseAndCustom } from "@/components/infographics";
+import { SolutionSlider } from "@/components/SolutionSlider";
 import { solutions } from "@/lib/content";
 
 const title = "Oplossingen — LoopWerk";
@@ -41,23 +42,7 @@ function OplossingenPage() {
       </Section>
 
       <Section>
-        <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
-          {solutions.map((s) => (
-            <Link
-              key={s.slug}
-              to="/oplossingen/$slug"
-              params={{ slug: s.slug }}
-              className="group flex flex-col bg-cream p-8 transition-colors hover:bg-shell md:p-10"
-            >
-              <span className="eyebrow text-copper">{s.n}</span>
-              <h2 className="mt-4 text-2xl md:text-3xl">{s.title}</h2>
-              <p className="mt-3 flex-1 leading-relaxed text-ink/70">{s.short}</p>
-              <span className="mt-6 text-sm font-semibold text-forest underline underline-offset-4">
-                Bekijk deze richting
-              </span>
-            </Link>
-          ))}
-        </div>
+        <SolutionSlider items={solutions} />
       </Section>
 
       <Section tone="ink">
