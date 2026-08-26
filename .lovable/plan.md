@@ -1,15 +1,39 @@
-# Homepage verfijning
+# Plan: duidelijke overgang op homepage
 
 ## Doel
-De overgang tussen de homepage-secties duidelijker maken en de titel van “Hoe we werken” bijwerken.
+Zorgen voor een even duidelijke sectie-overgang tussen "Uitgelicht" en "Hoe we werken" als tussen de andere blokken op de homepage, en de gevraagde titeltekst aanpassen.
 
 ## Wijzigingen
-1. Vervang in `src/routes/index.tsx` de h2-tekst:
-   - Oud: `Kijken wat er gebeurt, bepalen wat het waard is, dan pas bouwen`
-   - Nieuw: `Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen`
-2. Voeg tussen de sectie “Uitgelicht” en “Hoe we werken” een duidelijke visuele overgang toe, passend bij de bestaande editorial stijl en kleurwisselingen van de homepage.
-3. Laat de rest van de homepage, navigatie en responsive gedrag ongewijzigd.
 
-## Validatie
-- Controleer dat de nieuwe h2 exact zichtbaar is.
-- Controleer dat “Hoe we werken” visueel duidelijk begint na “Uitgelicht”, zonder overlap of ongewenste wijziging op tablet en mobiel.
+1. **Titeltekst aanpassen in "Hoe we werken"**
+   - Bestand: `src/routes/index.tsx`
+   - Wijzig de `h2` op regel ~240 van:
+     ```
+     Kijken wat er gebeurt, bepalen wat het waard is, dan pas bouwen
+     ```
+     naar:
+     ```
+     Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
+     ```
+
+2. **Visuele overgang herstellen**
+   - Bestand: `src/routes/index.tsx`
+   - Verander de `Section` van "Hoe we werken" van `tone="shell"` naar `tone="cream"`.
+   - Dit sluit aan bij het bestaande ritme van de homepage:
+     ```text
+     Hero        = ink
+     Herkenning  = cream
+     Oplossingen = shell
+     Sectoren    = cream
+     Uitgelicht  = shell
+     Hoe we werken = cream  (gewijzigd)
+     Over + CTA  = ink
+     ```
+   - De achtergrondkleur wisselt daardoor net als tussen de andere secties, waardoor de overgang direct zichtbaar wordt zonder extra decoratieve elementen.
+
+3. **Controle responsive gedrag**
+   - De wijziging heeft geen invloed op mobiele of tablet-weergave; de padding en grid van `Section` blijven ongewijzigd.
+
+## Niet in scope
+- Geen wijzigingen aan navigatie, footer of andere pagina's.
+- Geen nieuwe componenten of afbeeldingen toevoegen.
