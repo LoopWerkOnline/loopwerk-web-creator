@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { BrowserFrame } from "@/components/BrowserFrame";
+import { VideoFrame } from "@/components/VideoFrame";
 import { FocusVsChaos, ManualSteps, ConfiguratorFlow } from "@/components/infographics";
-import { sspwStap2 } from "@/lib/assets";
+import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
 const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
