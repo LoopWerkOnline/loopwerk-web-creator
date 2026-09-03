@@ -4,31 +4,20 @@ export function BrowserFrame({
   alt,
   label,
   className,
-  variant = "light",
 }: {
   src: string;
   alt: string;
   label?: string;
   className?: string;
-  variant?: "light" | "dark";
 }) {
-  const isDark = variant === "dark";
   return (
-    <figure
-      className={`overflow-hidden rounded-xl border shadow-sm ${
-        isDark ? "border-cream/10 bg-ink/30" : "border-line bg-cream"
-      } ${className ?? ""}`}
-    >
-      <div
-        className={`flex items-center gap-2 border-b px-4 py-3 ${
-          isDark ? "border-cream/10 bg-ink/40" : "border-line bg-shell"
-        }`}
-      >
-        <span className={`h-2.5 w-2.5 rounded-full ${isDark ? "bg-sage/70" : "bg-sage"}`} aria-hidden="true" />
-        <span className={`h-2.5 w-2.5 rounded-full ${isDark ? "bg-sage/70" : "bg-sage"}`} aria-hidden="true" />
-        <span className={`h-2.5 w-2.5 rounded-full ${isDark ? "bg-sage/70" : "bg-sage"}`} aria-hidden="true" />
+    <figure className={`overflow-hidden rounded-xl border border-line bg-cream shadow-sm ${className ?? ""}`}>
+      <div className="flex items-center gap-2 border-b border-line bg-shell px-4 py-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-sage" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-sage" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-sage" aria-hidden="true" />
         {label ? (
-          <span className={`ml-3 truncate text-xs ${isDark ? "text-cream/50" : "text-ink/50"}`}>{label}</span>
+          <span className="ml-3 truncate text-xs text-ink/50">{label}</span>
         ) : null}
       </div>
       <img src={src} alt={alt} loading="lazy" decoding="async" className="block w-full" />
