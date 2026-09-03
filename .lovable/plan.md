@@ -19,6 +19,9 @@ Het uitgelichte case-blok op de homepage (Sun Sauna & Poolworld / SSPW) moet gro
   - bodytekst: cream/75
   - secundaire link: cream met underline
 - De CTA-knop blijft copper.
+- De bodytekst vervangen door de nieuwe tekst over Jacques:
+  - “Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren — om er soms pas bij de uiteindelijke prijs achter te komen dat die helemaal niet aansloot bij wat de klant in gedachten had.”
+  - “Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en begint het gesprek met Jacques een stuk verder.”
 
 ### 2. Layout: video meer ruimte geven
 - In `src/routes/index.tsx` het grid van het case-blok aanpassen:
