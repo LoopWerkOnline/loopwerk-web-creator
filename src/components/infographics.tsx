@@ -182,15 +182,18 @@ export function ThreePillars({ className }: { className?: string }) {
 }
 
 /** Bestaande basis + maatwerk: één bouwsteen die per bedrijf wordt aangevuld. */
-export function BaseAndCustom({ className }: { className?: string }) {
+export function BaseAndCustom({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+  const base = tone === "dark" ? "var(--cream)" : ink;
+  const boxFill = tone === "dark" ? "var(--forest)" : forest;
+  const boxStroke = tone === "dark" ? "var(--sage)" : forest;
   const parts = ["Producten", "Regels", "Uitzonderingen", "Systemen"];
   return (
     <svg viewBox="0 0 520 300" className={className} role="img" aria-label="Een bestaande basis wordt aangevuld met producten, regels, uitzonderingen en systemen van het bedrijf">
-      <rect x="26" y="96" width="150" height="108" rx="8" fill={forest} opacity="0.12" stroke={forest} strokeWidth="2" />
-      <text x="101" y="140" textAnchor="middle" fontSize="15" fill={ink} fontFamily="var(--font-display)">
+      <rect x="26" y="96" width="150" height="108" rx="8" fill={boxFill} opacity={tone === "dark" ? 0.25 : 0.12} stroke={boxStroke} strokeWidth="2" />
+      <text x="101" y="140" textAnchor="middle" fontSize="15" fill={base} fontFamily="var(--font-display)">
         Bestaande
       </text>
-      <text x="101" y="164" textAnchor="middle" fontSize="15" fill={ink} fontFamily="var(--font-display)">
+      <text x="101" y="164" textAnchor="middle" fontSize="15" fill={base} fontFamily="var(--font-display)">
         basis
       </text>
 
@@ -199,8 +202,8 @@ export function BaseAndCustom({ className }: { className?: string }) {
         return (
           <g key={p}>
             <path d={`M300 ${y + 18} C 250 ${y + 18}, 236 150, 186 150`} fill="none" stroke={sage} strokeWidth="2" strokeDasharray="5 7" />
-            <rect x="300" y={y} width="194" height="38" rx="19" fill="none" stroke={forest} strokeWidth="1.5" />
-            <text x="397" y={y + 24} textAnchor="middle" fontSize="13" fill={ink}>
+            <rect x="300" y={y} width="194" height="38" rx="19" fill="none" stroke={boxStroke} strokeWidth="1.5" />
+            <text x="397" y={y + 24} textAnchor="middle" fontSize="13" fill={base}>
               {p}
             </text>
           </g>
@@ -208,10 +211,10 @@ export function BaseAndCustom({ className }: { className?: string }) {
       })}
 
       <circle cx="186" cy="150" r="9" fill={copper} />
-      <text x="26" y="248" fontSize="12" fill={ink} opacity="0.6">
+      <text x="26" y="248" fontSize="12" fill={base} opacity="0.6">
         Wat we al hebben
       </text>
-      <text x="300" y="290" fontSize="12" fill={ink} opacity="0.6">
+      <text x="300" y="290" fontSize="12" fill={base} opacity="0.6">
         Wat we per bedrijf passend maken
       </text>
     </svg>
