@@ -3,10 +3,12 @@ import type { ReactNode } from "react";
 export function Section({
   children,
   className,
+  id,
   tone = "cream",
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
   tone?: "cream" | "shell" | "ink";
 }) {
   const tones = {
@@ -16,7 +18,7 @@ export function Section({
   } as const;
 
   return (
-    <section className={`${tones[tone]} ${className ?? ""}`}>
+    <section id={id} className={`${tones[tone]} ${className ?? ""}`}>
       <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">{children}</div>
     </section>
   );

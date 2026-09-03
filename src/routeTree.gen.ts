@@ -22,6 +22,7 @@ import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index
 import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
 import { Route as SectorenIndexRouteImport } from './routes/sectoren.index'
 import { Route as SectorenSlugRouteImport } from './routes/sectoren.$slug'
+import { Route as SectorenBouwEnInstallatieRouteImport } from './routes/sectoren.bouw-en-installatie'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -89,6 +90,12 @@ const SectorenSlugRoute = SectorenSlugRouteImport.update({
   path: '/sectoren/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectorenBouwEnInstallatieRoute =
+  SectorenBouwEnInstallatieRouteImport.update({
+    id: '/sectoren/bouw-en-installatie',
+    path: '/sectoren/bouw-en-installatie',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$slug': typeof SectorenSlugRoute
+  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
   '/sectoren/': typeof SectorenIndexRoute
@@ -116,6 +124,7 @@ export interface FileRoutesByTo {
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$slug': typeof SectorenSlugRoute
+  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
   '/sectoren': typeof SectorenIndexRoute
@@ -132,6 +141,7 @@ export interface FileRoutesById {
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$slug': typeof SectorenSlugRoute
+  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
   '/sectoren/': typeof SectorenIndexRoute
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$slug'
+    | '/sectoren/bouw-en-installatie'
     | '/cases/'
     | '/oplossingen/'
     | '/sectoren/'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$slug'
+    | '/sectoren/bouw-en-installatie'
     | '/cases'
     | '/oplossingen'
     | '/sectoren'
@@ -179,6 +191,7 @@ export interface FileRouteTypes {
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$slug'
+    | '/sectoren/bouw-en-installatie'
     | '/cases/'
     | '/oplossingen/'
     | '/sectoren/'
@@ -195,6 +208,7 @@ export interface RootRouteChildren {
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
   SectorenSlugRoute: typeof SectorenSlugRoute
+  SectorenBouwEnInstallatieRoute: typeof SectorenBouwEnInstallatieRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
   SectorenIndexRoute: typeof SectorenIndexRoute
@@ -293,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectorenSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectoren/bouw-en-installatie': {
+      id: '/sectoren/bouw-en-installatie'
+      path: '/sectoren/bouw-en-installatie'
+      fullPath: '/sectoren/bouw-en-installatie'
+      preLoaderRoute: typeof SectorenBouwEnInstallatieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -307,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,
   SectorenSlugRoute: SectorenSlugRoute,
+  SectorenBouwEnInstallatieRoute: SectorenBouwEnInstallatieRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
   SectorenIndexRoute: SectorenIndexRoute,
