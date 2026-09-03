@@ -222,10 +222,10 @@ function Index() {
             </Link>
           </div>
           <div>
-            <BrowserFrame
-              src={sspwStap2}
-              alt="Stap 2 van de zwembadconfigurator: opties kiezen met een meelopende samenvatting"
-              label="Zwembadconfigurator — stap 2"
+            <VideoFrame
+              src={demoVideo.url}
+              alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
+              label="Zwembadconfigurator — demo"
             />
             <ConfiguratorFlow className="mt-8 w-full" />
           </div>
