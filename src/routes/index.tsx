@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { BrowserFrame } from "@/components/BrowserFrame";
+import { VideoFrame } from "@/components/VideoFrame";
 import { FocusVsChaos, ManualSteps, ConfiguratorFlow } from "@/components/infographics";
-import { sspwStap2 } from "@/lib/assets";
+import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
 const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
@@ -222,10 +222,10 @@ function Index() {
             </Link>
           </div>
           <div>
-            <BrowserFrame
-              src={sspwStap2}
-              alt="Stap 2 van de zwembadconfigurator: opties kiezen met een meelopende samenvatting"
-              label="Zwembadconfigurator — stap 2"
+            <VideoFrame
+              src={demoVideo.url}
+              alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
+              label="Zwembadconfigurator — demo"
             />
             <ConfiguratorFlow className="mt-8 w-full" />
           </div>
