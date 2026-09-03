@@ -195,26 +195,27 @@ function Index() {
 
 
       {/* Uitgelichte case */}
-      <Section tone="shell">
-        <div className="grid gap-12 md:grid-cols-[1.55fr_1fr] md:items-start md:gap-16">
+      <Section tone="forest">
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1.65fr_1fr] lg:items-start lg:gap-16">
           <div>
             <VideoFrame
               src={demoVideo.url}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator — demo"
+              variant="dark"
             />
           </div>
           <div>
             <Eyebrow tone="copper">UITGELICHTE CASE</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Sun Sauna &amp; Poolworld</h2>
-            <p className="hand mt-8 text-2xl leading-snug text-forest md:text-3xl">
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
+            <p className="hand mt-8 text-2xl leading-snug text-sage md:text-3xl">
               “Wat kost een zwembad ongeveer?”
             </p>
-            <p className="mt-6 leading-relaxed text-ink/70">
-              Die vraag krijgt Jacques regelmatig. Alleen hangt een goede prijsindicatie af van het formaat, de uitvoering en verschillende keuzes. Voordat hij een goede indicatie kan geven, moet dus eerst duidelijk worden wat iemand precies zoekt.
+            <p className="mt-6 leading-relaxed text-cream/75">
+              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren — om er soms pas bij de uiteindelijke prijs achter te komen dat die helemaal niet aansloot bij wat de klant in gedachten had.
             </p>
-            <p className="mt-4 leading-relaxed text-ink/70">
-              Samen met SSPW bouwden we een configurator die dit eerste deel van de aanvraag al op de website opvangt. De klant doorloopt zelf de belangrijkste keuzes, zodat de aanvraag gestructureerder binnenkomt en Jacques verder kan met een veel concreter vertrekpunt.
+            <p className="mt-4 leading-relaxed text-cream/75">
+              Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en begint het gesprek met Jacques een stuk verder.
             </p>
             <div className="mt-8 flex flex-col items-start gap-4">
               <Link
@@ -228,7 +229,7 @@ function Index() {
                 href="https://offer-calculator-sspw.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-semibold text-forest underline underline-offset-4"
+                className="text-sm font-semibold text-cream/90 underline underline-offset-4"
               >
                 Bekijk de configurator ↗
               </a>
