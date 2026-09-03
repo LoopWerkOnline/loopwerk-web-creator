@@ -81,23 +81,23 @@ function Contact() {
           <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-shell p-7 md:p-9">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Naam *</span>
+                <span className="text-sm font-medium text-ink">Naam *</span>
                 <input name="name" required className={field} placeholder="Je voor- en achternaam" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium">E-mailadres *</span>
+                <span className="text-sm font-medium text-ink">E-mailadres *</span>
                 <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium">Telefoonnummer</span>
+                <span className="text-sm font-medium text-ink">Telefoonnummer</span>
                 <input name="phone" className={field} placeholder="06 ..." />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Bedrijfsnaam</span>
+                <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
                 <input name="company" className={field} />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Waar loopt het vast? *</span>
+                <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
                 <textarea
                   name="message"
                   required
