@@ -37,12 +37,12 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" aria-label="LoopWerk home">
+      <div className="mx-auto flex max-w-6xl items-center px-5 py-4">
+        <Link to="/" aria-label="LoopWerk home" className="shrink-0">
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex">
           {/* Oplossingen dropdown */}
           <div className="group relative">
             <Link
@@ -108,14 +108,14 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-
-          <Link
-            to="/contact"
-            className="rounded-full bg-copper px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Bespreek je proces
-          </Link>
         </nav>
+
+        <Link
+          to="/contact"
+          className="hidden shrink-0 rounded-full bg-copper px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 lg:block"
+        >
+          Bespreek je proces
+        </Link>
 
         <button
           type="button"
