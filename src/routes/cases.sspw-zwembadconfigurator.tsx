@@ -2,12 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
-import { ConfiguratorFlow, LeadFunnel } from "@/components/infographics";
-import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
+import { VideoFrame } from "@/components/VideoFrame";
+import { sspwStap1, sspwStap2, sspwStap3, sspwZwembad } from "@/lib/assets";
+import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 
 const title = "Case: zwembadconfigurator voor SSPW | LoopWerk";
 const description =
-  "Hoe een configurator in drie stappen bezoekers zelf hun zwembad laat samenstellen, SSPW een conceptofferte oplevert en elke aanvraag als lead vastlegt.";
+  "Hoe SSPW met een configurator klanten vooraf door de belangrijkste keuzes en de prijsrichting leidt, zodat het gesprek met Jacques een stuk verder begint.";
 
 export const Route = createFileRoute("/cases/sspw-zwembadconfigurator")({
   head: () => ({
@@ -21,67 +22,86 @@ export const Route = createFileRoute("/cases/sspw-zwembadconfigurator")({
   component: CaseSSPW,
 });
 
-const facts = [
-  { k: "20", v: "serieuze aanvragen per maand" },
-  { k: "10", v: "showroomgesprekken van ± 1 uur" },
-  { k: "7", v: "haken af op prijs of concurrent" },
-  { k: "€ 30.000", v: "gemiddelde orderwaarde" },
-];
-
 function CaseSSPW() {
   return (
     <>
-      <Section>
-        <Eyebrow>Case · Sun Sauna &amp; Poolworld</Eyebrow>
+      {/* Hero — herkenbare situatie */}
+      <Section tone="ink">
+        <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
         <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-          Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span>{" "}naar voren
-          haalt
+          “Wat kost een <span className="hand text-[1.1em]">zwembad</span> ongeveer?”
         </h1>
-        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink/75">
-          SSPW verkoopt bouwkundige zwembaden. Elke aanvraag begon met uitzoekwerk en een gesprek —
-          ook de aanvragen die op prijs zouden stranden.
+        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
+          Die vraag krijgt Jacques regelmatig. Alleen hangt een goede prijsindicatie af van het
+          formaat, de uitvoering en verschillende keuzes. Voordat hij een goede indicatie kan
+          geven, moet dus eerst duidelijk worden wat iemand precies zoekt.
         </p>
-      </Section>
-
-      <Section tone="shell" className="!pt-0 md:!pt-0">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {facts.map((f) => (
-            <div key={f.k} className="rounded-xl border border-line bg-cream p-7">
-              <p className="font-display text-4xl text-forest">{f.k}</p>
-              <p className="mt-2 text-base leading-relaxed text-ink/70">{f.v}</p>
-            </div>
-          ))}
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="https://offer-calculator-sspw.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            Bekijk de configurator ↗
+          </a>
+          <Link
+            to="/contact"
+            className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+          >
+            Bespreek je proces
+          </Link>
         </div>
-        <p className="mt-6 text-xs text-ink/55">
-          Cijfers afkomstig uit de intake bij SSPW, augustus 2026.
-        </p>
       </Section>
 
-      <Section>
+      {/* De situatie */}
+      <Section tone="forest">
         <div className="grid gap-14 md:grid-cols-2 md:items-center">
           <div>
-            <Eyebrow>Het probleem</Eyebrow>
-            <h2 className="mt-5 text-4xl leading-tight">De selectie gebeurde ná het gesprek</h2>
-            <p className="mt-5 leading-relaxed text-ink/75">
-              Tien gesprekken van een uur, plus ongeveer een uur opvolging per gesprek: circa twintig
-              uur per maand. Zeven van die trajecten eindigden op prijs of bij een concurrent. Die
-              afweging kan de klant prima zelf maken — mits hij vooraf ziet wat een zwembad kost en
-              wat er allemaal bij hoort.
+            <Eyebrow tone="sage">De situatie</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
+              Het gesprek begon pas echt in de zaak
+            </h2>
+            <p className="mt-5 leading-relaxed text-cream/75">
+              Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel
+              een uur duren — om er soms pas bij de uiteindelijke prijs achter te komen dat die
+              helemaal niet aansloot bij wat de klant in gedachten had.
+            </p>
+            <p className="mt-4 leading-relaxed text-cream/75">
+              En dan begon het vragen stellen opnieuw: welke maat, welke trap, welke filtering,
+              welke afdekking. Informatie die de klant prima zelf kan doorgeven — mits je hem goed
+              door de keuzes leidt.
             </p>
           </div>
-          <LeadFunnel className="w-full" />
+          <BrowserFrame
+            src={sspwZwembad}
+            alt="Bouwkundig zwembad bij een woning, zoals SSPW die ontwerpt en bouwt"
+            label="Zwembad op maat — maar elke aanvraag is anders"
+            variant="dark"
+          />
         </div>
       </Section>
 
+      {/* De oplossing: configurator in drie stappen */}
       <Section tone="ink">
         <Eyebrow tone="sage">De oplossing</Eyebrow>
-        <h2 className="mt-5 max-w-3xl text-4xl leading-tight md:text-5xl">
-          Drie stappen naar een conceptofferte
+        <h2 className="mt-6 max-w-3xl text-3xl leading-tight md:text-4xl">
+          Een configurator die het eerste deel van de aanvraag opvangt
         </h2>
-        <div className="mt-8 rounded-2xl bg-cream p-8 md:p-12">
-          <ConfiguratorFlow className="w-full" />
+        <p className="mt-5 max-w-2xl leading-relaxed text-cream/75">
+          De klant doorloopt zelf de belangrijkste keuzes, ziet direct wat standaard is inbegrepen
+          en krijgt een prijsrichting. De aanvraag komt gestructureerd binnen — en het gesprek met
+          Jacques begint een stuk verder.
+        </p>
+        <div className="mt-12">
+          <VideoFrame
+            src={demoVideo.url}
+            alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
+            label="Zwembadconfigurator — demo"
+            variant="dark"
+          />
         </div>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
           {[
             {
               t: "Stap 1 — Formaat",
@@ -103,31 +123,30 @@ function CaseSSPW() {
             },
           ].map((s) => (
             <div key={s.t}>
-              <BrowserFrame src={s.img} alt={s.alt} label={s.t} />
+              <BrowserFrame src={s.img} alt={s.alt} label={s.t} variant="dark" />
               <h3 className="mt-5 text-2xl text-cream">{s.t}</h3>
               <p className="mt-3 text-base leading-relaxed text-cream/70">{s.d}</p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-xs text-cream/50">
-          Schermafbeeldingen uit de werkende configurator; de tool staat klaar voor livegang bij
-          SSPW.
-        </p>
       </Section>
 
-
-      <Section tone="shell">
-        <Eyebrow>Het resultaat</Eyebrow>
-        <div className="mt-6 grid gap-10 md:grid-cols-2">
-          <p className="text-2xl leading-snug">
-            Gesprekken gaan over uitvoering in plaats van over budget — en elke aanvraag staat
-            automatisch geregistreerd als lead.
+      {/* Wat het oplevert */}
+      <Section tone="forest">
+        <Eyebrow tone="sage">Wat het oplevert</Eyebrow>
+        <h2 className="mt-6 max-w-3xl text-3xl leading-tight text-cream md:text-4xl">
+          Mensen komen beter voorbereid binnen
+        </h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-2">
+          <p className="text-2xl leading-snug text-cream">
+            Ze hebben eerder een realistisch beeld van wat mogelijk is — en het gesprek met Jacques
+            gaat over uitvoering in plaats van over budget.
           </p>
-          <ul className="space-y-4 text-ink/75">
+          <ul className="space-y-4 text-cream/75">
             {[
-              "De bezoeker kent zijn prijsbandbreedte vóór het eerste contact.",
-              "SSPW ontvangt een conceptofferte met alle klantgegevens, zonder overtypen.",
-              "Aanvragen worden opgeslagen, dus opvolging hangt niet meer af van geheugen.",
+              "De bezoeker kent zijn prijsrichting vóór het eerste contact.",
+              "De aanvraag komt gestructureerd binnen, met alle keuzes erbij — zonder overtypen.",
+              "Het eerste gesprek begint verder: over wensen en uitvoering, niet over basisgegevens.",
               "Showroomtijd gaat naar de aanvragen die serieus verder willen.",
             ].map((li) => (
               <li key={li} className="flex gap-3">
@@ -137,21 +156,32 @@ function CaseSSPW() {
             ))}
           </ul>
         </div>
-        <div className="mt-12 flex flex-wrap gap-3">
+      </Section>
+
+      {/* Afsluiting */}
+      <Section tone="shell">
+        <Eyebrow>Herkenbaar?</Eyebrow>
+        <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+          “Wat kost dat ongeveer?” — krijg je die vraag ook vaak?
+        </h2>
+        <p className="mt-5 max-w-2xl leading-relaxed text-ink/75">
+          Als een goed antwoord afhangt van keuzes die de klant zelf prima kan doorlopen, is er
+          waarschijnlijk meer uit je aanvragen te halen. We kijken graag mee naar hoe het bij
+          jullie nu gaat.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
           <Link
             to="/contact"
             className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Zoiets voor jullie bedrijf?
+            Bespreek je proces
           </Link>
-          <a
-            href="https://www.sspw.nl"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/"
             className="rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-cream"
           >
-            Bekijk sspw.nl
-          </a>
+            Terug naar home
+          </Link>
         </div>
       </Section>
     </>
