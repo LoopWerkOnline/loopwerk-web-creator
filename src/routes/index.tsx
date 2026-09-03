@@ -255,7 +255,7 @@ function Index() {
       <Section tone="ink">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
           <div>
-            <Eyebrow tone="sage">Over LoopWerk</Eyebrow>
+            <Eyebrow tone="sage">OVER ONS</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Nuchter, concreet en eerlijk over wat iets oplevert
             </h2>
