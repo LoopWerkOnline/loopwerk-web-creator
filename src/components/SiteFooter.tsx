@@ -21,9 +21,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm">
               {[
                 { to: "/oplossingen", label: "Oplossingen" },
-                { to: "/sectoren", label: "Sectoren" },
                 { to: "/cases", label: "Cases" },
-                { to: "/hoe-we-werken", label: "Hoe we werken" },
                 { to: "/over-loopwerk", label: "Over LoopWerk" },
                 { to: "/contact", label: "Contact" },
               ].map((l) => (

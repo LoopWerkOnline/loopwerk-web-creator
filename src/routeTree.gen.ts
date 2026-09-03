@@ -15,14 +15,13 @@ import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
 import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as SectorenRouteImport } from './routes/sectoren'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
 import { Route as OplossingenSlugRouteImport } from './routes/oplossingen.$slug'
-import { Route as SectorenIndexRouteImport } from './routes/sectoren.index'
-import { Route as SectorenSlugRouteImport } from './routes/sectoren.$slug'
-import { Route as SectorenBouwEnInstallatieRouteImport } from './routes/sectoren.bouw-en-installatie'
+import { Route as SectorenSplatRouteImport } from './routes/sectoren.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,6 +53,11 @@ const OverOnsRoute = OverOnsRouteImport.update({
   path: '/over-ons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectorenRoute = SectorenRouteImport.update({
+  id: '/sectoren',
+  path: '/sectoren',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WerkwijzeRoute = WerkwijzeRouteImport.update({
   id: '/werkwijze',
   path: '/werkwijze',
@@ -80,22 +84,11 @@ const OplossingenSlugRoute = OplossingenSlugRouteImport.update({
   path: '/oplossingen/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SectorenIndexRoute = SectorenIndexRouteImport.update({
-  id: '/sectoren/',
-  path: '/sectoren/',
-  getParentRoute: () => rootRouteImport,
+const SectorenSplatRoute = SectorenSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => SectorenRoute,
 } as any)
-const SectorenSlugRoute = SectorenSlugRouteImport.update({
-  id: '/sectoren/$slug',
-  path: '/sectoren/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SectorenBouwEnInstallatieRoute =
-  SectorenBouwEnInstallatieRouteImport.update({
-    id: '/sectoren/bouw-en-installatie',
-    path: '/sectoren/bouw-en-installatie',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -104,14 +97,13 @@ export interface FileRoutesByFullPath {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
-  '/sectoren/$slug': typeof SectorenSlugRoute
-  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
+  '/sectoren/$': typeof SectorenSplatRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
-  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -120,14 +112,13 @@ export interface FileRoutesByTo {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
-  '/sectoren/$slug': typeof SectorenSlugRoute
-  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
+  '/sectoren/$': typeof SectorenSplatRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
-  '/sectoren': typeof SectorenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -137,14 +128,13 @@ export interface FileRoutesById {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
-  '/sectoren/$slug': typeof SectorenSlugRoute
-  '/sectoren/bouw-en-installatie': typeof SectorenBouwEnInstallatieRoute
+  '/sectoren/$': typeof SectorenSplatRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
-  '/sectoren/': typeof SectorenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -155,14 +145,13 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
-    | '/sectoren/$slug'
-    | '/sectoren/bouw-en-installatie'
+    | '/sectoren/$'
     | '/cases/'
     | '/oplossingen/'
-    | '/sectoren/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -171,14 +160,13 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
-    | '/sectoren/$slug'
-    | '/sectoren/bouw-en-installatie'
+    | '/sectoren/$'
     | '/cases'
     | '/oplossingen'
-    | '/sectoren'
   id:
     | '__root__'
     | '/'
@@ -187,14 +175,13 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
-    | '/sectoren/$slug'
-    | '/sectoren/bouw-en-installatie'
+    | '/sectoren/$'
     | '/cases/'
     | '/oplossingen/'
-    | '/sectoren/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -204,14 +191,12 @@ export interface RootRouteChildren {
   HoeWeWerkenRoute: typeof HoeWeWerkenRoute
   OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
+  SectorenRoute: typeof SectorenRouteWithChildren
   WerkwijzeRoute: typeof WerkwijzeRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
-  SectorenSlugRoute: typeof SectorenSlugRoute
-  SectorenBouwEnInstallatieRoute: typeof SectorenBouwEnInstallatieRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
-  SectorenIndexRoute: typeof SectorenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -258,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverOnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectoren': {
+      id: '/sectoren'
+      path: '/sectoren'
+      fullPath: '/sectoren'
+      preLoaderRoute: typeof SectorenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/werkwijze': {
       id: '/werkwijze'
       path: '/werkwijze'
@@ -293,29 +285,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OplossingenSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sectoren/': {
-      id: '/sectoren/'
-      path: '/sectoren'
-      fullPath: '/sectoren/'
-      preLoaderRoute: typeof SectorenIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectoren/$slug': {
-      id: '/sectoren/$slug'
-      path: '/sectoren/$slug'
-      fullPath: '/sectoren/$slug'
-      preLoaderRoute: typeof SectorenSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectoren/bouw-en-installatie': {
-      id: '/sectoren/bouw-en-installatie'
-      path: '/sectoren/bouw-en-installatie'
-      fullPath: '/sectoren/bouw-en-installatie'
-      preLoaderRoute: typeof SectorenBouwEnInstallatieRouteImport
-      parentRoute: typeof rootRouteImport
+    '/sectoren/$': {
+      id: '/sectoren/$'
+      path: '/$'
+      fullPath: '/sectoren/$'
+      preLoaderRoute: typeof SectorenSplatRouteImport
+      parentRoute: typeof SectorenRoute
     }
   }
 }
+
+interface SectorenRouteChildren {
+  SectorenSplatRoute: typeof SectorenSplatRoute
+}
+
+const SectorenRouteChildren: SectorenRouteChildren = {
+  SectorenSplatRoute: SectorenSplatRoute,
+}
+
+const SectorenRouteWithChildren = SectorenRoute._addFileChildren(
+  SectorenRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -324,14 +314,12 @@ const rootRouteChildren: RootRouteChildren = {
   HoeWeWerkenRoute: HoeWeWerkenRoute,
   OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,
+  SectorenRoute: SectorenRouteWithChildren,
   WerkwijzeRoute: WerkwijzeRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,
-  SectorenSlugRoute: SectorenSlugRoute,
-  SectorenBouwEnInstallatieRoute: SectorenBouwEnInstallatieRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
-  SectorenIndexRoute: SectorenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

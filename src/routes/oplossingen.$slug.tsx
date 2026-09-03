@@ -4,7 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { ConfiguratorFlow } from "@/components/infographics";
 import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
-import { solutionBySlug, solutions, sectors } from "@/lib/content";
+import { solutionBySlug, solutions } from "@/lib/content";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
   loader: ({ params }) => {
@@ -48,7 +48,6 @@ function SolutionNotFound() {
 
 function SolutionPage() {
   const { solution } = Route.useLoaderData();
-  const related = sectors.filter((s) => s.solutions.includes(solution.slug));
   const others = solutions.filter((s) => s.slug !== solution.slug).slice(0, 3);
 
   return (
@@ -132,24 +131,6 @@ function SolutionPage() {
           >
             Lees de volledige case
           </Link>
-        </Section>
-      ) : null}
-
-      {related.length ? (
-        <Section tone="shell">
-          <Eyebrow>Speelt vooral in</Eyebrow>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {related.map((s) => (
-              <Link
-                key={s.slug}
-                to="/sectoren/$slug"
-                params={{ slug: s.slug }}
-                className="rounded-full border border-line bg-cream px-5 py-2.5 text-sm font-medium transition-colors hover:border-forest"
-              >
-                {s.title}
-              </Link>
-            ))}
-          </div>
         </Section>
       ) : null}
 

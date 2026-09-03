@@ -139,9 +139,7 @@ function Index() {
         <ul className="mt-10 divide-y divide-line border-y border-line">
           {sectors.map((s) => (
             <li key={s.slug}>
-              <Link
-                to="/sectoren/$slug"
-                params={{ slug: s.slug }}
+              <div
                 className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_1fr] md:gap-6 md:px-4"
               >
                 <h3 className="text-2xl md:text-3xl">{s.title}</h3>
@@ -191,7 +189,7 @@ function Index() {
                     <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
                   )}
                 </div>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
@@ -251,9 +249,6 @@ function Index() {
             </div>
           ))}
         </div>
-        <Link to="/hoe-we-werken" className="mt-10 inline-block text-sm font-semibold text-forest underline underline-offset-4">
-          De volledige werkwijze
-        </Link>
       </Section>
 
       {/* Over + CTA */}
