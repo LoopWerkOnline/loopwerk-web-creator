@@ -9,7 +9,7 @@ const copper = "var(--copper)";
 const ink = "var(--ink)";
 
 /** Rechte lijn (geautomatiseerd) versus zigzag met afleidingen (handmatig). */
-export function FocusVsChaos({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+export function FocusVsChaos({ className, tone = "light", accent = copper }: { className?: string; tone?: "light" | "dark"; accent?: string }) {
   const base = tone === "dark" ? "var(--cream)" : ink;
   const rail = tone === "dark" ? sage : forest;
   const chaos = [
@@ -47,7 +47,7 @@ export function FocusVsChaos({ className, tone = "light" }: { className?: string
 
       <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" />
       {[40, 166, 293, 420].map((y) => (
-        <circle key={y} cx="70" cy={y} r="8" fill={copper} />
+        <circle key={y} cx="70" cy={y} r="8" fill={accent} />
       ))}
 
       <path d={path} fill="none" stroke={base} strokeOpacity="0.45" strokeWidth="2" strokeLinejoin="round" />
@@ -61,7 +61,7 @@ export function FocusVsChaos({ className, tone = "light" }: { className?: string
       <g fontSize="11" fill={base} opacity="0.7">
         <line x1="24" y1="450" x2="52" y2="450" stroke={rail} strokeWidth="2.5" />
         <text x="60" y="454">Doorlooptijd</text>
-        <circle cx="170" cy="450" r="6" fill={copper} />
+        <circle cx="170" cy="450" r="6" fill={accent} />
         <text x="182" y="454">Stap</text>
         <circle cx="248" cy="450" r="5" fill={sage} />
         <text x="260" y="454">Onderbreking</text>
@@ -222,7 +222,7 @@ export function BaseAndCustom({ className, tone = "light" }: { className?: strin
 }
 
 /** Herkenning: vier handmatige stappen rondom één aanvraag. */
-export function ManualSteps({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+export function ManualSteps({ className, tone = "light", accent = copper }: { className?: string; tone?: "light" | "dark"; accent?: string }) {
   const base = tone === "dark" ? "var(--cream)" : ink;
   const rail = tone === "dark" ? sage : forest;
   const steps = ["Informatie ophalen", "Opties en prijzen zoeken", "Gegevens overtypen", "Later opvolgen"];
@@ -236,7 +236,7 @@ export function ManualSteps({ className, tone = "light" }: { className?: string;
         const x = 74 + i * 136;
         return (
           <g key={s}>
-            <circle cx={x} cy="70" r="16" fill={i === 3 ? copper : tone === "dark" ? "var(--ink-hero)" : "var(--cream)"} stroke={i === 3 ? copper : rail} strokeWidth="2" />
+            <circle cx={x} cy="70" r="16" fill={i === 3 ? accent : tone === "dark" ? "var(--ink-hero)" : "var(--cream)"} stroke={i === 3 ? accent : rail} strokeWidth="2" />
             <text x={x} y="75" textAnchor="middle" fontSize="13" fill={i === 3 ? "#fff" : base} fontFamily="var(--font-display)">
               {i + 1}
             </text>

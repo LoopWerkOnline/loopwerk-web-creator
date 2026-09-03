@@ -26,8 +26,8 @@ export function Section({
   );
 }
 
-export function Eyebrow({ children, tone = "forest" }: { children: ReactNode; tone?: "forest" | "sage" | "copper" }) {
-  const colors = { forest: "text-forest", sage: "text-sage", copper: "text-copper" } as const;
+export function Eyebrow({ children, tone = "forest" }: { children: ReactNode; tone?: "forest" | "sage" | "copper" | "home-accent" }) {
+  const colors = { forest: "text-forest", sage: "text-sage", copper: "text-copper", "home-accent": "text-home-accent" } as const;
   return (
     <p className={`eyebrow flex items-center gap-3 ${colors[tone]}`}>
       <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
