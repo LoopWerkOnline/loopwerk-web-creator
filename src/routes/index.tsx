@@ -25,8 +25,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const featured = solutions.find((s) => s.featured)!;
-
   return (
     <>
       {/* Hero */}
@@ -196,35 +194,45 @@ function Index() {
       </Section>
 
 
-      {/* Uitgelichte oplossing */}
+      {/* Uitgelichte case */}
       <Section tone="shell">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.6fr] md:items-start">
-          <div>
-            <Eyebrow tone="copper">Uitgelicht</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">{featured.title}</h2>
-            <p className="mt-4 leading-relaxed text-ink/70">{featured.intro}</p>
-            <ul className="mt-8 space-y-4">
-              {featured.base.map((b) => (
-                <li key={b} className="flex gap-3 leading-relaxed text-ink/80">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" aria-hidden="true" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/oplossingen/$slug"
-              params={{ slug: featured.slug }}
-              className="mt-8 inline-block text-sm font-semibold text-forest underline underline-offset-4"
-            >
-              Bekijk de slimme offerteflow
-            </Link>
-          </div>
+        <div className="grid gap-12 md:grid-cols-[1.55fr_1fr] md:items-start md:gap-16">
           <div>
             <VideoFrame
               src={demoVideo.url}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator — demo"
             />
+          </div>
+          <div>
+            <Eyebrow tone="copper">UITGELICHTE CASE</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Sun Sauna &amp; Poolworld</h2>
+            <p className="hand mt-8 text-2xl leading-snug text-forest md:text-3xl">
+              “Wat kost een zwembad ongeveer?”
+            </p>
+            <p className="mt-6 leading-relaxed text-ink/70">
+              Die vraag krijgt Jacques regelmatig. Alleen hangt een goede prijsindicatie af van het formaat, de uitvoering en verschillende keuzes. Voordat hij een goede indicatie kan geven, moet dus eerst duidelijk worden wat iemand precies zoekt.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Samen met SSPW bouwden we een configurator die dit eerste deel van de aanvraag al op de website opvangt. De klant doorloopt zelf de belangrijkste keuzes, zodat de aanvraag gestructureerder binnenkomt en Jacques verder kan met een veel concreter vertrekpunt.
+            </p>
+            <div className="mt-8 flex flex-col items-start gap-4">
+              <Link
+                to="/cases/sspw-zwembadconfigurator"
+                className="inline-flex items-center gap-2 rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Lees de hele case
+                <span aria-hidden="true">→</span>
+              </Link>
+              <a
+                href="https://offer-calculator-sspw.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-forest underline underline-offset-4"
+              >
+                Bekijk de configurator ↗
+              </a>
+            </div>
           </div>
         </div>
       </Section>
