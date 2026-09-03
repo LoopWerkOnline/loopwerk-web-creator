@@ -58,7 +58,7 @@ function Index() {
             </div>
           </div>
 
-          <FocusVsChaos tone="dark" className="mx-auto w-full max-w-sm" />
+          <FocusVsChaos tone="dark" accent="var(--home-accent)" className="mx-auto w-full max-w-sm" />
         </div>
 
         <div className="mx-auto max-w-6xl px-5 pb-16">
@@ -94,7 +94,7 @@ function Index() {
               Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
           </div>
-          <ManualSteps className="w-full" />
+          <ManualSteps accent="var(--home-accent)" className="w-full" />
         </div>
       </Section>
 
