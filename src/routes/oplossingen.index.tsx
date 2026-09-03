@@ -26,19 +26,19 @@ export const Route = createFileRoute("/oplossingen/")({
 function OplossingenPage() {
   return (
     <>
-      <Section tone="shell" className="!pb-14">
-        <Eyebrow>Oplossingen</Eyebrow>
+      <Section tone="hero" className="!pb-14">
+        <Eyebrow tone="sage">Oplossingen</Eyebrow>
         <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">
           Bekende problemen, een <span className="hand text-[1.15em]">bestaande</span> richting,
           jouw invulling
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">
           We beginnen zelden bij nul. De problemen die we tegenkomen lijken op elkaar: informatie
           die te laat compleet is, prijzen die handmatig worden opgezocht, gegevens die worden
           overgetypt. Daar hebben we werkende bouwstenen voor. Wat per bedrijf verschilt, maken we
           op maat.
         </p>
-        <BaseAndCustom className="mt-12 w-full max-w-2xl" />
+        <BaseAndCustom tone="dark" className="mt-12 w-full max-w-2xl" />
       </Section>
 
       <Section>

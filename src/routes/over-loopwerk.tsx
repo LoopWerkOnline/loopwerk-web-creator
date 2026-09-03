@@ -47,12 +47,12 @@ const beliefs = [
 function OverLoopwerk() {
   return (
     <>
-      <Section tone="shell" className="!pb-14">
-        <Eyebrow>Over LoopWerk</Eyebrow>
+      <Section tone="hero" className="!pb-14">
+        <Eyebrow tone="sage">Over LoopWerk</Eyebrow>
         <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">
           Wij houden van werk dat <span className="hand text-[1.15em]">vanzelf</span> gaat lopen
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">
           LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal voor
           werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens overtypen,
           opvolgen. Niet spannend, wel waar de tijd in gaat.

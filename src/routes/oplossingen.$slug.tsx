@@ -52,10 +52,10 @@ function SolutionPage() {
 
   return (
     <>
-      <Section tone="shell" className="!pb-14">
-        <Eyebrow>Oplossing {solution.n}</Eyebrow>
+      <Section tone="hero" className="!pb-14">
+        <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
         <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">{solution.intro}</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
       </Section>
 
       <Section>

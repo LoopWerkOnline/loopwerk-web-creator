@@ -53,18 +53,18 @@ function Contact() {
 
   return (
     <>
-      <Section>
+      <Section tone="hero">
         <div className="grid gap-16 md:grid-cols-[1fr_1.1fr]">
           <div>
-            <Eyebrow>Contact</Eyebrow>
+            <Eyebrow tone="sage">Contact</Eyebrow>
             <h1 className="mt-6 text-5xl leading-[1.08] md:text-6xl">
               Vertel ons eerst waar het <span className="hand text-[1.1em]">werk zit</span>
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink/75">
+            <p className="mt-7 text-lg leading-relaxed text-cream/75">
               Je hoeft de oplossing nog niet te kennen. Beschrijf jullie proces of het knelpunt, dan
               komen wij met een voorstel voor de eerste stap.
             </p>
-            <ul className="mt-10 space-y-4 text-ink/75">
+            <ul className="mt-10 space-y-4 text-cream/75">
               {[
                 "Reactie binnen één werkdag",
                 "Vrijblijvend kennismakingsgesprek",
@@ -81,23 +81,23 @@ function Contact() {
           <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-shell p-7 md:p-9">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Naam *</span>
+                <span className="text-sm font-medium text-ink">Naam *</span>
                 <input name="name" required className={field} placeholder="Je voor- en achternaam" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium">E-mailadres *</span>
+                <span className="text-sm font-medium text-ink">E-mailadres *</span>
                 <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium">Telefoonnummer</span>
+                <span className="text-sm font-medium text-ink">Telefoonnummer</span>
                 <input name="phone" className={field} placeholder="06 ..." />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Bedrijfsnaam</span>
+                <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
                 <input name="company" className={field} />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Waar loopt het vast? *</span>
+                <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
                 <textarea
                   name="message"
                   required
