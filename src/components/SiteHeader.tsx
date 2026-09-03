@@ -119,7 +119,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="lg:hidden"
+          className="ml-auto lg:hidden"
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={showMenu}
           onClick={() => setOpen((v) => !v)}
