@@ -53,18 +53,18 @@ function Contact() {
 
   return (
     <>
-      <Section>
+      <Section tone="hero">
         <div className="grid gap-16 md:grid-cols-[1fr_1.1fr]">
           <div>
-            <Eyebrow>Contact</Eyebrow>
+            <Eyebrow tone="sage">Contact</Eyebrow>
             <h1 className="mt-6 text-5xl leading-[1.08] md:text-6xl">
               Vertel ons eerst waar het <span className="hand text-[1.1em]">werk zit</span>
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink/75">
+            <p className="mt-7 text-lg leading-relaxed text-cream/75">
               Je hoeft de oplossing nog niet te kennen. Beschrijf jullie proces of het knelpunt, dan
               komen wij met een voorstel voor de eerste stap.
             </p>
-            <ul className="mt-10 space-y-4 text-ink/75">
+            <ul className="mt-10 space-y-4 text-cream/75">
               {[
                 "Reactie binnen één werkdag",
                 "Vrijblijvend kennismakingsgesprek",

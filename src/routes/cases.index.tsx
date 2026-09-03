@@ -22,12 +22,12 @@ export const Route = createFileRoute("/cases/")({
 function Cases() {
   return (
     <>
-      <Section>
-        <Eyebrow>Cases</Eyebrow>
+      <Section tone="hero">
+        <Eyebrow tone="sage">Cases</Eyebrow>
         <h1 className="mt-6 max-w-3xl text-5xl leading-[1.08] md:text-6xl">
           Werk dat je kunt <span className="hand text-[1.1em]">openklikken</span>
         </h1>
-        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink/75">
+        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
           Wij laten liever zien wat er draait dan wat wij zouden kunnen.
         </p>
       </Section>
