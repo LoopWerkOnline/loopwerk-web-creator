@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import { FocusVsChaos, ManualSteps, ConfiguratorFlow } from "@/components/infographics";
+import { FocusVsChaos, ManualSteps } from "@/components/infographics";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
@@ -200,7 +200,7 @@ function Index() {
 
       {/* Uitgelichte oplossing */}
       <Section tone="shell">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-start">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.6fr] md:items-start">
           <div>
             <Eyebrow tone="copper">Uitgelicht</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">{featured.title}</h2>
@@ -227,7 +227,6 @@ function Index() {
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator — demo"
             />
-            <ConfiguratorFlow className="mt-8 w-full" />
           </div>
         </div>
       </Section>
