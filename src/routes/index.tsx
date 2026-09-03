@@ -195,7 +195,7 @@ function Index() {
 
 
       {/* Uitgelichte case */}
-      <Section tone="forest">
+      <Section tone="ink">
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1.65fr_1fr] lg:items-start lg:gap-16">
           <div>
             <VideoFrame
