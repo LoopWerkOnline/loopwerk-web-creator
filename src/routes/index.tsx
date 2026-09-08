@@ -82,7 +82,7 @@ function Index() {
               aria-hidden="true"
             />
             <div className="rounded-2xl border border-cream/10 bg-cream/5 p-6 shadow-lg shadow-black/10 backdrop-blur-sm md:p-8">
-              <FocusVsChaos tone="dark" accent="var(--copper)" className="w-full" />
+              <FocusVsChaos tone="dark" accent="var(--home-accent)" className="w-full" />
             </div>
           </div>
         </div>
