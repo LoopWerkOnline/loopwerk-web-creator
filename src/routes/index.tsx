@@ -178,8 +178,11 @@ function Index() {
                           loading="lazy"
                           className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
                         />
-                        <div className="flip-face flip-back absolute inset-0 flex items-center rounded-lg bg-ink-hero p-5">
-                          <p className="text-sm leading-relaxed text-cream/85">{s.short}</p>
+                        <div className="flip-face flip-back absolute inset-0 flex flex-col justify-center gap-2 rounded-lg bg-ink-hero p-5">
+                          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-home-accent">
+                            Herkenbaar?
+                          </span>
+                          <p className="text-sm leading-relaxed text-cream/90">{s.seen[0]}</p>
                         </div>
                       </div>
                     </div>
