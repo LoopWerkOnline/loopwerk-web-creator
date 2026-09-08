@@ -10,13 +10,10 @@ const title = "LoopWerk — digitale tools en automatisering voor Nederlandse be
 const description =
   "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
 
-/** Eigen resultaten plus twee onafhankelijk geverifieerde bronnen — geen losse marketingclaims. */
-const factTicker: { k: string; v: string; source?: string }[] = [
+const factTicker: { k: string; v: string }[] = [
   { k: "20 u", v: "handwerk weggehaald per maand" },
   { k: "3 stappen", v: "van klantvraag naar aanvraag" },
   { k: "1 tool", v: "al in gebruik vanaf dag één" },
-  { k: "33%", v: "van bedrijven gebruikt al AI", source: "CBS, 2025" },
-  { k: "7×", v: "vaker een klant bij snelle opvolging", source: "Harvard Business Review" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -107,10 +104,7 @@ function Index() {
               <span className="text-3xl font-semibold text-copper [text-shadow:0_0_28px_var(--copper)] md:text-4xl">
                 {s.k}
               </span>
-              <span className="flex max-w-[11rem] flex-col">
-                <span className="text-sm leading-snug text-cream/85">{s.v}</span>
-                {s.source ? <span className="mt-1 text-xs text-cream/45">{s.source}</span> : null}
-              </span>
+              <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
             </div>
           ))}
         </div>
