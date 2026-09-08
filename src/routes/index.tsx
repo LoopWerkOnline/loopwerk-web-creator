@@ -6,7 +6,7 @@ import { FocusVsChaos, ManualSteps } from "@/components/infographics";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
-const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
+const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedrijven";
 const description =
   "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
 
@@ -238,7 +238,7 @@ function Index() {
             <VideoFrame
               src={demoVideo.url}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
-              label="Zwembadconfigurator — demo"
+              label="Zwembadconfigurator demo"
               variant="dark"
             />
           </div>
@@ -249,7 +249,7 @@ function Index() {
               “Wat kost een zwembad ongeveer?”
             </p>
             <p className="mt-6 leading-relaxed text-cream/75">
-              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren — om er soms pas bij de uiteindelijke prijs achter te komen dat die helemaal niet aansloot bij wat de klant in gedachten had.
+              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in gedachten had.
             </p>
             <p className="mt-4 leading-relaxed text-cream/75">
               Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en begint het gesprek met Jacques een stuk verder.
@@ -325,7 +325,7 @@ function Index() {
             </div>
           </div>
           <p className="hand text-3xl text-sage">
-            Vertel wat er nu handmatig gaat — dan zeggen wij of er iets te winnen valt.
+            Vertel wat er nu handmatig gaat, dan zeggen wij of er iets te winnen valt.
           </p>
         </div>
       </Section>

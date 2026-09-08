@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { supabase } from "@/integrations/supabase/client";
 
-const title = "Contact — plan een gesprek met LoopWerk";
+const title = "Contact | plan een gesprek met LoopWerk";
 const description =
   "Vertel waar het werk in jullie proces blijft hangen. Eén gesprek is genoeg om te zien of hier een tool onder zit.";
 
@@ -118,7 +118,7 @@ function Contact() {
 
             {status === "sent" ? (
               <p className="mt-4 text-sm text-forest">
-                Dankjewel — je bericht is binnen. We reageren binnen één werkdag.
+                Dankjewel, je bericht is binnen. We reageren binnen één werkdag.
               </p>
             ) : null}
             {status === "error" ? (

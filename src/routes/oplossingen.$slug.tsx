@@ -15,10 +15,10 @@ export const Route = createFileRoute("/oplossingen/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Oplossing niet gevonden — LoopWerk" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Oplossing niet gevonden | LoopWerk" }, { name: "robots", content: "noindex" }],
       };
     }
-    const t = `${loaderData.solution.title} — LoopWerk`;
+    const t = `${loaderData.solution.title} | LoopWerk`;
     const d = loaderData.solution.short;
     return {
       meta: [
@@ -121,9 +121,9 @@ function SolutionPage() {
           </p>
           <ConfiguratorFlow className="mt-10 w-full max-w-3xl" />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1 — Formaat" />
-            <BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2 — Uitvoering" />
-            <BrowserFrame src={sspwStap3} alt="Stap 3 van de configurator: gegevens en prijsindicatie" label="Stap 3 — Prijsindicatie" />
+            <BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1: Formaat" />
+            <BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2: Uitvoering" />
+            <BrowserFrame src={sspwStap3} alt="Stap 3 van de configurator: gegevens en prijsindicatie" label="Stap 3: Prijsindicatie" />
           </div>
           <Link
             to="/cases/sspw-zwembadconfigurator"

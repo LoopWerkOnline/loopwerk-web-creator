@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { ThreePillars } from "@/components/infographics";
 
-const title = "Over LoopWerk — praktische tools voor Nederlandse bedrijven";
+const title = "Over LoopWerk | praktische tools voor Nederlandse bedrijven";
 const description =
   "LoopWerk bouwt digitale tools en automatiseringen die aansluiten op hoe bedrijven echt werken. Nuchter, concreet en gericht op werk dat elke week terugkomt.";
 

@@ -106,7 +106,7 @@ export const solutions: Solution[] = [
     n: "04",
     title: "Gegevens automatisch verwerken",
     short:
-      "Dezelfde gegevens drie keer overtypen in mail, Excel en het CRM — dat werk kan een koppeling net zo goed doen.",
+      "Dezelfde gegevens drie keer overtypen in mail, Excel en het CRM. Dat werk kan een koppeling net zo goed doen.",
     intro:
       "Overtypen kost tijd en levert fouten op. Meestal staat de informatie al ergens; hij moet alleen op de juiste plek terechtkomen.",
     signals: [

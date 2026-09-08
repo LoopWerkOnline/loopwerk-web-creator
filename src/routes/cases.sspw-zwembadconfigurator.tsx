@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import { sspwZwembad } from "@/lib/assets";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
+
+const sspwZwembad = "/cases/sspw-belfeld.jpg";
 
 const title = "Case: zwembadconfigurator voor Sun Sauna & Poolworld | LoopWerk";
 const description =
@@ -37,14 +38,14 @@ const aanvragen = [
   },
   {
     vraag: "“Kan het ook goedkoper?”",
-    wat: "Deze vraag kwam meestal na een uur praten — als het bedrag niet aansloot bij wat iemand in gedachten had.",
+    wat: "Deze vraag kwam meestal na een uur praten, als het bedrag niet aansloot bij wat iemand in gedachten had.",
   },
 ];
 
 const uitkomsten = [
   "Mensen komen binnen met een realistisch beeld van maat, uitvoering en prijsrichting.",
   "De aanvraag staat compleet in het systeem: keuzes, afmetingen en contactgegevens, zonder overtypen.",
-  "Het gesprek met Jacques begint verder — over uitvoering, niet over de basisvragen.",
+  "Het gesprek met Jacques gaat verder over uitvoering, niet over de basisvragen.",
   "Elke aanvraag is terug te vinden, dus opvolging hangt niet af van wie er die dag in de zaak stond.",
 ];
 
@@ -59,8 +60,8 @@ function CaseSSPW() {
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
           Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
-          zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren — om er soms pas bij de
-          uiteindelijke prijs achter te komen dat die helemaal niet aansloot bij wat de klant in
+          zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de
+          uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in
           gedachten had.
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
@@ -91,19 +92,19 @@ function CaseSSPW() {
             <p className="mt-5 text-lg leading-relaxed text-ink/75">
               Sun Sauna &amp; Poolworld levert en bouwt zwembaden op maat. Geen catalogusproduct:
               maat, afwerking, techniek en afdekking verschillen per tuin en per wens. Precies
-              daarom is een prijs pas te geven als de belangrijkste keuzes bekend zijn — en precies
+              daarom is een prijs pas te geven als de belangrijkste keuzes bekend zijn, en precies
               daarom liep het eerste gesprek altijd vol met uitvragen.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/75">
               Elke aanvraag was op zichzelf prima. Alleen: het uitzoekwerk lag telkens bij SSPW, en
               het echte antwoord kwam pas aan het eind van een showroomgesprek. Dat deel kan de
-              klant grotendeels zelf doorlopen — mits je hem goed door de keuzes leidt.
+              klant grotendeels zelf doorlopen, mits je hem goed door de keuzes leidt.
             </p>
           </div>
           <figure className="overflow-hidden rounded-xl border border-line">
             <img
               src={sspwZwembad}
-              alt="Bouwkundig zwembad in de tuin bij een woning"
+              alt="Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld"
               className="block aspect-video w-full object-cover"
               loading="lazy"
             />
@@ -137,7 +138,7 @@ function CaseSSPW() {
             </p>
             <p className="mt-5 text-lg leading-relaxed text-cream/75">
               Aan het eind laat de bezoeker zijn gegevens achter en ziet hij de prijsrichting. SSPW
-              krijgt de complete aanvraag binnen — keuzes, afmetingen en contactgegevens, zonder
+              krijgt de complete aanvraag binnen: keuzes, afmetingen en contactgegevens, zonder
               overtypen.
             </p>
             <div className="mt-8">
@@ -155,7 +156,7 @@ function CaseSSPW() {
             <VideoFrame
               src={demoVideo.url}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
-              label="Zwembadconfigurator — demo"
+              label="Zwembadconfigurator demo"
               variant="dark"
             />
           </div>
@@ -167,7 +168,7 @@ function CaseSSPW() {
         <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-2xl leading-snug">
-              Het gesprek gaat over uitvoering in plaats van over basisvragen — en elke aanvraag
+              Het gesprek gaat over uitvoering in plaats van over basisvragen, en elke aanvraag
               komt compleet binnen.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/75">

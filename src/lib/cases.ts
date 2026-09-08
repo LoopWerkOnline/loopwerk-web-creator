@@ -28,7 +28,7 @@ export const cases: CaseStudy[] = [
     description:
       "Bezoekers stellen in drie stappen zelf hun zwembad samen, zien wat standaard inbegrepen is en krijgen een realistische prijsindicatie.",
     result:
-      "Aanvraag komt compleet binnen — keuzes, afmetingen en contactgegevens, zonder overtypen.",
+      "Aanvraag komt compleet binnen: keuzes, afmetingen en contactgegevens, zonder overtypen.",
     image: "/cases/sspw-belfeld.jpg",
     imageAlt: "Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld",
     href: "/cases/sspw-zwembadconfigurator",

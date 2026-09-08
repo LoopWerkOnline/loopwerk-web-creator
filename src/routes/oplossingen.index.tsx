@@ -5,7 +5,7 @@ import { BaseAndCustom } from "@/components/infographics";
 import { SolutionSlider } from "@/components/SolutionSlider";
 import { solutions } from "@/lib/content";
 
-const title = "Oplossingen — LoopWerk";
+const title = "Oplossingen | LoopWerk";
 const description =
   "Zes richtingen waarin we bedrijven helpen: offerteflow, complete aanvragen, calculaties, gegevensverwerking, opvolging en ander terugkerend werk.";
 

@@ -4,7 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CaseCard } from "@/components/CaseCard";
 import { cases } from "@/lib/cases";
 
-const title = "Cases — tools die wij bouwden | LoopWerk";
+const title = "Cases | tools die wij bouwden | LoopWerk";
 const description =
   "Concrete voorbeelden van tools die wij bouwden, waaronder de zwembadconfigurator voor Sun Sauna & Poolworld.";
 
