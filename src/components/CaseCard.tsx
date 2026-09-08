@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import type { CaseStudy } from "@/lib/cases";
 
-/** Herhaalbare case-kaart: Probleem / Gebouwd / Resultaat, klantlogo of -naam, status. */
+/** Herhaalbare case-kaart: klantnaam/logo, status, lopende tekst + één uitgelichte resultaatregel. */
 export function CaseCard({ c }: { c: CaseStudy }) {
   return (
     <article className="overflow-hidden rounded-2xl border border-line bg-cream">
@@ -25,20 +25,8 @@ export function CaseCard({ c }: { c: CaseStudy }) {
 
           <h2 className="mt-3 text-4xl leading-tight">{c.title}</h2>
 
-          <dl className="mt-6 space-y-4 border-t border-line pt-6">
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-ink/40">Probleem</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-ink/75">{c.problem}</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-ink/40">Gebouwd</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-ink/75">{c.built}</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-copper">Resultaat</dt>
-              <dd className="mt-1 text-sm font-medium leading-relaxed text-ink">{c.result}</dd>
-            </div>
-          </dl>
+          <p className="mt-4 leading-relaxed text-ink/70">{c.description}</p>
+          <p className="mt-4 font-medium leading-relaxed text-ink">{c.result}</p>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Link

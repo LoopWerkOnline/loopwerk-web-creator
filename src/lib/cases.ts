@@ -1,10 +1,7 @@
-import { sspwZwembad } from "@/lib/assets";
-
 /**
  * Eén bron voor alle cases, zodat de Cases-pagina en de uitgelichte case op
- * de homepage niet uit elkaar lopen. Repeatable Probleem/Gebouwd/Resultaat-
- * format zodat een nieuwe case straks alleen een nieuwe entry + detailpagina
- * kost, geen herontwerp.
+ * de homepage niet uit elkaar lopen. Zo kost een nieuwe case straks alleen
+ * een nieuwe entry + detailpagina, geen herontwerp.
  */
 export type CaseStudy = {
   slug: string;
@@ -13,8 +10,7 @@ export type CaseStudy = {
   logo?: string;
   logoAlt?: string;
   title: string;
-  problem: string;
-  built: string;
+  description: string;
   result: string;
   image: string;
   imageAlt: string;
@@ -29,14 +25,12 @@ export const cases: CaseStudy[] = [
     slug: "sspw-zwembadconfigurator",
     client: "Sun Sauna & Poolworld",
     title: "Zwembadconfigurator",
-    problem:
-      "Elk gesprek begon bij nul: maat, uitvoering en prijs moesten in de showroom worden uitgevraagd.",
-    built:
-      "Een configurator die klanten vooraf door maat, uitvoering en prijsrichting leidt.",
+    description:
+      "Bezoekers stellen in drie stappen zelf hun zwembad samen, zien wat standaard inbegrepen is en krijgen een realistische prijsindicatie.",
     result:
       "Aanvraag komt compleet binnen — keuzes, afmetingen en contactgegevens, zonder overtypen.",
-    image: sspwZwembad,
-    imageAlt: "Bouwkundig zwembad in de tuin bij een woning",
+    image: "/cases/sspw-belfeld.jpg",
+    imageAlt: "Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld",
     href: "/cases/sspw-zwembadconfigurator",
     liveUrl: "https://offer-calculator-sspw.vercel.app/",
     status: "live",
