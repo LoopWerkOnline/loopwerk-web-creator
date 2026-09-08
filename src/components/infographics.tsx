@@ -59,7 +59,7 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
 
       <path
         d={chaosPath}
-        className="draw-in transition-all duration-300 group-hover:stroke-[2.5]"
+        className="draw-in transition-all duration-300 group-hover:stroke-[3px]"
         fill="none"
         stroke={base}
         strokeOpacity="0.45"
