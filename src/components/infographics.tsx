@@ -47,9 +47,9 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
         HANDMATIG
       </text>
 
-      <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" className="transition-all duration-300 group-hover:stroke-[3.5]" />
+      <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" className="transition-all duration-300 group-hover:stroke-[3px]" />
       {[40, 166, 293, 420].map((y) => (
-        <circle key={y} cx="70" cy={y} r="8" fill={accent} className="origin-center transition-all duration-300 group-hover:r-[10] group-hover:opacity-100" />
+        <circle key={y} cx="70" cy={y} r="8" fill={accent} className="origin-center transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
       ))}
 
       {/* Stromend deeltje op de geautomatiseerde route */}
