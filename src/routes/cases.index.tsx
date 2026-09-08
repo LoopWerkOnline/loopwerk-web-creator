@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { sspwZwembad } from "@/lib/assets";
+import { CaseCard } from "@/components/CaseCard";
+import { cases } from "@/lib/cases";
 
 const title = "Cases — tools die wij bouwden | LoopWerk";
 const description =
@@ -33,31 +34,11 @@ function Cases() {
       </Section>
 
       <Section tone="shell" className="!pt-0 md:!pt-0">
-        <article className="overflow-hidden rounded-2xl border border-line bg-cream">
-          <div className="grid gap-10 p-9 md:grid-cols-[1fr_1.1fr] md:items-center md:p-12">
-            <div>
-              <p className="eyebrow text-forest">Sun Sauna &amp; Poolworld</p>
-              <h2 className="mt-3 text-4xl leading-tight">Zwembadconfigurator</h2>
-              <p className="mt-4 leading-relaxed text-ink/70">
-                Bezoekers stellen in drie stappen zelf hun zwembad samen, zien wat standaard
-                inbegrepen is en krijgen een realistische prijsindicatie. SSPW ontvangt automatisch
-                een conceptofferte met alle klantgegevens.
-              </p>
-              <Link
-                to="/cases/sspw-zwembadconfigurator"
-                className="mt-7 inline-flex rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              >
-                Lees de case
-              </Link>
-            </div>
-            <img
-              src={sspwZwembad}
-              alt="Bouwkundig zwembad in de tuin bij een woning"
-              loading="lazy"
-              className="mx-auto aspect-[16/9] w-full max-w-2xl rounded-xl object-cover"
-            />
-          </div>
-        </article>
+        <div className="space-y-8">
+          {cases.map((c) => (
+            <CaseCard key={c.slug} c={c} />
+          ))}
+        </div>
 
         <p className="mt-10 text-sm text-ink/60">
           Meer cases volgen zodra lopende trajecten zijn opgeleverd.
