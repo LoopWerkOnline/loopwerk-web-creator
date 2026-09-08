@@ -193,6 +193,22 @@
   }
 }
 
+@utility marquee {
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up {
     animation: none;

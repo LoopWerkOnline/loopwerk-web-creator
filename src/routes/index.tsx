@@ -10,6 +10,23 @@ const title = "LoopWerk — digitale tools en automatisering voor Nederlandse be
 const description =
   "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
 
+/** Eigen resultaten plus twee onafhankelijk geverifieerde bronnen — geen losse marketingclaims. */
+const factTicker: { k: string; v: string; source?: string }[] = [
+  { k: "20 u", v: "handwerk per maand dat we bij één klant weghaalden" },
+  { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
+  { k: "1 tool", v: "die vanaf dag één in gebruik is" },
+  {
+    k: "33%",
+    v: "van de Nederlandse bedrijven (10+ medewerkers) gebruikte AI-technologie in 2025, tegen 14% in 2023",
+    source: "CBS, 2025",
+  },
+  {
+    k: "7×",
+    v: "waarschijnlijker dat een aanvraag alsnog een klant wordt als je 'm binnen het uur opvolgt, i.p.v. later",
+    source: "Harvard Business Review, 2011",
+  },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -77,25 +94,22 @@ function Index() {
             </div>
           </div>
         </div>
-
-        <div className="mx-auto max-w-6xl px-5 pb-16">
-          <div
-            className="fade-up grid gap-px overflow-hidden rounded-xl border border-cream/15 bg-cream/15 sm:grid-cols-3"
-            style={{ animationDelay: "0.4s" }}
-          >
-            {[
-              { k: "20 u", v: "handwerk per maand dat we bij één klant weghaalden" },
-              { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
-              { k: "1 tool", v: "die vanaf dag één in gebruik is" },
-            ].map((s) => (
-              <div key={s.k} className="bg-ink-hero p-7">
-                <p className="text-3xl text-copper">{s.k}</p>
-                <p className="mt-2 text-base leading-relaxed text-cream/65">{s.v}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
+
+      {/* Cijfers */}
+      <div className="overflow-hidden border-y border-line bg-shell py-8">
+        <div className="marquee flex w-max gap-16 hover:[animation-play-state:paused]">
+          {[...factTicker, ...factTicker].map((s, i) => (
+            <div key={i} className="flex shrink-0 items-baseline gap-3">
+              <span className="text-3xl text-copper md:text-4xl">{s.k}</span>
+              <span className="max-w-[16rem] text-sm leading-snug text-ink/70">
+                {s.v}
+                {s.source ? <span className="text-ink/40"> — {s.source}</span> : null}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Herkenning */}
       <Section>
