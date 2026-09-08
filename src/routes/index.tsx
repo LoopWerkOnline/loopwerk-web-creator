@@ -1,12 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import { BrowserFrame } from "@/components/BrowserFrame";
 import { FocusVsChaos, ManualSteps } from "@/components/infographics";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
-import { sspwStap1 } from "@/lib/assets";
 import { solutions, sectors } from "@/lib/content";
 
 const title = "LoopWerk — digitale tools en automatisering voor Nederlandse bedrijven";
@@ -28,9 +25,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const featuredSolution = solutions.find((s) => s.featured);
-  const otherSolutions = solutions.filter((s) => !s.featured);
-
   return (
     <>
       {/* Hero */}
@@ -118,41 +112,23 @@ function Index() {
           </Link>
         </div>
 
-        {featuredSolution ? (
-          <Link
-            to="/oplossingen/$slug"
-            params={{ slug: featuredSolution.slug }}
-            className="group mt-12 grid gap-8 overflow-hidden rounded-2xl bg-ink-hero p-8 text-cream transition-colors hover:bg-ink-hero/95 md:grid-cols-[1fr_1.05fr] md:items-center md:gap-12 md:p-12"
-          >
-            <div>
-              <span className="eyebrow text-copper">{featuredSolution.n}</span>
-              <h3 className="mt-4 text-3xl md:text-4xl">{featuredSolution.title}</h3>
-              <p className="mt-4 max-w-md leading-relaxed text-cream/75">{featuredSolution.short}</p>
-              <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-copper">
-                Bewezen bij Sun Sauna &amp; Poolworld
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </span>
-            </div>
-            <BrowserFrame
-              src={sspwStap1}
-              alt="Stap 1 van de zwembadconfigurator: formaat kiezen"
-              label="Zwembadconfigurator"
-              className="w-full md:ml-auto md:max-w-md"
-            />
-          </Link>
-        ) : null}
-
-        <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {otherSolutions.map((s) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {solutions.map((s) => (
             <Link
               key={s.slug}
               to="/oplossingen/$slug"
               params={{ slug: s.slug }}
-              className="flex flex-col bg-cream p-7 transition-colors hover:bg-shell"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:shadow-lg"
             >
-              <span className="eyebrow text-copper">{s.n}</span>
-              <h3 className="mt-3 text-xl">{s.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{s.short}</p>
+              <span
+                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-copper transition-transform duration-300 group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-copper text-sm font-semibold text-white">
+                {s.n}
+              </span>
+              <h3 className="mt-5 text-2xl">{s.title}</h3>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
             </Link>
           ))}
         </div>
