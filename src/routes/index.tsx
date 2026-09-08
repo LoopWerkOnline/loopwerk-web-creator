@@ -86,13 +86,13 @@ function Index() {
       </section>
 
       {/* Cijfers */}
-      <div className="relative overflow-hidden border-y border-cream/10 bg-forest py-9">
+      <div className="relative overflow-hidden border-y border-cream/10 bg-ink-hero py-9">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-forest to-transparent md:w-40"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-ink-hero to-transparent md:w-40"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-forest to-transparent md:w-40"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-ink-hero to-transparent md:w-40"
           aria-hidden="true"
         />
         <div className="marquee flex w-max hover:[animation-play-state:paused]">
@@ -101,7 +101,7 @@ function Index() {
               key={i}
               className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
             >
-              <span className="text-3xl font-semibold text-copper [text-shadow:0_0_28px_var(--copper)] md:text-4xl">
+              <span className="text-3xl font-semibold text-copper md:text-4xl">
                 {s.k}
               </span>
               <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
