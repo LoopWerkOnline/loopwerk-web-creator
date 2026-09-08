@@ -203,9 +203,59 @@
   }
 }
 
+@utility flow-pulse {
+  animation: flow-pulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes flow-pulse {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.85);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.85);
+  }
+}
+
+@utility flow-travel {
+  animation: flow-travel 2.4s linear infinite;
+}
+
+@keyframes flow-travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee {
+  .marquee,
+  .flow-pulse,
+  .flow-travel {
     animation: none;
+  }
+  .flow-pulse,
+  .flow-travel {
+    opacity: 1;
   }
 }
 
