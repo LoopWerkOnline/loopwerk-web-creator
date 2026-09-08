@@ -74,14 +74,9 @@ function Index() {
           </div>
 
           <div className="fade-up relative mx-auto w-full max-w-sm" style={{ animationDelay: "0.32s" }}>
-            <div
-              className="absolute -inset-10 -z-10 rounded-full bg-copper/20 blur-3xl"
-              aria-hidden="true"
-            />
-            <div className="rounded-2xl border border-cream/10 bg-cream/5 p-6 shadow-lg shadow-black/10 backdrop-blur-sm md:p-8">
-              <FocusVsChaos tone="dark" accent="var(--copper)" className="w-full" />
-            </div>
+            <FocusVsChaos tone="dark" accent="var(--home-accent)" className="w-full" />
           </div>
+
         </div>
       </section>
 
