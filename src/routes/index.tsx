@@ -95,7 +95,7 @@ function Index() {
           className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-ink-hero to-transparent md:w-40"
           aria-hidden="true"
         />
-        <div className="marquee flex w-max hover:[animation-play-state:paused]">
+        <div className="marquee flex w-max">
           {[...factTicker, ...factTicker].map((s, i) => (
             <div
               key={i}
