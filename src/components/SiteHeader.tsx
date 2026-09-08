@@ -46,14 +46,15 @@ export function SiteHeader() {
   };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        solid
-          ? "border-border/70 bg-background/85 backdrop-blur"
-          : "border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center px-5 py-4">
+    <header className="fixed inset-x-0 top-4 z-50 px-4 md:top-6">
+      <div className="mx-auto max-w-6xl">
+      <div
+        className={`flex items-center rounded-full border px-5 py-3 transition-colors duration-300 md:px-7 ${
+          solid
+            ? "border-border/70 bg-cream/90 shadow-lg shadow-black/5 backdrop-blur"
+            : "border-cream/15 bg-ink-hero/70 shadow-sm shadow-black/10 backdrop-blur-md"
+        }`}
+      >
         <Link to="/" aria-label="LoopWerk home" className="shrink-0">
           <Logo variant={solid ? "ink" : "cream"} />
         </Link>
@@ -152,11 +153,11 @@ export function SiteHeader() {
 
       {showMenu ? (
         <div
-          className="border-t border-border bg-background lg:hidden"
+          className="mt-2 overflow-hidden rounded-2xl border border-border bg-background shadow-lg lg:hidden"
           onMouseOver={cancelHoverClose}
           onMouseOut={startHoverClose}
         >
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
+          <nav className="flex flex-col gap-1 px-5 py-4">
             <Link
               to="/oplossingen"
               onClick={closeMenu}
@@ -189,6 +190,7 @@ export function SiteHeader() {
           </nav>
         </div>
       ) : null}
+      </div>
     </header>
   );
 }

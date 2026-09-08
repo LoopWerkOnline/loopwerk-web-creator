@@ -50,7 +50,15 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
         <circle key={y} cx="70" cy={y} r="8" fill={accent} />
       ))}
 
-      <path d={path} fill="none" stroke={base} strokeOpacity="0.45" strokeWidth="2" strokeLinejoin="round" />
+      <path
+        d={path}
+        className="draw-in"
+        fill="none"
+        stroke={base}
+        strokeOpacity="0.45"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
       {chaos.map(([x, y], i) => (
         <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill={i % 3 === 0 ? base : sage} opacity={i % 3 === 0 ? 0.85 : 0.6} />
       ))}
