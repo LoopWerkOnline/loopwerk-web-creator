@@ -27,7 +27,7 @@ export const solutions: Solution[] = [
     n: "01",
     title: "Slimme offerteflow",
     short:
-      "Laat klanten vooraf relevante vragen en keuzes doorlopen, zodat sales direct met de juiste informatie start.",
+      "Het eerste verkoopgesprek gaat nu vaak over basisinformatie. Dat kan al voor het gesprek geregeld zijn.",
     intro:
       "Het eerste verkoopgesprek draait vaak vooral om het verzamelen van basisinformatie. Door klanten vooraf gericht door maten, opties en uitvoering te leiden, blijft er meer tijd over voor het echte gesprek.",
     signals: [
@@ -54,7 +54,7 @@ export const solutions: Solution[] = [
     n: "02",
     title: "Aanvragen compleet binnenkrijgen",
     short:
-      "Informatie eerder en gestructureerd verzamelen, zodat er minder heen en weer contact nodig is.",
+      "Een aanvraag mist vaak nog maten, foto's of een antwoord dat er eigenlijk al had moeten zijn. Dat vraag je liever in één keer, vooraf.",
     intro:
       "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Als je vooraf weet welke gegevens je nodig hebt, kun je die ook vooraf vragen.",
     signals: [
@@ -79,7 +79,8 @@ export const solutions: Solution[] = [
     slug: "calculaties-en-prijsindicaties",
     n: "03",
     title: "Calculaties en prijsindicaties versnellen",
-    short: "Vaste keuzes, prijzen en regels digitaal verwerken waar dat kan.",
+    short:
+      "Calculeren kost vaak meer opzoektijd dan rekentijd. Zet de vaste regels en staffels één keer goed neer, en het zoeken stopt.",
     intro:
       "Veel calculatiewerk is geen rekenwerk maar opzoekwerk: welke prijs geldt, welke toeslag hoort erbij, welke uitzondering geldt hier. Dat deel is prima vast te leggen.",
     signals: [
@@ -105,7 +106,7 @@ export const solutions: Solution[] = [
     n: "04",
     title: "Gegevens automatisch verwerken",
     short:
-      "Voorkomen dat dezelfde informatie steeds opnieuw wordt ingevoerd in mail, Excel, CRM of andere systemen.",
+      "Dezelfde gegevens drie keer overtypen in mail, Excel en het CRM — dat werk kan een koppeling net zo goed doen.",
     intro:
       "Overtypen kost tijd en levert fouten op. Meestal staat de informatie al ergens; hij moet alleen op de juiste plek terechtkomen.",
     signals: [
@@ -130,7 +131,8 @@ export const solutions: Solution[] = [
     slug: "opvolging-automatiseren",
     n: "05",
     title: "Opvolging automatiseren",
-    short: "Taken, reminders en vervolgstappen logisch laten aansluiten op wat er gebeurt.",
+    short:
+      "Een offerte die blijft liggen omdat niemand het meer bijhoudt, hoeft niet van iemands geheugen af te hangen.",
     intro:
       "Opvolging die afhangt van iemands geheugen gaat een keer mis. Meestal bij de aanvraag waar je het minst graag iets misloopt.",
     signals: [
@@ -155,7 +157,8 @@ export const solutions: Solution[] = [
     slug: "ander-terugkerend-werk",
     n: "06",
     title: "Ander terugkerend werk",
-    short: "Voor processen die we herkennen maar niet onder een vaste oplossing vallen.",
+    short:
+      "Past het ergens niet precies in dit rijtje? Als het elke week terugkomt, is er meestal iets aan te doen.",
     intro:
       "Niet alles past in een hokje. Als er werk is dat elke week terugkomt en telkens hetzelfde patroon volgt, is er meestal wel iets aan te doen.",
     signals: [
