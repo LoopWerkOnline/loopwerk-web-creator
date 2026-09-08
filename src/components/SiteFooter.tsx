@@ -74,7 +74,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-2 border-t border-cream/15 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} LoopWerk</span>
-          <span>Workflows. Connected.</span>
+          <span>Terugkerend werk. Geregeld.</span>
         </div>
       </div>
     </footer>

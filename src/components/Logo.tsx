@@ -24,7 +24,7 @@ export function Logo({ className, variant = "ink", showTagline = true }: Props) 
         <span className={`font-display text-2xl tracking-tight ${text}`}>LoopWerk</span>
         {showTagline ? (
           <span className={`mt-1 text-[0.55rem] font-semibold tracking-[0.28em] ${sub}`}>
-            WORKFLOWS. CONNECTED.
+            TERUGKEREND WERK. GEREGELD.
           </span>
         ) : null}
       </span>

@@ -42,7 +42,7 @@ function Index() {
               style={{ animationDelay: "0s" }}
             >
               <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
-              Workflows. Connected.
+              Terugkerend werk. Geregeld.
             </p>
             <h1
               className="fade-up mt-6 text-5xl leading-[1.05] md:text-[4.4rem]"
