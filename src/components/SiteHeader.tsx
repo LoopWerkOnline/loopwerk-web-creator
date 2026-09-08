@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import { Logo } from "./Logo";
@@ -15,9 +15,19 @@ const plainNav: NavItem[] = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const showMenu = open || hovered;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = scrolled || showMenu;
 
   const startHoverClose = () => {
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
@@ -36,10 +46,16 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid
+          ? "border-border/70 bg-background/85 backdrop-blur"
+          : "border-transparent bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl items-center px-5 py-4">
         <Link to="/" aria-label="LoopWerk home" className="shrink-0">
-          <Logo />
+          <Logo variant={solid ? "ink" : "cream"} />
         </Link>
 
         <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex">
@@ -47,8 +63,10 @@ export function SiteHeader() {
           <div className="group relative">
             <Link
               to="/oplossingen"
-              className="flex items-center gap-1 text-sm font-medium text-foreground/75 transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              className={`flex items-center gap-1 text-sm font-medium transition-colors ${
+                solid ? "text-foreground/75 hover:text-foreground" : "text-cream/80 hover:text-cream"
+              }`}
+              activeProps={{ className: solid ? "text-foreground" : "text-cream" }}
             >
               Oplossingen
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
@@ -102,8 +120,10 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-sm font-medium text-foreground/75 transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              className={`text-sm font-medium transition-colors ${
+                solid ? "text-foreground/75 hover:text-foreground" : "text-cream/80 hover:text-cream"
+              }`}
+              activeProps={{ className: solid ? "text-foreground" : "text-cream" }}
             >
               {item.label}
             </Link>
@@ -119,7 +139,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="ml-auto lg:hidden"
+          className={`ml-auto transition-colors lg:hidden ${solid ? "text-foreground" : "text-cream"}`}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={showMenu}
           onClick={() => setOpen((v) => !v)}

@@ -29,20 +29,29 @@ function Index() {
     <>
       {/* Hero */}
       <section className="bg-ink-hero text-cream">
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-16 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-24">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-28 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-32">
           <div>
-            <p className="eyebrow flex items-center gap-3 text-sage">
+            <p
+              className="fade-up eyebrow flex items-center gap-3 text-sage"
+              style={{ animationDelay: "0s" }}
+            >
               <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
               Workflows. Connected.
             </p>
-            <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.4rem]">
+            <h1
+              className="fade-up mt-6 text-5xl leading-[1.05] md:text-[4.4rem]"
+              style={{ animationDelay: "0.08s" }}
+            >
               Werk dat elke week terugkomt, hoeft geen{" "}
               <span className="hand text-copper text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
+            <p
+              className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/75"
+              style={{ animationDelay: "0.16s" }}
+            >
               LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: "0.24s" }}>
               <Link
                 to="/contact"
                 className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -58,11 +67,16 @@ function Index() {
             </div>
           </div>
 
-          <FocusVsChaos tone="dark" accent="var(--copper)" className="mx-auto w-full max-w-sm" />
+          <div className="fade-up mx-auto w-full max-w-sm" style={{ animationDelay: "0.32s" }}>
+            <FocusVsChaos tone="dark" accent="var(--copper)" className="w-full" />
+          </div>
         </div>
 
         <div className="mx-auto max-w-6xl px-5 pb-16">
-          <div className="grid gap-px overflow-hidden rounded-xl border border-cream/15 bg-cream/15 sm:grid-cols-3">
+          <div
+            className="fade-up grid gap-px overflow-hidden rounded-xl border border-cream/15 bg-cream/15 sm:grid-cols-3"
+            style={{ animationDelay: "0.4s" }}
+          >
             {[
               { k: "20 u", v: "handwerk per maand dat we bij één klant weghaalden" },
               { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
