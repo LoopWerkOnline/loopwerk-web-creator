@@ -74,7 +74,7 @@ function Index() {
           </div>
 
           <div className="fade-up relative mx-auto w-full max-w-sm" style={{ animationDelay: "0.32s" }}>
-            <FocusVsChaos tone="dark" accent="var(--sage)" className="w-full" />
+            <FocusVsChaos tone="dark" accent="var(--home-accent)" className="w-full" />
           </div>
 
         </div>
