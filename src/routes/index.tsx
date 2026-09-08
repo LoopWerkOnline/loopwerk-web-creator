@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import { FocusVsChaos, ManualSteps } from "@/components/infographics";
+import { ManualSteps } from "@/components/infographics";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
@@ -34,9 +34,23 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ink-hero text-cream">
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-28 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-32">
-          <div>
+      <section className="relative isolate flex min-h-[600px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[680px] md:min-h-[820px]">
+        <img
+          src="/hero/hero-kantoor.jpg"
+          alt="Lichte kantoorruimte met glazen gevel en uitzicht op groen"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[78%_45%] md:object-[64%_55%]"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:pb-20 md:pt-40">
+          <div className="max-w-3xl">
             <p
               className="fade-up eyebrow flex items-center gap-3 text-sage"
               style={{ animationDelay: "0s" }}
@@ -52,7 +66,7 @@ function Index() {
               <span className="hand text-home-accent text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
             <p
-              className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/75"
+              className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/80"
               style={{ animationDelay: "0.16s" }}
             >
               LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
@@ -72,11 +86,6 @@ function Index() {
               </Link>
             </div>
           </div>
-
-          <div className="fade-up relative mx-auto w-full max-w-sm" style={{ animationDelay: "0.32s" }}>
-            <FocusVsChaos tone="dark" accent="var(--home-accent)" className="w-full" />
-          </div>
-
         </div>
       </section>
 
