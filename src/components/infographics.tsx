@@ -45,9 +45,9 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
 
 
 
-      <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="2.5" />
+      <line x1="70" y1="40" x2="70" y2="420" stroke={rail} strokeWidth="1.5" strokeOpacity="0.7" />
       {[40, 166, 293, 420].map((y) => (
-        <circle key={y} cx="70" cy={y} r="8" fill={accent} />
+        <circle key={y} cx="70" cy={y} r="6" fill={accent} opacity="0.9" />
       ))}
 
       <path
@@ -55,18 +55,18 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
         className="draw-in"
         fill="none"
         stroke={base}
-        strokeOpacity="0.45"
-        strokeWidth="2"
+        strokeOpacity="0.32"
+        strokeWidth="1.5"
         strokeLinejoin="round"
       />
       {chaos.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 7 : 5} fill={i % 3 === 0 ? base : sage} opacity={i % 3 === 0 ? 0.85 : 0.6} />
+        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 5.5 : 4} fill={i % 3 === 0 ? base : sage} opacity={i % 3 === 0 ? 0.55 : 0.4} />
       ))}
       {noise.map(([x, y], i) => (
-        <circle key={`n${i}`} cx={x} cy={y} r="5" fill={sage} opacity="0.75" />
+        <circle key={`n${i}`} cx={x} cy={y} r="3.5" fill={sage} opacity="0.45" />
       ))}
 
-      <g fontSize="11" fill={base} opacity="0.7">
+      <g fontSize="11" fill={base} opacity="0.55">
         <line x1="24" y1="450" x2="52" y2="450" stroke={rail} strokeWidth="2.5" />
         <text x="60" y="454">Doorlooptijd</text>
         <circle cx="170" cy="450" r="6" fill={accent} />
