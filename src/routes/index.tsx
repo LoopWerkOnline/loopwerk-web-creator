@@ -12,19 +12,11 @@ const description =
 
 /** Eigen resultaten plus twee onafhankelijk geverifieerde bronnen — geen losse marketingclaims. */
 const factTicker: { k: string; v: string; source?: string }[] = [
-  { k: "20 u", v: "handwerk per maand dat we bij één klant weghaalden" },
-  { k: "3 stappen", v: "van klantvraag naar complete aanvraag" },
-  { k: "1 tool", v: "die vanaf dag één in gebruik is" },
-  {
-    k: "33%",
-    v: "van de Nederlandse bedrijven (10+ medewerkers) gebruikte AI-technologie in 2025, tegen 14% in 2023",
-    source: "CBS, 2025",
-  },
-  {
-    k: "7×",
-    v: "waarschijnlijker dat een aanvraag alsnog een klant wordt als je 'm binnen het uur opvolgt, i.p.v. later",
-    source: "Harvard Business Review, 2011",
-  },
+  { k: "20 u", v: "handwerk weggehaald per maand" },
+  { k: "3 stappen", v: "van klantvraag naar aanvraag" },
+  { k: "1 tool", v: "al in gebruik vanaf dag één" },
+  { k: "33%", v: "van bedrijven gebruikt al AI", source: "CBS, 2025" },
+  { k: "7×", v: "vaker een klant bij snelle opvolging", source: "Harvard Business Review" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -97,14 +89,27 @@ function Index() {
       </section>
 
       {/* Cijfers */}
-      <div className="overflow-hidden border-y border-line bg-shell py-8">
-        <div className="marquee flex w-max gap-16 hover:[animation-play-state:paused]">
+      <div className="relative overflow-hidden border-y border-cream/10 bg-forest py-9">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-forest to-transparent md:w-40"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-forest to-transparent md:w-40"
+          aria-hidden="true"
+        />
+        <div className="marquee flex w-max hover:[animation-play-state:paused]">
           {[...factTicker, ...factTicker].map((s, i) => (
-            <div key={i} className="flex shrink-0 items-baseline gap-3">
-              <span className="text-3xl text-copper md:text-4xl">{s.k}</span>
-              <span className="max-w-[16rem] text-sm leading-snug text-ink/70">
-                {s.v}
-                {s.source ? <span className="text-ink/40"> — {s.source}</span> : null}
+            <div
+              key={i}
+              className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
+            >
+              <span className="text-3xl font-semibold text-copper [text-shadow:0_0_28px_var(--copper)] md:text-4xl">
+                {s.k}
+              </span>
+              <span className="flex max-w-[11rem] flex-col">
+                <span className="text-sm leading-snug text-cream/85">{s.v}</span>
+                {s.source ? <span className="mt-1 text-xs text-cream/45">{s.source}</span> : null}
               </span>
             </div>
           ))}
