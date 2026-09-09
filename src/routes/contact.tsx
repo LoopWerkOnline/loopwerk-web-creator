@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
+import { Reveal } from "@/components/Reveal";
 import { supabase } from "@/integrations/supabase/client";
 
 const title = "Contact | plan een gesprek met LoopWerk";
@@ -59,7 +60,7 @@ function Contact() {
     <>
       <Section tone="hero">
         <div className="grid gap-16 md:grid-cols-[1fr_1.1fr]">
-          <div>
+          <Reveal>
             <Eyebrow tone="sage">Contact</Eyebrow>
             <h1 className="mt-6 text-5xl leading-[1.08] md:text-6xl">
               Vertel ons eerst waar het <span className="hand text-[1.1em]">werk zit</span>
@@ -80,9 +81,10 @@ function Contact() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-shell p-7 md:p-9">
+          <Reveal delay={0.1}>
+          <form onSubmit={onSubmit} className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
                 <span className="text-sm font-medium text-ink">Naam *</span>
@@ -136,6 +138,7 @@ function Contact() {
               Je gegevens gebruiken we alleen om op je aanvraag te reageren.
             </p>
           </form>
+          </Reveal>
         </div>
       </Section>
     </>

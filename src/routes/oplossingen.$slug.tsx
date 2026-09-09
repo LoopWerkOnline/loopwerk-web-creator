@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
+import { Reveal } from "@/components/Reveal";
 import { ConfiguratorFlow } from "@/components/infographics";
 import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
 import { solutionBySlug, solutions } from "@/lib/content";
@@ -53,14 +54,16 @@ function SolutionPage() {
   return (
     <>
       <Section tone="hero" className="!pb-14">
-        <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
-        <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
+        <Reveal>
+          <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
+          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
+        </Reveal>
       </Section>
 
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
-          <div>
+          <Reveal>
             <Eyebrow tone="copper">Wat we vaak zien</Eyebrow>
             <ul className="mt-6 space-y-4">
               {solution.signals.map((s) => (
@@ -70,20 +73,20 @@ function SolutionPage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-xl border border-line bg-shell p-8">
+          </Reveal>
+          <Reveal delay={0.1} className="rounded-xl border border-line bg-shell p-8">
             <p className="hand text-2xl text-forest">Zo pakken we het aan</p>
             <p className="mt-3 leading-relaxed text-ink/75">
               We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor
               staat er sneller iets werkends dan bij bouwen vanaf nul.
             </p>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section tone="shell">
         <div className="grid gap-12 md:grid-cols-2">
-          <div>
+          <Reveal>
             <Eyebrow>Bestaande basis</Eyebrow>
             <p className="mt-4 text-sm text-ink/60">Dit hebben we al werkend liggen.</p>
             <ul className="mt-6 space-y-4">
@@ -93,8 +96,8 @@ function SolutionPage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <Eyebrow tone="copper">Maatwerk</Eyebrow>
             <p className="mt-4 text-sm text-ink/60">Dit maken we passend voor jullie.</p>
             <ul className="mt-6 space-y-4">
@@ -104,26 +107,30 @@ function SolutionPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       {solution.featured ? (
         <Section>
-          <Eyebrow>In de praktijk</Eyebrow>
-          <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
-            De zwembadconfigurator die we voor SSPW bouwden
-          </h2>
-          <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
-            Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet wat
-            inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een vastgelegde
-            lead.
-          </p>
-          <ConfiguratorFlow className="mt-10 w-full max-w-3xl" />
+          <Reveal>
+            <Eyebrow>In de praktijk</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
+              De zwembadconfigurator die we voor SSPW bouwden
+            </h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
+              Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet wat
+              inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een vastgelegde
+              lead.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ConfiguratorFlow className="mt-10 w-full max-w-3xl" />
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1: Formaat" />
-            <BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2: Uitvoering" />
-            <BrowserFrame src={sspwStap3} alt="Stap 3 van de configurator: gegevens en prijsindicatie" label="Stap 3: Prijsindicatie" />
+            <Reveal><BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1: Formaat" /></Reveal>
+            <Reveal delay={0.08}><BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2: Uitvoering" /></Reveal>
+            <Reveal delay={0.16}><BrowserFrame src={sspwStap3} alt="Stap 3 van de configurator: gegevens en prijsindicatie" label="Stap 3: Prijsindicatie" /></Reveal>
           </div>
           <Link
             to="/cases/sspw-zwembadconfigurator"
@@ -136,7 +143,7 @@ function SolutionPage() {
 
       <Section tone="ink">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
-          <div>
+          <Reveal>
             <h2 className="text-3xl md:text-4xl">Zullen we kijken of dit bij jullie past?</h2>
             <p className="mt-4 max-w-xl leading-relaxed text-cream/70">
               Eén gesprek van een half uur is meestal genoeg om te bepalen of hier iets te winnen
@@ -148,8 +155,8 @@ function SolutionPage() {
             >
               Bespreek je proces
             </Link>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <p className="eyebrow text-sage">Andere richtingen</p>
             <ul className="mt-4 space-y-3 text-sm">
               {others.map((o) => (
@@ -164,7 +171,7 @@ function SolutionPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </Section>
     </>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
+import { Reveal } from "@/components/Reveal";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 
 const sspwZwembad = "/cases/sspw-belfeld.jpg";
@@ -53,38 +54,40 @@ function CaseSSPW() {
   return (
     <>
       <Section tone="hero">
-        <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
-        <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-          Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span> naar voren
-          haalt
-        </h1>
-        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
-          Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
-          zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de
-          uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in
-          gedachten had.
-        </p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <a
-            href={configuratorUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Probeer de configurator
-          </a>
-          <Link
-            to="/contact"
-            className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
-          >
-            Bespreek je proces
-          </Link>
-        </div>
+        <Reveal>
+          <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
+          <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
+            Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span> naar voren
+            haalt
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
+            Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
+            zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de
+            uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in
+            gedachten had.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href={configuratorUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Probeer de configurator
+            </a>
+            <Link
+              to="/contact"
+              className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+            >
+              Bespreek je proces
+            </Link>
+          </div>
+        </Reveal>
       </Section>
 
       <Section tone="shell">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-          <div>
+          <Reveal>
             <Eyebrow>Het probleem</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
               Elk gesprek begon opnieuw bij nul
@@ -100,25 +103,29 @@ function CaseSSPW() {
               het echte antwoord kwam pas aan het eind van een showroomgesprek. Dat deel kan de
               klant grotendeels zelf doorlopen, mits je hem goed door de keuzes leidt.
             </p>
-          </div>
-          <figure className="overflow-hidden rounded-xl border border-line">
-            <img
-              src={sspwZwembad}
-              alt="Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld"
-              className="block aspect-video w-full object-cover"
-              loading="lazy"
-            />
-          </figure>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <figure className="overflow-hidden rounded-xl border border-line">
+              <img
+                src={sspwZwembad}
+                alt="Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld"
+                className="block aspect-video w-full object-cover"
+                loading="lazy"
+              />
+            </figure>
+          </Reveal>
         </div>
 
         <div className="mt-16">
-          <h3 className="text-2xl leading-snug">Dit is wat er binnenkwam, elke week weer</h3>
+          <Reveal>
+            <h3 className="text-2xl leading-snug">Dit is wat er binnenkwam, elke week weer</h3>
+          </Reveal>
           <div className="mt-8 grid gap-7 md:grid-cols-3">
-            {aanvragen.map((a) => (
-              <div key={a.vraag} className="rounded-xl border border-line bg-cream p-7">
+            {aanvragen.map((a, i) => (
+              <Reveal key={a.vraag} delay={i * 0.08} className="rounded-xl border border-line bg-cream p-7">
                 <p className="hand text-2xl leading-snug text-forest">{a.vraag}</p>
                 <p className="mt-4 text-base leading-relaxed text-ink/75">{a.wat}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -126,7 +133,7 @@ function CaseSSPW() {
 
       <Section tone="ink">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
-          <div>
+          <Reveal>
             <Eyebrow tone="sage">De oplossing</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
               Van eerste idee naar complete aanvraag
@@ -151,22 +158,24 @@ function CaseSSPW() {
                 Doorloop de configurator zelf
               </a>
             </div>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <VideoFrame
               src={demoVideo}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator demo"
               variant="dark"
             />
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section>
-        <Eyebrow>Wat het oplevert</Eyebrow>
+        <Reveal>
+          <Eyebrow>Wat het oplevert</Eyebrow>
+        </Reveal>
         <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-start">
-          <div>
+          <Reveal>
             <p className="text-2xl leading-snug">
               Het gesprek gaat over uitvoering in plaats van over basisvragen, en elke aanvraag
               komt compleet binnen.
@@ -175,50 +184,56 @@ function CaseSSPW() {
               Mensen komen beter voorbereid binnen en hebben eerder een realistisch beeld van wat
               mogelijk is. Het gesprek met Jacques begint daardoor een stuk verder.
             </p>
-          </div>
-          <ul className="space-y-4 text-ink/75">
-            {uitkomsten.map((li) => (
-              <li key={li} className="flex gap-3">
-                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
-                <span className="text-base leading-relaxed">{li}</span>
-              </li>
-            ))}
-          </ul>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ul className="space-y-4 text-ink/75">
+              {uitkomsten.map((li) => (
+                <li key={li} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                  <span className="text-base leading-relaxed">{li}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
-        <p className="mt-10 max-w-3xl rounded-xl border border-line bg-shell p-7 text-base leading-relaxed text-ink/75">
-          Eerlijk erbij: een configurator vervangt het vakgesprek niet. Een zwembad blijft maatwerk
-          en de definitieve prijs komt van SSPW zelf. Wat de tool doet, is de eerste ronde uitvragen
-          overnemen zodat het gesprek daarna verder begint.
-        </p>
+        <Reveal delay={0.2} className="mt-10 max-w-3xl rounded-xl border border-line bg-shell p-7">
+          <p className="text-base leading-relaxed text-ink/75">
+            Eerlijk erbij: een configurator vervangt het vakgesprek niet. Een zwembad blijft maatwerk
+            en de definitieve prijs komt van SSPW zelf. Wat de tool doet, is de eerste ronde uitvragen
+            overnemen zodat het gesprek daarna verder begint.
+          </p>
+        </Reveal>
       </Section>
 
       <Section tone="ink">
-        <Eyebrow tone="sage">Verder praten</Eyebrow>
-        <h2 className="mt-5 max-w-3xl text-4xl leading-tight md:text-5xl">
-          Begint jouw verkoopgesprek ook telkens bij nul?
-        </h2>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link
-            to="/contact"
-            className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Bespreek je proces
-          </Link>
-          <Link
-            to="/cases"
-            className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
-          >
-            Bekijk alle cases
-          </Link>
-          <a
-            href="https://www.sspw.nl"
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
-          >
-            Bekijk sspw.nl
-          </a>
-        </div>
+        <Reveal>
+          <Eyebrow tone="sage">Verder praten</Eyebrow>
+          <h2 className="mt-5 max-w-3xl text-4xl leading-tight md:text-5xl">
+            Begint jouw verkoopgesprek ook telkens bij nul?
+          </h2>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              to="/contact"
+              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Bespreek je proces
+            </Link>
+            <Link
+              to="/cases"
+              className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+            >
+              Bekijk alle cases
+            </Link>
+            <a
+              href="https://www.sspw.nl"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+            >
+              Bekijk sspw.nl
+            </a>
+          </div>
+        </Reveal>
       </Section>
     </>
   );
