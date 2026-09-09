@@ -78,13 +78,20 @@ export function ScanResult({ score, contactPrefill }: { score: ScanScore; contac
           </p>
         </div>
 
-        <div className="fade-up mt-14 space-y-6 border-t border-cream/15 pt-10" style={{ animationDelay: "0.3s" }}>
-          {score.dimensions.map((d) => (
-            <div key={d.label} className="grid gap-1 sm:grid-cols-[10rem_1fr] sm:items-baseline">
-              <Eyebrow tone="sage">{d.label}</Eyebrow>
-              <p className="text-base leading-relaxed text-cream/80">{d.text}</p>
-            </div>
-          ))}
+        <div className="fade-up mt-14 border-t border-cream/15 pt-10" style={{ animationDelay: "0.3s" }}>
+          <Eyebrow tone="sage">Wat hierin meespeelt</Eyebrow>
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-cream/60">
+            Meestal zit de winst hier niet in één grote ingreep, maar in een paar losse dingen die je
+            tegelijk zou automatiseren.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {score.dimensions.map((d) => (
+              <div key={d.label} className="rounded-xl border border-cream/15 bg-cream/5 p-5">
+                <p className="eyebrow text-cream/50">{d.label}</p>
+                <p className="mt-2 text-sm leading-relaxed text-cream/85">{d.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
