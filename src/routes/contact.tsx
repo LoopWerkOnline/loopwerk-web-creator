@@ -9,6 +9,9 @@ const description =
   "Vertel waar het werk in jullie proces blijft hangen. Eén gesprek is genoeg om te zien of hier een tool onder zit.";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): { prefill?: string | undefined } => ({
+    prefill: typeof search["prefill"] === "string" ? (search["prefill"] as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title },
@@ -23,6 +26,7 @@ export const Route = createFileRoute("/contact")({
 type Status = "idle" | "sending" | "sent" | "error";
 
 function Contact() {
+  const { prefill } = Route.useSearch();
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -103,6 +107,7 @@ function Contact() {
                   required
                   rows={5}
                   className={field}
+                  defaultValue={prefill}
                   placeholder="Beschrijf kort jullie proces of het knelpunt."
                 />
               </label>
