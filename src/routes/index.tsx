@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
+import { Reveal } from "@/components/Reveal";
 import { ManualSteps } from "@/components/infographics";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
@@ -86,7 +87,7 @@ function Index() {
       </section>
 
       {/* Cijfers */}
-      <div className="relative overflow-hidden border-y border-cream/10 bg-ink-hero py-9">
+      <Reveal className="relative overflow-hidden border-y border-cream/10 bg-ink-hero py-9">
         <div
           className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-ink-hero to-transparent md:w-40"
           aria-hidden="true"
@@ -108,12 +109,12 @@ function Index() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
 
       {/* Herkenning */}
       <Section>
         <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
-          <div>
+          <Reveal>
             <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Eén klantvraag, vier keer handwerk
@@ -126,14 +127,16 @@ function Index() {
             <p className="mt-4 leading-relaxed text-ink/70">
               Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
-          </div>
-          <ManualSteps accent="var(--home-accent)" className="w-full" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ManualSteps accent="var(--home-accent)" className="w-full" />
+          </Reveal>
         </div>
       </Section>
 
       {/* Oplossingen */}
       <Section tone="shell">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Eyebrow>Oplossingen</Eyebrow>
             <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
@@ -143,39 +146,43 @@ function Index() {
           <Link to="/oplossingen" className="text-sm font-semibold text-forest underline underline-offset-4">
             Alle oplossingen
           </Link>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s) => (
-            <Link
-              key={s.slug}
-              to="/oplossingen/$slug"
-              params={{ slug: s.slug }}
-              className="group relative flex flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-home-accent hover:shadow-lg"
-            >
-              <span
-                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
-                aria-hidden="true"
-              />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-home-accent text-sm font-semibold text-white">
-                {s.n}
-              </span>
-              <h3 className="mt-5 text-2xl">{s.title}</h3>
-              <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
-            </Link>
+          {solutions.map((s, i) => (
+            <Reveal key={s.slug} delay={i * 0.08}>
+              <Link
+                to="/oplossingen/$slug"
+                params={{ slug: s.slug }}
+                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-home-accent hover:shadow-lg"
+              >
+                <span
+                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-home-accent text-sm font-semibold text-white">
+                  {s.n}
+                </span>
+                <h3 className="mt-5 text-2xl">{s.title}</h3>
+                <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       {/* Sectoren */}
       <Section>
-        <Eyebrow>Sectoren</Eyebrow>
-        <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-          We kennen het werk waar de tijd in gaat zitten
-        </h2>
+        <Reveal>
+          <Eyebrow>Sectoren</Eyebrow>
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+            We kennen het werk waar de tijd in gaat zitten
+          </h2>
+        </Reveal>
         <ul className="mt-10 divide-y divide-line border-y border-line">
-          {sectors.map((s) => (
+          {sectors.map((s, i) => (
             <li key={s.slug}>
+              <Reveal delay={Math.min(i, 3) * 0.08}>
               <div
                 className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_1fr] md:gap-6 md:px-4"
               >
@@ -230,6 +237,7 @@ function Index() {
                   )}
                 </div>
               </div>
+              </Reveal>
             </li>
           ))}
         </ul>
@@ -239,15 +247,15 @@ function Index() {
       {/* Uitgelichte case */}
       <Section tone="ink">
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1.65fr_1fr] lg:items-start lg:gap-16">
-          <div>
+          <Reveal>
             <VideoFrame
               src={demoVideo}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator demo"
               variant="dark"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <Eyebrow tone="home-accent">UITGELICHTE CASE</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
             <p className="hand text-home-accent mt-8 text-2xl leading-snug md:text-3xl">
@@ -276,28 +284,30 @@ function Index() {
                 Bekijk de configurator ↗
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
 
       {/* Hoe we werken */}
       <Section tone="cream">
-        <Eyebrow>Hoe we werken</Eyebrow>
-        <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-          Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
-        </h2>
+        <Reveal>
+          <Eyebrow>Hoe we werken</Eyebrow>
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+            Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
+          </h2>
+        </Reveal>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {[
             { n: "01", t: "Proces doorlopen", b: "We kijken mee met hoe het nu gaat en waar de tijd blijft hangen." },
             { n: "02", t: "Waarde bepalen", b: "Levert het te weinig op, dan zeggen we dat voordat er iets gebouwd wordt." },
             { n: "03", t: "Bouwen en bijstellen", b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen." },
-          ].map((s) => (
-            <div key={s.n} className="border-t border-line pt-6">
+          ].map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.08} className="border-t border-line pt-6">
               <span className="eyebrow text-home-accent">{s.n}</span>
               <h3 className="mt-3 text-2xl">{s.t}</h3>
               <p className="mt-2 leading-relaxed text-ink/70">{s.b}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -305,7 +315,7 @@ function Index() {
       {/* Over + CTA */}
       <Section tone="ink">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
-          <div>
+          <Reveal>
             <Eyebrow tone="sage">OVER ONS</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Nuchter, concreet en eerlijk over wat iets oplevert
@@ -328,10 +338,12 @@ function Index() {
                 Over LoopWerk
               </Link>
             </div>
-          </div>
-          <p className="hand text-3xl text-sage">
-            Vertel wat er nu handmatig gaat, dan zeggen wij of er iets te winnen valt.
-          </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="hand text-3xl text-sage">
+              Vertel wat er nu handmatig gaat, dan zeggen wij of er iets te winnen valt.
+            </p>
+          </Reveal>
         </div>
       </Section>
     </>
