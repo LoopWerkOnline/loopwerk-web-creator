@@ -5,7 +5,7 @@
 
 const forest = "var(--forest)";
 const sage = "var(--sage)";
-const copper = "var(--copper)";
+const copper = "var(--home-accent)";
 const ink = "var(--ink)";
 
 /** Rechte lijn (geautomatiseerd) versus zigzag met afleidingen (handmatig). */

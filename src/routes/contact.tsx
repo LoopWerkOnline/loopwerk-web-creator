@@ -76,7 +76,7 @@ function Contact() {
                 "Concreet advies, ook als wij het niet bouwen",
               ].map((li) => (
                 <li key={li} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" />
                   <span>{li}</span>
                 </li>
               ))}
@@ -118,7 +118,7 @@ function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="mt-7 w-full rounded-full bg-copper px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+              className="mt-7 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               {status === "sending" ? "Versturen..." : "Verstuur aanvraag"}
             </button>

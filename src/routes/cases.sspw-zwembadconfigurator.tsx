@@ -55,7 +55,7 @@ function CaseSSPW() {
     <>
       <Section tone="hero">
         <Reveal>
-          <img src="/cases/sspw-logo.png" alt="Logo van Sun Sauna & Poolworld" className="h-14 w-auto rounded-lg" />
+          <img src="/cases/sspw-logo.png" alt="Logo van Sun Sauna & Poolworld" className="h-24 w-auto rounded-xl md:h-28" />
           <div className="mt-6">
             <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
           </div>
@@ -74,7 +74,7 @@ function CaseSSPW() {
               href={configuratorUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Probeer de configurator
             </a>
@@ -192,18 +192,20 @@ function CaseSSPW() {
             <ul className="space-y-4 text-ink/75">
               {uitkomsten.map((li) => (
                 <li key={li} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" />
                   <span className="text-base leading-relaxed">{li}</span>
                 </li>
               ))}
             </ul>
           </Reveal>
         </div>
-        <Reveal delay={0.2} className="mt-10 max-w-3xl rounded-xl border border-line bg-shell p-7">
-          <p className="text-base leading-relaxed text-ink/75">
-            Eerlijk erbij: een configurator vervangt het vakgesprek niet. Een zwembad blijft maatwerk
-            en de definitieve prijs komt van SSPW zelf. Wat de tool doet, is de eerste ronde uitvragen
-            overnemen zodat het gesprek daarna verder begint.
+        <Reveal delay={0.2} className="mt-10 max-w-2xl rounded-2xl border border-line bg-shell p-8 md:p-10">
+          <p className="hand text-3xl leading-snug text-forest md:text-4xl">
+            Een configurator vervangt het vakgesprek niet.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-ink/70">
+            Een zwembad blijft maatwerk en de definitieve prijs komt van SSPW zelf. Wat de tool doet,
+            is de eerste ronde uitvragen overnemen zodat het gesprek daarna verder begint.
           </p>
         </Reveal>
       </Section>
@@ -217,7 +219,7 @@ function CaseSSPW() {
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
             </Link>

@@ -94,7 +94,7 @@ function OverLoopwerk() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <Eyebrow tone="copper">Waar we goed in zijn</Eyebrow>
+            <Eyebrow tone="home-accent">Waar we goed in zijn</Eyebrow>
             <ul className="mt-6 space-y-4">
               {[
                 "Complexe keuzes en prijsregels begrijpelijk maken voor de klant.",
@@ -121,7 +121,7 @@ function OverLoopwerk() {
           <Reveal delay={0.1} className="justify-self-start">
             <Link
               to="/contact"
-              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
             </Link>

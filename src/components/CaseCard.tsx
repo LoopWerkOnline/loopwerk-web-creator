@@ -12,7 +12,7 @@ export function CaseCard({ c }: { c: CaseStudy }) {
             <p className="eyebrow text-forest">{c.client}</p>
             <span
               className={`rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide ${
-                c.status === "live" ? "bg-forest/10 text-forest" : "bg-copper/10 text-copper"
+                c.status === "live" ? "bg-forest/10 text-forest" : "bg-home-accent/10 text-home-accent"
               }`}
             >
               {c.status === "live" ? "Live" : "In productie"}
@@ -27,7 +27,7 @@ export function CaseCard({ c }: { c: CaseStudy }) {
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               to={c.href}
-              className="inline-flex rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="inline-flex rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Lees de case
             </Link>

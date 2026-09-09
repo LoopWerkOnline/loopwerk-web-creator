@@ -64,11 +64,11 @@ function SolutionPage() {
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
-            <Eyebrow tone="copper">Wat we vaak zien</Eyebrow>
+            <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
             <ul className="mt-6 space-y-4">
               {solution.signals.map((s) => (
                 <li key={s} className="flex gap-3 leading-relaxed text-ink/80">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" aria-hidden="true" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" aria-hidden="true" />
                   {s}
                 </li>
               ))}
@@ -98,7 +98,7 @@ function SolutionPage() {
             </ul>
           </Reveal>
           <Reveal delay={0.1}>
-            <Eyebrow tone="copper">Maatwerk</Eyebrow>
+            <Eyebrow tone="home-accent">Maatwerk</Eyebrow>
             <p className="mt-4 text-sm text-ink/60">Dit maken we passend voor jullie.</p>
             <ul className="mt-6 space-y-4">
               {solution.custom.map((c) => (
@@ -151,7 +151,7 @@ function SolutionPage() {
             </p>
             <Link
               to="/contact"
-              className="mt-8 inline-block rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="mt-8 inline-block rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
             </Link>

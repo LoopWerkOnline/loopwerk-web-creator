@@ -89,7 +89,7 @@ export function SolutionSlider({ items }: Props) {
               </div>
             )}
             <div className="flex flex-1 flex-col p-8 md:p-10">
-              <span className="eyebrow text-copper">{s.n}</span>
+              <span className="eyebrow text-home-accent">{s.n}</span>
               <h2 className="mt-4 text-2xl md:text-3xl">{s.title}</h2>
               <p className="mt-3 flex-1 leading-relaxed text-ink/70">{s.short}</p>
               <span className="mt-6 text-sm font-semibold text-forest underline underline-offset-4">
@@ -108,7 +108,7 @@ export function SolutionSlider({ items }: Props) {
             onClick={() => scrollTo(i)}
             aria-label={`Ga naar ${s.title}`}
             className={`h-2 rounded-full transition-all ${
-              i === active ? "w-6 bg-copper" : "w-2 bg-ink/20 hover:bg-ink/40"
+              i === active ? "w-6 bg-home-accent" : "w-2 bg-ink/20 hover:bg-ink/40"
             }`}
           />
         ))}

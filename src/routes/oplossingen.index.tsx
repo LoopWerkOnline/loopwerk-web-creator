@@ -64,7 +64,7 @@ function OplossingenPage() {
           <Reveal delay={0.1} className="justify-self-start">
             <Link
               to="/contact"
-              className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
             </Link>
