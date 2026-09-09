@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import { FocusVsChaos, ManualSteps } from "@/components/infographics";
+import { ManualSteps } from "@/components/infographics";
 import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
 import { solutions, sectors } from "@/lib/content";
 
@@ -34,9 +34,23 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ink-hero text-cream">
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-28 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-32">
-          <div>
+      <section className="relative isolate flex min-h-[600px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[680px] md:min-h-[820px]">
+        <img
+          src="/hero/hero-kantoor.jpg"
+          alt="Lichte kantoorruimte met glazen gevel en uitzicht op groen"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[78%_45%] md:object-[64%_55%]"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:pb-20 md:pt-40">
+          <div className="max-w-3xl">
             <p
               className="fade-up eyebrow flex items-center gap-3 text-sage"
               style={{ animationDelay: "0s" }}
@@ -49,10 +63,10 @@ function Index() {
               style={{ animationDelay: "0.08s" }}
             >
               Werk dat elke week terugkomt, hoeft geen{" "}
-              <span className="hand text-copper text-[1.15em]">handwerk</span>{" "}te blijven
+              <span className="hand text-home-accent text-[1.15em]">handwerk</span>{" "}te blijven
             </h1>
             <p
-              className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/75"
+              className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/80"
               style={{ animationDelay: "0.16s" }}
             >
               LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
@@ -60,7 +74,7 @@ function Index() {
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: "0.24s" }}>
               <Link
                 to="/contact"
-                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Bespreek je proces
               </Link>
@@ -72,11 +86,6 @@ function Index() {
               </Link>
             </div>
           </div>
-
-          <div className="fade-up relative mx-auto w-full max-w-sm" style={{ animationDelay: "0.32s" }}>
-            <FocusVsChaos tone="dark" accent="var(--home-accent)" className="w-full" />
-          </div>
-
         </div>
       </section>
 
@@ -96,7 +105,7 @@ function Index() {
               key={i}
               className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
             >
-              <span className="text-3xl font-semibold text-copper md:text-4xl">
+              <span className="text-3xl font-semibold text-home-accent md:text-4xl">
                 {s.k}
               </span>
               <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
@@ -109,7 +118,7 @@ function Index() {
       <Section>
         <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
           <div>
-            <Eyebrow tone="copper">Herkenbaar?</Eyebrow>
+            <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Eén klantvraag, vier keer handwerk
             </h2>
@@ -122,7 +131,7 @@ function Index() {
               Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
           </div>
-          <ManualSteps accent="var(--copper)" className="w-full" />
+          <ManualSteps accent="var(--home-accent)" className="w-full" />
         </div>
       </Section>
 
@@ -146,13 +155,13 @@ function Index() {
               key={s.slug}
               to="/oplossingen/$slug"
               params={{ slug: s.slug }}
-              className="group relative flex flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-copper hover:shadow-lg"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-home-accent hover:shadow-lg"
             >
               <span
-                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-copper transition-transform duration-300 group-hover:scale-x-100"
+                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
                 aria-hidden="true"
               />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-copper text-sm font-semibold text-white">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-home-accent text-sm font-semibold text-white">
                 {s.n}
               </span>
               <h3 className="mt-5 text-2xl">{s.title}</h3>
@@ -191,12 +200,12 @@ function Index() {
                         strokeWidth="2"
                         strokeDasharray="5 4"
                         strokeLinecap="round"
-                        className="text-copper"
+                        className="text-home-accent"
                       />
-                      <circle cx="0" cy="28" r="3" className="fill-copper" />
-                      <circle cx="200" cy="28" r="3" className="fill-copper" />
+                      <circle cx="0" cy="28" r="3" className="fill-home-accent" />
+                      <circle cx="200" cy="28" r="3" className="fill-home-accent" />
                     </svg>
-                    <span className="hand relative z-10 max-w-[12rem] rounded-full border border-copper/20 bg-cream px-4 py-2 text-center text-base leading-tight text-copper shadow-sm">
+                    <span className="hand relative z-10 max-w-[12rem] rounded-full border border-home-accent/20 bg-cream px-4 py-2 text-center text-base leading-tight text-home-accent shadow-sm">
                       {s.flowLabel}
                     </span>
                   </div>
@@ -213,7 +222,7 @@ function Index() {
                           className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
                         />
                         <div className="flip-face flip-back absolute inset-0 flex flex-col justify-center gap-2 rounded-lg bg-ink-hero p-5">
-                          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-copper">
+                          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-home-accent">
                             Herkenbaar?
                           </span>
                           <p className="text-sm leading-relaxed text-cream/90">{s.seen[0]}</p>
@@ -243,9 +252,9 @@ function Index() {
             />
           </div>
           <div>
-            <Eyebrow tone="copper">UITGELICHTE CASE</Eyebrow>
+            <Eyebrow tone="home-accent">UITGELICHTE CASE</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
-            <p className="hand text-copper mt-8 text-2xl leading-snug text-sage md:text-3xl">
+            <p className="hand text-home-accent mt-8 text-2xl leading-snug md:text-3xl">
               “Wat kost een zwembad ongeveer?”
             </p>
             <p className="mt-6 leading-relaxed text-cream/75">
@@ -257,7 +266,7 @@ function Index() {
             <div className="mt-8 flex flex-col items-start gap-4">
               <Link
                 to="/cases/sspw-zwembadconfigurator"
-                className="inline-flex items-center gap-2 rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Lees de hele case
                 <span aria-hidden="true">→</span>
@@ -289,7 +298,7 @@ function Index() {
             { n: "03", t: "Bouwen en bijstellen", b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen." },
           ].map((s) => (
             <div key={s.n} className="border-t border-line pt-6">
-              <span className="eyebrow text-copper">{s.n}</span>
+              <span className="eyebrow text-home-accent">{s.n}</span>
               <h3 className="mt-3 text-2xl">{s.t}</h3>
               <p className="mt-2 leading-relaxed text-ink/70">{s.b}</p>
             </div>
@@ -312,7 +321,7 @@ function Index() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Bespreek je proces
               </Link>

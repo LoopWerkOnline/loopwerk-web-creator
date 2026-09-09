@@ -81,7 +81,7 @@ export function SiteHeader() {
                   </p>
                   <Link
                     to="/oplossingen"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest hover:text-copper"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest hover:text-home-accent"
                   >
                     Alle oplossingen
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -95,7 +95,7 @@ export function SiteHeader() {
                         params={{ slug: s.slug }}
                         className="group/item flex gap-3 rounded-xl p-3 transition-colors hover:bg-secondary"
                       >
-                        <span className="mt-0.5 text-xs font-semibold text-copper">{s.n}</span>
+                        <span className="mt-0.5 text-xs font-semibold text-home-accent">{s.n}</span>
                         <span className="min-w-0">
                           <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
                             {s.title}
@@ -134,7 +134,7 @@ export function SiteHeader() {
 
         <Link
           to="/contact"
-          className="hidden shrink-0 rounded-full bg-copper px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 lg:block"
+          className="hidden shrink-0 rounded-full bg-home-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 lg:block"
         >
           Bespreek je proces
         </Link>
@@ -191,7 +191,7 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={closeMenu}
-              className="mt-2 rounded-full bg-copper px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="mt-2 rounded-full bg-home-accent px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Bespreek je proces
             </Link>
