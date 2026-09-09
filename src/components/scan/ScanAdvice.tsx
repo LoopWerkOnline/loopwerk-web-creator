@@ -20,7 +20,7 @@ export function ScanAdvice({
   return (
     <Section tone="cream">
       <div className="mx-auto max-w-2xl">
-        <Eyebrow tone="copper">Waar wij als eerste naar zouden kijken</Eyebrow>
+        <Eyebrow tone="home-accent">Waar wij als eerste naar zouden kijken</Eyebrow>
         <div className="mt-6 space-y-4">
           {paragraphs.map((p, i) => (
             <p key={i} className="text-lg leading-relaxed text-ink/80">
@@ -31,7 +31,7 @@ export function ScanAdvice({
 
         {firstStep && score.band !== "beperkt" ? (
           <div className="mt-8 rounded-2xl border border-line bg-shell p-7">
-            <p className="eyebrow text-forest">Mogelijke eerste stap</p>
+            <Eyebrow tone="forest">Mogelijke eerste stap</Eyebrow>
             <p className="mt-3 text-xl leading-snug">{firstStep.title}</p>
             <p className="mt-3 text-sm leading-relaxed text-ink/70">{firstStep.body}</p>
           </div>

@@ -5,6 +5,9 @@ export type ChoiceOption = {
   label: string;
 };
 
+export type VolumeOption = { value: string; label: string; midpoint: number };
+export type DurationOption = { value: string; label: string; minutes: number };
+
 /** Eén stap in de scan. `kind` bepaalt welk input-component wordt gerenderd. */
 export type ScanStep =
   | {
@@ -19,28 +22,16 @@ export type ScanStep =
       note?: (value: string[]) => string | null;
     }
   | {
-      id: string;
-      kind: "scale";
+      id: "workload";
+      kind: "workload";
       heading: string;
       sub?: string;
-      leftLabel: string;
-      rightLabel: string;
-      variant: "dots" | "bar";
-      note: (value: number) => string;
     }
   | {
-      id: "volume";
-      kind: "volume";
+      id: "automationMatrix";
+      kind: "matrix";
       heading: string;
       sub?: string;
-      options: { value: string; label: string; midpoint: number }[];
-    }
-  | {
-      id: "duration";
-      kind: "duration";
-      heading: string;
-      sub?: string;
-      options: { value: string; label: string; minutes: number }[];
     };
 
 export type ScanAnswers = {
@@ -53,7 +44,6 @@ export type ScanAnswers = {
   judgment: number;
   sources: string[];
   impact: string[];
-  team: string;
 };
 
 export const initialAnswers: ScanAnswers = {
@@ -66,7 +56,6 @@ export const initialAnswers: ScanAnswers = {
   judgment: 3,
   sources: [],
   impact: [],
-  team: "",
 };
 
 export type ScanScore = {

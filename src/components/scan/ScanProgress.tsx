@@ -1,4 +1,4 @@
-/** Dunne copper voortgangslijn + stapteller + terugknop. Bewust geen dikke percentage-balk. */
+/** Dunne voortgangslijn + stapteller + terugknop. Bewust geen dikke percentage-balk. */
 export function ScanProgress({
   step,
   total,
@@ -29,7 +29,7 @@ export function ScanProgress({
       </div>
       <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-line">
         <div
-          className="h-full rounded-full bg-copper transition-all duration-500 ease-out"
+          className="h-full rounded-full bg-home-accent transition-all duration-500 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>

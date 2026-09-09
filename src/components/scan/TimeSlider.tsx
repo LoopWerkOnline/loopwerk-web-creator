@@ -18,7 +18,7 @@ export function TimeSlider({
 
   return (
     <div>
-      <p className="fade-up text-center text-4xl font-semibold text-copper md:text-5xl" key={current?.value}>
+      <p className="fade-up text-center text-4xl font-semibold text-forest md:text-5xl" key={current?.value}>
         {current?.label}
       </p>
 

@@ -51,11 +51,7 @@ function Index() {
 
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:pb-20 md:pt-40">
           <div className="max-w-3xl">
-            <p
-              className="fade-up eyebrow flex items-center gap-3 text-sage"
-              style={{ animationDelay: "0s" }}
-            >
-              <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
+            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
               Terugkerend werk. Geregeld.
             </p>
             <h1

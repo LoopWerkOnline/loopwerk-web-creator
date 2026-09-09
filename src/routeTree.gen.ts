@@ -15,6 +15,7 @@ import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
 import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
@@ -51,6 +52,11 @@ const OverLoopwerkRoute = OverLoopwerkRouteImport.update({
 const OverOnsRoute = OverOnsRouteImport.update({
   id: '/over-ons',
   path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScanRoute = ScanRouteImport.update({
+  id: '/scan',
+  path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SectorenRoute = SectorenRouteImport.update({
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/scan'
     | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/scan'
     | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/scan'
     | '/sectoren'
     | '/werkwijze'
     | '/cases/sspw-zwembadconfigurator'
@@ -191,6 +203,7 @@ export interface RootRouteChildren {
   HoeWeWerkenRoute: typeof HoeWeWerkenRoute
   OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
+  ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
   WerkwijzeRoute: typeof WerkwijzeRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/over-ons'
       fullPath: '/over-ons'
       preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scan': {
+      id: '/scan'
+      path: '/scan'
+      fullPath: '/scan'
+      preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sectoren': {
@@ -314,6 +334,7 @@ const rootRouteChildren: RootRouteChildren = {
   HoeWeWerkenRoute: HoeWeWerkenRoute,
   OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,
+  ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
   WerkwijzeRoute: WerkwijzeRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,

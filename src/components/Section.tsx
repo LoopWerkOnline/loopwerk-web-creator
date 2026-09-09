@@ -39,10 +39,5 @@ export function Eyebrow({
     copper: "text-copper",
     "home-accent": "text-home-accent",
   } as const;
-  return (
-    <p className={`eyebrow flex items-center gap-3 ${colors[tone]}`}>
-      <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
-      {children}
-    </p>
-  );
+  return <p className={`eyebrow ${colors[tone]}`}>{children}</p>;
 }

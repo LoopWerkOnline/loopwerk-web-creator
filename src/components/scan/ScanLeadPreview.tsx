@@ -49,7 +49,7 @@ export function ScanLeadPreview({ contactPrefill }: { contactPrefill: string }) 
             </div>
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-copper px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="mt-6 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Stuur mij mijn analyse
             </button>

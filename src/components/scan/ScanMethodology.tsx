@@ -38,7 +38,7 @@ export function ScanMethodology() {
             <ul className="mt-4 space-y-2">
               {points.map((p) => (
                 <li key={p} className="flex gap-3 text-sm leading-relaxed text-ink/70">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" />
                   <span>{p}</span>
                 </li>
               ))}

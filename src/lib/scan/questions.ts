@@ -1,9 +1,27 @@
-import type { ScanStep } from "./types";
+import type { DurationOption, ScanStep, VolumeOption } from "./types";
+
+export const volumeOptions: VolumeOption[] = [
+  { value: "1-5", label: "1–5 per week", midpoint: 3 },
+  { value: "6-15", label: "6–15 per week", midpoint: 10 },
+  { value: "16-30", label: "16–30 per week", midpoint: 23 },
+  { value: "31-75", label: "31–75 per week", midpoint: 53 },
+  { value: "75+", label: "75+ per week", midpoint: 90 },
+];
+
+export const durationOptions: DurationOption[] = [
+  { value: "5", label: "5 min", minutes: 5 },
+  { value: "10", label: "10 min", minutes: 10 },
+  { value: "20", label: "20 min", minutes: 20 },
+  { value: "30", label: "30 min", minutes: 30 },
+  { value: "45", label: "45 min", minutes: 45 },
+  { value: "60", label: "60 min", minutes: 60 },
+  { value: "90", label: "90 min", minutes: 90 },
+  { value: "120", label: "120+ min", minutes: 120 },
+];
 
 /**
  * Alle scan-stappen, centraal configureerbaar. Volgorde in de array = volgorde
- * in de flow. Elke stap heeft precies één invoertype (choice / scale / volume
- * / duration), zodat de flow-component simpel kan blijven.
+ * in de flow.
  */
 export const scanSteps: ScanStep[] = [
   {
@@ -25,33 +43,10 @@ export const scanSteps: ScanStep[] = [
     ],
   },
   {
-    id: "volume",
-    kind: "volume",
-    heading: "Hoe vaak komt dit ongeveer voorbij?",
-    sub: "Een paar keer per maand, of meerdere keren per dag — kies wat het dichtst in de buurt komt.",
-    options: [
-      { value: "1-5", label: "1–5 per week", midpoint: 3 },
-      { value: "6-15", label: "6–15 per week", midpoint: 10 },
-      { value: "16-30", label: "16–30 per week", midpoint: 23 },
-      { value: "31-75", label: "31–75 per week", midpoint: 53 },
-      { value: "75+", label: "75+ per week", midpoint: 90 },
-    ],
-  },
-  {
-    id: "duration",
-    kind: "duration",
-    heading: "Hoeveel tijd kost één keer ongeveer?",
-    sub: "Schuif naar wat het dichtst in de buurt komt van de werkelijkheid.",
-    options: [
-      { value: "5", label: "5 min", minutes: 5 },
-      { value: "10", label: "10 min", minutes: 10 },
-      { value: "20", label: "20 min", minutes: 20 },
-      { value: "30", label: "30 min", minutes: 30 },
-      { value: "45", label: "45 min", minutes: 45 },
-      { value: "60", label: "60 min", minutes: 60 },
-      { value: "90", label: "90 min", minutes: 90 },
-      { value: "120", label: "120+ min", minutes: 120 },
-    ],
+    id: "workload",
+    kind: "workload",
+    heading: "Hoeveel tijd gaat hierin zitten?",
+    sub: "Hoe vaak dit ongeveer voorbijkomt, en hoeveel tijd het één keer kost.",
   },
   {
     id: "timeSinks",
@@ -74,29 +69,10 @@ export const scanSteps: ScanStep[] = [
     ],
   },
   {
-    id: "repetition",
-    kind: "scale",
-    heading: "Hoeveel van dit proces verloopt iedere keer ongeveer hetzelfde?",
-    leftLabel: "Vrijwel iedere keer anders",
-    rightLabel: "Voor het grootste deel dezelfde stappen",
-    variant: "dots",
-    note: (v) =>
-      v >= 4
-        ? "Terugkerende stappen zijn vaak interessant om verder te onderzoeken."
-        : "Dat betekent niet dat automatisering onmogelijk is. Vaak zit de kans dan alleen in een kleiner deel van het proces.",
-  },
-  {
-    id: "judgment",
-    kind: "scale",
-    heading: "Waar is echt menselijk oordeel nodig?",
-    sub: "We zoeken niet naar werk dat mensen niet meer moeten doen. We zoeken naar handwerk dat vóór of rondom hun echte beoordeling zit.",
-    leftLabel: "Bij vrijwel iedere stap",
-    rightLabel: "Vooral bij uitzonderingen",
-    variant: "bar",
-    note: (v) =>
-      v <= 2
-        ? "Dan blijft het oordeel van iemand een groot deel van dit werk — dat is prima, en goed om vast te houden."
-        : "Dan zit het oordeel vooral bij de uitzonderingen. De rest is vaak wél interessant om te bekijken.",
+    id: "automationMatrix",
+    kind: "matrix",
+    heading: "Hoe herhalend is dit, en hoeveel oordeel vraagt het?",
+    sub: "Sleep het punt naar waar dit proces het beste past.",
   },
   {
     id: "sources",
@@ -137,18 +113,6 @@ export const scanSteps: ScanStep[] = [
       { value: "te-laat", label: "We reageren soms te laat" },
       { value: "interne-tijd", label: "Het kost vooral interne tijd" },
       { value: "geen-groot-probleem", label: "Eigenlijk niet zoveel — het kan alleen slimmer" },
-    ],
-  },
-  {
-    id: "team",
-    kind: "choice",
-    heading: "Wie is hier meestal mee bezig?",
-    sub: "Gebruiken we alleen als context, niet om tijd mee te vermenigvuldigen.",
-    options: [
-      { value: "een", label: "Eén persoon" },
-      { value: "twee", label: "Twee personen" },
-      { value: "klein-team", label: "Klein team van 3–5" },
-      { value: "meerdere-teams", label: "Meerdere teams / afdelingen" },
     ],
   },
 ];

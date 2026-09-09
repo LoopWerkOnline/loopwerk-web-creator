@@ -121,18 +121,19 @@ export function buildFirstStep(answers: ScanAnswers): { title: string; body: str
   };
 }
 
-/** Dynamische samenvatting voor het tussentijdse (donkergroene) overgangsscherm. */
-export function buildTransitionSummary(answers: ScanAnswers): string[] {
-  const lines: string[] = [];
-  const freqWord = answers.volume === "75+" || answers.volume === "31-75" ? "regelmatig" : "af en toe";
-  lines.push(
-    `Je hebt aangegeven dat dit proces ${freqWord} voorkomt, en dat het ${
-      answers.repetition >= 4 ? "voor een groot deel uit terugkerende stappen bestaat" : "niet altijd hetzelfde verloopt"
-    }.`,
-  );
-  if (answers.timeSinks.length > 0) {
-    const verb = answers.timeSinks.slice(0, 2).length > 1 ? "lijken" : "lijkt";
-    lines.push(`Vooral ${joinPhrases(answers.timeSinks.slice(0, 2))} ${verb} hier tijd te kosten.`);
+/** Live duiding bij de 2D-matrix (herhaling × menselijk oordeel), op basis van het kwadrant. */
+export function buildQuadrantText(repetition: number, judgment: number): string {
+  const highRepetition = repetition >= 3;
+  const exceptionOnlyJudgment = judgment >= 3;
+
+  if (highRepetition && exceptionOnlyJudgment) {
+    return "Dit is het meest kansrijke kwadrant: het proces herhaalt zich, en oordeel is vooral nodig bij uitzonderingen.";
   }
-  return lines;
+  if (highRepetition && !exceptionOnlyJudgment) {
+    return "Het proces herhaalt zich, maar er blijft bij bijna elke stap een beoordeling nodig. De winst zit dan waarschijnlijk vooral in het voorbereidende werk, niet in de beslissing zelf.";
+  }
+  if (!highRepetition && exceptionOnlyJudgment) {
+    return "Oordeel is vooral nodig bij uitzonderingen, maar het proces verloopt zelf iedere keer anders. Kijk dan eerst of er toch een vast deel in zit.";
+  }
+  return "Dit proces verloopt iedere keer anders én vraagt bij bijna elke stap een beoordeling. Dat is nu niet de sterkste kans.";
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Check } from "lucide-react";
 
 import type { ChoiceOption } from "@/lib/scan/types";
 
@@ -51,13 +52,14 @@ export function ChoiceTiles({
             type="button"
             disabled={disabled}
             onClick={() => handleClick(o.value)}
-            className={`rounded-xl border px-5 py-4 text-left text-base transition-all duration-200 ${
+            className={`flex items-center justify-between gap-3 rounded-xl border px-5 py-4 text-left text-base transition-all duration-200 ${
               active
-                ? "border-copper bg-copper/10 text-ink"
-                : "border-line bg-cream text-ink/80 hover:border-copper/50 hover:bg-shell"
+                ? "border-ink-hero bg-ink-hero text-cream"
+                : "border-line bg-cream text-ink/80 hover:-translate-y-1 hover:border-home-accent/50 hover:bg-shell hover:shadow-lg"
             } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
           >
-            {o.label}
+            <span>{o.label}</span>
+            {active ? <Check className="h-4 w-4 shrink-0 text-home-accent" aria-hidden="true" /> : null}
           </button>
         );
       })}
@@ -69,13 +71,14 @@ export function ChoiceTiles({
             onSelectSingle?.("anders");
             if (multi) onToggle("anders");
           }}
-          className={`rounded-xl border px-5 py-4 text-left text-base transition-all duration-200 ${
+          className={`flex items-center justify-between gap-3 rounded-xl border px-5 py-4 text-left text-base transition-all duration-200 ${
             selected.includes("anders")
-              ? "border-copper bg-copper/10 text-ink"
-              : "border-line bg-cream text-ink/80 hover:border-copper/50 hover:bg-shell"
+              ? "border-ink-hero bg-ink-hero text-cream"
+              : "border-line bg-cream text-ink/80 hover:-translate-y-1 hover:border-home-accent/50 hover:bg-shell hover:shadow-lg"
           }`}
         >
-          Anders
+          <span>Anders</span>
+          {selected.includes("anders") ? <Check className="h-4 w-4 shrink-0 text-home-accent" aria-hidden="true" /> : null}
         </button>
       ) : null}
 
