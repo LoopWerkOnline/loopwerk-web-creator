@@ -1,14 +1,24 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { solutionBySlug } from "@/lib/content";
-import { scanStatements, scoreScan } from "@/lib/scan";
-import { supabase } from "@/integrations/supabase/client";
+import { ScanProgress } from "@/components/scan/ScanProgress";
+import { ChoiceTiles } from "@/components/scan/ChoiceTiles";
+import { ScaleInput } from "@/components/scan/ScaleInput";
+import { TimeSlider } from "@/components/scan/TimeSlider";
+import { ScanTransition } from "@/components/scan/ScanTransition";
+import { ScanResult } from "@/components/scan/ScanResult";
+import { ScanAdvice } from "@/components/scan/ScanAdvice";
+import { ScanMethodology } from "@/components/scan/ScanMethodology";
+import { ScanLeadPreview } from "@/components/scan/ScanLeadPreview";
+import { scanSteps } from "@/lib/scan/questions";
+import { scoreScan } from "@/lib/scan/scoring";
+import { pickRichting, buildAdviceParagraphs, buildJudgmentAdvice, buildFirstStep, buildTransitionSummary } from "@/lib/scan/advice";
+import { initialAnswers, type ScanAnswers } from "@/lib/scan/types";
 
-const title = "Gratis advies | LoopWerk";
+const title = "Loopwerk Scan | LoopWerk";
 const description =
-  "Twaalf korte stellingen over waar bij jullie de tijd nu heen gaat. Geen verplichtingen, geen account, klaar in twee minuten. Direct een concreet advies, geen loze cijfers.";
+  "Waar blijft binnen jullie bedrijf onnodig tijd liggen? Kies één terugkerend proces en krijg in ± 4 minuten een eerste, concrete indicatie.";
 
 export const Route = createFileRoute("/scan")({
   head: () => ({
@@ -19,301 +29,238 @@ export const Route = createFileRoute("/scan")({
       { property: "og:description", content: description },
     ],
   }),
-  component: Scan,
+  component: ScanPage,
 });
 
-type Phase = "intro" | "question" | "result";
+type Phase = "intro" | "step" | "transition" | "result";
 
-function Scan() {
+function ScanPage() {
   const [phase, setPhase] = useState<Phase>("intro");
-  const [step, setStep] = useState(0);
-  const [recognized, setRecognized] = useState<Set<string>>(new Set());
+  const [stepIndex, setStepIndex] = useState(0);
+  const [answers, setAnswers] = useState<ScanAnswers>(initialAnswers);
 
-  const total = scanStatements.length;
-  const current = scanStatements[step];
-
-  function answer(yes: boolean) {
-    if (!current) return;
-    if (yes) {
-      setRecognized((prev) => {
-        const next = new Set(prev);
-        next.add(current.id);
-        return next;
-      });
-    }
-    if (step === total - 1) {
-      setPhase("result");
-    } else {
-      setStep((s) => s + 1);
-    }
-  }
+  const total = scanSteps.length;
+  const step = scanSteps[stepIndex];
 
   function restart() {
     setPhase("intro");
-    setStep(0);
-    setRecognized(new Set());
+    setStepIndex(0);
+    setAnswers(initialAnswers);
+  }
+
+  function goNext() {
+    if (stepIndex === total - 1) {
+      setPhase("transition");
+    } else {
+      setStepIndex((i) => i + 1);
+    }
+  }
+
+  function goBack() {
+    if (stepIndex === 0) {
+      setPhase("intro");
+    } else {
+      setStepIndex((i) => i - 1);
+    }
+  }
+
+  function setAnswer<K extends keyof ScanAnswers>(key: K, value: ScanAnswers[K]) {
+    setAnswers((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function toggleMulti(key: "timeSinks" | "sources" | "impact", value: string, max?: number) {
+    setAnswers((prev) => {
+      const current = prev[key];
+      const has = current.includes(value);
+      if (has) return { ...prev, [key]: current.filter((v) => v !== value) };
+      if (max && current.length >= max) return prev;
+      return { ...prev, [key]: [...current, value] };
+    });
   }
 
   if (phase === "intro") {
     return (
-      <Section tone="hero">
-        <Eyebrow tone="sage">Gratis advies</Eyebrow>
-        <h1 className="mt-6 max-w-2xl text-5xl leading-[1.08] md:text-6xl">
-          Ontdek of jouw bedrijf <span className="hand text-[1.1em]">automatisering</span> nodig heeft
-        </h1>
-        <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
-          Twaalf korte stellingen over waar bij bedrijven de tijd vaak in blijft zitten. Vink aan wat
-          herkenbaar is, en je krijgt meteen een concreet advies: welke richting past, en wat we
-          daarvoor al klaar hebben liggen.
-        </p>
-        <ul className="mt-9 space-y-3 text-sm text-cream/60">
-          <li>· Twee minuten, twaalf stellingen</li>
-          <li>· Geen account, geen verplichtingen</li>
-          <li>· Direct een concreet advies, geen kant-en-klare uitslag met loze cijfers</li>
-        </ul>
-        <button
-          type="button"
-          onClick={() => setPhase("question")}
-          className="mt-9 rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-        >
-          Start het advies
-        </button>
-      </Section>
-    );
-  }
-
-  if (phase === "question" && current) {
-    return (
-      <Section tone="hero">
-        <div className="mx-auto max-w-2xl">
-          <div className="flex items-center justify-center gap-2" aria-hidden="true">
-            {scanStatements.map((s, i) => (
-              <span
-                key={s.id}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === step ? "w-6 bg-copper" : i < step ? "w-1.5 bg-copper/50" : "w-1.5 bg-cream/20"
-                }`}
-              />
-            ))}
-          </div>
-          <p className="mt-5 text-center text-sm text-cream/50">
-            Vraag {step + 1} van {total}
+      <Section tone="cream">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="forest">Loopwerk Scan</Eyebrow>
+          <h1 className="mt-6 text-4xl leading-[1.1] md:text-6xl">
+            Waar blijft binnen jullie bedrijf <span className="hand text-[1.1em]">onnodig</span> tijd liggen?
+          </h1>
+          <p className="mt-7 text-lg leading-relaxed text-ink/70">
+            Terugkerend werk hoort bij ieder bedrijf. Maar wanneer mensen steeds dezelfde informatie
+            verzamelen, berekenen, overnemen of opnieuw opvragen, kan het interessant zijn om te kijken wat
+            slimmer kan.
           </p>
-
-          <div
-            key={current.id}
-            className="fade-up mt-8 rounded-2xl border border-cream/10 bg-cream/5 p-8 text-center shadow-lg shadow-black/10 backdrop-blur-sm md:p-12"
-          >
-            <p className="eyebrow text-sage">Herken je dit?</p>
-            <p className="mt-6 text-2xl leading-snug md:text-3xl">{current.text}</p>
-
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => answer(true)}
-                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              >
-                Ja, herkenbaar
-              </button>
-              <button
-                type="button"
-                onClick={() => answer(false)}
-                className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
-              >
-                Niet zo
-              </button>
-            </div>
-          </div>
-        </div>
-      </Section>
-    );
-  }
-
-  const result = scoreScan(recognized);
-  const solution = result ? solutionBySlug(result.slug) : null;
-
-  if (!result || !solution) {
-    return (
-      <Section tone="hero">
-        <Eyebrow tone="sage">Uitslag</Eyebrow>
-        <h1 className="mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
-          Hier herken je weinig van
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/75">
-          Dat kan goed nieuws zijn: misschien valt er bij jullie nu weinig te winnen met automatiseren.
-          Twijfel je toch, of speelt er iets dat niet in dit rijtje stond?
-        </p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link
-            to="/contact"
-            className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Bespreek je proces
-          </Link>
+          <p className="mt-5 text-lg leading-relaxed text-ink/70">De Loopwerk Scan kijkt naar één terugkerend proces en geeft een eerste indicatie van:</p>
+          <ul className="mx-auto mt-5 max-w-md space-y-2 text-left text-base text-ink/70">
+            <li>· hoeveel tijd erin zit</li>
+            <li>· hoeveel automatiseringspotentieel er is</li>
+            <li>· waar de grootste kans ligt</li>
+            <li>· en wat je juist níét als eerste zou automatiseren</li>
+          </ul>
+          <p className="mt-8 text-sm font-medium text-ink/50">
+            ± 4 minuten · direct inzicht · geen technische kennis nodig
+          </p>
           <button
             type="button"
-            onClick={restart}
-            className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+            onClick={() => setPhase("step")}
+            className="mt-8 rounded-full bg-copper px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Doe de scan opnieuw
+            Start de scan
           </button>
+
+          <div className="mt-16 rounded-2xl border border-line bg-shell p-7 text-left">
+            <p className="text-sm font-medium text-ink/70">
+              Kies één proces dat regelmatig terugkomt en waarvan je vermoedt dat er onnodig handwerk in zit.
+            </p>
+            <p className="mt-2 text-sm text-ink/50">
+              Aanvragen · calculaties · offertes · administratie · opvolging · werkvoorbereiding
+            </p>
+          </div>
         </div>
       </Section>
     );
   }
 
-  const prefill = `Ik deed de scan op loopwerkonline.nl. Herkenbaar voor ons:\n${result.recognizedTexts
-    .map((t) => `- ${t}`)
-    .join("\n")}\n\nDaar kwam "${solution.title}" uit als richting.`;
+  if (phase === "step" && step) {
+    const isProcessOther = step.id === "process" && answers.process === "anders";
+    const showNextButton =
+      step.kind === "scale" ||
+      step.kind === "volume" ||
+      step.kind === "duration" ||
+      (step.kind === "choice" && (step.multi || isProcessOther));
+    const nextDisabled =
+      (step.kind === "choice" &&
+        step.multi &&
+        answers[step.id as "timeSinks" | "sources" | "impact"].length === 0) ||
+      (isProcessOther && answers.processOther.trim().length === 0);
+
+    return (
+      <Section tone="cream">
+        <ScanProgress step={stepIndex} total={total} onBack={goBack} />
+
+        <div key={step.id} className="fade-up mx-auto mt-10 max-w-xl">
+          <h2 className="text-3xl leading-tight md:text-4xl">{step.heading}</h2>
+          {step.sub ? <p className="mt-3 text-base leading-relaxed text-ink/60">{step.sub}</p> : null}
+
+          <div className="mt-8">
+            {step.kind === "choice" && step.id === "process" ? (
+              <ChoiceTiles
+                options={step.options}
+                selected={answers.process ? [answers.process] : []}
+                onToggle={() => {}}
+                allowOther={step.allowOther}
+                otherValue={answers.processOther}
+                onOtherChange={(v) => setAnswer("processOther", v)}
+                onSelectSingle={(value) => {
+                  setAnswer("process", value);
+                  if (value !== "anders") setTimeout(goNext, 220);
+                }}
+              />
+            ) : null}
+
+            {step.kind === "choice" && step.id !== "process" ? (
+              <ChoiceTiles
+                options={step.options}
+                multi={step.multi}
+                max={step.max}
+                selected={answers[step.id as "timeSinks" | "sources" | "impact"]}
+                onToggle={(value) => toggleMulti(step.id as "timeSinks" | "sources" | "impact", value, step.max)}
+                onSelectSingle={(value) => {
+                  setAnswer("team", value);
+                  setTimeout(goNext, 220);
+                }}
+              />
+            ) : null}
+
+            {step.kind === "scale" ? (
+              <ScaleInput
+                value={answers[step.id as "repetition" | "judgment"]}
+                onChange={(v) => setAnswer(step.id as "repetition" | "judgment", v)}
+                leftLabel={step.leftLabel}
+                rightLabel={step.rightLabel}
+                variant={step.variant}
+                note={step.note(answers[step.id as "repetition" | "judgment"])}
+              />
+            ) : null}
+
+            {step.kind === "volume" ? (
+              <TimeSlider
+                options={step.options}
+                value={answers.volume || step.options[2]!.value}
+                onChange={(v) => setAnswer("volume", v)}
+              />
+            ) : null}
+
+            {step.kind === "duration" ? (
+              <TimeSlider
+                options={step.options}
+                value={answers.duration || step.options[3]!.value}
+                onChange={(v) => setAnswer("duration", v)}
+                insight={
+                  answers.volume
+                    ? (() => {
+                        const vol = scanSteps.find((s) => s.id === "volume");
+                        if (vol?.kind !== "volume") return undefined;
+                        const v = vol.options.find((o) => o.value === answers.volume);
+                        const durationValue = answers.duration || step.options[3]!.value;
+                        const d = step.options.find((o) => o.value === durationValue);
+                        if (!v || !d) return undefined;
+                        const hours = Math.round(((v.midpoint * d.minutes) / 60) * 10) / 10;
+                        return `Bij ${v.label.toLowerCase()} is dat al ruim ${hours} uur.`;
+                      })()
+                    : undefined
+                }
+              />
+            ) : null}
+          </div>
+
+          {showNextButton ? (
+            <div className="mt-9 flex justify-end">
+              <button
+                type="button"
+                onClick={goNext}
+                disabled={nextDisabled}
+                className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+              >
+                Verder
+              </button>
+            </div>
+          ) : null}
+        </div>
+      </Section>
+    );
+  }
+
+  if (phase === "transition") {
+    return <ScanTransition lines={buildTransitionSummary(answers)} onContinue={() => setPhase("result")} />;
+  }
+
+  const score = scoreScan(answers);
+  const richting = pickRichting(answers);
+  const paragraphs = buildAdviceParagraphs(answers, score);
+  const judgmentAdvice = buildJudgmentAdvice(answers);
+  const firstStep = buildFirstStep(answers);
+  const contactPrefill = `Ik deed de Loopwerk Scan. Uitkomst: ${score.bandLabel} (${score.total}/100), richting "${richting.label}".`;
 
   return (
     <>
-      <Section tone="hero" className="!pb-14">
-        <Eyebrow tone="sage">Dit herkennen we bij jou</Eyebrow>
-        <h1 className="mt-6 max-w-2xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
-      </Section>
+      <ScanResult score={score} />
+      <ScanAdvice
+        paragraphs={paragraphs}
+        firstStep={firstStep}
+        judgmentAdvice={judgmentAdvice}
+        richting={richting}
+        score={score}
+      />
+      <ScanMethodology />
+      <ScanLeadPreview contactPrefill={contactPrefill} />
 
-      <Section tone="shell" className="!pt-0 md:!pt-0">
-        <div className="rounded-2xl border border-line bg-cream p-8">
-          <p className="eyebrow text-copper">Je herkende</p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {result.recognizedTexts.map((t) => (
-              <li key={t} className="flex gap-3 text-sm leading-relaxed text-ink/75">
-                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
-          <div className="rounded-2xl border border-line bg-cream p-8">
-            <p className="eyebrow text-forest">Bestaande basis</p>
-            <p className="mt-4 text-sm text-ink/60">Dit hebben we al werkend liggen voor deze richting.</p>
-            <ul className="mt-5 space-y-3">
-              {solution.base.map((b) => (
-                <li key={b} className="border-t border-line pt-3 text-sm leading-relaxed text-ink/75">
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-line bg-cream p-8">
-            <p className="eyebrow text-copper">Maatwerk</p>
-            <p className="mt-4 text-sm text-ink/60">Dit maken we passend voor jullie.</p>
-            <ul className="mt-5 space-y-3">
-              {solution.custom.map((c) => (
-                <li key={c} className="border-t border-line pt-3 text-sm leading-relaxed text-ink/75">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link
-            to="/contact"
-            search={{ prefill }}
-            className="rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Bespreek je proces
-          </Link>
-          <Link
-            to="/oplossingen/$slug"
-            params={{ slug: solution.slug }}
-            className="rounded-full border border-line px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
-          >
-            Bekijk deze oplossing
-          </Link>
-          <button
-            type="button"
-            onClick={restart}
-            className="text-sm font-semibold text-ink/50 underline underline-offset-4 hover:text-ink"
-          >
-            Opnieuw doen
-          </button>
-        </div>
-
-        <div className="mt-8">
-          <LeadForm message={prefill} />
-        </div>
-      </Section>
+      <div className="bg-cream pb-16 text-center">
+        <button type="button" onClick={restart} className="text-sm font-semibold text-ink/50 underline underline-offset-4 hover:text-ink">
+          Doe de scan opnieuw
+        </button>
+      </div>
     </>
-  );
-}
-
-type LeadStatus = "idle" | "sending" | "sent" | "error";
-
-/** Los, niet-blokkerend leadformulier onder het resultaat. Zelfde tabel als het contactformulier. */
-function LeadForm({ message }: { message: string }) {
-  const [status, setStatus] = useState<LeadStatus>("idle");
-
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    setStatus("sending");
-
-    const { error } = await supabase.from("contact_requests").insert({
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      company: null,
-      phone: null,
-      message,
-    });
-
-    if (error) {
-      console.error(error);
-      setStatus("error");
-      return;
-    }
-    form.reset();
-    setStatus("sent");
-  }
-
-  const field =
-    "mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 text-base outline-none transition-colors focus:border-forest";
-
-  if (status === "sent") {
-    return (
-      <div className="rounded-2xl border border-line bg-shell p-8">
-        <p className="eyebrow text-forest">Verstuurd</p>
-        <p className="mt-3 text-sm leading-relaxed text-ink/75">
-          Dankjewel, we hebben je uitslag ontvangen. We nemen contact op als hier iets te winnen valt.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-shell p-8">
-      <p className="eyebrow text-copper">Liever dat wij contact opnemen?</p>
-      <p className="mt-3 text-sm leading-relaxed text-ink/60">
-        Bijzaak, maar wel handig: laat je naam en e-mail achter, dan denken we vast mee.
-      </p>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm font-medium text-ink">Naam</span>
-          <input name="name" required className={field} placeholder="Je voor- en achternaam" />
-        </label>
-        <label className="block">
-          <span className="text-sm font-medium text-ink">E-mailadres</span>
-          <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
-        </label>
-      </div>
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="mt-5 w-full rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60 sm:w-auto"
-      >
-        {status === "sending" ? "Versturen..." : "Verstuur"}
-      </button>
-      {status === "error" ? (
-        <p className="mt-3 text-sm text-destructive">Er ging iets mis bij het versturen. Probeer het nog eens.</p>
-      ) : null}
-    </form>
   );
 }

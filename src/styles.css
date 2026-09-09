@@ -216,3 +216,42 @@
     animation: none;
   }
 }
+
+/* Scan: aangepaste range-slider, copper handvat i.p.v. browser-default. */
+input[type="range"].scan-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--line);
+  outline: none;
+}
+
+input[type="range"].scan-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: var(--copper);
+  border: 3px solid var(--cream);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+input[type="range"].scan-range::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--line);
+}
+
+input[type="range"].scan-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: var(--copper);
+  border: 3px solid var(--cream);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
