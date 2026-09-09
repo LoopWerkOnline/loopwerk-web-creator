@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { Reveal } from "@/components/Reveal";
-import { ManualStepsFlow } from "@/components/infographics";
+import { RecognitionFlow } from "@/components/infographics";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
 
@@ -128,8 +128,8 @@ function Index() {
               Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="min-w-0">
-            <ManualStepsFlow className="w-full" />
+          <Reveal delay={0.1}>
+            <RecognitionFlow className="w-full" />
           </Reveal>
         </div>
       </Section>
