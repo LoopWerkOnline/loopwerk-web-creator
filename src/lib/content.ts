@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
       "Huisstijl, teksten en de plek waar de aanvraag naartoe moet.",
     ],
     featured: true,
-    image: "/__l5e/assets-v1/fc87a63e-bc55-44a4-9575-071b00f079ff/opl-1.jpg",
+    image: "/oplossingen/opl-1.jpg",
     imageAlt: "Laptop met een dashboard vol cijfers op een werktafel",
   },
   {
@@ -72,7 +72,7 @@ export const solutions: Solution[] = [
       "Wie welke aanvraag krijgt en in welke volgorde.",
       "Aansluiting op het systeem waarin jullie de aanvraag verder verwerken.",
     ],
-    image: "/__l5e/assets-v1/cf6c23b0-1e5e-446d-b771-4627c8c60323/opl-2.jpg",
+    image: "/oplossingen/opl-2.jpg",
     imageAlt: "Materiaalstalen die op een tafel worden uitgelegd",
   },
   {
@@ -98,7 +98,7 @@ export const solutions: Solution[] = [
       "Uitzonderingen die alleen in jullie werk voorkomen.",
       "Wie wat mag zien: klant, verkoop of calculatie.",
     ],
-    image: "/__l5e/assets-v1/cd74ebc9-688e-49f0-b9e0-986e7d6c2792/opl-3.jpg",
+    image: "/oplossingen/opl-3.jpg",
     imageAlt: "Rekenmachine op een vel met handgeschreven berekeningen",
   },
   {
@@ -124,7 +124,7 @@ export const solutions: Solution[] = [
       "Welke velden leidend zijn als twee systemen het oneens zijn.",
       "Wat automatisch mag en wat een mens moet goedkeuren.",
     ],
-    image: "/__l5e/assets-v1/06304c01-21ee-4b99-b878-71fe23b78fdc/opl-4.jpg",
+    image: "/oplossingen/opl-4.jpg",
     imageAlt: "Tablet met grafieken naast papieren rapportages",
   },
   {
@@ -150,7 +150,7 @@ export const solutions: Solution[] = [
       "Wie waarvan eigenaar is.",
       "De toon van de berichten die namens jullie uitgaan.",
     ],
-    image: "/__l5e/assets-v1/47c06f93-e8cf-4723-bd8f-30cc1f551ad8/opl-5.png",
+    image: "/oplossingen/opl-5.png",
     imageAlt: "Ondernemer aan de telefoon die aantekeningen maakt achter zijn laptop",
   },
   {
@@ -174,7 +174,7 @@ export const solutions: Solution[] = [
       "De analyse van jullie proces: waar zit de tijd echt?",
       "Een eerlijk antwoord als automatiseren de moeite niet waard is.",
     ],
-    image: "/__l5e/assets-v1/0ff2a748-96ac-47a2-bb5b-234c24128d6f/oplossing-6.jpg",
+    image: "/oplossingen/oplossing-6.jpg",
     imageAlt: "Ondernemer maakt aantekeningen in een notitieblok",
   },
 ];
@@ -205,7 +205,7 @@ export const sectors: Sector[] = [
     title: "Bouw & installatie",
     short: "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
     flowLabel: "van opname naar offerte",
-    image: "/__l5e/assets-v1/dc327e92-719e-4781-8022-db0710361100/sector-bouw.jpg",
+    image: "/sectoren/sector-bouw.jpg",
     imageAlt: "Vakman metselt een wand op een bouwplaats",
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
@@ -228,7 +228,7 @@ export const sectors: Sector[] = [
     title: "Maakindustrie & machinebouw",
     short: "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
     flowLabel: "configureren zonder engineering",
-    image: "/__l5e/assets-v1/ef85d15a-b9a4-4176-aa2f-6f708552594a/sector-machinebouw.jpg",
+    image: "/sectoren/sector-machinebouw.jpg",
     imageAlt: "Rupsvoertuig met bak op een terrein in de mist",
     intro:
       "Een aanvraag is pas te beoordelen als de technische uitgangspunten kloppen. Dat uitvragen kost engineeringtijd die je liever aan het werk zelf besteedt.",
@@ -250,7 +250,7 @@ export const sectors: Sector[] = [
     title: "Handel & groothandel",
     short: "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
     flowLabel: "prijs en voorwaarden helder",
-    image: "/__l5e/assets-v1/4134bf38-95f7-44cd-bb60-19d54c44ab1e/sector-handel.jpg",
+    image: "/sectoren/sector-handel.jpg",
     imageAlt: "Afgewerkte badkamer met sanitair en tegelwerk",
     intro:
       "Veel vragen zijn variaties op dezelfde vraag: wat kost dit bij deze afname, onder welke voorwaarden en wanneer is het er?",
@@ -272,7 +272,7 @@ export const sectors: Sector[] = [
     title: "Mobiliteit & transport",
     short: "Configuraties, specificaties, aanvragen, offertes en administratieve opvolging.",
     flowLabel: "opties helder uitgeschreven",
-    image: "/__l5e/assets-v1/181b0c5c-509d-4f99-af57-cb0859f5348e/sector-transport.jpg",
+    image: "/sectoren/sector-transport.jpg",
     imageAlt: "Vrachtwagen met oplegger op de snelweg bij zonsondergang",
     intro:
       "Van opbouw tot uitvoering: de keuzes liggen vast, maar het samenstellen en doorrekenen gebeurt nog met de hand.",

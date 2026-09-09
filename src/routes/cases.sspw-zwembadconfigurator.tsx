@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
-import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
+const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 
 const sspwZwembad = "/cases/sspw-belfeld.jpg";
 
@@ -154,7 +154,7 @@ function CaseSSPW() {
           </div>
           <div>
             <VideoFrame
-              src={demoVideo.url}
+              src={demoVideo}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator demo"
               variant="dark"

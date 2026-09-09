@@ -1,4 +1,4 @@
-import markAsset from "@/assets/loopwerk-mark.png.asset.json";
+const markUrl = "/loopwerk-mark.png";
 
 type Props = {
   className?: string;
@@ -14,7 +14,7 @@ export function Logo({ className, variant = "ink", showTagline = true }: Props) 
   return (
     <span className={`inline-flex items-center gap-3 ${className ?? ""}`}>
       <img
-        src={markAsset.url}
+        src={markUrl}
         alt=""
         aria-hidden="true"
         className={`h-9 w-9 shrink-0 object-contain ${variant === "cream" ? "brightness-0 invert" : ""}`}

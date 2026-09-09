@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { ManualSteps } from "@/components/infographics";
-import demoVideo from "@/assets/SSPW_configurator_demo_V2_HQ.mp4.asset.json";
+const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
 
 const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedrijven";
@@ -241,7 +241,7 @@ function Index() {
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1.65fr_1fr] lg:items-start lg:gap-16">
           <div>
             <VideoFrame
-              src={demoVideo.url}
+              src={demoVideo}
               alt="Demo van de SSPW-zwembadconfigurator: van opties kiezen tot complete aanvraag"
               label="Zwembadconfigurator demo"
               variant="dark"
