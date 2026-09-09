@@ -1,13 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { solutionBySlug } from "@/lib/content";
 import { scanStatements, scoreScan } from "@/lib/scan";
+import { supabase } from "@/integrations/supabase/client";
 
-const title = "Automatiseringsscan | LoopWerk";
+const title = "Gratis advies | LoopWerk";
 const description =
-  "Twaalf korte stellingen over waar bij jullie de tijd nu heen gaat. Geen verplichtingen, geen account, klaar in twee minuten.";
+  "Twaalf korte stellingen over waar bij jullie de tijd nu heen gaat. Geen verplichtingen, geen account, klaar in twee minuten. Direct een concreet advies, geen loze cijfers.";
 
 export const Route = createFileRoute("/scan")({
   head: () => ({
@@ -56,25 +57,26 @@ function Scan() {
   if (phase === "intro") {
     return (
       <Section tone="hero">
-        <Eyebrow tone="sage">Automatiseringsscan</Eyebrow>
+        <Eyebrow tone="sage">Gratis advies</Eyebrow>
         <h1 className="mt-6 max-w-2xl text-5xl leading-[1.08] md:text-6xl">
-          Herken je hier iets <span className="hand text-[1.1em]">van</span>?
+          Ontdek of jouw bedrijf <span className="hand text-[1.1em]">automatisering</span> nodig heeft
         </h1>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
           Twaalf korte stellingen over waar bij bedrijven de tijd vaak in blijft zitten. Vink aan wat
-          herkenbaar is, en we laten zien welke richting bij jullie past.
+          herkenbaar is, en je krijgt meteen een concreet advies: welke richting past, en wat we
+          daarvoor al klaar hebben liggen.
         </p>
         <ul className="mt-9 space-y-3 text-sm text-cream/60">
           <li>· Twee minuten, twaalf stellingen</li>
           <li>· Geen account, geen verplichtingen</li>
-          <li>· Alleen een advies, geen kant-en-klare uitslag met loze cijfers</li>
+          <li>· Direct een concreet advies, geen kant-en-klare uitslag met loze cijfers</li>
         </ul>
         <button
           type="button"
           onClick={() => setPhase("question")}
           className="mt-9 rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
-          Start de scan
+          Start het advies
         </button>
       </Section>
     );
@@ -160,7 +162,7 @@ function Scan() {
     );
   }
 
-  const prefill = `Ik deed de automatiseringsscan op loopwerkonline.nl. Herkenbaar voor ons:\n${result.recognizedTexts
+  const prefill = `Ik deed de scan op loopwerkonline.nl. Herkenbaar voor ons:\n${result.recognizedTexts
     .map((t) => `- ${t}`)
     .join("\n")}\n\nDaar kwam "${solution.title}" uit als richting.`;
 
@@ -169,23 +171,23 @@ function Scan() {
       <Section tone="hero" className="!pb-14">
         <Eyebrow tone="sage">Dit herkennen we bij jou</Eyebrow>
         <h1 className="mt-6 max-w-2xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.short}</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
       </Section>
 
       <Section tone="shell" className="!pt-0 md:!pt-0">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
-          <div className="rounded-2xl border border-line bg-cream p-8">
-            <p className="eyebrow text-copper">Je herkende</p>
-            <ul className="mt-5 space-y-3">
-              {result.recognizedTexts.map((t) => (
-                <li key={t} className="flex gap-3 text-sm leading-relaxed text-ink/75">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="rounded-2xl border border-line bg-cream p-8">
+          <p className="eyebrow text-copper">Je herkende</p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {result.recognizedTexts.map((t) => (
+              <li key={t} className="flex gap-3 text-sm leading-relaxed text-ink/75">
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
+        <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
           <div className="rounded-2xl border border-line bg-cream p-8">
             <p className="eyebrow text-forest">Bestaande basis</p>
             <p className="mt-4 text-sm text-ink/60">Dit hebben we al werkend liggen voor deze richting.</p>
@@ -193,6 +195,18 @@ function Scan() {
               {solution.base.map((b) => (
                 <li key={b} className="border-t border-line pt-3 text-sm leading-relaxed text-ink/75">
                   {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-line bg-cream p-8">
+            <p className="eyebrow text-copper">Maatwerk</p>
+            <p className="mt-4 text-sm text-ink/60">Dit maken we passend voor jullie.</p>
+            <ul className="mt-5 space-y-3">
+              {solution.custom.map((c) => (
+                <li key={c} className="border-t border-line pt-3 text-sm leading-relaxed text-ink/75">
+                  {c}
                 </li>
               ))}
             </ul>
@@ -222,7 +236,84 @@ function Scan() {
             Opnieuw doen
           </button>
         </div>
+
+        <div className="mt-8">
+          <LeadForm message={prefill} />
+        </div>
       </Section>
     </>
+  );
+}
+
+type LeadStatus = "idle" | "sending" | "sent" | "error";
+
+/** Los, niet-blokkerend leadformulier onder het resultaat. Zelfde tabel als het contactformulier. */
+function LeadForm({ message }: { message: string }) {
+  const [status, setStatus] = useState<LeadStatus>("idle");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
+
+    const { error } = await supabase.from("contact_requests").insert({
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      company: null,
+      phone: null,
+      message,
+    });
+
+    if (error) {
+      console.error(error);
+      setStatus("error");
+      return;
+    }
+    form.reset();
+    setStatus("sent");
+  }
+
+  const field =
+    "mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 text-base outline-none transition-colors focus:border-forest";
+
+  if (status === "sent") {
+    return (
+      <div className="rounded-2xl border border-line bg-shell p-8">
+        <p className="eyebrow text-forest">Verstuurd</p>
+        <p className="mt-3 text-sm leading-relaxed text-ink/75">
+          Dankjewel, we hebben je uitslag ontvangen. We nemen contact op als hier iets te winnen valt.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-shell p-8">
+      <p className="eyebrow text-copper">Liever dat wij contact opnemen?</p>
+      <p className="mt-3 text-sm leading-relaxed text-ink/60">
+        Bijzaak, maar wel handig: laat je naam en e-mail achter, dan denken we vast mee.
+      </p>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-medium text-ink">Naam</span>
+          <input name="name" required className={field} placeholder="Je voor- en achternaam" />
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium text-ink">E-mailadres</span>
+          <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
+        </label>
+      </div>
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="mt-5 w-full rounded-full bg-copper px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60 sm:w-auto"
+      >
+        {status === "sending" ? "Versturen..." : "Verstuur"}
+      </button>
+      {status === "error" ? (
+        <p className="mt-3 text-sm text-destructive">Er ging iets mis bij het versturen. Probeer het nog eens.</p>
+      ) : null}
+    </form>
   );
 }
