@@ -2,6 +2,7 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
+import { Calendar, Clock, Copy, FileText, Search } from "lucide-react";
 
 const forest = "var(--forest)";
 const sage = "var(--sage)";
@@ -261,5 +262,59 @@ export function ManualSteps({ className, tone = "light", accent = copper }: { cl
         Iedere week opnieuw
       </text>
     </svg>
+  );
+}
+
+/** Herkenning: klantvraag die via vier handmatige stappen wordt afgehandeld. */
+export function ManualStepsFlow({ className }: { className?: string }) {
+  const steps = [
+    { icon: FileText, label: "Info aanvullen" },
+    { icon: Search, label: "Prijzen zoeken" },
+    { icon: Copy, label: "Gegevens overtypen" },
+    { icon: Calendar, label: "Opvolgen", badge: Clock },
+  ];
+
+  return (
+    <div className={`overflow-x-auto ${className ?? ""}`}>
+      <div className="flex w-max items-start gap-3 px-1 sm:w-full sm:justify-between sm:gap-2">
+        <div className="flex flex-col items-center pt-4">
+          <span className="rounded-full bg-cream px-5 py-3 text-sm font-medium text-ink shadow-sm">
+            Klantvraag
+          </span>
+        </div>
+
+        {steps.map((s, i) => {
+          const Icon = s.icon;
+          const Badge = s.badge;
+          return (
+            <div key={s.label} className="flex items-start gap-3">
+              <svg
+                width="28"
+                height="20"
+                viewBox="0 0 28 20"
+                fill="none"
+                className="mt-9 shrink-0 text-home-accent"
+                aria-hidden="true"
+              >
+                <path d="M0 10 H22" stroke="currentColor" strokeWidth="2" />
+                <path d="M16 3 L23 10 L16 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+
+              <div className="flex w-24 flex-col items-center text-center sm:w-28">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-shell sm:h-20 sm:w-20">
+                  <Icon className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                  {Badge && (
+                    <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-home-accent">
+                      <Badge className="h-3.5 w-3.5 text-white" strokeWidth={2} aria-hidden="true" />
+                    </span>
+                  )}
+                </div>
+                <p className="mt-3 text-sm leading-snug text-forest">{s.label}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
