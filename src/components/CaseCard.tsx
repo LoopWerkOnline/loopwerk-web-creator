@@ -45,8 +45,8 @@ export function CaseCard({ c }: { c: CaseStudy }) {
         </div>
 
         {c.logo ? (
-          <div className="mx-auto flex aspect-[16/9] w-full max-w-2xl items-center justify-center rounded-xl bg-shell p-10">
-            <img src={c.logo} alt={c.logoAlt ?? c.client} className="max-h-24 w-auto object-contain" />
+          <div className="mx-auto flex aspect-[16/9] w-full max-w-2xl items-center justify-center rounded-xl bg-shell p-8">
+            <img src={c.logo} alt={c.logoAlt ?? c.client} className="max-h-48 w-auto object-contain md:max-h-56" />
           </div>
         ) : (
           <img
