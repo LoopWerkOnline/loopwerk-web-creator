@@ -74,13 +74,15 @@ export function ScanLivePanel({
   answers,
   stepIndex,
   score,
+  contactPrefill,
 }: {
   answers: ScanAnswers;
   stepIndex: number;
   score?: ScanScore | undefined;
+  contactPrefill?: string | undefined;
 }) {
   if (score) {
-    return <ScanResult score={score} />;
+    return <ScanResult score={score} contactPrefill={contactPrefill ?? ""} />;
   }
 
   const name = processName(answers);

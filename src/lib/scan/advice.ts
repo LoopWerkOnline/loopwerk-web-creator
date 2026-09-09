@@ -84,7 +84,7 @@ export function buildAdviceParagraphs(answers: ScanAnswers, score: ScanScore): s
   }
 
   return [
-    `Je geeft aan dat veel tijd verdwijnt in ${dominant}, ${repetitionPart}.`,
+    `Je geeft aan dat er behoorlijk wat tijd naar ${dominant} gaat, ${repetitionPart}.`,
     "De eerste kans lijkt daarom niet te zitten in het automatiseren van de uiteindelijke beslissing, maar in alles wat daaraan voorafgaat.",
   ];
 }

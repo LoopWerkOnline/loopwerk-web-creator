@@ -22,50 +22,56 @@ export function ScanLeadPreview({ contactPrefill }: { contactPrefill: string }) 
   return (
     <Section tone="shell">
       <div className="mx-auto max-w-xl text-center">
-        <Eyebrow tone="forest">Wil je deze uitkomst bewaren?</Eyebrow>
-        <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Stuur mij mijn analyse</h2>
-
-        {sent ? (
-          <div className="fade-up mt-8 rounded-2xl border border-line bg-cream p-8">
-            <p className="text-base leading-relaxed text-ink/80">
-              Dankjewel. (Prototype: dit is nog niet echt verstuurd of opgeslagen — dat koppelen we later.)
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="mt-8 rounded-2xl border border-line bg-cream p-7 text-left md:p-9">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium text-ink">Voornaam</span>
-                <input name="firstName" className={field} placeholder="Je voornaam" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink">Bedrijf</span>
-                <input name="company" className={field} placeholder="Bedrijfsnaam" />
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-ink">Zakelijk e-mailadres</span>
-                <input type="email" name="email" className={field} placeholder="naam@bedrijf.nl" />
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="mt-6 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              Stuur mij mijn analyse
-            </button>
-            <p className="mt-4 text-xs text-ink/45">
-              Prototype-onderdeel: dit formulier slaat nog niets op en verstuurt nog niets.
-            </p>
-          </form>
-        )}
-
+        <Eyebrow tone="home-accent">Liever verder praten dan lezen?</Eyebrow>
+        <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Plan een gesprek over deze uitkomst</h2>
+        <p className="mt-4 text-base leading-relaxed text-ink/70">
+          Eén gesprek is genoeg om te zien of hier een tool onder zit. Reactie binnen één werkdag.
+        </p>
         <Link
           to="/contact"
           search={{ prefill: contactPrefill }}
-          className="mt-6 inline-block text-sm font-semibold text-ink/60 underline underline-offset-4 hover:text-ink"
+          className="mt-7 inline-flex rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
-          Liever eerst even praten? Bespreek je uitkomst →
+          Gesprek inplannen →
         </Link>
+
+        <div className="mt-14 border-t border-line pt-10">
+          <p className="text-sm font-medium text-ink/60">Of stuur deze analyse eerst naar jezelf</p>
+
+          {sent ? (
+            <div className="fade-up mt-6 rounded-2xl border border-line bg-cream p-8">
+              <p className="text-base leading-relaxed text-ink/80">
+                Dankjewel. (Prototype: dit is nog niet echt verstuurd of opgeslagen — dat koppelen we later.)
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="mt-6 rounded-2xl border border-line bg-cream p-7 text-left md:p-9">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">Voornaam</span>
+                  <input name="firstName" className={field} placeholder="Je voornaam" />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">Bedrijf</span>
+                  <input name="company" className={field} placeholder="Bedrijfsnaam" />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium text-ink">Zakelijk e-mailadres</span>
+                  <input type="email" name="email" className={field} placeholder="naam@bedrijf.nl" />
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="mt-6 w-full rounded-full border border-line bg-cream px-8 py-4 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+              >
+                Stuur mij mijn analyse
+              </button>
+              <p className="mt-4 text-xs text-ink/45">
+                Prototype-onderdeel: dit formulier slaat nog niets op en verstuurt nog niets.
+              </p>
+            </form>
+          )}
+        </div>
       </div>
     </Section>
   );

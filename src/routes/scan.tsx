@@ -230,7 +230,7 @@ function ScanPage() {
             isResult ? "md:w-full" : "md:w-2/5"
           }`}
         >
-          <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} />
+          <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} contactPrefill={contactPrefill} />
         </div>
       </div>
 
