@@ -1,5 +1,3 @@
-import { Link } from "@tanstack/react-router";
-
 import { Eyebrow } from "@/components/Section";
 import type { ScanScore } from "@/lib/scan/types";
 
@@ -30,7 +28,7 @@ function ResultScale({ total }: { total: number }) {
  * Zuivere resultaat-inhoud — geen eigen Section meer. Wordt gerenderd binnen
  * de groene paneel-kolom (ScanLivePanel) zodra die kolom is uitgegroeid.
  */
-export function ScanResult({ score, contactPrefill }: { score: ScanScore; contactPrefill: string }) {
+export function ScanResult({ score }: { score: ScanScore }) {
   return (
     <div className="relative mx-auto max-w-2xl">
       <LoopMotif
@@ -50,17 +48,6 @@ export function ScanResult({ score, contactPrefill }: { score: ScanScore; contac
 
         <div className="fade-up" style={{ animationDelay: "0.18s" }}>
           <ResultScale total={score.total} />
-        </div>
-
-        <div className="fade-up mt-10 flex flex-wrap items-center gap-4" style={{ animationDelay: "0.2s" }}>
-          <Link
-            to="/contact"
-            search={{ prefill: contactPrefill }}
-            className="inline-flex items-center gap-2 rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            Plan een gesprek over deze uitkomst →
-          </Link>
-          <span className="text-sm text-cream/55">Reactie binnen één werkdag.</span>
         </div>
 
         <div className="fade-up mt-14 border-t border-cream/15 pt-10" style={{ animationDelay: "0.24s" }}>

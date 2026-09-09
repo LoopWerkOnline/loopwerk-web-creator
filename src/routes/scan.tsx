@@ -8,8 +8,6 @@ import { WorkloadStep } from "@/components/scan/WorkloadStep";
 import { AutomationMatrix } from "@/components/scan/AutomationMatrix";
 import { LoopMotif } from "@/components/scan/LoopMotif";
 import { ScanLivePanel } from "@/components/scan/ScanLivePanel";
-import { ScanAdvice } from "@/components/scan/ScanAdvice";
-import { ScanMethodology } from "@/components/scan/ScanMethodology";
 import { ScanLeadPreview } from "@/components/scan/ScanLeadPreview";
 import { scanSteps } from "@/lib/scan/questions";
 import { scoreScan } from "@/lib/scan/scoring";
@@ -230,21 +228,20 @@ function ScanPage() {
             isResult ? "md:w-full" : "md:w-2/5"
           }`}
         >
-          <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} contactPrefill={contactPrefill} />
+          <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} />
         </div>
       </div>
 
       {isResult && score && richting && paragraphs && judgmentAdvice !== undefined ? (
         <>
-          <ScanAdvice
-            paragraphs={paragraphs}
-            firstStep={firstStep ?? null}
-            judgmentAdvice={judgmentAdvice}
-            richting={richting}
+          <ScanLeadPreview
             score={score}
+            richting={richting}
+            paragraphs={paragraphs}
+            judgmentAdvice={judgmentAdvice}
+            firstStep={firstStep ?? null}
+            contactPrefill={contactPrefill}
           />
-          <ScanMethodology />
-          <ScanLeadPreview contactPrefill={contactPrefill} />
 
           <div className="bg-cream pb-16 text-center">
             <div className="mx-auto max-w-6xl px-5">
