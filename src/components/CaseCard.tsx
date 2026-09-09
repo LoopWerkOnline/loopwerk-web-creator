@@ -9,11 +9,7 @@ export function CaseCard({ c }: { c: CaseStudy }) {
       <div className="grid gap-10 p-9 md:grid-cols-[1fr_1.1fr] md:items-center md:p-12">
         <div>
           <div className="flex flex-wrap items-center gap-3">
-            {c.logo ? (
-              <img src={c.logo} alt={c.logoAlt ?? c.client} className="h-7 w-auto object-contain" />
-            ) : (
-              <p className="eyebrow text-forest">{c.client}</p>
-            )}
+            <p className="eyebrow text-forest">{c.client}</p>
             <span
               className={`rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide ${
                 c.status === "live" ? "bg-forest/10 text-forest" : "bg-copper/10 text-copper"
@@ -48,12 +44,18 @@ export function CaseCard({ c }: { c: CaseStudy }) {
           </div>
         </div>
 
-        <img
-          src={c.image}
-          alt={c.imageAlt}
-          loading="lazy"
-          className="mx-auto aspect-[16/9] w-full max-w-2xl rounded-xl object-cover"
-        />
+        {c.logo ? (
+          <div className="mx-auto flex aspect-[16/9] w-full max-w-2xl items-center justify-center rounded-xl bg-shell p-10">
+            <img src={c.logo} alt={c.logoAlt ?? c.client} className="max-h-24 w-auto object-contain" />
+          </div>
+        ) : (
+          <img
+            src={c.image}
+            alt={c.imageAlt}
+            loading="lazy"
+            className="mx-auto aspect-[16/9] w-full max-w-2xl rounded-xl object-cover"
+          />
+        )}
       </div>
     </article>
   );

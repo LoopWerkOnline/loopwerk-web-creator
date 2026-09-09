@@ -55,10 +55,13 @@ function CaseSSPW() {
     <>
       <Section tone="hero">
         <Reveal>
-          <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
+          <img src="/cases/sspw-logo.png" alt="Logo van Sun Sauna & Poolworld" className="h-14 w-auto rounded-lg" />
+          <div className="mt-6">
+            <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
+          </div>
           <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-            Een configurator die het <span className="hand text-[1.1em]">prijsgesprek</span> naar voren
-            haalt
+            Hoe Sun Sauna &amp; Poolworld het <span className="hand text-[1.1em]">prijsgesprek</span> naar
+            voren haalde
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
             Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
@@ -88,7 +91,7 @@ function CaseSSPW() {
       <Section tone="shell">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
           <Reveal>
-            <Eyebrow>Het probleem</Eyebrow>
+            <Eyebrow>De uitdaging</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
               Elk gesprek begon opnieuw bij nul
             </h2>
@@ -134,7 +137,7 @@ function CaseSSPW() {
       <Section tone="ink">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
           <Reveal>
-            <Eyebrow tone="sage">De oplossing</Eyebrow>
+            <Eyebrow tone="sage">De aanpak</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
               Van eerste idee naar complete aanvraag
             </h2>
@@ -172,7 +175,7 @@ function CaseSSPW() {
 
       <Section>
         <Reveal>
-          <Eyebrow>Wat het oplevert</Eyebrow>
+          <Eyebrow>Het resultaat</Eyebrow>
         </Reveal>
         <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-start">
           <Reveal>

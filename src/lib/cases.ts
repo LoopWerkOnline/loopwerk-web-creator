@@ -24,6 +24,8 @@ export const cases: CaseStudy[] = [
   {
     slug: "sspw-zwembadconfigurator",
     client: "Sun Sauna & Poolworld",
+    logo: "/cases/sspw-logo.png",
+    logoAlt: "Logo van Sun Sauna & Poolworld",
     title: "Zwembadconfigurator",
     description:
       "Bezoekers stellen in drie stappen zelf hun zwembad samen, zien wat standaard inbegrepen is en krijgen een realistische prijsindicatie.",
