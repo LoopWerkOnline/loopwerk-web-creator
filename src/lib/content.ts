@@ -3,6 +3,20 @@
  * Eén bestand, zodat overzichten, detailpagina's en homepageblokken niet uit elkaar lopen.
  */
 
+/** Interactieve "herken je dit?"-check die doorlinkt naar een voorgevulde Scan. */
+export type SolutionCheck = {
+  items: { id: string; label: string }[];
+  /** Duidingszinnen, oplopend. De tekst met de hoogste `min` die nog <= aantal aangevinkt is, wordt getoond. */
+  readouts: { min: number; text: string }[];
+  ctaLabel: string;
+  /** Moet een bestaande waarde zijn uit de "process"-opties in lib/scan/questions.ts. */
+  scanProcess: string;
+  /** Bestaande waarden uit de "timeSinks"-opties. */
+  scanTimeSinks?: string[];
+  /** Bestaande waarden uit de "sources"-opties. */
+  scanSources?: string[];
+};
+
 export type Solution = {
   slug: string;
   n: string;
@@ -17,8 +31,14 @@ export type Solution = {
   custom: string[];
   /** Specifieke aanpak voor déze oplossing (i.p.v. een generieke alinea). */
   approach?: string;
+  /** Interactieve zelf-check i.p.v. de statische signals-bullets. */
+  check?: SolutionCheck;
+  /** Concrete, bescheiden scope-belofte voor de eerste maand. Geen resultaatclaim. */
+  firstMonth?: string;
+  /** Voor niet-featured oplossingen: eerlijke brug naar bewezen werk elders i.p.v. een stilzwijgend ontbrekende case. */
+  proofNote?: string;
   featured?: boolean;
-  /** Sfeerbeeld voor de oplossingsslider. */
+  /** Sfeerbeeld voor de oplossingsslider én de paginahero. */
   image?: string;
   imageAlt?: string;
 };
@@ -128,6 +148,29 @@ export const solutions: Solution[] = [
     ],
     approach:
       "We beginnen bij de systemen die jullie al gebruiken — mail, Excel, het CRM — en leggen vast welk systeem leidend is per soort gegeven. Vanaf dat moment hoeft niemand meer hetzelfde drie keer in te voeren: het komt vanzelf op de juiste plek terecht.",
+    check: {
+      items: [
+        { id: "drie-systemen", label: "Dezelfde klantgegevens staan in mail, Excel en het CRM — en niet altijd hetzelfde." },
+        { id: "export-import", label: "Iemand exporteert of importeert wekelijks een bestand tussen twee systemen." },
+        { id: "fouten-laat", label: "Fouten in gegevens komen pas aan het licht bij de facturatie of aflevering." },
+        { id: "dubbel-bijwerken", label: "Nieuwe informatie moet in meerdere systemen apart worden bijgewerkt." },
+      ],
+      readouts: [
+        { min: 0, text: "Klik aan wat herkenbaar is." },
+        { min: 1, text: "Dat is al een concreet punt om te bekijken." },
+        { min: 2, text: "Dit patroon — gegevens die je meerdere keren met de hand overneemt — komt vaker voor dan bedrijven zelf denken." },
+        { min: 3, text: "Met dit patroon is een koppeling meestal de moeite van uitzoeken waard." },
+        { min: 4, text: "Alle vier herkenbaar? Dan zit hier waarschijnlijk reële tijdswinst, en is dit een goed moment om het scherper te laten uitrekenen." },
+      ],
+      ctaLabel: "Wil je weten hoeveel tijd dit kost? Doe de scan (4 min) →",
+      scanProcess: "overnemen",
+      scanTimeSinks: ["overtypen", "controleren"],
+      scanSources: ["email", "excel", "crm"],
+    },
+    firstMonth:
+      "Een werkende koppeling tussen twee van jullie systemen — bijvoorbeeld de mailbox waar aanvragen binnenkomen en het CRM — getest op aanvragen die er al lagen. Geen demo met nepdata: gewoon jullie eigen gegevens, één keer goed verwerkt.",
+    proofNote:
+      "Mail, spreadsheet en CRM aan elkaar knopen is precies wat we bouwden binnen de zwembadconfigurator voor Sun Sauna & Poolworld — daar liep de koppeling van configurator naar CRM. Geen losse case voor dit exacte scenario, wel dezelfde bouwstenen en dezelfde manier van werken.",
     image: "/oplossingen/opl-4.jpg",
     imageAlt: "Tablet met grafieken naast papieren rapportages",
   },

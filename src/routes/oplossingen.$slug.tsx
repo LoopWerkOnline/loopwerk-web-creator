@@ -3,7 +3,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { Reveal } from "@/components/Reveal";
-import { ConfiguratorFlow, DataSyncFlow } from "@/components/infographics";
+import { SolutionCheck } from "@/components/solution/SolutionCheck";
+import { ConfiguratorFlow } from "@/components/infographics";
 import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
 import { solutionBySlug, solutions } from "@/lib/content";
 
@@ -53,41 +54,89 @@ function SolutionPage() {
 
   return (
     <>
-      <Section tone="hero" className="!pb-14">
-        <Reveal>
-          <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
-        </Reveal>
-      </Section>
+      {solution.image ? (
+        <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
+          <img
+            src={solution.image}
+            alt={solution.imageAlt ?? ""}
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
+            <div className="max-w-3xl">
+              <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+                Oplossing {solution.n}
+              </p>
+              <h1 className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl" style={{ animationDelay: "0.08s" }}>
+                {solution.title}
+              </h1>
+              <p
+                className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
+                style={{ animationDelay: "0.16s" }}
+              >
+                {solution.intro}
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <Section tone="hero" className="!pb-14">
+          <Reveal>
+            <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
+            <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
+          </Reveal>
+        </Section>
+      )}
 
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
-            <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
-            <ul className="mt-6 space-y-4">
-              {solution.signals.map((s) => (
-                <li key={s} className="flex gap-3 leading-relaxed text-ink/80">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" aria-hidden="true" />
-                  {s}
-                </li>
-              ))}
-            </ul>
+            {solution.check ? (
+              <>
+                <Eyebrow tone="home-accent">Herken je dit bij jullie?</Eyebrow>
+                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                  Vink aan wat herkenbaar is. Hoe meer het is, hoe groter de kans dat hier iets te winnen valt.
+                </p>
+                <SolutionCheck check={solution.check} />
+              </>
+            ) : (
+              <>
+                <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
+                <ul className="mt-6 space-y-4">
+                  {solution.signals.map((s) => (
+                    <li key={s} className="flex gap-3 leading-relaxed text-ink/80">
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" aria-hidden="true" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </Reveal>
-          <Reveal delay={0.1} className="rounded-xl border border-line bg-shell p-8">
-            <p className="hand text-2xl text-forest">Zo pakken we het aan</p>
-            <p className="mt-3 leading-relaxed text-ink/75">
-              {solution.approach ??
-                "We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor staat er sneller iets werkends dan bij bouwen vanaf nul."}
-            </p>
+          <Reveal delay={0.1}>
+            <div className="rounded-xl border border-line bg-shell p-8">
+              <p className="hand text-2xl text-forest">Zo pakken we het aan</p>
+              <p className="mt-3 leading-relaxed text-ink/75">
+                {solution.approach ??
+                  "We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor staat er sneller iets werkends dan bij bouwen vanaf nul."}
+              </p>
+            </div>
+            {solution.firstMonth ? (
+              <div className="mt-6 rounded-xl border border-line bg-shell p-8">
+                <p className="hand text-2xl text-forest">Wat je er de eerste maand van ziet</p>
+                <p className="mt-3 leading-relaxed text-ink/75">{solution.firstMonth}</p>
+              </div>
+            ) : null}
           </Reveal>
         </div>
-
-        {solution.slug === "gegevens-automatisch-verwerken" ? (
-          <Reveal delay={0.2} className="mt-14">
-            <DataSyncFlow />
-          </Reveal>
-        ) : null}
       </Section>
 
       <Section tone="shell">
@@ -144,6 +193,19 @@ function SolutionPage() {
           >
             Lees de volledige case
           </Link>
+        </Section>
+      ) : solution.proofNote ? (
+        <Section>
+          <Reveal>
+            <Eyebrow>Nog geen losse case</Eyebrow>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/75">{solution.proofNote}</p>
+            <Link
+              to="/cases/sspw-zwembadconfigurator"
+              className="mt-4 inline-block text-sm font-semibold text-forest underline underline-offset-4"
+            >
+              Bekijk die case
+            </Link>
+          </Reveal>
         </Section>
       ) : null}
 

@@ -12,6 +12,7 @@ import { ScanLeadPreview } from "@/components/scan/ScanLeadPreview";
 import { scanSteps } from "@/lib/scan/questions";
 import { scoreScan } from "@/lib/scan/scoring";
 import { pickRichting, buildAdviceParagraphs, buildJudgmentAdvice, buildFirstStep } from "@/lib/scan/advice";
+import { seedAnswersFromSearch } from "@/lib/scan/seed";
 import { initialAnswers, type ScanAnswers } from "@/lib/scan/types";
 
 const title = "Loopwerk Scan | LoopWerk";
@@ -19,6 +20,13 @@ const description =
   "Waar blijft binnen jullie bedrijf onnodig tijd liggen? Kies één terugkerend proces en krijg in ± 4 minuten een eerste, concrete indicatie.";
 
 export const Route = createFileRoute("/scan")({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { process?: string | undefined; sinks?: string | undefined; sources?: string | undefined } => ({
+    process: typeof search["process"] === "string" ? (search["process"] as string) : undefined,
+    sinks: typeof search["sinks"] === "string" ? (search["sinks"] as string) : undefined,
+    sources: typeof search["sources"] === "string" ? (search["sources"] as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title },
@@ -33,9 +41,12 @@ export const Route = createFileRoute("/scan")({
 type Phase = "intro" | "step" | "result";
 
 function ScanPage() {
-  const [phase, setPhase] = useState<Phase>("intro");
+  const search = Route.useSearch();
+  const seeded = seedAnswersFromSearch(search);
+
+  const [phase, setPhase] = useState<Phase>(seeded ? "step" : "intro");
   const [stepIndex, setStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<ScanAnswers>(initialAnswers);
+  const [answers, setAnswers] = useState<ScanAnswers>(seeded?.answers ?? initialAnswers);
 
   const total = scanSteps.length;
   const step = scanSteps[stepIndex];
