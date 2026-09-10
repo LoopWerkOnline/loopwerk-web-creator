@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { Reveal } from "@/components/Reveal";
-import { ConfiguratorFlow } from "@/components/infographics";
+import { ConfiguratorFlow, DataSyncFlow } from "@/components/infographics";
 import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
 import { solutionBySlug, solutions } from "@/lib/content";
 
@@ -77,11 +77,17 @@ function SolutionPage() {
           <Reveal delay={0.1} className="rounded-xl border border-line bg-shell p-8">
             <p className="hand text-2xl text-forest">Zo pakken we het aan</p>
             <p className="mt-3 leading-relaxed text-ink/75">
-              We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor
-              staat er sneller iets werkends dan bij bouwen vanaf nul.
+              {solution.approach ??
+                "We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor staat er sneller iets werkends dan bij bouwen vanaf nul."}
             </p>
           </Reveal>
         </div>
+
+        {solution.slug === "gegevens-automatisch-verwerken" ? (
+          <Reveal delay={0.2} className="mt-14">
+            <DataSyncFlow />
+          </Reveal>
+        ) : null}
       </Section>
 
       <Section tone="shell">

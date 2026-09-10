@@ -2,7 +2,7 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
-import { Calendar, Clock, Copy, FileText, MessageSquare, Plus, Search } from "lucide-react";
+import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Mail, MessageSquare, Plus, Search } from "lucide-react";
 
 const forest = "var(--forest)";
 const sage = "var(--sage)";
@@ -424,6 +424,70 @@ export function RecognitionFlow({ className }: { className?: string }) {
         <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
           5
         </span>
+      </div>
+    </div>
+  );
+}
+
+/** Nu (los overtypen) versus met een koppeling (automatisch synchroon). */
+export function DataSyncFlow({ className }: { className?: string }) {
+  const systems = [
+    { icon: Mail, label: "Mail" },
+    { icon: FileSpreadsheet, label: "Excel" },
+    { icon: Database, label: "CRM" },
+  ];
+
+  return (
+    <div className={`grid gap-6 sm:grid-cols-2 ${className ?? ""}`}>
+      <div className="rounded-2xl border border-line bg-shell p-7">
+        <p className="eyebrow text-ink/40">Nu</p>
+        <div className="relative mt-8 h-24" role="img" aria-label="Mail, Excel en CRM apart, met iemand die ertussen overtypt">
+          <svg viewBox="0 0 240 96" className="absolute inset-0 h-full w-full" aria-hidden="true">
+            <path d="M40 18 L120 48 L200 18" fill="none" stroke={ink} strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="4 5" />
+            <path d="M40 78 L120 48 L200 78" fill="none" stroke={ink} strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="4 5" />
+          </svg>
+          <div className="relative flex h-full items-center justify-between">
+            {systems.map((s) => (
+              <div key={s.label} className="flex flex-col items-center gap-2">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-cream">
+                  <s.icon className="h-5 w-5 text-ink/50" aria-hidden="true" />
+                </div>
+                <span className="text-xs text-ink/55">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="mt-6 text-sm leading-relaxed text-ink/70">
+          Iemand typt dezelfde klantgegevens drie keer over — en drie keer kan het net iets anders.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-forest/20 bg-cream p-7">
+        <p className="eyebrow text-forest">Met een koppeling</p>
+        <div className="relative mt-8 h-24" role="img" aria-label="Mail, Excel en CRM automatisch aan elkaar gekoppeld">
+          <svg viewBox="0 0 240 96" className="absolute inset-0 h-full w-full" aria-hidden="true">
+            <path d="M40 18 L120 48" fill="none" stroke={forest} strokeWidth="1.5" />
+            <path d="M200 18 L120 48" fill="none" stroke={forest} strokeWidth="1.5" />
+            <path d="M40 78 L120 48" fill="none" stroke={forest} strokeWidth="1.5" />
+            <path d="M200 78 L120 48" fill="none" stroke={forest} strokeWidth="1.5" />
+          </svg>
+          <div className="relative flex h-full items-center justify-between">
+            {systems.map((s) => (
+              <div key={s.label} className="flex flex-col items-center gap-2">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-forest/30 bg-forest/10">
+                  <s.icon className="h-5 w-5 text-forest" aria-hidden="true" />
+                </div>
+                <span className="text-xs text-forest/80">{s.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-home-accent">
+            <Check className="h-4 w-4 text-white" strokeWidth={2.5} aria-hidden="true" />
+          </div>
+        </div>
+        <p className="mt-6 text-sm leading-relaxed text-forest">
+          Eén keer invoeren. De rest komt vanzelf op de juiste plek terecht.
+        </p>
       </div>
     </div>
   );

@@ -15,6 +15,8 @@ export type Solution = {
   base: string[];
   /** Waar het maatwerk begint. */
   custom: string[];
+  /** Specifieke aanpak voor déze oplossing (i.p.v. een generieke alinea). */
+  approach?: string;
   featured?: boolean;
   /** Sfeerbeeld voor de oplossingsslider. */
   image?: string;
@@ -124,6 +126,8 @@ export const solutions: Solution[] = [
       "Welke velden leidend zijn als twee systemen het oneens zijn.",
       "Wat automatisch mag en wat een mens moet goedkeuren.",
     ],
+    approach:
+      "We beginnen bij de systemen die jullie al gebruiken — mail, Excel, het CRM — en leggen vast welk systeem leidend is per soort gegeven. Vanaf dat moment hoeft niemand meer hetzelfde drie keer in te voeren: het komt vanzelf op de juiste plek terecht.",
     image: "/oplossingen/opl-4.jpg",
     imageAlt: "Tablet met grafieken naast papieren rapportages",
   },
