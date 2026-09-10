@@ -61,6 +61,7 @@ function SolutionPage() {
             alt={solution.imageAlt ?? ""}
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
+          <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
           <div
             className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
             aria-hidden="true"
