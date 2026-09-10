@@ -2,6 +2,7 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
+import { Calendar, Clock, Copy, FileText, MessageSquare, Plus, Search } from "lucide-react";
 
 const forest = "var(--forest)";
 const sage = "var(--sage)";
@@ -261,5 +262,169 @@ export function ManualSteps({ className, tone = "light", accent = copper }: { cl
         Iedere week opnieuw
       </text>
     </svg>
+  );
+}
+
+/** Herkenning: klantvraag die via vier handmatige stappen wordt afgehandeld. */
+export function ManualStepsFlow({ className }: { className?: string }) {
+  const steps = [
+    { icon: FileText, label: "Info aanvullen" },
+    { icon: Search, label: "Prijzen zoeken" },
+    { icon: Copy, label: "Gegevens overtypen" },
+    { icon: Calendar, label: "Opvolgen", badge: Clock },
+  ];
+
+  return (
+    <div className={`overflow-x-auto ${className ?? ""}`}>
+      <div className="flex w-max items-start gap-3 px-1 sm:w-full sm:justify-between sm:gap-2">
+        <div className="flex flex-col items-center pt-4">
+          <span className="rounded-full bg-cream px-5 py-3 text-sm font-medium text-ink shadow-sm">
+            Klantvraag
+          </span>
+        </div>
+
+        {steps.map((s, i) => {
+          const Icon = s.icon;
+          const Badge = s.badge;
+          return (
+            <div key={s.label} className="flex items-start gap-3">
+              <svg
+                width="28"
+                height="20"
+                viewBox="0 0 28 20"
+                fill="none"
+                className="mt-9 shrink-0 text-home-accent"
+                aria-hidden="true"
+              >
+                <path d="M0 10 H22" stroke="currentColor" strokeWidth="2" />
+                <path d="M16 3 L23 10 L16 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+
+              <div className="flex w-24 flex-col items-center text-center sm:w-28">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-shell sm:h-20 sm:w-20">
+                  <Icon className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                  {Badge && (
+                    <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-home-accent">
+                      <Badge className="h-3.5 w-3.5 text-white" strokeWidth={2} aria-hidden="true" />
+                    </span>
+                  )}
+                </div>
+                <p className="mt-3 text-sm leading-snug text-forest">{s.label}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/** Sierlijk sterretje naast een icoon, in de accentkleur. */
+function Spark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M4 4 L8 8" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M2 12 L7 12" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 20 L8 16" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Herkenning: klantvraag die in een zigzag via vier stappen wordt afgehandeld. */
+export function RecognitionFlow({ className }: { className?: string }) {
+  const grayBadge = "bg-shell text-ink";
+  const accentBadge = "bg-home-accent text-white";
+
+  return (
+    <div
+      className={`relative aspect-square w-full ${className ?? ""}`}
+      role="img"
+      aria-label="Eén klantvraag doorloopt vier stappen: info aanvullen, prijzen zoeken, gegevens overtypen en opvolgen"
+    >
+      <svg viewBox="0 0 500 500" className="absolute inset-0 h-full w-full" aria-hidden="true">
+        <defs>
+          <marker id="rf-arrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--home-accent)" />
+          </marker>
+        </defs>
+        <path d="M200,128 C240,165 250,95 300,118" fill="none" stroke="var(--home-accent)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#rf-arrow)" />
+        <path d="M405,178 C470,205 460,272 322,215" fill="none" stroke="var(--home-accent)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#rf-arrow)" />
+        <path d="M188,255 C138,250 108,265 117,289" fill="none" stroke="var(--home-accent)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#rf-arrow)" />
+        <path d="M199,368 C240,345 270,385 299,378" fill="none" stroke="var(--home-accent)" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#rf-arrow)" />
+      </svg>
+
+      {/* 1. Klantvraag */}
+      <div
+        className="absolute flex items-center justify-center gap-3 rounded-full bg-card px-5 shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
+        style={{ left: "5%", top: "9%", width: "37%", height: "23%" }}
+      >
+        <Spark className="absolute -left-2 -top-3 h-5 w-5" />
+        <MessageSquare className="h-7 w-7 shrink-0 text-forest" strokeWidth={1.75} aria-hidden="true" />
+        <p className="font-display text-lg text-forest">Klantvraag</p>
+        <span className={`absolute -right-2.5 -top-2.5 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
+          1
+        </span>
+      </div>
+
+      {/* 2. Info aanvullen */}
+      <div
+        className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
+        style={{ left: "60%", top: "6%", width: "32%", height: "32%" }}
+      >
+        <div className="relative">
+          <FileText className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+          <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-home-accent">
+            <Plus className="h-3 w-3 text-white" strokeWidth={2.5} aria-hidden="true" />
+          </span>
+        </div>
+        <p className="font-display text-base text-forest">Info aanvullen</p>
+        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${grayBadge}`}>
+          2
+        </span>
+      </div>
+
+      {/* 3. Prijzen zoeken */}
+      <div
+        className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
+        style={{ left: "37%", top: "34%", width: "28%", height: "28%" }}
+      >
+        <Spark className="absolute -left-3 bottom-4 h-5 w-5" />
+        <Search className="h-6 w-6 text-forest" strokeWidth={1.75} aria-hidden="true" />
+        <p className="font-display text-sm text-forest">Prijzen zoeken</p>
+        <span className={`absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${grayBadge}`}>
+          3
+        </span>
+      </div>
+
+      {/* 4. Gegevens overtypen */}
+      <div
+        className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card px-2 text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
+        style={{ left: "8%", top: "58%", width: "32%", height: "32%" }}
+      >
+        <Copy className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+        <p className="font-display text-base text-forest">Gegevens overtypen</p>
+        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
+          4
+        </span>
+      </div>
+
+      {/* 5. Opvolgen */}
+      <div
+        className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
+        style={{ left: "60%", top: "60%", width: "32%", height: "32%" }}
+      >
+        <Spark className="absolute right-8 -top-4 h-5 w-5" />
+        <div className="relative">
+          <Calendar className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+          <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-home-accent">
+            <Clock className="h-3 w-3 text-white" strokeWidth={2.5} aria-hidden="true" />
+          </span>
+        </div>
+        <p className="font-display text-base text-forest">Opvolgen</p>
+        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
+          5
+        </span>
+      </div>
+    </div>
   );
 }

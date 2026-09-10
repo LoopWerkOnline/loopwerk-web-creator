@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { Reveal } from "@/components/Reveal";
-import { ManualSteps } from "@/components/infographics";
+import { RecognitionFlow } from "@/components/infographics";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
 
@@ -129,7 +129,7 @@ function Index() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <ManualSteps accent="var(--home-accent)" className="w-full" />
+            <RecognitionFlow className="w-full" />
           </Reveal>
         </div>
       </Section>
