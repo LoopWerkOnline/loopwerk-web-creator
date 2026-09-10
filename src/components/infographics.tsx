@@ -2,7 +2,8 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
-import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Mail, MessageSquare, Plus, Search } from "lucide-react";
+import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Mail, MessageSquare, Plus, Search, Sliders } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const forest = "var(--forest)";
 const sage = "var(--sage)";
@@ -314,6 +315,65 @@ export function ManualStepsFlow({ className }: { className?: string }) {
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+const journeyIcons: Record<string, typeof FileText> = {
+  "complete-aanvragen": FileText,
+  "slimme-configurator": Sliders,
+  "automatische-opvolging": Clock,
+};
+
+/** Klikbare flow: de oplossingen die samen "van aanvraag tot offerte" vormen. */
+export function SolutionJourney({
+  items,
+  className,
+}: {
+  items: { slug: string; title: string }[];
+  className?: string;
+}) {
+  const Arrow = () => (
+    <svg width="28" height="20" viewBox="0 0 28 20" fill="none" className="mt-9 shrink-0 text-home-accent" aria-hidden="true">
+      <path d="M0 10 H22" stroke="currentColor" strokeWidth="2" />
+      <path d="M16 3 L23 10 L16 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  return (
+    <div className={`overflow-x-auto ${className ?? ""}`}>
+      <div className="flex w-max items-start gap-3 px-1 sm:w-full sm:justify-between sm:gap-2">
+        {items.map((s, i) => {
+          const Icon = journeyIcons[s.slug] ?? FileText;
+          return (
+            <div key={s.slug} className="flex items-start gap-3">
+              {i > 0 ? <Arrow /> : null}
+              <Link
+                to="/oplossingen/$slug"
+                params={{ slug: s.slug }}
+                className="group flex w-24 flex-col items-center text-center sm:w-28"
+              >
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-shell transition-colors group-hover:bg-home-accent/15 sm:h-20 sm:w-20">
+                  <Icon className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                </div>
+                <p className="mt-3 text-sm leading-snug text-forest group-hover:underline group-hover:underline-offset-4">
+                  {s.title}
+                </p>
+              </Link>
+            </div>
+          );
+        })}
+
+        <div className="flex items-start gap-3">
+          <Arrow />
+          <div className="flex w-24 flex-col items-center text-center sm:w-28">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-home-accent sm:h-20 sm:w-20">
+              <Check className="h-7 w-7 text-white" strokeWidth={2.5} aria-hidden="true" />
+            </div>
+            <p className="mt-3 text-sm leading-snug text-forest">Offerte</p>
+          </div>
+        </div>
       </div>
     </div>
   );

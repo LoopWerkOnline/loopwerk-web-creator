@@ -1,10 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { BaseAndCustom } from "@/components/infographics";
+import { BaseAndCustom, SolutionJourney } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
-import { SolutionSlider } from "@/components/SolutionSlider";
 import { solutions } from "@/lib/content";
+
+const journeySolutions = solutions
+  .filter((s) => s.journeyStep !== undefined)
+  .sort((a, b) => (a.journeyStep ?? 0) - (b.journeyStep ?? 0));
+const standaloneSolutions = solutions.filter((s) => s.journeyStep === undefined);
 
 const title = "Oplossingen | LoopWerk";
 const description =
@@ -48,8 +52,40 @@ function OplossingenPage() {
 
       <Section>
         <Reveal>
-          <SolutionSlider items={solutions} />
+          <Eyebrow tone="home-accent">Van aanvraag tot offerte</Eyebrow>
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+            Drie stappen, één doorlopend proces
+          </h2>
+          <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
+            Dit zijn geen drie losse producten — het is de weg die een aanvraag bij jullie al
+            aflegt, alleen dan zonder dat er iets blijft liggen: compleet binnenkomen, meteen
+            samengesteld en geprijsd, en opgevolgd tot hij gesloten is.
+          </p>
         </Reveal>
+        <Reveal delay={0.1}>
+          <SolutionJourney items={journeySolutions} className="mt-14" />
+        </Reveal>
+      </Section>
+
+      <Section tone="shell">
+        {standaloneSolutions.map((s) => (
+          <Reveal key={s.slug}>
+            <div className="grid gap-6 rounded-2xl border border-line bg-cream p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
+              <div>
+                <Eyebrow tone="home-accent">Los daarvan</Eyebrow>
+                <h2 className="mt-4 text-2xl md:text-3xl">{s.title}</h2>
+                <p className="mt-3 max-w-xl leading-relaxed text-ink/70">{s.short}</p>
+              </div>
+              <Link
+                to="/oplossingen/$slug"
+                params={{ slug: s.slug }}
+                className="inline-flex justify-self-start rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-shell md:justify-self-end"
+              >
+                Bekijk deze oplossing →
+              </Link>
+            </div>
+          </Reveal>
+        ))}
       </Section>
 
       <Section tone="ink">

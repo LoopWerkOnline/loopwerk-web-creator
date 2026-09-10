@@ -36,6 +36,8 @@ export type Solution = {
   firstMonth?: string;
   /** Voor niet-featured oplossingen: eerlijke brug naar bewezen werk elders i.p.v. een stilzwijgend ontbrekende case. */
   proofNote?: string;
+  /** Volgorde binnen de "Van aanvraag tot offerte"-flow op het overzicht. Ontbreekt = losse capability. */
+  journeyStep?: number;
   featured?: boolean;
   /** Sfeerbeeld voor de oplossingsslider én de paginahero. */
   image?: string;
@@ -66,6 +68,9 @@ export const solutions: Solution[] = [
       "Regels en uitzonderingen: welke opties samen kunnen, welke elkaar uitsluiten.",
       "Huisstijl, teksten en de plek waar de aanvraag naartoe moet.",
     ],
+    approach:
+      "Dit zetten we voor jullie op: een stapsgewijze keuzeflow, een rekenmodel met staffels en toeslagen, een automatische conceptofferte. Jullie producten, prijzen en regels bepalen de precieze invulling.",
+    journeyStep: 2,
     featured: true,
     image: "/oplossingen/opl-1.jpg",
     imageAlt: "Laptop met een dashboard vol cijfers op een werktafel",
@@ -92,6 +97,9 @@ export const solutions: Solution[] = [
       "Wie welke aanvraag krijgt en in welke volgorde.",
       "Aansluiting op het systeem waarin jullie de aanvraag verder verwerken.",
     ],
+    approach:
+      "Dit bouwen we voor jullie: een aanvraagformulier dat meebeweegt met eerdere antwoorden, verplichte velden per aanvraagtype, nette bestand- en foto-upload. Welke informatie jullie precies nodig hebben en waar die naartoe moet, werken we samen uit.",
+    journeyStep: 1,
     image: "/oplossingen/opl-2.jpg",
     imageAlt: "Materiaalstalen die op een tafel worden uitgelegd",
   },
@@ -167,6 +175,9 @@ export const solutions: Solution[] = [
       "Wie waarvan eigenaar is.",
       "De toon van de berichten die namens jullie uitgaan.",
     ],
+    approach:
+      "Dit richten we voor jullie in: statussen per aanvraag, automatische herinneringen, een overzicht van wat er open staat. Jullie eigen termijnen, eigenaarschap en de toon van de berichten bepalen de laatste invulling.",
+    journeyStep: 3,
     image: "/oplossingen/opl-5.png",
     imageAlt: "Ondernemer aan de telefoon die aantekeningen maakt achter zijn laptop",
   },

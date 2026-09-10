@@ -50,7 +50,11 @@ function SolutionNotFound() {
 
 function SolutionPage() {
   const { solution } = Route.useLoaderData();
-  const others = solutions.filter((s) => s.slug !== solution.slug).slice(0, 3);
+  const others = solution.journeyStep
+    ? solutions
+        .filter((s) => s.journeyStep !== undefined && s.slug !== solution.slug)
+        .sort((a, b) => (a.journeyStep ?? 0) - (b.journeyStep ?? 0))
+    : solutions.filter((s) => s.slug !== solution.slug).slice(0, 3);
 
   return (
     <>
@@ -144,7 +148,7 @@ function SolutionPage() {
         <div className="grid gap-12 md:grid-cols-2">
           <Reveal>
             <Eyebrow>Bestaande basis</Eyebrow>
-            <p className="mt-4 text-sm text-ink/60">Dit hebben we al werkend liggen.</p>
+            <p className="mt-4 text-sm text-ink/60">Dit weten we hoe we moeten bouwen.</p>
             <ul className="mt-6 space-y-4">
               {solution.base.map((b) => (
                 <li key={b} className="border-t border-line pt-4 leading-relaxed text-ink/80">
@@ -226,7 +230,9 @@ function SolutionPage() {
             </Link>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="eyebrow text-sage">Andere richtingen</p>
+            <p className="eyebrow text-sage">
+              {solution.journeyStep ? "Andere stappen in dit proces" : "Andere richtingen"}
+            </p>
             <ul className="mt-4 space-y-3 text-sm">
               {others.map((o) => (
                 <li key={o.slug}>
