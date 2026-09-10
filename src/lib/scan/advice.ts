@@ -20,7 +20,7 @@ function joinPhrases(values: string[]): string {
   return `${phrases.slice(0, -1).join(", ")} en ${phrases[phrases.length - 1]}`;
 }
 
-export type Richting = { label: string; solutionSlug: string; explain: string };
+export type Richting = { label: string; solutionSlug: string | null; explain: string };
 
 /** Rule-based koppeling naar een van de bestaande oplossingsrichtingen op de site. */
 export function pickRichting(answers: ScanAnswers): Richting {
@@ -28,7 +28,7 @@ export function pickRichting(answers: ScanAnswers): Richting {
   if (s.includes("overtypen") && answers.sources.length >= 2) {
     return {
       label: "Gegevensflow",
-      solutionSlug: "gegevens-automatisch-verwerken",
+      solutionSlug: "systeemkoppelingen",
       explain:
         "Koppelingen tussen de systemen die je noemt, zodat gegevens niet nog eens met de hand hoeven te worden overgenomen.",
     };
@@ -36,7 +36,7 @@ export function pickRichting(answers: ScanAnswers): Richting {
   if (s.includes("berekenen")) {
     return {
       label: "Calculator + intake",
-      solutionSlug: "calculaties-en-prijsindicaties",
+      solutionSlug: "slimme-configurator",
       explain:
         "Vaste rekenregels en prijslogica op één plek, in plaats van in een rekenmodel dat vooral in iemands hoofd zit.",
     };
@@ -44,20 +44,20 @@ export function pickRichting(answers: ScanAnswers): Richting {
   if (s.includes("opvolging")) {
     return {
       label: "Opvolgingsflow",
-      solutionSlug: "opvolging-automatiseren",
+      solutionSlug: "automatische-opvolging",
       explain: "Automatische statussen en herinneringen, zodat opvolging niet van iemands geheugen afhangt.",
     };
   }
   if (s.some((v) => ["verzamelen", "opzoeken", "vragen"].includes(v))) {
     return {
       label: "Slimme intake",
-      solutionSlug: "slimme-offerteflow",
+      solutionSlug: "slimme-configurator",
       explain: "Een intake die relevante informatie vooraf verzamelt, zodat het gesprek er niet meer over hoeft te gaan.",
     };
   }
   return {
     label: "Gerichte procesanalyse",
-    solutionSlug: "ander-terugkerend-werk",
+    solutionSlug: null,
     explain: "Dit past niet in een vaste richting — dat vraagt om eerst goed te kijken waar in dit proces de tijd echt zit.",
   };
 }

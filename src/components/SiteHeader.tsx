@@ -95,7 +95,6 @@ export function SiteHeader() {
                         params={{ slug: s.slug }}
                         className="group/item flex gap-3 rounded-xl p-3 transition-colors hover:bg-secondary"
                       >
-                        <span className="mt-0.5 text-xs font-semibold text-home-accent">{s.n}</span>
                         <span className="min-w-0">
                           <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
                             {s.title}

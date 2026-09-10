@@ -52,13 +52,22 @@ export function ScanAdvice({
         <p className="eyebrow text-ink/40">Mogelijke richting</p>
         <p className="mt-2 text-2xl leading-tight">{richting.label}</p>
         <p className="mt-2 text-sm leading-relaxed text-ink/70">{richting.explain}</p>
-        <Link
-          to="/oplossingen/$slug"
-          params={{ slug: richting.solutionSlug }}
-          className="mt-4 inline-flex rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
-        >
-          Bekijk deze richting
-        </Link>
+        {richting.solutionSlug ? (
+          <Link
+            to="/oplossingen/$slug"
+            params={{ slug: richting.solutionSlug }}
+            className="mt-4 inline-flex rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+          >
+            Bekijk deze richting
+          </Link>
+        ) : (
+          <Link
+            to="/contact"
+            className="mt-4 inline-flex rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+          >
+            Plan een gesprek
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -148,7 +148,7 @@ function Index() {
           </Link>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {solutions.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.08}>
               <Link
@@ -160,10 +160,7 @@ function Index() {
                   className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-home-accent text-sm font-semibold text-white">
-                  {s.n}
-                </span>
-                <h3 className="mt-5 text-2xl">{s.title}</h3>
+                <h3 className="text-2xl">{s.title}</h3>
                 <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
               </Link>
             </Reveal>

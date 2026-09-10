@@ -72,7 +72,7 @@ function SolutionPage() {
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
             <div className="max-w-3xl">
               <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
-                Oplossing {solution.n}
+                Oplossing
               </p>
               <h1 className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl" style={{ animationDelay: "0.08s" }}>
                 {solution.title}
@@ -89,7 +89,7 @@ function SolutionPage() {
       ) : (
         <Section tone="hero" className="!pb-14">
           <Reveal>
-            <Eyebrow tone="sage">Oplossing {solution.n}</Eyebrow>
+            <Eyebrow tone="sage">Oplossing</Eyebrow>
             <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">{solution.title}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">{solution.intro}</p>
           </Reveal>

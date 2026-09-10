@@ -8,7 +8,7 @@ import { solutions } from "@/lib/content";
 
 const title = "Oplossingen | LoopWerk";
 const description =
-  "Zes richtingen waarin we bedrijven helpen: offerteflow, complete aanvragen, calculaties, gegevensverwerking, opvolging en ander terugkerend werk.";
+  "Vier richtingen waarin we bedrijven helpen: een slimme configurator, complete aanvragen, systeemkoppelingen en automatische opvolging.";
 
 export const Route = createFileRoute("/oplossingen/")({
   head: () => ({

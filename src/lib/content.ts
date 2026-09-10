@@ -19,7 +19,6 @@ export type SolutionCheck = {
 
 export type Solution = {
   slug: string;
-  n: string;
   title: string;
   short: string;
   intro: string;
@@ -45,25 +44,25 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
-    slug: "slimme-offerteflow",
-    n: "01",
-    title: "Slimme offerteflow",
+    slug: "slimme-configurator",
+    title: "Slimme configurator",
     short:
-      "Het eerste verkoopgesprek gaat nu vaak over basisinformatie. Dat kan al voor het gesprek geregeld zijn.",
+      "Klant stelt zelf maten en opties samen, ziet direct een prijsindicatie, en jullie krijgen een complete aanvraag.",
     intro:
-      "Het eerste verkoopgesprek draait vaak vooral om het verzamelen van basisinformatie. Door klanten vooraf gericht door maten, opties en uitvoering te leiden, blijft er meer tijd over voor het echte gesprek.",
+      "Een offerteaanvraag begint met dezelfde vragen: maten, opties, budget. Laat de klant dat zelf samenstellen — met een prijs die meteen meetelt — en er blijft tijd over voor het gesprek dat er echt toe doet.",
     signals: [
       "Het eerste gesprek gaat vooral over informatie ophalen, niet over de opdracht.",
-      "Aanvragen komen binnen zonder maten, wensen of budgetkader.",
+      "Calculeren gebeurt in een Excel die eigenlijk maar één persoon goed begrijpt.",
+      "Prijswijzigingen moeten op meerdere plekken worden doorgevoerd.",
       "Een deel van de gesprekken loopt achteraf alsnog dood op prijs.",
     ],
     base: [
-      "Stapsgewijze keuzeflow met een meelopende samenvatting.",
-      "Prijslogica met inbegrepen onderdelen, meerprijzen en uitsluitingen.",
+      "Stapsgewijze keuzeflow met een meelopende samenvatting en live prijsindicatie.",
+      "Rekenmodel met staffels, toeslagen en marges, centraal te beheren.",
       "Automatische conceptofferte plus opslag van de aanvraag als lead.",
     ],
     custom: [
-      "Jullie producten, varianten en prijzen.",
+      "Jullie producten, varianten, opties en prijzen.",
       "Regels en uitzonderingen: welke opties samen kunnen, welke elkaar uitsluiten.",
       "Huisstijl, teksten en de plek waar de aanvraag naartoe moet.",
     ],
@@ -72,13 +71,12 @@ export const solutions: Solution[] = [
     imageAlt: "Laptop met een dashboard vol cijfers op een werktafel",
   },
   {
-    slug: "aanvragen-compleet-binnenkrijgen",
-    n: "02",
-    title: "Aanvragen compleet binnenkrijgen",
+    slug: "complete-aanvragen",
+    title: "Complete aanvragen",
     short:
-      "Een aanvraag mist vaak nog maten, foto's of een antwoord dat er eigenlijk al had moeten zijn. Dat vraag je liever in één keer, vooraf.",
+      "Nooit meer drie keer mailen voor dezelfde informatie — vraag het in één keer, vooraf.",
     intro:
-      "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Als je vooraf weet welke gegevens je nodig hebt, kun je die ook vooraf vragen.",
+      "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Wie vooraf weet wat nodig is, kan dat ook vooraf uitvragen — zonder er meteen een volledige configurator van te maken.",
     signals: [
       "Na iedere aanvraag moet iemand dezelfde informatie opnieuw opvragen.",
       "Bijlagen, maten of foto's ontbreken standaard.",
@@ -98,35 +96,8 @@ export const solutions: Solution[] = [
     imageAlt: "Materiaalstalen die op een tafel worden uitgelegd",
   },
   {
-    slug: "calculaties-en-prijsindicaties",
-    n: "03",
-    title: "Calculaties en prijsindicaties versnellen",
-    short:
-      "Calculeren kost vaak meer opzoektijd dan rekentijd. Zet de vaste regels en staffels één keer goed neer, en het zoeken stopt.",
-    intro:
-      "Veel calculatiewerk is geen rekenwerk maar opzoekwerk: welke prijs geldt, welke toeslag hoort erbij, welke uitzondering geldt hier. Dat deel is prima vast te leggen.",
-    signals: [
-      "Calculeren gebeurt in een Excel die één persoon echt begrijpt.",
-      "Prijswijzigingen moeten op meerdere plekken worden doorgevoerd.",
-      "Er wordt uit voorzichtigheid een marge bovenop een marge gelegd.",
-    ],
-    base: [
-      "Rekenmodel met staffels, toeslagen en marges.",
-      "Beheerscherm waarin prijzen op één plek worden bijgewerkt.",
-      "Indicatie- versus definitieve prijs, duidelijk gescheiden.",
-    ],
-    custom: [
-      "Jullie prijsstructuur, staffels en kortingsafspraken.",
-      "Uitzonderingen die alleen in jullie werk voorkomen.",
-      "Wie wat mag zien: klant, verkoop of calculatie.",
-    ],
-    image: "/oplossingen/opl-3.jpg",
-    imageAlt: "Rekenmachine op een vel met handgeschreven berekeningen",
-  },
-  {
-    slug: "gegevens-automatisch-verwerken",
-    n: "04",
-    title: "Gegevens automatisch verwerken",
+    slug: "systeemkoppelingen",
+    title: "Systeemkoppelingen",
     short:
       "Dezelfde gegevens drie keer overtypen in mail, Excel en het CRM. Dat werk kan een koppeling net zo goed doen.",
     intro:
@@ -175,9 +146,8 @@ export const solutions: Solution[] = [
     imageAlt: "Tablet met grafieken naast papieren rapportages",
   },
   {
-    slug: "opvolging-automatiseren",
-    n: "05",
-    title: "Opvolging automatiseren",
+    slug: "automatische-opvolging",
+    title: "Automatische opvolging",
     short:
       "Een offerte die blijft liggen omdat niemand het meer bijhoudt, hoeft niet van iemands geheugen af te hangen.",
     intro:
@@ -199,30 +169,6 @@ export const solutions: Solution[] = [
     ],
     image: "/oplossingen/opl-5.png",
     imageAlt: "Ondernemer aan de telefoon die aantekeningen maakt achter zijn laptop",
-  },
-  {
-    slug: "ander-terugkerend-werk",
-    n: "06",
-    title: "Ander terugkerend werk",
-    short:
-      "Past het ergens niet precies in dit rijtje? Als het elke week terugkomt, is er meestal iets aan te doen.",
-    intro:
-      "Niet alles past in een hokje. Als er werk is dat elke week terugkomt en telkens hetzelfde patroon volgt, is er meestal wel iets aan te doen.",
-    signals: [
-      "Werk dat iedere week terugkomt en telkens dezelfde stappen kent.",
-      "Handelingen die alleen bestaan omdat twee systemen niet met elkaar praten.",
-      "Rapportages die met de hand worden samengesteld.",
-    ],
-    base: [
-      "Bouwstenen uit eerdere trajecten: formulieren, verwerking, dashboards.",
-      "Inzet van AI waar dat aantoonbaar tijd scheelt, met een mens die controleert.",
-    ],
-    custom: [
-      "De analyse van jullie proces: waar zit de tijd echt?",
-      "Een eerlijk antwoord als automatiseren de moeite niet waard is.",
-    ],
-    image: "/oplossingen/oplossing-6.jpg",
-    imageAlt: "Ondernemer maakt aantekeningen in een notitieblok",
   },
 ];
 
@@ -266,7 +212,7 @@ export const sectors: Sector[] = [
       "Materiaalprijzen staan op meerdere plekken en lopen uiteen.",
       "Opvolging van open offertes hangt aan één persoon.",
     ],
-    solutions: ["aanvragen-compleet-binnenkrijgen", "calculaties-en-prijsindicaties", "opvolging-automatiseren"],
+    solutions: ["complete-aanvragen", "slimme-configurator", "automatische-opvolging"],
     custom:
       "Jullie werksoorten, materiaalprijzen en de manier waarop een opname bij jullie verloopt.",
   },
@@ -289,7 +235,7 @@ export const sectors: Sector[] = [
       "Configuratieregels zitten in hoofden, niet in een systeem.",
       "Dezelfde specificatie wordt meermaals ingevoerd.",
     ],
-    solutions: ["slimme-offerteflow", "calculaties-en-prijsindicaties", "gegevens-automatisch-verwerken"],
+    solutions: ["slimme-configurator", "complete-aanvragen", "systeemkoppelingen"],
     custom: "Jullie opties, uitvoeringen en de regels die bepalen wat wel en niet samen kan.",
   },
   {
@@ -311,7 +257,7 @@ export const sectors: Sector[] = [
       "Gegevens lopen tussen webshop, ERP en administratie uit de pas.",
       "Kortingsstaffels zijn niet eenduidig vastgelegd.",
     ],
-    solutions: ["calculaties-en-prijsindicaties", "gegevens-automatisch-verwerken", "aanvragen-compleet-binnenkrijgen"],
+    solutions: ["slimme-configurator", "systeemkoppelingen", "complete-aanvragen"],
     custom: "Jullie klantafspraken, staffels en de systemen waar de order uiteindelijk in moet landen.",
   },
   {
@@ -333,7 +279,7 @@ export const sectors: Sector[] = [
       "Het duurt lang voordat een klant een indicatie heeft.",
       "Aanvragen worden niet centraal vastgelegd.",
     ],
-    solutions: ["slimme-offerteflow", "opvolging-automatiseren", "gegevens-automatisch-verwerken"],
+    solutions: ["slimme-configurator", "automatische-opvolging", "systeemkoppelingen"],
     custom: "Jullie uitvoeringen, toeslagen en de doorlooptijd die je richting klant wilt communiceren.",
   },
 ];

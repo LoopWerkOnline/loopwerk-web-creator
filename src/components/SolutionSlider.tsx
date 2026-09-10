@@ -85,12 +85,11 @@ export function SolutionSlider({ items }: Props) {
               />
             ) : (
               <div className="flex aspect-[16/9] w-full items-center justify-center bg-shell">
-                <span className="hand text-6xl text-forest/50">{s.n}</span>
+                <span className="hand text-6xl text-forest/50">{s.title.charAt(0)}</span>
               </div>
             )}
             <div className="flex flex-1 flex-col p-8 md:p-10">
-              <span className="eyebrow text-home-accent">{s.n}</span>
-              <h2 className="mt-4 text-2xl md:text-3xl">{s.title}</h2>
+              <h2 className="text-2xl md:text-3xl">{s.title}</h2>
               <p className="mt-3 flex-1 leading-relaxed text-ink/70">{s.short}</p>
               <span className="mt-6 text-sm font-semibold text-forest underline underline-offset-4">
                 Bekijk deze richting
