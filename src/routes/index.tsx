@@ -113,7 +113,7 @@ function Index() {
 
       {/* Herkenning */}
       <Section>
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-24">
           <Reveal className="flex flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream sm:p-10 md:aspect-square md:p-12">
             <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
