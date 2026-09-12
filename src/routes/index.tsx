@@ -113,18 +113,18 @@ function Index() {
 
       {/* Herkenning */}
       <Section>
-        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center">
-          <Reveal>
+        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <Reveal className="flex flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream sm:p-10 md:aspect-square md:p-12">
             <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
               Eén klantvraag, vier keer handwerk
             </h2>
-            <p className="mt-4 leading-relaxed text-ink/70">
+            <p className="mt-4 leading-relaxed text-cream/75">
               Informatie opvragen bij de klant, opties en prijzen bij elkaar zoeken, gegevens
               verwerken in een ander systeem en later nog eens opvolgen. Elk stuk kost weinig tijd.
               Bij elkaar meer dan je denkt.
             </p>
-            <p className="mt-4 leading-relaxed text-ink/70">
+            <p className="mt-4 leading-relaxed text-cream/75">
               Wij besparen onnodig werk door processen slimmer in te richten.
             </p>
           </Reveal>
