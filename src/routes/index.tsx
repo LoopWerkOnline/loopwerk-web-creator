@@ -176,13 +176,13 @@ function Index() {
             We kennen het werk waar de tijd in gaat zitten
           </h2>
         </Reveal>
-        <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2">
+        <div className="mt-12 grid gap-x-12 gap-y-16 sm:grid-cols-2 sm:gap-x-20 sm:gap-y-20">
           {sectors.map((s, i) => (
             <Reveal key={s.slug} delay={Math.min(i, 3) * 0.08}>
               <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
               {s.image ? (
-                <div className="flip-scene mt-5 aspect-[4/3] w-full">
+                <div className="flip-scene mt-5 aspect-[4/3] w-full max-w-md">
                   <div className="flip-inner h-full w-full">
                     <img
                       src={s.image}
