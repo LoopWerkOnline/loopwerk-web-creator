@@ -176,68 +176,34 @@ function Index() {
             We kennen het werk waar de tijd in gaat zitten
           </h2>
         </Reveal>
-        <ul className="mt-10 divide-y divide-line border-y border-line">
+        <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2">
           {sectors.map((s, i) => (
-            <li key={s.slug}>
-              <Reveal delay={Math.min(i, 3) * 0.08}>
-              <div
-                className="group relative grid items-center gap-4 py-7 transition-colors hover:bg-shell md:grid-cols-[1fr_14rem_1fr] md:gap-6 md:px-4"
-              >
-                <h3 className="text-2xl md:text-3xl">{s.title}</h3>
+            <Reveal key={s.slug} delay={Math.min(i, 3) * 0.08}>
+              <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
-                {s.flowLabel && (
-                  <div className="relative hidden h-28 items-center justify-center md:flex">
-                    <svg
-                      className="absolute inset-0 h-full w-full overflow-visible"
-                      viewBox="0 0 200 56"
-                      preserveAspectRatio="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M0,28 C12,12 28,44 44,28 S72,8 96,32 S124,16 148,36 S176,12 200,28"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeDasharray="5 4"
-                        strokeLinecap="round"
-                        className="text-home-accent"
-                      />
-                      <circle cx="0" cy="28" r="3" className="fill-home-accent" />
-                      <circle cx="200" cy="28" r="3" className="fill-home-accent" />
-                    </svg>
-                    <span className="hand relative z-10 max-w-[12rem] rounded-full border border-home-accent/20 bg-cream px-4 py-2 text-center text-base leading-tight text-home-accent shadow-sm">
-                      {s.flowLabel}
-                    </span>
-                  </div>
-                )}
-
-                <div className="w-full md:w-[18rem] md:justify-self-end">
-                  {s.image ? (
-                    <div className="flip-scene h-40 w-full md:h-32">
-                      <div className="flip-inner h-full w-full">
-                        <img
-                          src={s.image}
-                          alt={s.imageAlt ?? s.title}
-                          loading="lazy"
-                          className="flip-face absolute inset-0 h-full w-full rounded-lg object-cover"
-                        />
-                        <div className="flip-face flip-back absolute inset-0 flex flex-col justify-center gap-2 rounded-lg bg-ink-hero p-5">
-                          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-home-accent">
-                            Herkenbaar?
-                          </span>
-                          <p className="text-sm leading-relaxed text-cream/90">{s.seen[0]}</p>
-                        </div>
-                      </div>
+              {s.image ? (
+                <div className="flip-scene mt-5 aspect-[4/3] w-full">
+                  <div className="flip-inner h-full w-full">
+                    <img
+                      src={s.image}
+                      alt={s.imageAlt ?? s.title}
+                      loading="lazy"
+                      className="flip-face absolute inset-0 h-full w-full rounded-2xl object-cover"
+                    />
+                    <div className="flip-face flip-back absolute inset-0 flex flex-col justify-center gap-2 rounded-2xl bg-ink-hero p-6 md:p-8">
+                      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
+                        Herkenbaar?
+                      </span>
+                      <p className="text-base leading-relaxed text-cream/90">{s.seen[0]}</p>
                     </div>
-                  ) : (
-                    <p className="text-base leading-relaxed text-ink/70">{s.short}</p>
-                  )}
+                  </div>
                 </div>
-              </div>
-              </Reveal>
-            </li>
+              ) : (
+                <p className="mt-5 text-base leading-relaxed text-ink/70">{s.short}</p>
+              )}
+            </Reveal>
           ))}
-        </ul>
+        </div>
       </Section>
 
 
