@@ -259,7 +259,7 @@ export const sectors: Sector[] = [
     intro:
       "Veel vragen zijn variaties op dezelfde vraag: wat kost dit bij deze afname, onder welke voorwaarden en wanneer is het er?",
     seen: [
-      "Prijsafspraken per klant die per mail worden nagezocht.",
+      "Bij veel orders worden dezelfde controles steeds opnieuw gedaan: prijs, voorraad, korting, levertijd en klantafspraken. Als die informatie al beschikbaar is, hoeft een medewerker die niet iedere keer handmatig bij elkaar te zoeken.",
       "Orders die vanuit mail worden overgetypt.",
       "Voorraad- en levertijdvragen die telkens terugkomen.",
     ],
@@ -281,7 +281,7 @@ export const sectors: Sector[] = [
     intro:
       "Van opbouw tot uitvoering: de keuzes liggen vast, maar het samenstellen en doorrekenen gebeurt nog met de hand.",
     seen: [
-      "Configuraties die per aanvraag opnieuw worden uitgeschreven.",
+      "In transport verandert de planning voortdurend. Zodra informatie verspreid staat over mail, Excel en verschillende systemen, ontstaat veel handmatig afstemwerk. Juist daar kunnen koppelingen en automatisering rust brengen.",
       "Specificaties die per mail heen en weer gaan.",
       "Administratieve opvolging na de opdracht.",
     ],
