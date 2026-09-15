@@ -194,7 +194,7 @@ function Index() {
                       <span className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
                         Herkenbaar?
                       </span>
-                      <p className="text-base leading-relaxed text-cream/90">{s.seen[0]}</p>
+                      <p className="text-sm leading-snug text-cream/90 md:text-base md:leading-relaxed">{s.seen[0]}</p>
                     </div>
                   </div>
                 </div>

@@ -214,7 +214,7 @@ export const sectors: Sector[] = [
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
     seen: [
-      "Aanvragen zonder maten, foto's of situatieschets.",
+      "Veel tijd verdwijnt niet op de bouwplaats, maar ervoor en erna. Denk aan opnames verwerken, materiaal berekenen, werkbonnen bijhouden en administratie achteraf. Juist daar liggen vaak simpele kansen om werk weg te automatiseren.",
       "Calculaties in een spreadsheet die per project wordt gekopieerd.",
       "Planning en administratie die achter de uitvoering aan lopen.",
     ],
@@ -237,7 +237,7 @@ export const sectors: Sector[] = [
     intro:
       "Een aanvraag is pas te beoordelen als de technische uitgangspunten kloppen. Dat uitvragen kost engineeringtijd die je liever aan het werk zelf besteedt.",
     seen: [
-      "Technische aanvragen die incompleet binnenkomen.",
+      "Hoe meer varianten en uitzonderingen, hoe meer kennis in hoofden en spreadsheets terechtkomt. Configuraties controleren, specificaties verwerken en informatie overzetten kost daardoor onnodig veel technische capaciteit.",
       "Optielijsten met combinaties die elkaar uitsluiten.",
       "Overdracht naar productie of ERP met de hand.",
     ],
