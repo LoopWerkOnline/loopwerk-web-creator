@@ -182,7 +182,7 @@ function Index() {
               <h3 className="text-2xl md:text-3xl">{s.title}</h3>
 
               {s.image ? (
-                <div className="flip-scene mt-5 aspect-[6/5] w-full max-w-md">
+                <div className="flip-scene mt-5 aspect-[3/2] w-full max-w-lg">
                   <div className="flip-inner h-full w-full">
                     <img
                       src={s.image}
