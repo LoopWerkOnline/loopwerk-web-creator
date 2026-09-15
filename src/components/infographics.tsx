@@ -379,22 +379,8 @@ export function SolutionJourney({
   );
 }
 
-/** Sierlijk sterretje naast een icoon, in de accentkleur. */
-function Spark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <path d="M4 4 L8 8" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
-      <path d="M2 12 L7 12" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
-      <path d="M4 20 L8 16" stroke="var(--home-accent)" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 /** Herkenning: klantvraag die in een zigzag via vier stappen wordt afgehandeld. */
 export function RecognitionFlow({ className }: { className?: string }) {
-  const grayBadge = "bg-shell text-ink";
-  const accentBadge = "bg-home-accent text-white";
-
   return (
     <div
       className={`relative aspect-square w-full ${className ?? ""}`}
@@ -418,12 +404,8 @@ export function RecognitionFlow({ className }: { className?: string }) {
         className="absolute flex items-center justify-center gap-3 rounded-full bg-card px-5 shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
         style={{ left: "5%", top: "9%", width: "37%", height: "23%" }}
       >
-        <Spark className="absolute -left-2 -top-3 h-5 w-5" />
         <MessageSquare className="h-7 w-7 shrink-0 text-forest" strokeWidth={1.75} aria-hidden="true" />
         <p className="font-display text-lg text-forest">Klantvraag</p>
-        <span className={`absolute -right-2.5 -top-2.5 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
-          1
-        </span>
       </div>
 
       {/* 2. Info aanvullen */}
@@ -438,9 +420,6 @@ export function RecognitionFlow({ className }: { className?: string }) {
           </span>
         </div>
         <p className="font-display text-base text-forest">Info aanvullen</p>
-        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${grayBadge}`}>
-          2
-        </span>
       </div>
 
       {/* 3. Prijzen zoeken */}
@@ -448,12 +427,8 @@ export function RecognitionFlow({ className }: { className?: string }) {
         className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
         style={{ left: "37%", top: "34%", width: "28%", height: "28%" }}
       >
-        <Spark className="absolute -left-3 bottom-4 h-5 w-5" />
         <Search className="h-6 w-6 text-forest" strokeWidth={1.75} aria-hidden="true" />
         <p className="font-display text-sm text-forest">Prijzen zoeken</p>
-        <span className={`absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${grayBadge}`}>
-          3
-        </span>
       </div>
 
       {/* 4. Gegevens overtypen */}
@@ -463,9 +438,6 @@ export function RecognitionFlow({ className }: { className?: string }) {
       >
         <Copy className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
         <p className="font-display text-base text-forest">Gegevens overtypen</p>
-        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
-          4
-        </span>
       </div>
 
       {/* 5. Opvolgen */}
@@ -473,7 +445,6 @@ export function RecognitionFlow({ className }: { className?: string }) {
         className="absolute flex flex-col items-center justify-center gap-2 rounded-full bg-card text-center shadow-[0_10px_30px_-12px_rgba(20,30,25,0.25)]"
         style={{ left: "60%", top: "60%", width: "32%", height: "32%" }}
       >
-        <Spark className="absolute right-8 -top-4 h-5 w-5" />
         <div className="relative">
           <Calendar className="h-7 w-7 text-forest" strokeWidth={1.75} aria-hidden="true" />
           <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-home-accent">
@@ -481,9 +452,6 @@ export function RecognitionFlow({ className }: { className?: string }) {
           </span>
         </div>
         <p className="font-display text-base text-forest">Opvolgen</p>
-        <span className={`absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${accentBadge}`}>
-          5
-        </span>
       </div>
     </div>
   );
