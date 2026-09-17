@@ -70,16 +70,16 @@ function Index() {
             </p>
             <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: "0.24s" }}>
               <Link
-                to="/contact"
+                to="/scan"
                 className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Bespreek je proces
+                Doe de scan (4 min) →
               </Link>
               <Link
-                to="/cases/sspw-zwembadconfigurator"
+                to="/contact"
                 className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
               >
-                Bekijk een echte tool
+                Bespreek je proces
               </Link>
             </div>
           </div>

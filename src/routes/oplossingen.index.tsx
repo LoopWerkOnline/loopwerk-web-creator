@@ -97,10 +97,16 @@ function OplossingenPage() {
               automatiseren niet de moeite waard, dan zeggen we dat.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="justify-self-start">
+          <Reveal delay={0.1} className="flex flex-wrap justify-self-start gap-3">
+            <Link
+              to="/scan"
+              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Doe de scan (4 min) →
+            </Link>
             <Link
               to="/contact"
-              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
             >
               Bespreek je proces
             </Link>

@@ -140,6 +140,12 @@ function SolutionPage() {
                 <p className="mt-3 leading-relaxed text-ink/75">{solution.firstMonth}</p>
               </div>
             ) : null}
+            {solution.aiNote ? (
+              <div className="mt-6 rounded-xl border border-home-accent/30 p-6">
+                <Eyebrow tone="home-accent">AI, concreet</Eyebrow>
+                <p className="mt-2 text-sm leading-relaxed text-ink/75">{solution.aiNote}</p>
+              </div>
+            ) : null}
           </Reveal>
         </div>
       </Section>
