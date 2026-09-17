@@ -48,23 +48,54 @@ const beliefs = [
 function OverLoopwerk() {
   return (
     <>
-      <Section tone="hero" className="!pb-14">
-        <Reveal>
-          <Eyebrow tone="sage">Over LoopWerk</Eyebrow>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">
-            Wij houden van werk dat <span className="hand text-[1.15em]">vanzelf</span> gaat lopen
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">
-            LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal voor
-            werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens overtypen,
-            opvolgen. Niet spannend, wel waar de tijd in gaat.
-          </p>
-        </Reveal>
-      </Section>
+      <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
+        <img
+          src="/over-loopwerk-hero.jpg"
+          alt="Team dat samen achter laptops aan een project werkt"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+          aria-hidden="true"
+        />
+        <img
+          src="/loopwerk-mark.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-10 -top-10 -z-10 h-56 w-56 opacity-[0.08] brightness-0 invert md:h-72 md:w-72"
+        />
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
+          <div className="max-w-3xl">
+            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+              Over LoopWerk
+            </p>
+            <h1
+              className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl"
+              style={{ animationDelay: "0.08s" }}
+            >
+              Wij houden van werk dat <span className="hand text-[1.15em]">vanzelf</span> gaat lopen
+            </h1>
+            <p
+              className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
+              style={{ animationDelay: "0.16s" }}
+            >
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal voor
+              werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens overtypen,
+              opvolgen. Niet spannend, wel waar de tijd in gaat.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
+            <img src="/loopwerk-mark.png" alt="" aria-hidden="true" className="mb-4 h-10 w-10" />
             <Eyebrow tone="home-accent">De naam</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waarom we dit Loopwerk noemen</h2>
             <p className="mt-5 leading-relaxed text-ink/75">
