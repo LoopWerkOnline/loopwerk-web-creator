@@ -5,12 +5,12 @@ import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { solutions } from "@/lib/content";
 
-type NavItem = { to: "/cases" | "/over-loopwerk" | "/contact"; label: string };
+type NavItem = { to: "/cases" | "/scan" | "/over-loopwerk"; label: string };
 
 const plainNav: NavItem[] = [
   { to: "/cases", label: "Cases" },
+  { to: "/scan", label: "Doe de scan" },
   { to: "/over-loopwerk", label: "Over Ons" },
-  { to: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -132,10 +132,10 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          to="/scan"
+          to="/contact"
           className="hidden shrink-0 rounded-full bg-home-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 lg:block"
         >
-          Doe de scan (4 min)
+          Bespreek je proces
         </Link>
 
         <button
@@ -173,6 +173,13 @@ export function SiteHeader() {
               Cases
             </Link>
             <Link
+              to="/scan"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Doe de scan
+            </Link>
+            <Link
               to="/over-loopwerk"
               onClick={closeMenu}
               className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
@@ -182,16 +189,9 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={closeMenu}
-              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
-            >
-              Contact
-            </Link>
-            <Link
-              to="/scan"
-              onClick={closeMenu}
               className="mt-2 rounded-full bg-home-accent px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Doe de scan (4 min)
+              Bespreek je proces
             </Link>
           </nav>
         </div>

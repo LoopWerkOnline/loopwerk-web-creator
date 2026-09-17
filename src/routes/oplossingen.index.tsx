@@ -99,16 +99,16 @@ function OplossingenPage() {
           </Reveal>
           <Reveal delay={0.1} className="flex flex-wrap justify-self-start gap-3">
             <Link
-              to="/scan"
+              to="/contact"
               className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Doe de scan (4 min) →
+              Bespreek je proces
             </Link>
             <Link
-              to="/contact"
+              to="/scan"
               className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
             >
-              Bespreek je proces
+              Doe de scan (4 min) →
             </Link>
           </Reveal>
         </div>
