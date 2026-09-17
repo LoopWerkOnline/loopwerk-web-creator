@@ -4,6 +4,22 @@ import { Section, Eyebrow } from "@/components/Section";
 import { ThreePillars } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 
+/** Kleine tandwiel-lijntekening, in de stijl van de overige infographics. */
+function GearMark({ className }: { className?: string }) {
+  const teeth = [0, 45, 90, 135, 180, 225, 270, 315];
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        {teeth.map((deg) => (
+          <line key={deg} x1="32" y1="3" x2="32" y2="19" transform={`rotate(${deg} 32 32)`} />
+        ))}
+        <circle cx="32" cy="32" r="17" />
+        <circle cx="32" cy="32" r="5" fill="currentColor" stroke="none" />
+      </g>
+    </svg>
+  );
+}
+
 const title = "Over LoopWerk | praktische tools voor Nederlandse bedrijven";
 const description =
   "LoopWerk bouwt digitale tools en automatiseringen die aansluiten op hoe bedrijven echt werken. Nuchter, concreet en gericht op werk dat elke week terugkomt.";
@@ -21,6 +37,34 @@ export const Route = createFileRoute("/over-loopwerk")({
   }),
   component: OverLoopwerk,
 });
+
+/**
+ * Quotes zijn nog placeholders — nog geen echte, door henzelf goedgekeurde
+ * uitspraken. Vervangen zodra Levi/Gianni/Shaquil hun eigen zin aanleveren.
+ */
+const team = [
+  {
+    name: "Levi Kempen",
+    initials: "LK",
+    role: "Mede-oprichter",
+    color: "var(--forest)",
+    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+  },
+  {
+    name: "Gianni Geurtjens",
+    initials: "GG",
+    role: "Mede-oprichter",
+    color: "var(--home-accent)",
+    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+  },
+  {
+    name: "Shaquil Reyes",
+    initials: "SR",
+    role: "Mede-oprichter",
+    color: "var(--ink-hero)",
+    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+  },
+];
 
 const beliefs = [
   {
@@ -95,20 +139,22 @@ function OverLoopwerk() {
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
-            <img src="/loopwerk-mark.png" alt="" aria-hidden="true" className="mb-4 h-10 w-10" />
+            <GearMark className="h-11 w-11 text-forest" />
             <Eyebrow tone="home-accent">De naam</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waarom we dit Loopwerk noemen</h2>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Het mechanisme dat blijft draaien</h2>
+            <div className="mt-6 rounded-xl border border-line bg-shell p-6">
+              <p className="font-display text-2xl text-ink">loop·werk</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
+                zelfstandig naamwoord · het
+              </p>
+              <p className="mt-4 italic leading-relaxed text-ink/75">
+                Het mechanisme dat een klok laat lopen: de tandwielen en veren die er samen voor
+                zorgen dat hij vanzelf blijft draaien.
+              </p>
+            </div>
             <p className="mt-5 leading-relaxed text-ink/75">
-              Een <em>loop</em> is in software het stukje code dat exact hetzelfde blijft herhalen —
-              tot iemand het stopzet. Terugkerend werk in een bedrijf is precies dat: dezelfde stappen,
-              iedere week opnieuw, meestal door iemand die het net zo goed aan een systeem had kunnen
-              overlaten.
-            </p>
-            <p className="mt-4 leading-relaxed text-ink/75">
-              Denk aan Sisyfus, die zijn steen voor eeuwig de berg op moest duwen — herkenbaar voor
-              iedereen die weleens hetzelfde formulier voor de tiende keer moest invullen. Bij Loopwerk
-              hoeft niemand die steen zelf te blijven duwen: we halen de loop eruit bij de mens, en
-              zetten 'm neer waar hij hoort — bij software die het niet beu wordt.
+              Dat is precies wat wij bouwen — alleen dan voor jullie proces: het mechanisme dat blijft
+              draaien zonder dat iemand het iedere keer met de hand hoeft op te winden.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -117,13 +163,10 @@ function OverLoopwerk() {
             <p className="mt-5 leading-relaxed text-ink/75">
               We werkten zelf bij bedrijven waar het steeds op hetzelfde vastliep: een aanvraag die
               drie keer werd overgetypt, een prijs die telkens opnieuw werd uitgezocht, een klant die
-              per ongeluk niet meer werd opgevolgd. Niet omdat er slecht werk werd geleverd — omdat het
-              proces zelf in de weg zat.
-            </p>
-            <p className="mt-4 leading-relaxed text-ink/75">
-              Alle tijd die daarin verdween, ging niet naar het werk waar een bedrijf écht goed in is.
-              Dat was frustrerend genoeg om zelf iets te bouwen dat die loop doorbreekt. Vandaar
-              Loopwerk.
+              per ongeluk niet meer werd opgevolgd — niet omdat er slecht werk werd geleverd, maar
+              omdat het proces zelf in de weg zat. Alle tijd die daarin verdween, ging niet naar het
+              werk waar een bedrijf écht goed in is. Dat was frustrerend genoeg om zelf iets te bouwen
+              dat die loop doorbreekt. Vandaar Loopwerk.
             </p>
           </Reveal>
         </div>
@@ -174,6 +217,42 @@ function OverLoopwerk() {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </Section>
+
+      <Section tone="shell">
+        <Reveal>
+          <Eyebrow tone="home-accent">Het team</Eyebrow>
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+            Drie mensen, geen tussenlaag
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          {team.map((member, i) => (
+            <Reveal key={member.name} delay={i * 0.08}>
+              <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
+                <div className="flip-inner h-full w-full">
+                  <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
+                    <span
+                      className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
+                      style={{ backgroundColor: member.color }}
+                      aria-hidden="true"
+                    >
+                      {member.initials}
+                    </span>
+                    <div>
+                      <p className="font-display text-xl text-ink">{member.name}</p>
+                      <p className="mt-1 text-sm text-ink/55">{member.role}</p>
+                    </div>
+                  </div>
+                  <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
+                    <p className="hand text-xl leading-snug text-cream">"{member.quote}"</p>
+                    <p className="text-xs uppercase tracking-[0.14em] text-sage">{member.name}</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
