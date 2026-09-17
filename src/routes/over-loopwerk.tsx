@@ -63,6 +63,42 @@ function OverLoopwerk() {
       </Section>
 
       <Section>
+        <div className="grid gap-14 md:grid-cols-2">
+          <Reveal>
+            <Eyebrow tone="home-accent">De naam</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waarom we dit Loopwerk noemen</h2>
+            <p className="mt-5 leading-relaxed text-ink/75">
+              Een <em>loop</em> is in software het stukje code dat exact hetzelfde blijft herhalen —
+              tot iemand het stopzet. Terugkerend werk in een bedrijf is precies dat: dezelfde stappen,
+              iedere week opnieuw, meestal door iemand die het net zo goed aan een systeem had kunnen
+              overlaten.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink/75">
+              Denk aan Sisyfus, die zijn steen voor eeuwig de berg op moest duwen — herkenbaar voor
+              iedereen die weleens hetzelfde formulier voor de tiende keer moest invullen. Bij Loopwerk
+              hoeft niemand die steen zelf te blijven duwen: we halen de loop eruit bij de mens, en
+              zetten 'm neer waar hij hoort — bij software die het niet beu wordt.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Eyebrow tone="home-accent">Hoe het begon</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Ontstaan uit eigen frustratie</h2>
+            <p className="mt-5 leading-relaxed text-ink/75">
+              We werkten zelf bij bedrijven waar het steeds op hetzelfde vastliep: een aanvraag die
+              drie keer werd overgetypt, een prijs die telkens opnieuw werd uitgezocht, een klant die
+              per ongeluk niet meer werd opgevolgd. Niet omdat er slecht werk werd geleverd — omdat het
+              proces zelf in de weg zat.
+            </p>
+            <p className="mt-4 leading-relaxed text-ink/75">
+              Alle tijd die daarin verdween, ging niet naar het werk waar een bedrijf écht goed in is.
+              Dat was frustrerend genoeg om zelf iets te bouwen dat die loop doorbreekt. Vandaar
+              Loopwerk.
+            </p>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section tone="shell">
         <div className="grid gap-14 md:grid-cols-[1.1fr_1fr] md:items-center">
           <div>
             <Reveal>
@@ -83,7 +119,7 @@ function OverLoopwerk() {
         </div>
       </Section>
 
-      <Section tone="shell">
+      <Section>
         <div className="grid gap-12 md:grid-cols-2">
           <Reveal>
             <Eyebrow>Hoe we zijn in samenwerking</Eyebrow>

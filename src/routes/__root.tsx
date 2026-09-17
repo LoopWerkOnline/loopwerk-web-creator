@@ -111,11 +111,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "LoopWerk",
+  url: "https://www.loopwerkonline.nl",
+  description:
+    "LoopWerk bouwt praktische digitale tools en automatiseringen voor Nederlandse bedrijven.",
+  email: "info@loopwerkonline.nl",
+  areaServed: "NL",
+};
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="nl">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body>
         {children}
