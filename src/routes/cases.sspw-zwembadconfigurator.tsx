@@ -95,7 +95,7 @@ function CaseSSPW() {
       </Section>
 
       <Section tone="shell">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
           <Reveal>
             <Eyebrow>De uitdaging</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
@@ -113,12 +113,12 @@ function CaseSSPW() {
               klant grotendeels zelf doorlopen, mits je hem goed door de keuzes leidt.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="lg:mt-[7.3125rem]">
-            <figure className="overflow-hidden rounded-xl border border-line">
+          <Reveal delay={0.1} className="lg:mt-[2.3125rem]">
+            <figure className="overflow-hidden rounded-xl border border-line lg:h-full">
               <img
                 src={sspwZwembad}
-                alt="Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld"
-                className="block aspect-video w-full object-cover"
+                alt="Luchtfoto van een vrijstaande villa met rieten kap, terras en zwembad, project van Sun Sauna & Poolworld"
+                className="block aspect-video w-full object-cover lg:aspect-auto lg:h-full"
                 loading="lazy"
               />
             </figure>
