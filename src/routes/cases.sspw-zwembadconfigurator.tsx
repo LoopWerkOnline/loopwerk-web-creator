@@ -204,16 +204,16 @@ function CaseSSPW() {
               ))}
             </ul>
           </Reveal>
+          <Reveal delay={0.2} className="mt-10 rounded-2xl border border-line bg-shell p-8 md:p-10">
+            <p className="hand text-3xl leading-snug text-forest md:text-4xl">
+              Een configurator vervangt het vakgesprek niet.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink/70">
+              Een zwembad blijft maatwerk en de definitieve prijs komt van SSPW zelf. Wat de tool doet,
+              is de eerste ronde uitvragen overnemen zodat het gesprek daarna verder begint.
+            </p>
+          </Reveal>
         </div>
-        <Reveal delay={0.2} className="mt-10 max-w-2xl rounded-2xl border border-line bg-shell p-8 md:p-10">
-          <p className="hand text-3xl leading-snug text-forest md:text-4xl">
-            Een configurator vervangt het vakgesprek niet.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-ink/70">
-            Een zwembad blijft maatwerk en de definitieve prijs komt van SSPW zelf. Wat de tool doet,
-            is de eerste ronde uitvragen overnemen zodat het gesprek daarna verder begint.
-          </p>
-        </Reveal>
       </Section>
 
       <Section tone="ink">
