@@ -179,20 +179,22 @@ function SolutionPage() {
 
       {solution.featured ? (
         <Section>
-          <Reveal>
-            <Eyebrow>In de praktijk</Eyebrow>
-            <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
-              De zwembadconfigurator die we voor SSPW bouwden
-            </h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
-              Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet wat
-              inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een vastgelegde
-              lead.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <ConfiguratorFlow className="mt-10 w-full max-w-3xl" />
-          </Reveal>
+          <div className="grid gap-12 md:grid-cols-[1.3fr_auto] md:items-start md:gap-16">
+            <Reveal>
+              <Eyebrow>In de praktijk</Eyebrow>
+              <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
+                De zwembadconfigurator die we voor SSPW bouwden
+              </h2>
+              <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
+                Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet wat
+                inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een vastgelegde
+                lead.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1} className="justify-self-center md:justify-self-end">
+              <ConfiguratorFlow layout="vertical" className="w-44 sm:w-48" />
+            </Reveal>
+          </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <Reveal><BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1: Formaat" /></Reveal>
             <Reveal delay={0.08}><BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2: Uitvoering" /></Reveal>

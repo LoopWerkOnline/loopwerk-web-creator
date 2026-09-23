@@ -81,8 +81,59 @@ export function FocusVsChaos({ className, tone = "light", accent = copper }: { c
 }
 
 /** Flow: aanvraag -> configurator -> conceptofferte + lead. */
-export function ConfiguratorFlow({ className }: { className?: string }) {
+export function ConfiguratorFlow({
+  className,
+  layout = "horizontal",
+}: {
+  className?: string;
+  layout?: "horizontal" | "vertical";
+}) {
   const steps = ["Formaat", "Uitvoering", "Prijsindicatie"];
+
+  if (layout === "vertical") {
+    const gap = 150;
+    const cx = 100;
+    const firstCy = 70;
+    return (
+      <svg
+        viewBox="0 0 200 630"
+        className={className}
+        role="img"
+        aria-label="Flow van de zwembadconfigurator in drie stappen naar conceptofferte en lead"
+      >
+        <line x1={cx} y1={firstCy} x2={cx} y2={firstCy + 3 * gap} stroke={sage} strokeWidth="2" strokeDasharray="6 8" />
+        {steps.map((s, i) => {
+          const cy = firstCy + i * gap;
+          return (
+            <g key={s}>
+              <circle cx={cx} cy={cy} r="32" fill="none" stroke={forest} strokeWidth="2" />
+              <text x={cx} y={cy + 7} textAnchor="middle" fontSize="20" fill={forest} fontFamily="var(--font-display)">
+                {i + 1}
+              </text>
+              <text x={cx} y={cy + 58} textAnchor="middle" fontSize="15" fill={ink}>
+                {s}
+              </text>
+            </g>
+          );
+        })}
+        <circle cx={cx} cy={firstCy + 3 * gap} r="32" fill={copper} />
+        <path
+          d={`M${cx - 10} ${firstCy + 3 * gap} l7 8 14 -16`}
+          fill="none"
+          stroke="#fff"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <text x={cx} y={firstCy + 3 * gap + 58} textAnchor="middle" fontSize="15" fill={ink}>
+          Conceptofferte
+        </text>
+        <text x={cx} y={firstCy + 3 * gap + 78} textAnchor="middle" fontSize="12" fill={ink} opacity="0.6">
+          + lead opgeslagen
+        </text>
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 720 220" className={className} role="img" aria-label="Flow van de zwembadconfigurator in drie stappen naar conceptofferte en lead">
       <line x1="60" y1="70" x2="660" y2="70" stroke={sage} strokeWidth="2" strokeDasharray="6 8" />
