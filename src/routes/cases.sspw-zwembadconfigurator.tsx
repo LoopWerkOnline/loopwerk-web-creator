@@ -143,7 +143,7 @@ function CaseSSPW() {
       <Section tone="ink">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
           <Reveal>
-            <Eyebrow tone="sage">De aanpak</Eyebrow>
+            <Eyebrow tone="home-accent">De aanpak</Eyebrow>
             <h2 className="mt-5 text-4xl leading-tight md:text-5xl">
               Van eerste idee naar complete aanvraag
             </h2>
@@ -162,7 +162,7 @@ function CaseSSPW() {
                 href={configuratorUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex rounded-full bg-cream px-7 py-3.5 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+                className="inline-flex rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Doorloop de configurator zelf
               </a>
