@@ -117,8 +117,8 @@ function ScanPage() {
           </div>
         </div>
 
-        <div className="order-1 flex w-full flex-col justify-center bg-ink-hero px-5 py-16 text-cream md:order-2 md:w-2/5 md:px-10 md:py-20">
-          <div className="mx-auto w-full max-w-sm">
+        <div className="order-1 flex w-full flex-col justify-center bg-cream px-5 py-16 md:order-2 md:w-2/5 md:px-10 md:py-20">
+          <div className="mx-auto flex w-full max-w-sm flex-col justify-center rounded-2xl bg-ink-hero p-8 text-cream md:h-[522px] md:p-10">
             <Eyebrow tone="sage">Voorbeeld van een uitkomst</Eyebrow>
             <LoopMotif activePhase={4} variant="inline" className="mx-auto mt-8 w-full max-w-xs" />
             <p className="mt-8 text-2xl leading-snug text-cream md:text-3xl">Aanvragen &amp; calculaties</p>
