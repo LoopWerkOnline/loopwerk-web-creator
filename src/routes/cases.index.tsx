@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Section, Eyebrow } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { CaseCard } from "@/components/CaseCard";
 import { Reveal } from "@/components/Reveal";
 import { cases } from "@/lib/cases";
@@ -24,17 +24,38 @@ export const Route = createFileRoute("/cases/")({
 function Cases() {
   return (
     <>
-      <Section tone="hero">
-        <Reveal>
-          <Eyebrow tone="sage">Cases</Eyebrow>
-          <h1 className="mt-6 max-w-3xl text-5xl leading-[1.08] md:text-6xl">
-            Werk dat je kunt <span className="hand text-[1.1em]">openklikken</span>
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
-            Wij laten liever zien wat er draait dan wat wij zouden kunnen.
-          </p>
-        </Reveal>
-      </Section>
+      <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
+        <img
+          src="/cases/hero-cases.jpg"
+          alt="Silhouet van een man die een trap afloopt in een gebouw met glazen gevel"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
+          <div className="max-w-3xl">
+            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+              Cases
+            </p>
+            <h1 className="fade-up mt-6 text-5xl leading-[1.08] md:text-6xl" style={{ animationDelay: "0.08s" }}>
+              Werk dat je kunt <span className="hand text-[1.1em]">openklikken</span>
+            </h1>
+            <p
+              className="fade-up mt-7 max-w-2xl text-lg leading-relaxed text-cream/75"
+              style={{ animationDelay: "0.16s" }}
+            >
+              Wij laten liever zien wat er draait dan wat wij zouden kunnen.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <Section tone="shell" className="!pt-0 md:!pt-0">
         <div className="space-y-8">
