@@ -54,38 +54,44 @@ function CaseSSPW() {
   return (
     <>
       <Section tone="hero">
-        <Reveal>
-          <img src="/cases/sspw-logo.png" alt="Logo van Sun Sauna & Poolworld" className="h-24 w-auto rounded-xl md:h-28" />
-          <div className="mt-6">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_auto] md:items-start md:gap-16">
+          <Reveal>
             <Eyebrow tone="sage">Case · Sun Sauna &amp; Poolworld</Eyebrow>
-          </div>
-          <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-            Hoe Sun Sauna &amp; Poolworld het <span className="hand text-[1.1em]">prijsgesprek</span> naar
-            voren haalde
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
-            Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
-            zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de
-            uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in
-            gedachten had.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href={configuratorUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              Probeer de configurator
-            </a>
-            <Link
-              to="/contact"
-              className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
-            >
-              Bespreek je proces
-            </Link>
-          </div>
-        </Reveal>
+            <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
+              Hoe Sun Sauna &amp; Poolworld het <span className="hand text-[1.1em]">prijsgesprek</span> naar
+              voren haalde
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
+              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een
+              zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de
+              uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in
+              gedachten had.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a
+                href={configuratorUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Probeer de configurator
+              </a>
+              <Link
+                to="/contact"
+                className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
+              >
+                Bespreek je proces
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="justify-self-center md:mt-[2.625rem] md:justify-self-end">
+            <img
+              src="/cases/sspw-logo.png"
+              alt="Logo van Sun Sauna & Poolworld"
+              className="h-32 w-auto rounded-xl md:h-36"
+            />
+          </Reveal>
+        </div>
       </Section>
 
       <Section tone="shell">
