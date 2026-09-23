@@ -113,7 +113,7 @@ function CaseSSPW() {
               klant grotendeels zelf doorlopen, mits je hem goed door de keuzes leidt.
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="lg:mt-[7.3125rem]">
             <figure className="overflow-hidden rounded-xl border border-line">
               <img
                 src={sspwZwembad}
