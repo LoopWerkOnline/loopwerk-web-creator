@@ -103,21 +103,21 @@ function SolutionPage() {
 
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
-          <Reveal>
+          <Reveal className="rounded-2xl bg-ink-hero p-8 text-cream md:p-10">
             {solution.check ? (
               <>
                 <Eyebrow tone="home-accent">Herken je dit bij jullie?</Eyebrow>
-                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                <p className="mt-3 text-sm leading-relaxed text-cream/70">
                   Vink aan wat herkenbaar is. Hoe meer het is, hoe groter de kans dat hier iets te winnen valt.
                 </p>
-                <SolutionCheck check={solution.check} />
+                <SolutionCheck check={solution.check} tone="dark" />
               </>
             ) : (
               <>
                 <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
                 <ul className="mt-6 space-y-4">
                   {solution.signals.map((s) => (
-                    <li key={s} className="flex gap-3 leading-relaxed text-ink/80">
+                    <li key={s} className="flex gap-3 leading-relaxed text-cream/85">
                       <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" aria-hidden="true" />
                       {s}
                     </li>

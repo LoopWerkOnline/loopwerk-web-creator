@@ -18,6 +18,7 @@ export function ChoiceTiles({
   allowOther,
   otherValue,
   onOtherChange,
+  tone = "light",
 }: {
   options: ChoiceOption[];
   multi?: boolean | undefined;
@@ -28,6 +29,7 @@ export function ChoiceTiles({
   allowOther?: boolean | undefined;
   otherValue?: string | undefined;
   onOtherChange?: ((value: string) => void) | undefined;
+  tone?: "light" | "dark";
 }) {
   const [showOther, setShowOther] = useState(Boolean(otherValue));
 
@@ -54,12 +56,18 @@ export function ChoiceTiles({
             onClick={() => handleClick(o.value)}
             className={`flex items-center justify-between gap-3 rounded-xl border px-5 py-4 text-left text-base transition-all duration-200 ${
               active
-                ? "border-ink-hero bg-ink-hero text-cream"
-                : "border-line bg-cream text-ink/80 hover:-translate-y-1 hover:border-home-accent/50 hover:bg-shell hover:shadow-lg"
+                ? tone === "dark"
+                  ? "border-home-accent bg-home-accent text-white"
+                  : "border-ink-hero bg-ink-hero text-cream"
+                : tone === "dark"
+                  ? "border-cream/25 bg-cream/5 text-cream/85 hover:-translate-y-1 hover:border-home-accent/60 hover:bg-cream/10 hover:shadow-lg"
+                  : "border-line bg-cream text-ink/80 hover:-translate-y-1 hover:border-home-accent/50 hover:bg-shell hover:shadow-lg"
             } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
           >
             <span>{o.label}</span>
-            {active ? <Check className="h-4 w-4 shrink-0 text-home-accent" aria-hidden="true" /> : null}
+            {active ? (
+              <Check className={`h-4 w-4 shrink-0 ${tone === "dark" ? "text-white" : "text-home-accent"}`} aria-hidden="true" />
+            ) : null}
           </button>
         );
       })}

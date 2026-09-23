@@ -9,7 +9,7 @@ import type { SolutionCheck as SolutionCheckData } from "@/lib/content";
  * van de Scan), een live duidingszin, en vanaf 1 aangevinkt een link naar een
  * voorgevulde Scan. Vervangt de statische signals-bullet-list.
  */
-export function SolutionCheck({ check }: { check: SolutionCheckData }) {
+export function SolutionCheck({ check, tone = "light" }: { check: SolutionCheckData; tone?: "light" | "dark" }) {
   const [checked, setChecked] = useState<string[]>([]);
 
   function toggle(id: string) {
@@ -25,10 +25,14 @@ export function SolutionCheck({ check }: { check: SolutionCheckData }) {
         multi
         selected={checked}
         onToggle={toggle}
+        tone={tone}
       />
 
       {readout ? (
-        <p key={checked.length} className="fade-up mt-6 text-sm leading-relaxed text-ink/70">
+        <p
+          key={checked.length}
+          className={`fade-up mt-6 text-sm leading-relaxed ${tone === "dark" ? "text-cream/80" : "text-ink/70"}`}
+        >
           {readout}
         </p>
       ) : null}
