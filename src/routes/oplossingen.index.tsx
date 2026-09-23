@@ -8,7 +8,6 @@ import { solutions } from "@/lib/content";
 const journeySolutions = solutions
   .filter((s) => s.journeyStep !== undefined)
   .sort((a, b) => (a.journeyStep ?? 0) - (b.journeyStep ?? 0));
-const standaloneSolutions = solutions.filter((s) => s.journeyStep === undefined);
 
 const title = "Oplossingen | LoopWerk";
 const description =
@@ -68,24 +67,31 @@ function OplossingenPage() {
       </Section>
 
       <Section tone="shell">
-        {standaloneSolutions.map((s) => (
-          <Reveal key={s.slug}>
-            <div className="grid gap-6 rounded-2xl border border-line bg-cream p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
-              <div>
-                <Eyebrow tone="home-accent">Los daarvan</Eyebrow>
-                <h2 className="mt-4 text-2xl md:text-3xl">{s.title}</h2>
-                <p className="mt-3 max-w-xl leading-relaxed text-ink/70">{s.short}</p>
+        <Reveal>
+          <Eyebrow tone="home-accent">Oplossingen</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-3xl leading-tight md:text-4xl">
+            Alle oplossingen op een rij
+          </h2>
+        </Reveal>
+        <div className="mt-10 flex flex-col gap-6">
+          {solutions.map((s, i) => (
+            <Reveal key={s.slug} delay={Math.min(i, 3) * 0.06}>
+              <div className="grid gap-6 rounded-2xl border border-line bg-cream p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
+                <div>
+                  <h3 className="text-2xl md:text-3xl">{s.title}</h3>
+                  <p className="mt-3 max-w-xl leading-relaxed text-ink/70">{s.short}</p>
+                </div>
+                <Link
+                  to="/oplossingen/$slug"
+                  params={{ slug: s.slug }}
+                  className="inline-flex justify-self-start rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-shell md:justify-self-end"
+                >
+                  Bekijk deze oplossing →
+                </Link>
               </div>
-              <Link
-                to="/oplossingen/$slug"
-                params={{ slug: s.slug }}
-                className="inline-flex justify-self-start rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-shell md:justify-self-end"
-              >
-                Bekijk deze oplossing →
-              </Link>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       <Section tone="ink">
