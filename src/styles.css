@@ -136,6 +136,9 @@
   font-weight: 600;
   color: var(--copper);
   letter-spacing: 0;
+  /* Het cursieve handschrift-lettertype helt naar rechts over en raakt
+     anders het volgende woord, ook als er een spatie in de tekst staat. */
+  margin-right: 0.15em;
 }
 
 @utility flip-scene {

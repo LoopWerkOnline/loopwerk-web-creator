@@ -76,10 +76,10 @@ function Index() {
                 Bespreek je proces
               </Link>
               <Link
-                to="/cases/sspw-zwembadconfigurator"
+                to="/scan"
                 className="rounded-full border border-cream/25 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-cream/10"
               >
-                Bekijk een echte tool
+                Doe de scan (4 min) →
               </Link>
             </div>
           </div>

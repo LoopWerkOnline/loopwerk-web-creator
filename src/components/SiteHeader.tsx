@@ -179,7 +179,6 @@ export function SiteHeader() {
             >
               Doe de scan
             </Link>
-
             <Link
               to="/over-loopwerk"
               onClick={closeMenu}

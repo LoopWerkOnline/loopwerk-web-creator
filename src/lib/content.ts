@@ -30,6 +30,8 @@ export type Solution = {
   custom: string[];
   /** Specifieke aanpak voor déze oplossing (i.p.v. een generieke alinea). */
   approach?: string;
+  /** Eerlijk en concreet: waar AI wel of juist niet in deze oplossing zit. Geen AI-hype, wel specifiek. */
+  aiNote?: string;
   /** Interactieve zelf-check i.p.v. de statische signals-bullets. */
   check?: SolutionCheck;
   /** Concrete, bescheiden scope-belofte voor de eerste maand. Geen resultaatclaim. */
@@ -70,6 +72,8 @@ export const solutions: Solution[] = [
     ],
     approach:
       "Dit zetten we voor jullie op: een stapsgewijze keuzeflow, een rekenmodel met staffels en toeslagen, een automatische conceptofferte. Jullie producten, prijzen en regels bepalen de precieze invulling.",
+    aiNote:
+      "Hier zit bewust geen AI in: vaste rekenregels voor prijzen en opties werken sneller en voorspelbaarder dan een taalmodel dat ernaar moet raden.",
     journeyStep: 2,
     featured: true,
     image: "/oplossingen/opl-1.jpg",
@@ -99,6 +103,8 @@ export const solutions: Solution[] = [
     ],
     approach:
       "Dit bouwen we voor jullie: een aanvraagformulier dat meebeweegt met eerdere antwoorden, verplichte velden per aanvraagtype, nette bestand- en foto-upload. Welke informatie jullie precies nodig hebben en waar die naartoe moet, werken we samen uit.",
+    aiNote:
+      "Waar AI hier wel inzit: een binnenkomende aanvraag wordt gecheckt op ontbrekende informatie, en het systeem stelt zelf de gerichte vervolgvraag — een medewerker hoeft niet eerst te lezen wat er mist.",
     journeyStep: 1,
     image: "/oplossingen/opl-2.jpg",
     imageAlt: "Materiaalstalen die op een tafel worden uitgelegd",
@@ -127,6 +133,8 @@ export const solutions: Solution[] = [
     ],
     approach:
       "We beginnen bij de systemen die jullie al gebruiken — mail, Excel, het CRM — en leggen vast welk systeem leidend is per soort gegeven. Vanaf dat moment hoeft niemand meer hetzelfde drie keer in te voeren: het komt vanzelf op de juiste plek terecht.",
+    aiNote:
+      "Waar AI hier wel inzit: een ongestructureerde aanvraag (mail, PDF) wordt omgezet in nette velden voor het CRM, in plaats van dat iemand het overtypt.",
     check: {
       items: [
         { id: "drie-systemen", label: "Dezelfde klantgegevens staan in mail, Excel en het CRM — en niet altijd hetzelfde." },
@@ -177,6 +185,8 @@ export const solutions: Solution[] = [
     ],
     approach:
       "Dit richten we voor jullie in: statussen per aanvraag, automatische herinneringen, een overzicht van wat er open staat. Jullie eigen termijnen, eigenaarschap en de toon van de berichten bepalen de laatste invulling.",
+    aiNote:
+      "Waar AI hier wel inzit: een concept-vervolgmail die past bij de situatie wordt automatisch opgesteld; een mens keurt 'm goed voor verzending.",
     journeyStep: 3,
     image: "/oplossingen/opl-5.png",
     imageAlt: "Ondernemer aan de telefoon die aantekeningen maakt achter zijn laptop",
