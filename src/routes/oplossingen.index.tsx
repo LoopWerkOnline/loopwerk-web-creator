@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { BaseAndCustom, SolutionJourney } from "@/components/infographics";
+import { SolutionJourney } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 import { solutions } from "@/lib/content";
 
@@ -30,24 +30,42 @@ export const Route = createFileRoute("/oplossingen/")({
 function OplossingenPage() {
   return (
     <>
-      <Section tone="hero" className="!pb-14">
-        <Reveal>
-          <Eyebrow tone="sage">Oplossingen</Eyebrow>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] md:text-6xl">
-            Bekende problemen, een <span className="hand text-[1.15em]">bestaande</span> richting,
-            jouw invulling
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">
-            We beginnen zelden bij nul. De problemen die we tegenkomen lijken op elkaar: informatie
-            die te laat compleet is, prijzen die handmatig worden opgezocht, gegevens die worden
-            overgetypt. Daar hebben we werkende bouwstenen voor. Wat per bedrijf verschilt, maken we
-            op maat.
-          </p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <BaseAndCustom tone="dark" className="mt-12 w-full max-w-2xl" />
-        </Reveal>
-      </Section>
+      <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
+        <img
+          src="/oplossingen/hero-oplossingen.jpg"
+          alt="Twee mensen die samen aan een laptop werken aan tafel"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
+          <div className="max-w-3xl">
+            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+              Oplossingen
+            </p>
+            <h1 className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl" style={{ animationDelay: "0.08s" }}>
+              Bekende problemen, een <span className="hand text-[1.15em]">bestaande</span> richting,
+              jouw invulling
+            </h1>
+            <p
+              className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
+              style={{ animationDelay: "0.16s" }}
+            >
+              We beginnen zelden bij nul. De problemen die we tegenkomen lijken op elkaar: informatie
+              die te laat compleet is, prijzen die handmatig worden opgezocht, gegevens die worden
+              overgetypt. Daar hebben we werkende bouwstenen voor. Wat per bedrijf verschilt, maken we
+              op maat.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <Section>
         <Reveal>
