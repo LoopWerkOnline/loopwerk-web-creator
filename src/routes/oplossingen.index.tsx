@@ -102,7 +102,7 @@ function OplossingenPage() {
                 <Link
                   to="/oplossingen/$slug"
                   params={{ slug: s.slug }}
-                  className="inline-flex justify-self-start rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-shell md:justify-self-end"
+                  className="inline-flex justify-self-start rounded-full bg-home-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 md:justify-self-end"
                 >
                   Bekijk deze oplossing →
                 </Link>
