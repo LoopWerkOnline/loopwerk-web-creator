@@ -204,7 +204,7 @@ function CaseSSPW() {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.2} className="mt-10 rounded-2xl border border-line bg-shell p-8 md:p-10">
+          <Reveal delay={0.2} className="mt-[2px] rounded-2xl border border-line bg-shell p-8 md:p-10">
             <p className="hand text-3xl leading-snug text-forest md:text-4xl">
               Een configurator vervangt het vakgesprek niet.
             </p>
