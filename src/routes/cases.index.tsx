@@ -27,7 +27,7 @@ function Cases() {
       <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
         <img
           src="/cases/hero-cases.jpg"
-          alt="Silhouet van een man die een trap afloopt in een gebouw met glazen gevel"
+          alt="Mensen die uitkijken over een stadssilhouet vanuit een hoog gebouw"
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
