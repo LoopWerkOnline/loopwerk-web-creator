@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { Logo } from "./Logo";
 import { solutions } from "@/lib/content";
+import { CONSENT_EVENT, trackingConfigured } from "@/lib/tracking";
 
 export function SiteFooter() {
   return (
@@ -22,6 +23,7 @@ export function SiteFooter() {
               {[
                 { to: "/oplossingen", label: "Oplossingen" },
                 { to: "/cases", label: "Cases" },
+                { to: "/blog", label: "Blog" },
                 { to: "/over-loopwerk", label: "Over LoopWerk" },
                 { to: "/contact", label: "Contact" },
               ].map((l) => (
@@ -73,7 +75,24 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-2 border-t border-cream/15 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} LoopWerk</span>
+          <span className="flex flex-wrap gap-x-4 gap-y-1">
+            <span>© {new Date().getFullYear()} LoopWerk</span>
+            <Link to="/privacy" className="hover:text-cream">
+              Privacy
+            </Link>
+            <Link to="/cookies" className="hover:text-cream">
+              Cookies
+            </Link>
+            {trackingConfigured ? (
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))}
+                className="hover:text-cream"
+              >
+                Cookie-instellingen
+              </button>
+            ) : null}
+          </span>
           <span>Terugkerend werk. Geregeld.</span>
         </div>
       </div>

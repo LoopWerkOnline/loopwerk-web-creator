@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { supabase } from "@/integrations/supabase/client";
+import { HoneypotField } from "@/components/HoneypotField";
+import { readHubspotUtk, submitLead } from "@/lib/leads.functions";
 
 const title = "Contact | plan een gesprek met LoopWerk";
 const description =
@@ -30,21 +31,30 @@ function Contact() {
   const { prefill } = Route.useSearch();
   const [status, setStatus] = useState<Status>("idle");
 
+  const startedAt = useRef(Date.now());
+
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     setStatus("sending");
 
-    const { error } = await supabase.from("contact_requests").insert({
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      company: String(data.get("company") ?? "") || null,
-      phone: String(data.get("phone") ?? "") || null,
-      message: String(data.get("message") ?? ""),
-    });
-
-    if (error) {
+    try {
+      await submitLead({
+        data: {
+          kind: "contact",
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          company: String(data.get("company") ?? "") || undefined,
+          phone: String(data.get("phone") ?? "") || undefined,
+          message: String(data.get("message") ?? ""),
+          website: String(data.get("website") ?? "") || undefined,
+          startedAt: startedAt.current,
+          hutk: readHubspotUtk(),
+          pageUri: window.location.href,
+        },
+      });
+    } catch (error) {
       console.error(error);
       setStatus("error");
       return;
@@ -76,7 +86,10 @@ function Contact() {
                 "Concreet advies, ook als wij het niet bouwen",
               ].map((li) => (
                 <li key={li} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" />
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent"
+                  />
                   <span>{li}</span>
                 </li>
               ))}
@@ -84,60 +97,75 @@ function Contact() {
           </Reveal>
 
           <Reveal delay={0.1}>
-          <form onSubmit={onSubmit} className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-ink">Naam *</span>
-                <input name="name" required className={field} placeholder="Je voor- en achternaam" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink">E-mailadres *</span>
-                <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink">Telefoonnummer</span>
-                <input name="phone" className={field} placeholder="06 ..." />
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
-                <input name="company" className={field} />
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  className={field}
-                  defaultValue={prefill}
-                  placeholder="Beschrijf kort jullie proces of het knelpunt."
-                />
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="mt-7 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            <form
+              onSubmit={onSubmit}
+              className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9"
             >
-              {status === "sending" ? "Versturen..." : "Verstuur aanvraag"}
-            </button>
+              <HoneypotField />
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium text-ink">Naam *</span>
+                  <input
+                    name="name"
+                    required
+                    className={field}
+                    placeholder="Je voor- en achternaam"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">E-mailadres *</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className={field}
+                    placeholder="naam@bedrijf.nl"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">Telefoonnummer</span>
+                  <input name="phone" className={field} placeholder="06 ..." />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
+                  <input name="company" className={field} />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    className={field}
+                    defaultValue={prefill}
+                    placeholder="Beschrijf kort jullie proces of het knelpunt."
+                  />
+                </label>
+              </div>
 
-            {status === "sent" ? (
-              <p className="mt-4 text-sm text-forest">
-                Dankjewel, je bericht is binnen. We reageren binnen één werkdag.
-              </p>
-            ) : null}
-            {status === "error" ? (
-              <p className="mt-4 text-sm text-destructive">
-                Er ging iets mis bij het versturen. Probeer het nog eens.
-              </p>
-            ) : null}
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="mt-7 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+              >
+                {status === "sending" ? "Versturen..." : "Verstuur aanvraag"}
+              </button>
 
-            <p className="mt-4 text-xs text-ink/55">
-              Je gegevens gebruiken we alleen om op je aanvraag te reageren.
-            </p>
-          </form>
+              {status === "sent" ? (
+                <p className="mt-4 text-sm text-forest">
+                  Dankjewel, je bericht is binnen. We reageren binnen één werkdag.
+                </p>
+              ) : null}
+              {status === "error" ? (
+                <p className="mt-4 text-sm text-destructive">
+                  Er ging iets mis bij het versturen. Probeer het nog eens.
+                </p>
+              ) : null}
+
+              <p className="mt-4 text-xs text-ink/55">
+                Je gegevens gebruiken we alleen om op je aanvraag te reageren.
+              </p>
+            </form>
           </Reveal>
         </div>
       </Section>

@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
+import { HoneypotField } from "@/components/HoneypotField";
+import { readHubspotUtk, submitLead } from "@/lib/leads.functions";
 import type { Richting } from "@/lib/scan/advice";
-import type { ScanScore } from "@/lib/scan/types";
+import type { ScanAnswers, ScanScore } from "@/lib/scan/types";
 
 import { ScanAdvice } from "./ScanAdvice";
 import { ScanMethodology } from "./ScanMethodology";
@@ -11,10 +13,11 @@ import { ScanMethodology } from "./ScanMethodology";
 /**
  * De gebundelde sectie direct na het scorescherm: twee acties bovenaan
  * (analyse opvragen / gesprek plannen), en pas na het invullen een preview
- * van wat er (in een echte versie) per e-mail zou komen. Prototype: puur
- * visueel, geen POST, geen opslag, geen backend.
+ * van de analyse. Het formulier gaat via submitLead naar Supabase, HubSpot
+ * en een notificatiemail voor het team.
  */
 export function ScanLeadPreview({
+  answers,
   score,
   richting,
   paragraphs,
@@ -22,6 +25,7 @@ export function ScanLeadPreview({
   firstStep,
   contactPrefill,
 }: {
+  answers: ScanAnswers;
   score: ScanScore;
   richting: Richting;
   paragraphs: string[];
@@ -30,11 +34,37 @@ export function ScanLeadPreview({
   contactPrefill: string;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const startedAt = useRef(Date.now());
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const data = new FormData(e.currentTarget);
+    setStatus("sending");
+
+    try {
+      await submitLead({
+        data: {
+          kind: "scan",
+          firstName: String(data.get("firstName") ?? ""),
+          email: String(data.get("email") ?? ""),
+          company: String(data.get("company") ?? "") || undefined,
+          website: String(data.get("website") ?? "") || undefined,
+          answers,
+          score,
+          richting: richting.label,
+          process: answers.process === "anders" ? answers.processOther : answers.process,
+          startedAt: startedAt.current,
+          hutk: readHubspotUtk(),
+          pageUri: window.location.href,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      return;
+    }
+    setStatus("sent");
   }
 
   const field =
@@ -46,8 +76,8 @@ export function ScanLeadPreview({
         <Eyebrow tone="home-accent">Wat wil je met deze uitkomst?</Eyebrow>
         <h2 className="mt-4 text-2xl leading-tight md:text-3xl">Kies wat nu het handigst is</h2>
         <p className="mt-3 text-base leading-relaxed text-ink/70">
-          De volledige analyse — waarom dit kansrijk is, een mogelijke eerste stap en een richting — sturen
-          we je liever toe dan dat je hier eerst een lange tekst doorscrolt.
+          De volledige analyse — waarom dit kansrijk is, een mogelijke eerste stap en een richting —
+          sturen we je liever toe dan dat je hier eerst een lange tekst doorscrolt.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -70,15 +100,16 @@ export function ScanLeadPreview({
 
         {expanded ? (
           <div className="fade-up mt-8 rounded-2xl border border-line bg-card p-7 md:p-9">
-            {!sent ? (
+            {status !== "sent" ? (
               <form onSubmit={onSubmit}>
+                <HoneypotField />
                 <p className="text-sm font-medium text-ink/60">
                   Vul je gegevens in — dan sturen we je de volledige analyse.
                 </p>
                 <div className="mt-5 grid gap-5 sm:grid-cols-2">
                   <label className="block">
                     <span className="text-sm font-medium text-ink">Voornaam</span>
-                    <input name="firstName" className={field} placeholder="Je voornaam" />
+                    <input name="firstName" required className={field} placeholder="Je voornaam" />
                   </label>
                   <label className="block">
                     <span className="text-sm font-medium text-ink">Bedrijf</span>
@@ -86,27 +117,40 @@ export function ScanLeadPreview({
                   </label>
                   <label className="block sm:col-span-2">
                     <span className="text-sm font-medium text-ink">Zakelijk e-mailadres</span>
-                    <input type="email" name="email" className={field} placeholder="naam@bedrijf.nl" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      className={field}
+                      placeholder="naam@bedrijf.nl"
+                    />
                   </label>
                 </div>
                 <button
                   type="submit"
-                  className="mt-6 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
+                  disabled={status === "sending"}
+                  className="mt-6 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60 sm:w-auto"
                 >
-                  Stuur mij mijn analyse
+                  {status === "sending" ? "Versturen..." : "Stuur mij mijn analyse"}
                 </button>
-                <p className="mt-4 text-xs text-ink/45">
-                  Prototype-onderdeel: dit formulier slaat nog niets op en verstuurt nog niets.
+                {status === "error" ? (
+                  <p className="mt-4 text-sm text-destructive">
+                    Er ging iets mis bij het versturen. Probeer het nog eens.
+                  </p>
+                ) : null}
+                <p className="mt-4 text-xs text-ink/55">
+                  Je gegevens gebruiken we alleen om je de analyse te sturen en op je uitkomst te
+                  reageren.
                 </p>
               </form>
             ) : (
               <div className="fade-up">
                 <p className="text-base leading-relaxed text-ink/80">
-                  Dankjewel. (Prototype: dit is nog niet echt verstuurd of opgeslagen — dat koppelen we
-                  later.)
+                  Dankjewel. We hebben je uitkomst ontvangen en sturen je de volledige analyse
+                  binnen één werkdag toe. Hieronder zie je hem alvast.
                 </p>
                 <div className="mt-6 border-t border-line pt-6">
-                  <p className="eyebrow text-ink/40">Dit zouden we (straks) naar je e-mail sturen</p>
+                  <p className="eyebrow text-ink/40">Jouw analyse</p>
                   <div className="mt-4">
                     <ScanAdvice
                       paragraphs={paragraphs}

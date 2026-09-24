@@ -254,6 +254,7 @@ function ScanPage() {
       {isResult && score && richting && paragraphs && judgmentAdvice !== undefined ? (
         <>
           <ScanLeadPreview
+            answers={answers}
             score={score}
             richting={richting}
             paragraphs={paragraphs}

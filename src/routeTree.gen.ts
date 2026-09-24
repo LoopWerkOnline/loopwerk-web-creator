@@ -11,13 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
 import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
@@ -32,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DienstenRoute = DienstenRouteImport.update({
@@ -54,6 +63,11 @@ const OverOnsRoute = OverOnsRouteImport.update({
   path: '/over-ons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
   path: '/scan',
@@ -67,6 +81,16 @@ const SectorenRoute = SectorenRouteImport.update({
 const WerkwijzeRoute = WerkwijzeRouteImport.update({
   id: '/werkwijze',
   path: '/werkwijze',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasesIndexRoute = CasesIndexRouteImport.update({
@@ -99,32 +123,40 @@ const SectorenSplatRoute = SectorenSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog/': typeof BlogIndexRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog': typeof BlogIndexRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
 }
@@ -132,16 +164,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog/': typeof BlogIndexRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
@@ -150,48 +186,60 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog/'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog'
     | '/cases'
     | '/oplossingen'
   id:
     | '__root__'
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog/'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesById: FileRoutesById
@@ -199,15 +247,19 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   DienstenRoute: typeof DienstenRoute
   HoeWeWerkenRoute: typeof HoeWeWerkenRoute
   OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
+  PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
   WerkwijzeRoute: typeof WerkwijzeRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
 }
@@ -226,6 +278,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diensten': {
@@ -256,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverOnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan': {
       id: '/scan'
       path: '/scan'
@@ -275,6 +341,20 @@ declare module '@tanstack/react-router' {
       path: '/werkwijze'
       fullPath: '/werkwijze'
       preLoaderRoute: typeof WerkwijzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases/': {
@@ -330,15 +410,19 @@ const SectorenRouteWithChildren = SectorenRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   DienstenRoute: DienstenRoute,
   HoeWeWerkenRoute: HoeWeWerkenRoute,
   OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,
+  PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
   WerkwijzeRoute: WerkwijzeRoute,
+  BlogSlugRoute: BlogSlugRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
 }

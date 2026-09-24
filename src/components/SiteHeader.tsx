@@ -5,10 +5,11 @@ import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { solutions } from "@/lib/content";
 
-type NavItem = { to: "/cases" | "/scan" | "/over-loopwerk"; label: string };
+type NavItem = { to: "/cases" | "/blog" | "/scan" | "/over-loopwerk"; label: string };
 
 const plainNav: NavItem[] = [
   { to: "/cases", label: "Cases" },
+  { to: "/blog", label: "Blog" },
   { to: "/scan", label: "Doe de scan" },
   { to: "/over-loopwerk", label: "Over Ons" },
 ];
@@ -171,6 +172,13 @@ export function SiteHeader() {
               className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
             >
               Cases
+            </Link>
+            <Link
+              to="/blog"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Blog
             </Link>
             <Link
               to="/scan"
