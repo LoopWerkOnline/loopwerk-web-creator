@@ -63,6 +63,13 @@ export function loadTracking() {
       // eslint-disable-next-line prefer-rest-params
       window.dataLayer!.push(arguments);
     };
+    // Google Consent Mode v2: alleen meten na toestemming, geen advertentiecookies.
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
     window.gtag("js", new Date());
     window.gtag("config", GA4_ID, { anonymize_ip: true });
     addScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`, "ga4");
