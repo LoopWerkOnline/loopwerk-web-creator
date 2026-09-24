@@ -1,15 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
+import { PhotoHero } from "@/components/PhotoHero";
 import { Reveal } from "@/components/Reveal";
 import { Section, Eyebrow } from "@/components/Section";
-import {
-  formatDate,
-  getPost,
-  relatedPosts,
-  type BlogAuthor,
-  type BlogBlock,
-  type BlogPost,
-} from "@/lib/blog";
+import { formatDate, getPost, relatedPosts, type BlogAuthor, type BlogBlock } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -35,6 +30,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: t },
         { property: "og:description", content: post.excerpt },
         { property: "og:type", content: "article" },
+        { property: "og:image", content: `https://www.loopwerkonline.nl${post.image}` },
       ],
       scripts: [
         {
@@ -61,37 +57,17 @@ function PostNotFound() {
     <Section>
       <h1 className="text-4xl">Dit artikel bestaat niet</h1>
       <Link to="/blog" className="mt-6 inline-block text-forest underline underline-offset-4">
-        Terug naar de blog
+        Terug naar de blogs
       </Link>
     </Section>
   );
 }
 
-/** Splitst een item in de eerste zin (vet) en de rest. */
-function leadSentence(text: string): [string, string] {
-  const i = text.search(/[.?!]\s/);
-  return i === -1 ? [text, ""] : [text.slice(0, i + 1), text.slice(i + 2)];
-}
-
-function Title({ post }: { post: BlogPost }) {
-  const at = post.highlight ? post.title.indexOf(post.highlight) : -1;
-  if (!post.highlight || at === -1) return <>{post.title}</>;
-  return (
-    <>
-      {post.title.slice(0, at)}
-      <span className="hand text-[1.1em]">{post.highlight}</span>
-      {post.title.slice(at + post.highlight.length)}
-    </>
-  );
-}
-
-function Avatar({ author, size = "md" }: { author: BlogAuthor; size?: "md" | "lg" }) {
+function Avatar({ author }: { author: BlogAuthor }) {
   return (
     <span
       aria-hidden="true"
-      className={`flex shrink-0 items-center justify-center rounded-full font-semibold text-white ${
-        size === "lg" ? "h-16 w-16 text-xl" : "h-11 w-11 text-sm"
-      }`}
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
       style={{ backgroundColor: author.color }}
     >
       {author.initials}
@@ -99,83 +75,42 @@ function Avatar({ author, size = "md" }: { author: BlogAuthor; size?: "md" | "lg
   );
 }
 
-function Block({ block, first }: { block: BlogBlock; first: boolean }) {
+function PromptBlock({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* Kopiëren niet toegestaan; de tekst blijft selecteerbaar. */
+    }
+  };
+  return (
+    <div className="rounded-2xl border border-line bg-shell p-6 md:p-7">
+      <div className="flex items-center justify-between gap-4">
+        <p className="eyebrow text-forest">Prompt</p>
+        <button
+          type="button"
+          onClick={copy}
+          className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-ink transition-colors hover:bg-cream"
+        >
+          {copied ? "Gekopieerd" : "Kopieer"}
+        </button>
+      </div>
+      <p className="mt-4 text-base leading-relaxed text-ink">{text}</p>
+    </div>
+  );
+}
+
+function Block({ block }: { block: BlogBlock }) {
   switch (block.type) {
     case "p":
-      return first ? (
-        <p className="text-xl leading-relaxed text-ink md:text-2xl md:leading-relaxed">
-          {block.text}
-        </p>
-      ) : (
-        <p className="text-lg leading-relaxed text-ink/80">{block.text}</p>
-      );
+      return <p className="text-lg leading-relaxed text-ink/80">{block.text}</p>;
     case "h2":
-      return <h2 className="pt-10 text-3xl leading-tight md:text-4xl">{block.text}</h2>;
-    case "list":
-      return (
-        <ul className="space-y-3 text-lg leading-relaxed text-ink/80">
-          {block.items.map((item) => (
-            <li key={item} className="flex gap-3">
-              <span
-                aria-hidden="true"
-                className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent"
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      );
-    case "steps":
-      return (
-        <ol className="grid gap-4">
-          {block.items.map((item, i) => {
-            const [lead, rest] = leadSentence(item);
-            return (
-              <li
-                key={item}
-                className="flex gap-5 rounded-2xl border border-line bg-card p-6 md:p-7"
-              >
-                <span className="font-display text-3xl leading-none text-home-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <p className="font-display text-xl leading-snug text-ink">{lead}</p>
-                  {rest ? (
-                    <p className="mt-2 text-base leading-relaxed text-ink/75">{rest}</p>
-                  ) : null}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      );
-    case "quote":
-      return (
-        <blockquote className="hand my-4 border-l-2 border-home-accent py-2 pl-6 text-3xl leading-snug md:text-4xl">
-          {block.text}
-        </blockquote>
-      );
-    case "split":
-      return (
-        <div className="rounded-2xl border border-line bg-shell p-6 md:p-8">
-          <p className="eyebrow text-home-accent">{block.title}</p>
-          <div className="mt-5 grid gap-6 md:grid-cols-2">
-            {[
-              { label: block.machineLabel ?? "Wat het systeem doet", items: block.machine },
-              { label: block.mensLabel ?? "Wat jouw mensen doen", items: block.mens },
-            ].map((col) => (
-              <div key={col.label}>
-                <p className="font-display text-xl text-ink">{col.label}</p>
-                <ul className="mt-3 space-y-2 text-base leading-relaxed text-ink/75">
-                  {col.items.map((item) => (
-                    <li key={item}>– {item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
+      return <h2 className="pt-8 text-3xl leading-tight">{block.text}</h2>;
+    case "prompt":
+      return <PromptBlock text={block.text} />;
   }
 }
 
@@ -185,53 +120,41 @@ function PostPage() {
 
   return (
     <>
-      <Section tone="hero">
-        <Reveal>
-          <Eyebrow tone="sage">Blog · {post.tags.join(" · ")}</Eyebrow>
-          <h1 className="mt-6 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
-            <Title post={post} />
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">{post.excerpt}</p>
-          <div className="mt-9 flex items-center gap-4">
-            <Avatar author={post.author} />
-            <div className="text-sm leading-snug">
-              <p className="font-semibold text-cream">{post.author.name}</p>
-              <p className="text-cream/60">
-                {formatDate(post.date)} · {post.readingMinutes} min lezen
-              </p>
-            </div>
+      <PhotoHero
+        image={post.image}
+        imageAlt={post.imageAlt}
+        eyebrow={post.label}
+        title={post.title}
+      >
+        <div className="flex items-center gap-4">
+          <Avatar author={post.author} />
+          <div className="text-sm leading-snug">
+            <p className="font-semibold text-cream">{post.author.name}</p>
+            <p className="text-cream/65">
+              {formatDate(post.date)} · {post.readingMinutes} min lezen
+            </p>
           </div>
-        </Reveal>
-      </Section>
+        </div>
+      </PhotoHero>
 
       <Section tone="cream">
-        {post.image ? (
-          <Reveal>
-            <img
-              src={post.image}
-              alt={post.imageAlt ?? ""}
-              className="mx-auto mb-16 aspect-[21/9] w-full max-w-5xl rounded-2xl object-cover"
-            />
-          </Reveal>
-        ) : null}
-
-        <article className="mx-auto max-w-3xl space-y-6">
+        <article className="mx-auto max-w-2xl space-y-6">
+          <p className="text-xl leading-relaxed text-ink">{post.excerpt}</p>
           {post.body.map((block, i) => (
-            <Block key={i} block={block} first={i === 0} />
+            <Block key={i} block={block} />
           ))}
         </article>
 
-        <div className="mx-auto mt-16 flex max-w-3xl items-center gap-5 border-t border-line pt-10">
-          <Avatar author={post.author} size="lg" />
-          <div>
-            <p className="eyebrow text-ink/50">Geschreven door</p>
-            <p className="mt-2 font-display text-2xl text-ink">{post.author.name}</p>
-            <p className="text-sm text-ink/60">{post.author.role} van LoopWerk</p>
-          </div>
+        <div className="mx-auto mt-14 flex max-w-2xl items-center gap-4 border-t border-line pt-8">
+          <Avatar author={post.author} />
+          <p className="text-sm text-ink/70">
+            Geschreven door <span className="font-semibold text-ink">{post.author.name}</span>,{" "}
+            {post.author.role.toLowerCase()} van LoopWerk.
+          </p>
         </div>
 
         {related.length ? (
-          <div className="mx-auto mt-16 max-w-3xl">
+          <div className="mx-auto mt-14 max-w-2xl">
             <p className="eyebrow text-ink/50">Lees ook</p>
             <div className="mt-5 grid gap-6 md:grid-cols-2">
               {related.map((p) => (
