@@ -222,19 +222,28 @@ export function ThreePillars({
     {
       label: "Eén concreet knelpunt",
       icon: (
-        <path d="M12 40 h40 a4 4 0 0 0 4 -4 v-22 a4 4 0 0 0 -4 -4 h-18 l-5 -6 h-17 a4 4 0 0 0 -4 4 v28 a4 4 0 0 0 4 4 z" />
+        <>
+          <circle cx="32" cy="32" r="22" />
+          <circle cx="32" cy="32" r="12" />
+          <circle cx="32" cy="32" r="2.5" fill="var(--home-accent)" stroke="none" />
+        </>
       ),
     },
     {
       label: "Eén werkende tool",
-      icon: <path d="M18 8 h28 M18 56 h28 M20 8 c0 14 12 18 12 24 s-12 10 -12 24 M44 8 c0 14 -12 18 -12 24 s12 10 12 24" />,
+      icon: (
+        <>
+          <circle cx="32" cy="32" r="22" />
+          <path d="M22 33 l7 7 15 -15" />
+        </>
+      ),
     },
     {
       label: "Elke maand tijd terug",
       icon: (
         <>
-          <rect x="10" y="14" width="44" height="42" rx="4" />
-          <path d="M10 26 h44 M22 8 v10 M42 8 v10" />
+          <circle cx="32" cy="32" r="22" />
+          <path d="M32 18 v14 l10 6" />
         </>
       ),
     },

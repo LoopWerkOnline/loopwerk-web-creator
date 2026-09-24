@@ -196,7 +196,7 @@ function OverLoopwerk() {
           <Eyebrow tone="home-accent">Onze principes</Eyebrow>
           <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waar we in geloven</h2>
         </Reveal>
-        <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-start">
+        <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_1fr]">
           <div className="grid gap-5 sm:grid-cols-2">
             {beliefs.map((b, i) => (
               <Reveal key={b.title} delay={i * 0.08} className="rounded-2xl border border-line bg-cream p-6">
@@ -205,7 +205,10 @@ function OverLoopwerk() {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.1} className="rounded-3xl bg-ink-hero p-8 text-cream md:p-10">
+          <Reveal
+            delay={0.1}
+            className="flex h-full flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream md:p-10"
+          >
             <Eyebrow tone="home-accent">In de praktijk</Eyebrow>
             <h3 className="mt-4 text-xl leading-snug text-cream md:text-2xl">
               Hoe we dat waarmaken
