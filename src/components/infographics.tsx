@@ -239,7 +239,7 @@ export function ThreePillars({
       ),
     },
     {
-      label: "Elke maand tijd terug",
+      label: "Elke maand tijd winst",
       icon: (
         <>
           <circle cx="32" cy="32" r="22" />
