@@ -26,6 +26,7 @@ Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Op
 - Volgorde in teksten: probleem → wat er nu gebeurt → wat Loopwerk verandert → effect → pas dan techniek.
 - Geen percentages zonder bewijs. Geen "digitale transformatie", "end-to-end", "AI-powered" e.d.
 - CTA's: hoofdknop "Bespreek je proces" → `/contact`; tweede knop "Doe de scan" → `/scan`.
+- **AI in de boodschap:** AI krijgt een grotere rol, maar voorlopig via blogs (`src/lib/blog.ts`), niet via een nieuw AI-blok op de site zonder akkoord van Levi. Altijd concreet: wat AI doet en wat de mens doet; bij prijzen/rekenregels bewust géén AI.
 
 ## Techniek
 

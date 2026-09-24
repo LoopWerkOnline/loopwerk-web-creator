@@ -20,6 +20,8 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
 import { Route as CasesSspwZwembadconfiguratorRouteImport } from './routes/cases.sspw-zwembadconfigurator'
 import { Route as OplossingenIndexRouteImport } from './routes/oplossingen.index'
@@ -81,6 +83,16 @@ const WerkwijzeRoute = WerkwijzeRouteImport.update({
   path: '/werkwijze',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CasesIndexRoute = CasesIndexRouteImport.update({
   id: '/cases/',
   path: '/cases/',
@@ -120,9 +132,11 @@ export interface FileRoutesByFullPath {
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog/': typeof BlogIndexRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
@@ -138,9 +152,11 @@ export interface FileRoutesByTo {
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog': typeof BlogIndexRoute
   '/cases': typeof CasesIndexRoute
   '/oplossingen': typeof OplossingenIndexRoute
 }
@@ -157,9 +173,11 @@ export interface FileRoutesById {
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
   '/sectoren/$': typeof SectorenSplatRoute
+  '/blog/': typeof BlogIndexRoute
   '/cases/': typeof CasesIndexRoute
   '/oplossingen/': typeof OplossingenIndexRoute
 }
@@ -177,9 +195,11 @@ export interface FileRouteTypes {
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog/'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesByTo: FileRoutesByTo
@@ -195,9 +215,11 @@ export interface FileRouteTypes {
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog'
     | '/cases'
     | '/oplossingen'
   id:
@@ -213,9 +235,11 @@ export interface FileRouteTypes {
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
+    | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
     | '/sectoren/$'
+    | '/blog/'
     | '/cases/'
     | '/oplossingen/'
   fileRoutesById: FileRoutesById
@@ -232,8 +256,10 @@ export interface RootRouteChildren {
   ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
   WerkwijzeRoute: typeof WerkwijzeRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   CasesIndexRoute: typeof CasesIndexRoute
   OplossingenIndexRoute: typeof OplossingenIndexRoute
 }
@@ -317,6 +343,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WerkwijzeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cases/': {
       id: '/cases/'
       path: '/cases'
@@ -379,8 +419,10 @@ const rootRouteChildren: RootRouteChildren = {
   ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
   WerkwijzeRoute: WerkwijzeRoute,
+  BlogSlugRoute: BlogSlugRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   CasesIndexRoute: CasesIndexRoute,
   OplossingenIndexRoute: OplossingenIndexRoute,
 }

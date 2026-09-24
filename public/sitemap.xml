@@ -71,4 +71,29 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
+  <url>
+    <loc>https://www.loopwerkonline.nl/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.loopwerkonline.nl/blog/de-aanvraag-is-binnen-waarom-begint-het-werk-dan-pas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.loopwerkonline.nl/blog/wat-ai-wel-en-niet-doet-in-je-offerteproces</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.loopwerkonline.nl/blog/van-losse-mail-naar-nette-crm-gegevens</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.loopwerkonline.nl/blog/hoe-sun-sauna-poolworld-het-prijsgesprek-naar-voren-haalde</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
