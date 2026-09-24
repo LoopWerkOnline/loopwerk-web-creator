@@ -1,8 +1,8 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
-/** Verwijderde pagina — permanent doorgestuurd naar de homepage. */
+/** Oude URL — permanent doorgestuurd naar de werkwijzepagina. */
 export const Route = createFileRoute("/hoe-we-werken")({
   beforeLoad: () => {
-    throw redirect({ to: "/", replace: true });
+    throw redirect({ to: "/werkwijze", replace: true });
   },
 });
