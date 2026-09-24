@@ -5,7 +5,7 @@ import { BrowserFrame } from "@/components/BrowserFrame";
 import { Reveal } from "@/components/Reveal";
 import { SolutionCheck } from "@/components/solution/SolutionCheck";
 import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
-import { solutionBySlug, solutions } from "@/lib/content";
+import { solutionBySlug, solutions, trajectSteps } from "@/lib/content";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
   loader: ({ params }) => {
@@ -132,6 +132,16 @@ function SolutionPage() {
                 {solution.approach ??
                   "We starten bij wat er al ligt en vullen aan met wat bij jullie anders is. Daardoor staat er sneller iets werkends dan bij bouwen vanaf nul."}
               </p>
+              <ol className="mt-6 space-y-3 border-t border-line pt-6">
+                {trajectSteps.map((step) => (
+                  <li key={step.n} className="flex gap-3 text-sm leading-relaxed text-ink/75">
+                    <span className="eyebrow mt-0.5 shrink-0 text-home-accent">{step.n}</span>
+                    <span>
+                      <span className="font-semibold text-ink">{step.t}.</span> {step.b}
+                    </span>
+                  </li>
+                ))}
+              </ol>
             </div>
             {solution.firstMonth ? (
               <div className="mt-6 rounded-xl border border-line bg-shell p-8">
