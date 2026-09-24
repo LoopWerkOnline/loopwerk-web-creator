@@ -12,29 +12,37 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Section, Eyebrow } from "@/components/Section";
 import { CookieBanner } from "@/components/CookieBanner";
 import { trackPageView } from "@/lib/tracking";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <Section tone="cream">
+      <div className="mx-auto max-w-xl py-10 text-center">
+        <Eyebrow>404</Eyebrow>
+        <h1 className="mt-4 text-4xl leading-tight md:text-5xl">Deze pagina bestaat niet (meer)</h1>
+        <p className="mt-5 text-lg leading-relaxed text-ink/70">
+          Misschien is de link verouderd of zit er een typfout in. Zoek je iets specifieks, dan
+          helpen we je graag verder.
         </p>
-        <div className="mt-6">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Go home
+            Naar de homepage
+          </Link>
+          <Link
+            to="/contact"
+            className="rounded-full border border-line px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
+          >
+            Bespreek je proces
           </Link>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
 
@@ -46,33 +54,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+    <Section tone="cream">
+      <div className="mx-auto max-w-xl py-10 text-center">
+        <Eyebrow>Foutmelding</Eyebrow>
+        <h1 className="mt-4 text-4xl leading-tight md:text-5xl">Deze pagina laadde niet goed</h1>
+        <p className="mt-5 text-lg leading-relaxed text-ink/70">
+          Er ging aan onze kant iets mis. Probeer het opnieuw, of ga terug naar de homepage.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
+            type="button"
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Try again
+            Opnieuw proberen
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="rounded-full border border-line px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-shell"
           >
-            Go home
+            Naar de homepage
           </a>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
 
