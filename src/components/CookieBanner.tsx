@@ -45,24 +45,23 @@ export function CookieBanner() {
       className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-2xl border border-line bg-card p-6 text-ink shadow-2xl md:p-7"
     >
       <h2 id="cookie-title" className="text-2xl leading-tight">
-        Mogen we meten wat werkt?
+        Deze website gebruikt cookies
       </h2>
       <p className="mt-3 text-base leading-relaxed text-ink/80">
-        Met cookies van Google Analytics en HubSpot zien we welke pagina's bezocht worden en waar
-        een aanvraag vandaan komt. Geen advertenties, geen doorverkoop. Zeg je nee, dan werkt de
-        site gewoon.
+        We gebruiken cookies om te zien hoe de website gebruikt wordt, zodat we hem kunnen
+        verbeteren. Weigeren kan altijd; de website werkt dan gewoon.
       </p>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button type="button" onClick={() => choose("granted")} className={button}>
-          Ja, dat is goed
+          Accepteren
         </button>
         <button type="button" onClick={() => choose("denied")} className={button}>
-          Nee, liever niet
+          Weigeren
         </button>
       </div>
       <p className="mt-4 text-sm text-ink/60">
         <Link to="/cookies" className="underline underline-offset-4 hover:text-ink">
-          Lees het cookiebeleid
+          Meer informatie in ons cookiebeleid
         </Link>
       </p>
     </div>
