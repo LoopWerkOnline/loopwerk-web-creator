@@ -4,8 +4,8 @@ import type { Database, Json } from "@/integrations/supabase/types";
 import type { LeadInput } from "./leads.functions";
 
 /**
- * Server-only. Configuratie komt uit env-variabelen (Lovable/Vercel secrets):
- * - SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY — opslag (insert-only via RLS)
+ * Server-only. Configuratie komt uit env-variabelen (Vercel → Settings → Environment Variables):
+ * - SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY — opslag (insert-only via RLS); valt terug op VITE_SUPABASE_*
  * - HUBSPOT_PORTAL_ID, HUBSPOT_FORM_CONTACT, HUBSPOT_FORM_SCAN — optioneel (formulierinzending)
  * - HUBSPOT_PRIVATE_APP_TOKEN — optioneel (deal aanmaken); HUBSPOT_DEAL_PIPELINE / HUBSPOT_DEAL_STAGE
  *   overschrijven de pijplijn ("default" = Loopwerk trajecten) en fase ("Nieuwe aanvraag")
@@ -38,8 +38,9 @@ function env(name: string): string | undefined {
 }
 
 function supabaseClient() {
-  const url = env("SUPABASE_URL");
-  const key = env("SUPABASE_PUBLISHABLE_KEY");
+  // Runtime-env (Vercel) gaat voor; anders de publieke waarden die Vite bij de build inbakt.
+  const url = env("SUPABASE_URL") ?? import.meta.env["VITE_SUPABASE_URL"];
+  const key = env("SUPABASE_PUBLISHABLE_KEY") ?? import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
   if (!url || !key) throw new Error("Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY");
 
   return createClient<Database>(url, key, {

@@ -9,7 +9,7 @@ type NavItem = { to: "/cases" | "/blog" | "/scan" | "/over-loopwerk"; label: str
 
 const plainNav: NavItem[] = [
   { to: "/cases", label: "Cases" },
-  { to: "/blog", label: "Blog" },
+  { to: "/blog", label: "Blogs" },
   { to: "/scan", label: "Doe de scan" },
   { to: "/over-loopwerk", label: "Over Ons" },
 ];
@@ -178,7 +178,7 @@ export function SiteHeader() {
               onClick={closeMenu}
               className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
             >
-              Blog
+              Blogs
             </Link>
             <Link
               to="/scan"
