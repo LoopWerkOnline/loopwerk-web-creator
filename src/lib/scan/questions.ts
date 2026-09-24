@@ -71,7 +71,7 @@ export const scanSteps: ScanStep[] = [
   {
     id: "automationMatrix",
     kind: "matrix",
-    heading: "Hoe herhalend is dit, en hoeveel oordeel vraagt het?",
+    heading: "Hoe herhalend is het proces, en hoeveel menselijke controle is nodig?",
     sub: "Sleep het punt naar waar dit proces het beste past.",
   },
   {
