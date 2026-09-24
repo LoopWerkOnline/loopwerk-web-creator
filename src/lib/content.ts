@@ -312,3 +312,79 @@ export function solutionBySlug(slug: string) {
 export function sectorBySlug(slug: string) {
   return sectors.find((s) => s.slug === slug);
 }
+
+/** Het traject van een klant, getoond in "Zo pakken we het aan" op elke oplossingspagina. */
+export const trajectSteps: { n: string; t: string; b: string; jij: string }[] = [
+  {
+    n: "01",
+    t: "Kennismaken",
+    b: "Je vertelt waar het werk blijft hangen. Wij stellen vragen tot we snappen wat er na een aanvraag gebeurt. Vrijblijvend, en je praat meteen met de mensen die het bouwen.",
+    jij: "Een uur tijd en een paar voorbeelden van echte aanvragen.",
+  },
+  {
+    n: "02",
+    t: "Proces doorlopen en meten",
+    b: "We lopen het proces stap voor stap door en leggen vast hoe het nu gaat: hoe lang een aanvraag kost, hoe vaak er informatie ontbreekt, hoe lang het duurt tot er een offerte ligt. Dat is de nulmeting.",
+    jij: "Toegang tot de mensen die het werk nu doen, en inzicht in de huidige formulieren, mails of Excel-bestanden.",
+  },
+  {
+    n: "03",
+    t: "Voorstel",
+    b: "Je krijgt een voorstel met wat we bouwen, wat het oplevert en wat het kost. Levert het te weinig op, of past standaardsoftware beter, dan zeggen we dat hier. Voordat er iets gebouwd is.",
+    jij: "Een besluit: door, aanpassen of niet.",
+  },
+  {
+    n: "04",
+    t: "Bouwen",
+    b: "We starten vanuit een bestaande basis en maken op maat wat bij jullie werk hoort: jullie vragen, producten, prijzen en regels. Tussendoor zie je werkende versies, geen rapporten.",
+    jij: "Korte feedback op tussenversies.",
+  },
+  {
+    n: "05",
+    t: "Live en bijstellen",
+    b: "De tool gaat live op jullie site of in jullie systemen. De eerste echte aanvragen kijken we mee en stellen we bij waar nodig.",
+    jij: "Laten weten wat in de praktijk anders loopt dan gedacht.",
+  },
+  {
+    n: "06",
+    t: "Nameten",
+    b: "Na livegang meten we dezelfde punten als bij de nulmeting. Dan zie je zwart op wit wat er veranderd is, zonder mooie praatjes.",
+    jij: "Niets extra. We gebruiken dezelfde meetpunten als aan het begin.",
+  },
+];
+
+/** Veelgestelde vragen. Nog niet op de site geplaatst; plek volgt na akkoord. */
+export const faq: { q: string; a: string }[] = [
+  {
+    q: "Wat kost het?",
+    a: "Dat hangt af van wat er gebouwd moet worden. Na de procesanalyse krijg je een voorstel met een vaste scope en prijs, zodat je vooraf weet waar je aan toe bent. Het eerste gesprek is vrijblijvend.",
+  },
+  {
+    q: "Hoe lang duurt een traject?",
+    a: "Dat hangt af van de omvang, en de planning staat in het voorstel. We beginnen liever klein, met één onderdeel dat snel werkt, dan met een groot project dat pas na maanden iets oplevert.",
+  },
+  {
+    q: "Moeten we nieuwe software aanschaffen?",
+    a: "Meestal niet. We bouwen waar het kan op wat je al gebruikt: je website, je Excel-bestanden, je CRM of je boekhoudpakket.",
+  },
+  {
+    q: "Voor wie is dit geschikt?",
+    a: "Voor bedrijven waar aanvragen te complex zijn voor een standaardformulier, te specifiek voor standaardsoftware, en waar te veel terugkerend werk in zit om het zo te laten.",
+  },
+  {
+    q: "Gebruiken jullie AI?",
+    a: "Alleen waar het aantoonbaar helpt, bijvoorbeeld om ontbrekende informatie in een aanvraag te herkennen of een mail om te zetten naar nette gegevens. Voor rekenregels en prijzen gebruiken we vaste logica: sneller en voorspelbaarder.",
+  },
+  {
+    q: "Wat als standaardsoftware beter past?",
+    a: "Dan zeggen we dat. Ook als dat betekent dat wij niets bouwen.",
+  },
+  {
+    q: "Wat gebeurt er na oplevering?",
+    a: "Je houdt een vast aanspreekpunt. Afspraken over beheer, aanpassingen en wat er gebeurt als iets niet werkt, leggen we vooraf vast in het voorstel.",
+  },
+  {
+    q: "Hoe gaan jullie om met onze gegevens?",
+    a: "Zorgvuldig en volgens de AVG. We verwerken alleen wat nodig is voor de tool, en afspraken over gegevens leggen we vast voordat we beginnen.",
+  },
+];

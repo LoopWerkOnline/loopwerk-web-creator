@@ -23,7 +23,6 @@ export function SiteFooter() {
               {[
                 { to: "/oplossingen", label: "Oplossingen" },
                 { to: "/cases", label: "Cases" },
-                { to: "/werkwijze", label: "Werkwijze" },
                 { to: "/over-loopwerk", label: "Over LoopWerk" },
                 { to: "/contact", label: "Contact" },
               ].map((l) => (

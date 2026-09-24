@@ -273,14 +273,6 @@ function Index() {
             </Reveal>
           ))}
         </div>
-        <Reveal>
-          <Link
-            to="/werkwijze"
-            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-forest underline-offset-4 hover:underline"
-          >
-            Bekijk hoe een traject verloopt →
-          </Link>
-        </Reveal>
       </Section>
 
       {/* Over + CTA */}
