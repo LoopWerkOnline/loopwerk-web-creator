@@ -8,7 +8,7 @@ import type { LeadInput } from "./leads.functions";
  * - SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY — opslag (insert-only via RLS)
  * - HUBSPOT_PORTAL_ID, HUBSPOT_FORM_CONTACT, HUBSPOT_FORM_SCAN — optioneel (formulierinzending)
  * - HUBSPOT_PRIVATE_APP_TOKEN — optioneel (deal aanmaken); HUBSPOT_DEAL_PIPELINE / HUBSPOT_DEAL_STAGE
- *   overschrijven de standaardpijplijn ("default") en eerste fase ("appointmentscheduled")
+ *   overschrijven de pijplijn ("default" = Loopwerk trajecten) en fase ("Nieuwe aanvraag")
  * - RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM — optioneel
  * Ontbreekt een optionele variabele, dan wordt die stap overgeslagen.
  */
@@ -92,11 +92,14 @@ async function hubspotFlow(lead: LeadInput) {
   await createHubspotDeal(lead);
 }
 
-async function hubspotApi(token: string, path: string, body: unknown) {
+/** Fase-ID van "Nieuwe aanvraag" in de pijplijn "Loopwerk trajecten" (portal 149185560). */
+const DEFAULT_DEAL_STAGE = "6132543700";
+
+async function hubspotApi(token: string, path: string, body?: unknown, method = "POST") {
   const res = await fetch(`https://api.hubapi.com${path}`, {
-    method: "POST",
+    method,
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: body === undefined ? null : JSON.stringify(body),
   });
   if (!res.ok) throw new Error(`HubSpot API ${path} ${res.status}: ${await res.text()}`);
   return (await res.json()) as { id?: string; results?: { id: string }[] };
@@ -125,6 +128,16 @@ async function createHubspotDeal(lead: LeadInput) {
   const contactId = upsert.results?.[0]?.id;
   if (!contactId) throw new Error("HubSpot upsert returned no contact id");
 
+  const companyId = lead.company ? await findOrCreateCompany(token, lead) : undefined;
+  if (companyId) {
+    await hubspotApi(
+      token,
+      `/crm/v4/objects/contact/${contactId}/associations/default/company/${companyId}`,
+      undefined,
+      "PUT",
+    );
+  }
+
   const who = lead.kind === "contact" ? lead.name : lead.firstName;
   const description =
     lead.kind === "contact"
@@ -135,7 +148,7 @@ async function createHubspotDeal(lead: LeadInput) {
     properties: {
       dealname: `${lead.kind === "contact" ? "Website" : "Scan"}: ${lead.company || who}`,
       pipeline: env("HUBSPOT_DEAL_PIPELINE") ?? "default",
-      dealstage: env("HUBSPOT_DEAL_STAGE") ?? "appointmentscheduled",
+      dealstage: env("HUBSPOT_DEAL_STAGE") ?? DEFAULT_DEAL_STAGE,
       description: description.slice(0, 5000),
     },
     associations: [
@@ -143,8 +156,37 @@ async function createHubspotDeal(lead: LeadInput) {
         to: { id: contactId },
         types: [{ associationCategory: "HUBSPOT_DEFINED", associationTypeId: 3 }],
       },
+      ...(companyId
+        ? [
+            {
+              to: { id: companyId },
+              types: [{ associationCategory: "HUBSPOT_DEFINED", associationTypeId: 5 }],
+            },
+          ]
+        : []),
     ],
   });
+}
+
+/** Bedrijf zoeken op naam; bestaat het niet, dan aanmaken met de bron van deze lead. */
+async function findOrCreateCompany(token: string, lead: LeadInput): Promise<string | undefined> {
+  const name = lead.company?.trim();
+  if (!name) return undefined;
+
+  const found = await hubspotApi(token, "/crm/v3/objects/companies/search", {
+    filterGroups: [{ filters: [{ propertyName: "name", operator: "EQ", value: name }] }],
+    limit: 1,
+  });
+  const existing = found.results?.[0]?.id;
+  if (existing) return existing;
+
+  const created = await hubspotApi(token, "/crm/v3/objects/companies", {
+    properties: {
+      name,
+      eerste_bron: lead.kind === "contact" ? "website_contact" : "loopwerk_scan",
+    },
+  });
+  return created.id;
 }
 
 async function sendToHubspot(lead: LeadInput) {

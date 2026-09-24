@@ -29,7 +29,7 @@ Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Op
 
 ## Techniek
 
-- HubSpot-portal: LoopWerk, ID 149185560, regio eu1. Contact-eigenschappen `scan_score`, `scan_richting`, `scan_proces` bestaan (aangemaakt 24-09-2026).
+- HubSpot-portal: LoopWerk, ID 149185560, regio eu1. Contact-eigenschappen `scan_score`, `scan_richting`, `scan_proces`; bedrijfseigenschappen `loopwerk_sector`, `aanvragen_per_maand`, `loopwerk_knelpunt`, `huidige_systemen`, `eerste_bron`; nulmeting-velden op deals (`nulmeting_*_voor/_na`). Pijplijn `default` heet "Loopwerk trajecten" (fase-ID's 6132543700 t/m 6132543706). Gratis account: geen extra pijplijnen, geen formulieren via de connector, verwijderen kan niet via de connector.
 
 - TanStack Start + React + Tailwind, gebouwd met Lovable. Content staat grotendeels in `src/lib/content.ts`.
 - Supabase: `contact_requests` en `scan_leads` (insert-only voor anon, RLS aan). Migraties in `supabase/migrations/`; nieuwe tabellen altijd met expliciete `GRANT`.
