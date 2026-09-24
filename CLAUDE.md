@@ -28,6 +28,7 @@ Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Op
 - CTA's: hoofdknop "Bespreek je proces" → `/contact`; tweede knop "Doe de scan" → `/scan`.
 - **Geen nieuwe blokken of pagina's op de site zonder akkoord van Levi.** Liever bestaande onderdelen aanvullen. Werkwijze hoort bij de oplossingspagina's (kader "Zo pakken we het aan", `trajectSteps` in `content.ts`), niet als losse pagina.
 - **AI in de boodschap:** AI krijgt een grotere rol, maar voorlopig via blogs (`src/lib/blog.ts`), niet via een nieuw AI-blok op de site zonder akkoord van Levi. Altijd concreet: wat AI doet en wat de mens doet; bij prijzen/rekenregels bewust géén AI.
+- **Blogs** (`/blog`, eigen sectie, geen blok op andere pagina's): over de markt en de lezer, zo min mogelijk over Loopwerk (hooguit subtiel in de afsluiter). Persoonlijke, creatieve, nuchtere Nederlandse taal, niet fancy; begin bij een herkenbare situatie, eindig met iets bruikbaars; geen cijfers zonder bron. Reeksen: AI concreet, Achter de aanvraag, Eerlijk advies; 2 per maand. Ideeën en kalender: SharePoint `02 - Marketing/Blogideeën Loopwerk.docx`.
 
 ## Techniek
 
