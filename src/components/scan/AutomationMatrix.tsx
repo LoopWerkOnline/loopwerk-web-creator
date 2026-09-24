@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState, type PointerEvent } from "react";
-import { Layers, Settings, Users, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Layers, Settings, Users, Zap } from "lucide-react";
 
 import { buildQuadrantText } from "@/lib/scan/advice";
 
@@ -93,9 +93,12 @@ export function AutomationMatrix({
       <p className="mb-2 text-center text-xs text-ink/45">↑ Weinig menselijk oordeel</p>
 
       <div className="flex items-stretch justify-center gap-2 sm:gap-3">
-        <span className="hidden shrink-0 origin-center rotate-180 whitespace-nowrap text-xs text-ink/45 [writing-mode:vertical-rl] sm:flex sm:items-center">
-          ← Elke keer anders
-        </span>
+        <div className="hidden shrink-0 flex-col items-center justify-center gap-2 sm:flex">
+          <ArrowLeft className="h-4 w-4 shrink-0 text-ink/40" aria-hidden="true" />
+          <span className="whitespace-nowrap text-xs text-ink/45 [writing-mode:vertical-rl] rotate-180">
+            Elke keer anders
+          </span>
+        </div>
 
         <div
           ref={containerRef}
@@ -139,9 +142,12 @@ export function AutomationMatrix({
           </span>
         </div>
 
-        <span className="hidden shrink-0 origin-center whitespace-nowrap text-xs text-ink/45 [writing-mode:vertical-rl] sm:flex sm:items-center">
-          Vaak dezelfde stappen →
-        </span>
+        <div className="hidden shrink-0 flex-col items-center justify-center gap-2 sm:flex">
+          <span className="whitespace-nowrap text-xs text-ink/45 [writing-mode:vertical-rl]">
+            Vaak dezelfde stappen
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0 text-ink/40" aria-hidden="true" />
+        </div>
       </div>
 
       <p className="mt-2 text-center text-xs text-ink/45">↓ Veel menselijk oordeel</p>
