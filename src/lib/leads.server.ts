@@ -42,7 +42,7 @@ function supabaseClient() {
 
   return createClient<Database>(url, key, {
     global: {
-      fetch: (input, init) => {
+      fetch: (input: RequestInfo | URL, init?: RequestInit) => {
         const headers = new Headers(init?.headers);
         // Nieuwe Supabase-keys zijn geen JWT; niet als Bearer meesturen.
         if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`) {

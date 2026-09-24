@@ -30,8 +30,13 @@ const leadSchema = z.discriminatedUnion("kind", [
   z.object({
     kind: z.literal("scan"),
     firstName: z.string().trim().min(1).max(100),
-    answers: z.record(z.unknown()),
-    score: z.object({ total: z.number(), bandLabel: z.string() }).passthrough(),
+    answers: z
+      .record(z.unknown())
+      .refine((v) => JSON.stringify(v).length <= 5000, "answers too large"),
+    score: z
+      .object({ total: z.number(), bandLabel: z.string() })
+      .passthrough()
+      .refine((v) => JSON.stringify(v).length <= 5000, "score too large"),
     richting: z.string().max(200),
     process: z.string().max(200),
     ...shared,

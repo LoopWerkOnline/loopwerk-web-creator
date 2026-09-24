@@ -76,8 +76,8 @@ export function ScanLeadPreview({
         <Eyebrow tone="home-accent">Wat wil je met deze uitkomst?</Eyebrow>
         <h2 className="mt-4 text-2xl leading-tight md:text-3xl">Kies wat nu het handigst is</h2>
         <p className="mt-3 text-base leading-relaxed text-ink/70">
-          De volledige analyse — waarom dit kansrijk is, een mogelijke eerste stap en een richting — sturen
-          we je liever toe dan dat je hier eerst een lange tekst doorscrolt.
+          De volledige analyse — waarom dit kansrijk is, een mogelijke eerste stap en een richting —
+          sturen we je liever toe dan dat je hier eerst een lange tekst doorscrolt.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -117,7 +117,13 @@ export function ScanLeadPreview({
                   </label>
                   <label className="block sm:col-span-2">
                     <span className="text-sm font-medium text-ink">Zakelijk e-mailadres</span>
-                    <input type="email" name="email" required className={field} placeholder="naam@bedrijf.nl" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      className={field}
+                      placeholder="naam@bedrijf.nl"
+                    />
                   </label>
                 </div>
                 <button
@@ -133,14 +139,15 @@ export function ScanLeadPreview({
                   </p>
                 ) : null}
                 <p className="mt-4 text-xs text-ink/55">
-                  Je gegevens gebruiken we alleen om je de analyse te sturen en op je uitkomst te reageren.
+                  Je gegevens gebruiken we alleen om je de analyse te sturen en op je uitkomst te
+                  reageren.
                 </p>
               </form>
             ) : (
               <div className="fade-up">
                 <p className="text-base leading-relaxed text-ink/80">
-                  Dankjewel. We hebben je uitkomst ontvangen en sturen je de volledige analyse binnen
-                  één werkdag toe. Hieronder zie je hem alvast.
+                  Dankjewel. We hebben je uitkomst ontvangen en sturen je de volledige analyse
+                  binnen één werkdag toe. Hieronder zie je hem alvast.
                 </p>
                 <div className="mt-6 border-t border-line pt-6">
                   <p className="eyebrow text-ink/40">Jouw analyse</p>

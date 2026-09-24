@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CookieBanner } from "@/components/CookieBanner";
+import { trackPageView } from "@/lib/tracking";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -143,6 +145,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Eerste pageview komt van de scripts zelf; dit dekt navigatie binnen de app.
+    return router.subscribe("onResolved", (event) => {
+      if (event.fromLocation && event.fromLocation.pathname !== event.toLocation.pathname) {
+        trackPageView(event.toLocation.pathname);
+      }
+    });
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -154,6 +166,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <CookieBanner />
     </QueryClientProvider>
   );
 }

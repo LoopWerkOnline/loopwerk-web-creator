@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
 import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
@@ -32,6 +34,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DienstenRoute = DienstenRouteImport.update({
@@ -52,6 +59,11 @@ const OverLoopwerkRoute = OverLoopwerkRouteImport.update({
 const OverOnsRoute = OverOnsRouteImport.update({
   id: '/over-ons',
   path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScanRoute = ScanRouteImport.update({
@@ -99,10 +111,12 @@ const SectorenSplatRoute = SectorenSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
@@ -115,10 +129,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
@@ -132,10 +148,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
   '/werkwijze': typeof WerkwijzeRoute
@@ -150,10 +168,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
@@ -166,10 +186,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
@@ -182,10 +204,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
+    | '/cookies'
     | '/diensten'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
+    | '/privacy'
     | '/scan'
     | '/sectoren'
     | '/werkwijze'
@@ -199,10 +223,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   DienstenRoute: typeof DienstenRoute
   HoeWeWerkenRoute: typeof HoeWeWerkenRoute
   OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
+  PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
   WerkwijzeRoute: typeof WerkwijzeRoute
@@ -226,6 +252,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diensten': {
@@ -254,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/over-ons'
       fullPath: '/over-ons'
       preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scan': {
@@ -330,10 +370,12 @@ const SectorenRouteWithChildren = SectorenRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   DienstenRoute: DienstenRoute,
   HoeWeWerkenRoute: HoeWeWerkenRoute,
   OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,
+  PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
   WerkwijzeRoute: WerkwijzeRoute,
