@@ -156,7 +156,7 @@ function ScanPage() {
 
   return (
     <>
-      <div className="flex min-h-[100dvh] flex-col md:flex-row">
+      <div className={`flex flex-col md:flex-row ${isResult ? "min-h-[100dvh]" : ""}`}>
         <div
           className={`order-2 w-full flex-col justify-center bg-cream px-5 py-16 transition-all duration-500 ease-in-out md:order-1 md:px-12 md:py-20 ${
             isResult ? "hidden md:flex md:w-0 md:overflow-hidden md:px-0 md:py-0 md:opacity-0" : "flex md:w-3/5"
@@ -235,11 +235,19 @@ function ScanPage() {
         </div>
 
         <div
-          className={`order-1 w-full bg-ink-hero px-5 py-16 text-cream transition-all duration-500 ease-in-out md:order-2 md:px-10 md:py-20 ${
-            isResult ? "md:w-full" : "md:w-2/5"
+          className={`order-1 w-full px-5 py-16 transition-all duration-500 ease-in-out md:order-2 md:px-10 md:py-20 ${
+            isResult
+              ? "bg-ink-hero text-cream md:w-full"
+              : "flex flex-col justify-center bg-cream md:w-2/5"
           }`}
         >
-          <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} />
+          {isResult ? (
+            <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} />
+          ) : (
+            <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center rounded-2xl bg-ink-hero p-8 text-cream md:p-10">
+              <ScanLivePanel answers={answers} stepIndex={stepIndex} score={score} />
+            </div>
+          )}
         </div>
       </div>
 
