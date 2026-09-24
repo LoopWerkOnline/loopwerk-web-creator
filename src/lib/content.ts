@@ -282,14 +282,14 @@ export const sectors: Sector[] = [
     custom: "Jullie klantafspraken, staffels en de systemen waar de order uiteindelijk in moet landen.",
   },
   {
-    slug: "mobiliteit-en-transport",
-    title: "Mobiliteit & transport",
-    short: "Configuraties, specificaties, aanvragen, offertes en administratieve opvolging.",
-    flowLabel: "opties helder uitgeschreven",
+    slug: "transport-en-logistiek",
+    title: "Transport & logistiek",
+    short: "Transportaanvragen, tarieven, toeslagen, planning en administratieve opvolging.",
+    flowLabel: "van ritvraag naar prijs",
     image: "/sectoren/sector-transport.jpg",
     imageAlt: "Vrachtwagen met oplegger op de snelweg bij zonsondergang",
     intro:
-      "Van opbouw tot uitvoering: de keuzes liggen vast, maar het samenstellen en doorrekenen gebeurt nog met de hand.",
+      "Een ritvraag lijkt simpel. Maar voordat er een prijs ligt, moeten lading, afstand, toeslagen en beschikbaarheid bekend zijn. Dat uitzoeken en doorrekenen gebeurt nog vaak met de hand.",
     seen: [
       "In transport verandert de planning voortdurend. Zodra informatie verspreid staat over mail, Excel en verschillende systemen, ontstaat veel handmatig afstemwerk. Juist daar kunnen koppelingen en automatisering rust brengen.",
       "Specificaties die per mail heen en weer gaan.",
