@@ -148,23 +148,25 @@ function Index() {
           </Link>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {solutions.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.08}>
-              <Link
-                to="/oplossingen/$slug"
-                params={{ slug: s.slug }}
-                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-home-accent hover:shadow-lg"
-              >
-                <span
-                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
-                  aria-hidden="true"
-                />
-                <h3 className="text-2xl">{s.title}</h3>
-                <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="mt-12 rounded-3xl bg-ink-hero p-6 md:p-10">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {solutions.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 0.08}>
+                <Link
+                  to="/oplossingen/$slug"
+                  params={{ slug: s.slug }}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-cream p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-home-accent hover:shadow-lg"
+                >
+                  <span
+                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-home-accent transition-transform duration-300 group-hover:scale-x-100"
+                    aria-hidden="true"
+                  />
+                  <h3 className="text-2xl">{s.title}</h3>
+                  <p className="mt-3 flex-1 text-base leading-relaxed text-ink/70">{s.short}</p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </Section>
 
