@@ -120,6 +120,42 @@ function OverLoopwerk() {
         </div>
       </section>
 
+      <Section tone="shell">
+        <Reveal>
+          <Eyebrow tone="home-accent">Ontmoet het team</Eyebrow>
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
+            Drie mensen, geen tussenlaag
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          {team.map((member, i) => (
+            <Reveal key={member.name} delay={i * 0.08}>
+              <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
+                <div className="flip-inner h-full w-full">
+                  <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
+                    <span
+                      className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
+                      style={{ backgroundColor: member.color }}
+                      aria-hidden="true"
+                    >
+                      {member.initials}
+                    </span>
+                    <div>
+                      <p className="font-display text-xl text-ink">{member.name}</p>
+                      <p className="mt-1 text-sm text-ink/55">{member.role}</p>
+                    </div>
+                  </div>
+                  <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
+                    <p className="hand text-xl leading-snug text-cream">"{member.quote}"</p>
+                    <p className="text-xs uppercase tracking-[0.14em] text-sage">{member.name}</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
@@ -200,42 +236,6 @@ function OverLoopwerk() {
               ))}
             </ul>
           </Reveal>
-        </div>
-      </Section>
-
-      <Section tone="shell">
-        <Reveal>
-          <Eyebrow tone="home-accent">Het team</Eyebrow>
-          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-            Drie mensen, geen tussenlaag
-          </h2>
-        </Reveal>
-        <div className="mt-12 grid gap-8 sm:grid-cols-3">
-          {team.map((member, i) => (
-            <Reveal key={member.name} delay={i * 0.08}>
-              <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
-                <div className="flip-inner h-full w-full">
-                  <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
-                    <span
-                      className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
-                      style={{ backgroundColor: member.color }}
-                      aria-hidden="true"
-                    >
-                      {member.initials}
-                    </span>
-                    <div>
-                      <p className="font-display text-xl text-ink">{member.name}</p>
-                      <p className="mt-1 text-sm text-ink/55">{member.role}</p>
-                    </div>
-                  </div>
-                  <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
-                    <p className="hand text-xl leading-snug text-cream">"{member.quote}"</p>
-                    <p className="text-xs uppercase tracking-[0.14em] text-sage">{member.name}</p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </Section>
 
