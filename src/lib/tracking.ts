@@ -12,7 +12,8 @@ type Consent = "granted" | "denied";
 const STORAGE_KEY = "lw-cookie-consent";
 export const CONSENT_EVENT = "lw:open-cookie-settings";
 
-const GA4_ID = import.meta.env["VITE_GA4_ID"] as string | undefined;
+// Measurement ID is openbaar (staat in de paginabron); env-variabele kan hem overschrijven.
+const GA4_ID = (import.meta.env["VITE_GA4_ID"] as string | undefined) || "G-13SJXB5RW7";
 const HUBSPOT_PORTAL_ID = import.meta.env["VITE_HUBSPOT_PORTAL_ID"] as string | undefined;
 const HUBSPOT_REGION = import.meta.env["VITE_HUBSPOT_REGION"] as string | undefined;
 
