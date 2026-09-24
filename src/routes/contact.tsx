@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { supabase } from "@/integrations/supabase/client";
+import { HoneypotField } from "@/components/HoneypotField";
+import { readHubspotUtk, submitLead } from "@/lib/leads.functions";
 
 const title = "Contact | plan een gesprek met LoopWerk";
 const description =
@@ -30,21 +31,30 @@ function Contact() {
   const { prefill } = Route.useSearch();
   const [status, setStatus] = useState<Status>("idle");
 
+  const startedAt = useRef(Date.now());
+
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     setStatus("sending");
 
-    const { error } = await supabase.from("contact_requests").insert({
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      company: String(data.get("company") ?? "") || null,
-      phone: String(data.get("phone") ?? "") || null,
-      message: String(data.get("message") ?? ""),
-    });
-
-    if (error) {
+    try {
+      await submitLead({
+        data: {
+          kind: "contact",
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          company: String(data.get("company") ?? "") || undefined,
+          phone: String(data.get("phone") ?? "") || undefined,
+          message: String(data.get("message") ?? ""),
+          website: String(data.get("website") ?? "") || undefined,
+          startedAt: startedAt.current,
+          hutk: readHubspotUtk(),
+          pageUri: window.location.href,
+        },
+      });
+    } catch (error) {
       console.error(error);
       setStatus("error");
       return;
@@ -85,6 +95,7 @@ function Contact() {
 
           <Reveal delay={0.1}>
           <form onSubmit={onSubmit} className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9">
+            <HoneypotField />
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
                 <span className="text-sm font-medium text-ink">Naam *</span>

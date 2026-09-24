@@ -13,6 +13,9 @@ Lees bij de start van elke sessie, vóór je inhoudelijk werk doet, deze bronnen
    - `Website to-do.xlsx` (root) — actuele takenlijst van de website
 3. **OneDrive `Ai Business Ideeen/`** — oudere strategie (`00-Overzicht/`, `01-Strategie/`). `_archief/` is verouderd.
 
+### Loggen
+Leg na elke sessie met relevante uitkomsten (beslissingen, opgeleverd werk, openstaande input, signalen uit mail) een korte regel vast in **`07 - Operations/Logboek.md`** op de SharePoint-site `loopwerkgroup` (nieuwste bovenaan). Werk waar nodig ook de status bij in `Website to-do.xlsx`.
+
 Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Open of kopieer nooit bestanden met wachtwoorden, tokens of recovery codes, en zet nooit bedrijfs- of klantgegevens in de code.
 
 ## Positionering (samenvatting, bron: Tone of Voice Rules)
@@ -27,6 +30,8 @@ Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Op
 ## Techniek
 
 - TanStack Start + React + Tailwind, gebouwd met Lovable. Content staat grotendeels in `src/lib/content.ts`.
-- Supabase: `contact_requests` (insert-only voor anon, RLS aan). Migraties in `supabase/migrations/`.
+- Supabase: `contact_requests` en `scan_leads` (insert-only voor anon, RLS aan). Migraties in `supabase/migrations/`; nieuwe tabellen altijd met expliciete `GRANT`.
+- Leads (contact + scan) lopen via `submitLead` in `src/lib/leads.functions.ts` → `src/lib/leads.server.ts`: opslaan in Supabase, doorsturen naar HubSpot (Forms API), notificatiemail via Resend. Honeypot + minimale invultijd tegen spam.
+- Env-variabelen (als secret instellen, nooit in code): `HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_CONTACT`, `HUBSPOT_FORM_SCAN`, `RESEND_API_KEY`, `LEAD_NOTIFY_TO`, `LEAD_NOTIFY_FROM`. Ontbreken ze, dan wordt die stap overgeslagen.
 - Geen API-keys of tokens in de code; gebruik environment variables / Supabase secrets.
 - Dit project is gekoppeld aan Lovable: geen force-push of history rewrites (zie `AGENTS.md`).

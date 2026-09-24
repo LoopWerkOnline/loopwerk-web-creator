@@ -44,6 +44,39 @@ export type Database = {
         }
         Relationships: []
       }
+      scan_leads: {
+        Row: {
+          answers: Json
+          company: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          richting: string | null
+          score: Json
+        }
+        Insert: {
+          answers: Json
+          company?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          richting?: string | null
+          score: Json
+        }
+        Update: {
+          answers?: Json
+          company?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          richting?: string | null
+          score?: Json
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
