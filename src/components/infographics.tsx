@@ -205,7 +205,19 @@ export function LeadFunnel({ className }: { className?: string }) {
 }
 
 /** Drie iconen met korte labels, in de stijl van de referentiebeelden. */
-export function ThreePillars({ className }: { className?: string }) {
+/**
+ * Drie iconen met label. `layout="row"` voor een horizontale rij op een
+ * lichte achtergrond, `layout="col"` voor een gestapelde lijst binnen een
+ * donkergroen vak (bg-ink-hero) — kleuren zijn per layout afgestemd op die
+ * achtergrond, zodat het contrast altijd klopt.
+ */
+export function ThreePillars({
+  className,
+  layout = "row",
+}: {
+  className?: string;
+  layout?: "row" | "col";
+}) {
   const items = [
     {
       label: "Eén concreet knelpunt",
@@ -228,14 +240,35 @@ export function ThreePillars({ className }: { className?: string }) {
     },
   ];
 
+  const isRow = layout === "row";
+
   return (
-    <div className={`grid gap-10 sm:grid-cols-3 ${className ?? ""}`}>
+    <div className={`grid gap-8 ${isRow ? "sm:grid-cols-3" : "grid-cols-1"} ${className ?? ""}`}>
       {items.map((it) => (
-        <div key={it.label} className="flex flex-col items-center text-center">
-          <svg viewBox="0 0 64 64" className="h-14 w-14" fill="none" stroke={copper} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {it.icon}
-          </svg>
-          <p className="mt-5 max-w-[14rem] text-base text-cream/85">{it.label}</p>
+        <div
+          key={it.label}
+          className={`flex items-center gap-4 ${isRow ? "flex-col text-center" : "flex-row text-left"}`}
+        >
+          <span
+            className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${
+              isRow ? "bg-home-accent/10" : "bg-cream/10"
+            }`}
+          >
+            <svg
+              viewBox="0 0 64 64"
+              className="h-7 w-7"
+              fill="none"
+              stroke="var(--home-accent)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {it.icon}
+            </svg>
+          </span>
+          <p className={`text-base leading-snug ${isRow ? "max-w-[12rem] text-ink" : "text-cream/90"}`}>
+            {it.label}
+          </p>
         </div>
       ))}
     </div>
