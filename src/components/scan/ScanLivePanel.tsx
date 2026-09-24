@@ -1,10 +1,9 @@
 import { Eyebrow } from "@/components/Section";
 import { scanSteps } from "@/lib/scan/questions";
 import { hoursPerWeek } from "@/lib/scan/scoring";
-import type { ScanAnswers, ScanScore } from "@/lib/scan/types";
+import type { ScanAnswers } from "@/lib/scan/types";
 
 import { LoopMotif } from "./LoopMotif";
-import { ScanResult } from "./ScanResult";
 
 function labelForOption(stepId: string, value: string): string {
   const step = scanSteps.find((s) => s.id === stepId);
@@ -31,7 +30,12 @@ function SourcesFlow({ sources }: { sources: string[] }) {
   const r = 78;
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="mx-auto h-52 w-52" role="img" aria-label="Informatiebronnen rondom het proces">
+    <svg
+      viewBox={`0 0 ${size} ${size}`}
+      className="mx-auto h-52 w-52"
+      role="img"
+      aria-label="Informatiebronnen rondom het proces"
+    >
       {sources.map((s, i) => {
         const angle = (i / sources.length) * Math.PI * 2 - Math.PI / 2;
         const x = cx + Math.cos(angle) * r;
@@ -50,8 +54,22 @@ function SourcesFlow({ sources }: { sources: string[] }) {
               strokeDasharray="4 6"
               strokeOpacity="0.6"
             />
-            <circle cx={x} cy={y} r="22" fill="var(--ink-hero)" stroke="var(--sage)" strokeWidth="1.5" />
-            <text x={x} y={y + 3.5} textAnchor="middle" fontSize="7.5" fill="var(--cream)" opacity="0.85">
+            <circle
+              cx={x}
+              cy={y}
+              r="22"
+              fill="var(--ink-hero)"
+              stroke="var(--sage)"
+              strokeWidth="1.5"
+            />
+            <text
+              x={x}
+              y={y + 3.5}
+              textAnchor="middle"
+              fontSize="7.5"
+              fill="var(--cream)"
+              opacity="0.85"
+            >
               {label.length > 10 ? `${label.slice(0, 9)}…` : label}
             </text>
           </g>
@@ -65,30 +83,18 @@ function SourcesFlow({ sources }: { sources: string[] }) {
   );
 }
 
-/**
- * Het permanente groene paneel: tijdens de vragen bouwt het live het
- * procesprofiel op, na de laatste vraag toont het (via dezelfde DOM-wrapper
- * in scan.tsx, die alleen van breedte wisselt) het resultaat.
- */
-export function ScanLivePanel({
-  answers,
-  stepIndex,
-  score,
-}: {
-  answers: ScanAnswers;
-  stepIndex: number;
-  score?: ScanScore | undefined;
-}) {
-  if (score) {
-    return <ScanResult score={score} />;
-  }
-
+/** Het groene paneel tijdens de vragen: bouwt live het procesprofiel op. */
+export function ScanLivePanel({ answers, stepIndex }: { answers: ScanAnswers; stepIndex: number }) {
   const name = processName(answers);
   const hours = hoursPerWeek(answers);
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col justify-center">
-      <LoopMotif activePhase={PHASE_BY_STEP[stepIndex] ?? 4} variant="inline" className="mx-auto w-full max-w-xs" />
+      <LoopMotif
+        activePhase={PHASE_BY_STEP[stepIndex] ?? 4}
+        variant="inline"
+        className="mx-auto w-full max-w-xs"
+      />
 
       {name ? (
         <div className="fade-up mt-10" key={`process-${name}`}>
@@ -108,9 +114,15 @@ export function ScanLivePanel({
       ) : null}
 
       {answers.timeSinks.length > 0 ? (
-        <div className="fade-up mt-6 flex flex-wrap justify-center gap-2" key={`sinks-${answers.timeSinks.join(",")}`}>
+        <div
+          className="fade-up mt-6 flex flex-wrap justify-center gap-2"
+          key={`sinks-${answers.timeSinks.join(",")}`}
+        >
           {answers.timeSinks.map((s) => (
-            <span key={s} className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream/70">
+            <span
+              key={s}
+              className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream/70"
+            >
               {labelForOption("timeSinks", s)}
             </span>
           ))}
