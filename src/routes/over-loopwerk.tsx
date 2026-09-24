@@ -4,22 +4,6 @@ import { Section, Eyebrow } from "@/components/Section";
 import { ThreePillars } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 
-/** Kleine tandwiel-lijntekening, in de stijl van de overige infographics. */
-function GearMark({ className }: { className?: string }) {
-  const teeth = [0, 45, 90, 135, 180, 225, 270, 315];
-  return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-        {teeth.map((deg) => (
-          <line key={deg} x1="32" y1="3" x2="32" y2="19" transform={`rotate(${deg} 32 32)`} />
-        ))}
-        <circle cx="32" cy="32" r="17" />
-        <circle cx="32" cy="32" r="5" fill="currentColor" stroke="none" />
-      </g>
-    </svg>
-  );
-}
-
 const title = "Over LoopWerk | praktische tools voor Nederlandse bedrijven";
 const description =
   "LoopWerk bouwt digitale tools en automatiseringen die aansluiten op hoe bedrijven echt werken. Nuchter, concreet en gericht op werk dat elke week terugkomt.";
@@ -139,7 +123,6 @@ function OverLoopwerk() {
       <Section>
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
-            <GearMark className="h-11 w-11 text-forest" />
             <Eyebrow tone="home-accent">De naam</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Het mechanisme dat blijft draaien</h2>
             <div className="mt-6 rounded-xl border border-line bg-shell p-6">
