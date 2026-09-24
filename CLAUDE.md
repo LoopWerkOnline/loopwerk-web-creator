@@ -29,9 +29,11 @@ Lees alleen wat relevant is voor de taak; vat kort samen wat je hebt gelezen. Op
 
 ## Techniek
 
+- HubSpot-portal: LoopWerk, ID 149185560, regio eu1. Contact-eigenschappen `scan_score`, `scan_richting`, `scan_proces` bestaan (aangemaakt 24-09-2026).
+
 - TanStack Start + React + Tailwind, gebouwd met Lovable. Content staat grotendeels in `src/lib/content.ts`.
 - Supabase: `contact_requests` en `scan_leads` (insert-only voor anon, RLS aan). Migraties in `supabase/migrations/`; nieuwe tabellen altijd met expliciete `GRANT`.
 - Leads (contact + scan) lopen via `submitLead` in `src/lib/leads.functions.ts` → `src/lib/leads.server.ts`: opslaan in Supabase, doorsturen naar HubSpot (Forms API), notificatiemail via Resend. Honeypot + minimale invultijd tegen spam.
-- Env-variabelen (als secret instellen, nooit in code): `HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_CONTACT`, `HUBSPOT_FORM_SCAN`, `RESEND_API_KEY`, `LEAD_NOTIFY_TO`, `LEAD_NOTIFY_FROM`. Ontbreken ze, dan wordt die stap overgeslagen.
+- Env-variabelen (als secret instellen, nooit in code): `HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_CONTACT`, `HUBSPOT_FORM_SCAN`, `HUBSPOT_PRIVATE_APP_TOKEN` (deals), `VITE_HUBSPOT_PORTAL_ID`, `VITE_HUBSPOT_REGION`, `VITE_GA4_ID`, `RESEND_API_KEY`, `LEAD_NOTIFY_TO`, `LEAD_NOTIFY_FROM`. Ontbreken ze, dan wordt die stap overgeslagen.
 - Geen API-keys of tokens in de code; gebruik environment variables / Supabase secrets.
 - Dit project is gekoppeld aan Lovable: geen force-push of history rewrites (zie `AGENTS.md`).

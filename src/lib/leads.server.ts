@@ -6,7 +6,9 @@ import type { LeadInput } from "./leads.functions";
 /**
  * Server-only. Configuratie komt uit env-variabelen (Lovable/Vercel secrets):
  * - SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY — opslag (insert-only via RLS)
- * - HUBSPOT_PORTAL_ID, HUBSPOT_FORM_CONTACT, HUBSPOT_FORM_SCAN — optioneel
+ * - HUBSPOT_PORTAL_ID, HUBSPOT_FORM_CONTACT, HUBSPOT_FORM_SCAN — optioneel (formulierinzending)
+ * - HUBSPOT_PRIVATE_APP_TOKEN — optioneel (deal aanmaken); HUBSPOT_DEAL_PIPELINE / HUBSPOT_DEAL_STAGE
+ *   overschrijven de standaardpijplijn ("default") en eerste fase ("appointmentscheduled")
  * - RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM — optioneel
  * Ontbreekt een optionele variabele, dan wordt die stap overgeslagen.
  */
@@ -22,7 +24,7 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
   await saveToSupabase(lead);
 
   // Opslag is gelukt; HubSpot en mail mogen de bezoeker niet blokkeren.
-  const results = await Promise.allSettled([sendToHubspot(lead), notifyTeam(lead)]);
+  const results = await Promise.allSettled([hubspotFlow(lead), notifyTeam(lead)]);
   for (const r of results) {
     if (r.status === "rejected") console.error("[leads]", r.reason);
   }
@@ -78,6 +80,71 @@ async function saveToSupabase(lead: LeadInput) {
         });
 
   if (error) throw new Error(`Supabase insert failed: ${error.message}`);
+}
+
+/** Eerst de formulierinzending (tracking), daarna de deal; een fout in stap 1 stopt stap 2 niet. */
+async function hubspotFlow(lead: LeadInput) {
+  try {
+    await sendToHubspot(lead);
+  } catch (error) {
+    console.error("[leads]", error);
+  }
+  await createHubspotDeal(lead);
+}
+
+async function hubspotApi(token: string, path: string, body: unknown) {
+  const res = await fetch(`https://api.hubapi.com${path}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`HubSpot API ${path} ${res.status}: ${await res.text()}`);
+  return (await res.json()) as { id?: string; results?: { id: string }[] };
+}
+
+/** Contact aanmaken of bijwerken (op e-mail) en er een deal aan koppelen. */
+async function createHubspotDeal(lead: LeadInput) {
+  const token = env("HUBSPOT_PRIVATE_APP_TOKEN");
+  if (!token) return;
+
+  const contactProps: Record<string, string> =
+    lead.kind === "contact"
+      ? { email: lead.email, firstname: lead.name.split(" ")[0] ?? lead.name }
+      : {
+          email: lead.email,
+          firstname: lead.firstName,
+          scan_score: String(lead.score.total),
+          scan_richting: lead.richting,
+          scan_proces: lead.process,
+        };
+  if (lead.company) contactProps["company"] = lead.company;
+
+  const upsert = await hubspotApi(token, "/crm/v3/objects/contacts/batch/upsert", {
+    inputs: [{ idProperty: "email", id: lead.email, properties: contactProps }],
+  });
+  const contactId = upsert.results?.[0]?.id;
+  if (!contactId) throw new Error("HubSpot upsert returned no contact id");
+
+  const who = lead.kind === "contact" ? lead.name : lead.firstName;
+  const description =
+    lead.kind === "contact"
+      ? lead.message
+      : `Loopwerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100). Proces: ${lead.process || "-"}. Richting: ${lead.richting}.`;
+
+  await hubspotApi(token, "/crm/v3/objects/deals", {
+    properties: {
+      dealname: `${lead.kind === "contact" ? "Website" : "Scan"}: ${lead.company || who}`,
+      pipeline: env("HUBSPOT_DEAL_PIPELINE") ?? "default",
+      dealstage: env("HUBSPOT_DEAL_STAGE") ?? "appointmentscheduled",
+      description: description.slice(0, 5000),
+    },
+    associations: [
+      {
+        to: { id: contactId },
+        types: [{ associationCategory: "HUBSPOT_DEFINED", associationTypeId: 3 }],
+      },
+    ],
+  });
 }
 
 async function sendToHubspot(lead: LeadInput) {
