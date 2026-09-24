@@ -50,21 +50,23 @@ function BlogIndex() {
       </Section>
 
       <Section tone="cream">
-        <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => setActive(null)} className={chip(active === null)}>
-            Alles
-          </button>
-          {tags.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setActive(t)}
-              className={chip(active === t)}
-            >
-              {t}
+        {tags.length > 1 ? (
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => setActive(null)} className={chip(active === null)}>
+              Alles
             </button>
-          ))}
-        </div>
+            {tags.map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setActive(t)}
+                className={chip(active === t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         {featured ? (
           <Link
@@ -87,7 +89,8 @@ function BlogIndex() {
               </h2>
               <p className="mt-4 leading-relaxed text-ink/75">{featured.excerpt}</p>
               <p className="mt-6 text-sm text-ink/55">
-                {formatDate(featured.date)} · {featured.readingMinutes} min lezen
+                {featured.author.name} · {formatDate(featured.date)} · {featured.readingMinutes} min
+                lezen
               </p>
             </div>
           </Link>
@@ -116,7 +119,7 @@ function BlogIndex() {
                 </h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{p.excerpt}</p>
                 <p className="mt-5 text-xs text-ink/55">
-                  {formatDate(p.date)} · {p.readingMinutes} min lezen
+                  {p.author.name} · {formatDate(p.date)} · {p.readingMinutes} min lezen
                 </p>
               </div>
             </Link>

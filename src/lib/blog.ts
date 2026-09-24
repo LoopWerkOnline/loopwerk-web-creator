@@ -13,16 +13,46 @@ export type BlogBlock =
   | { type: "h2"; text: string }
   | { type: "list"; items: string[] }
   | { type: "quote"; text: string }
+  /** Genummerde kaarten; de eerste zin van elk item wordt vet. */
+  | { type: "steps"; items: string[] }
   /** Twee kolommen: wat AI of het systeem doet, en wat de mens doet. */
-  | { type: "split"; title: string; machine: string[]; mens: string[] };
+  | {
+      type: "split";
+      title: string;
+      machineLabel?: string;
+      mensLabel?: string;
+      machine: string[];
+      mens: string[];
+    };
+
+export type BlogAuthor = { name: string; initials: string; role: string; color: string };
+
+/** Schrijvers; gelijk aan het team op /over-loopwerk. */
+export const blogAuthors = {
+  levi: { name: "Levi Kempen", initials: "LK", role: "Mede-oprichter", color: "var(--forest)" },
+  gianni: {
+    name: "Gianni Geurtjens",
+    initials: "GG",
+    role: "Mede-oprichter",
+    color: "var(--home-accent)",
+  },
+  shaquil: {
+    name: "Shaquil Reyes",
+    initials: "SR",
+    role: "Mede-oprichter",
+    color: "var(--ink-hero)",
+  },
+} satisfies Record<string, BlogAuthor>;
 
 export type BlogPost = {
   slug: string;
   title: string;
+  /** Woord of woordgroep uit de titel die in handschrift wordt uitgelicht. */
+  highlight?: string;
   excerpt: string;
   /** ISO-datum, bv. 2026-09-24 */
   date: string;
-  author: string;
+  author: BlogAuthor;
   readingMinutes: number;
   tags: string[];
   image?: string;
@@ -34,10 +64,11 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "de-telefoon-gaat-de-klant-wil-een-prijs",
     title: "De telefoon gaat. De klant wil een prijs. Wat nu?",
+    highlight: "Wat nu?",
     excerpt:
       "Iedereen kent het moment. Waarom klanten altijd eerst naar de prijs vragen, wat je nu waarschijnlijk doet en hoe het slimmer kan.",
     date: "2026-09-24",
-    author: "Team LoopWerk",
+    author: blogAuthors.levi,
     readingMinutes: 5,
     tags: ["Achter de aanvraag"],
     image: "/oplossingen/opl-2.jpg",
@@ -70,7 +101,7 @@ export const blogPosts: BlogPost[] = [
       },
       { type: "h2", text: "Drie dingen die je nu waarschijnlijk doet" },
       {
-        type: "list",
+        type: "steps",
         items: [
           "Je noemt een bedrag uit je hoofd. Lekker snel. Maar noem je een te laag bedrag, dan moet je later een verwachting bijstellen. Dat is nooit een fijn gesprek. Noem je een te hoog bedrag, dan is de klant weg voordat je kon uitleggen waarom.",
           "Je zegt \u2018dat hangt ervan af\u2019 en plant een afspraak. Eerlijk en grondig. Maar het kost jou een uur en de klant een beetje geduld. En een deel van die afspraken eindigt alsnog bij dezelfde vraag: wat kost het nou?",
@@ -96,7 +127,7 @@ export const blogPosts: BlogPost[] = [
       },
       { type: "h2", text: "Vier manieren om het slimmer te doen" },
       {
-        type: "list",
+        type: "steps",
         items: [
           "Durf een richting te noemen. Zet op je site of in je mail een bandbreedte: de meeste projecten vallen tussen X en Y. Klinkt eng, maar het werkt als filter. Wie schrikt, had toch niet gekocht. Wie blijft, weet waar hij aan toe is.",
           "Vaste vragen, vaste volgorde. Schrijf de vijf vragen op die je eigenlijk altijd stelt. Zet ze in je formulier, naast de telefoon en in je standaardmail. Dan hoef je ze niet elke keer opnieuw te bedenken.",
@@ -108,6 +139,8 @@ export const blogPosts: BlogPost[] = [
       {
         type: "split",
         title: "Wie doet wat",
+        machineLabel: "Wat AI doet",
+        mensLabel: "Wat jij doet",
         machine: [
           "Leest de mail van de klant en ziet dat bijvoorbeeld de afmetingen ontbreken.",
           "Zet die vervolgvraag alvast voor je klaar.",
