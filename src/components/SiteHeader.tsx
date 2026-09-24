@@ -9,8 +9,8 @@ type NavItem = { to: "/cases" | "/blog" | "/scan" | "/over-loopwerk"; label: str
 
 const plainNav: NavItem[] = [
   { to: "/cases", label: "Cases" },
-  { to: "/blog", label: "Blogs" },
   { to: "/scan", label: "Doe de scan" },
+  { to: "/blog", label: "Blogs" },
   { to: "/over-loopwerk", label: "Over Ons" },
 ];
 
@@ -174,18 +174,18 @@ export function SiteHeader() {
               Cases
             </Link>
             <Link
-              to="/blog"
-              onClick={closeMenu}
-              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
-            >
-              Blogs
-            </Link>
-            <Link
               to="/scan"
               onClick={closeMenu}
               className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
             >
               Doe de scan
+            </Link>
+            <Link
+              to="/blog"
+              onClick={closeMenu}
+              className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
+            >
+              Blogs
             </Link>
             <Link
               to="/over-loopwerk"
