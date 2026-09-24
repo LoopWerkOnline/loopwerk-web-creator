@@ -192,37 +192,18 @@ function OverLoopwerk() {
       </Section>
 
       <Section tone="shell">
-        <div className="grid gap-14 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div>
-            <Reveal>
-              <Eyebrow tone="home-accent">Onze principes</Eyebrow>
-              <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waar we in geloven</h2>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
-              {beliefs.map((b, i) => {
-                const highlighted = i === 0 || i === 3;
-                return (
-                  <Reveal
-                    key={b.title}
-                    delay={i * 0.08}
-                    className={
-                      highlighted
-                        ? "rounded-2xl bg-ink-hero p-6 text-cream"
-                        : "rounded-2xl border border-line bg-cream p-6"
-                    }
-                  >
-                    <h3 className="text-lg">{b.title}</h3>
-                    <p
-                      className={`mt-2 text-base leading-relaxed ${
-                        highlighted ? "text-cream/75" : "text-ink/70"
-                      }`}
-                    >
-                      {b.body}
-                    </p>
-                  </Reveal>
-                );
-              })}
-            </div>
+        <Reveal>
+          <Eyebrow tone="home-accent">Onze principes</Eyebrow>
+          <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Waar we in geloven</h2>
+        </Reveal>
+        <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-start">
+          <div className="grid gap-5 sm:grid-cols-2">
+            {beliefs.map((b, i) => (
+              <Reveal key={b.title} delay={i * 0.08} className="rounded-2xl border border-line bg-cream p-6">
+                <h3 className="text-xl leading-snug text-home-accent">{b.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-ink/70">{b.body}</p>
+              </Reveal>
+            ))}
           </div>
           <Reveal delay={0.1} className="rounded-3xl bg-ink-hero p-8 text-cream md:p-10">
             <Eyebrow tone="home-accent">In de praktijk</Eyebrow>
