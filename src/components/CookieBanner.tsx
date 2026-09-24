@@ -34,40 +34,37 @@ export function CookieBanner() {
     setOpen(false);
   }
 
-  const button = "rounded-full px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90";
+  const button =
+    "w-full rounded-full bg-forest px-6 py-3.5 text-base font-semibold text-cream transition-opacity hover:opacity-90 sm:w-auto";
 
   return (
     <div
       role="dialog"
       aria-live="polite"
-      aria-label="Cookie-instellingen"
-      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-2xl rounded-2xl border border-line bg-card p-6 text-ink shadow-xl"
+      aria-labelledby="cookie-title"
+      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-2xl border border-line bg-card p-6 text-ink shadow-2xl md:p-7"
     >
-      <p className="text-sm leading-relaxed text-ink/80">
-        We willen graag meten hoe de site gebruikt wordt (Google Analytics) en zien welke pagina's
-        je bekeek als je contact opneemt (HubSpot). Daarvoor plaatsen we cookies, maar alleen als je
-        dat goedvindt. Meer in ons{" "}
-        <Link to="/cookies" className="underline underline-offset-4">
-          cookiebeleid
-        </Link>
-        .
+      <h2 id="cookie-title" className="text-2xl leading-tight">
+        Mogen we meten wat werkt?
+      </h2>
+      <p className="mt-3 text-base leading-relaxed text-ink/80">
+        Met cookies van Google Analytics en HubSpot zien we welke pagina's bezocht worden en waar
+        een aanvraag vandaan komt. Geen advertenties, geen doorverkoop. Zeg je nee, dan werkt de
+        site gewoon.
       </p>
-      <div className="mt-5 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => choose("granted")}
-          className={`${button} bg-forest text-cream`}
-        >
-          Akkoord
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <button type="button" onClick={() => choose("granted")} className={button}>
+          Ja, dat is goed
         </button>
-        <button
-          type="button"
-          onClick={() => choose("denied")}
-          className={`${button} bg-forest text-cream`}
-        >
-          Alleen noodzakelijk
+        <button type="button" onClick={() => choose("denied")} className={button}>
+          Nee, liever niet
         </button>
       </div>
+      <p className="mt-4 text-sm text-ink/60">
+        <Link to="/cookies" className="underline underline-offset-4 hover:text-ink">
+          Lees het cookiebeleid
+        </Link>
+      </p>
     </div>
   );
 }
