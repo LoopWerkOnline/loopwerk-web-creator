@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { SolutionCheck } from "@/components/solution/SolutionCheck";
+import { sspwZwembad } from "@/lib/assets";
 import { solutionBySlug, solutions, trajectSteps } from "@/lib/content";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
@@ -190,29 +191,39 @@ function SolutionPage() {
 
       {solution.featured ? (
         <Section>
-          <Reveal>
-            <Eyebrow>In de praktijk</Eyebrow>
-            <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
-              De zwembadconfigurator die we voor SSPW bouwden
-            </h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
-              Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet wat
-              inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een vastgelegde
-              lead.
-            </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <Link
-              to="/cases/sspw-zwembadconfigurator"
-              className="group mt-10 inline-flex items-center gap-3 rounded-full border border-line bg-cream px-6 py-3.5 text-sm font-semibold text-forest transition-colors hover:border-home-accent hover:text-home-accent"
-            >
-              Bekijk de volledige case: SSPW zwembadconfigurator
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </Link>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+            <Reveal>
+              <Eyebrow>In de praktijk</Eyebrow>
+              <h2 className="mt-6 max-w-2xl text-3xl md:text-4xl">
+                De zwembadconfigurator die we voor SSPW bouwden
+              </h2>
+              <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
+                Drie stappen: formaat, uitvoering en gegevens. De bezoeker stelt zelf samen, ziet
+                wat inbegrepen is en wat extra kost. SSPW ontvangt een conceptofferte plus een
+                vastgelegde lead.
+              </p>
+              <Link
+                to="/cases/sspw-zwembadconfigurator"
+                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-home-accent px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Bekijk de volledige case: SSPW zwembadconfigurator
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <figure className="overflow-hidden rounded-xl border border-line">
+                <img
+                  src={sspwZwembad}
+                  alt="Luchtfoto van een vrijstaande villa met rieten kap, terras en zwembad, project van Sun Sauna & Poolworld"
+                  className="block aspect-video w-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            </Reveal>
+          </div>
         </Section>
       ) : solution.proofNote ? (
         <Section>
