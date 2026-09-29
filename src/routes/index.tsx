@@ -155,7 +155,7 @@ function Index() {
         <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-24">
           <Reveal className="flex flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream sm:p-10 md:aspect-square md:p-12">
             <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
-            <h2 className="mt-6 text-4xl leading-tight text-cream md:text-5xl">
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
               Eén klantvraag, vier keer handwerk
             </h2>
             <p className="mt-4 leading-relaxed text-cream/75">
@@ -178,7 +178,7 @@ function Index() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Eyebrow>Oplossingen</Eyebrow>
-            <h2 className="mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
+            <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
               Bekende problemen, waar we al een richting voor hebben
             </h2>
           </div>
@@ -213,7 +213,7 @@ function Index() {
       <Section>
         <Reveal>
           <Eyebrow>Sectoren</Eyebrow>
-          <h2 className="mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
             We kennen het werk waar de tijd in gaat zitten
           </h2>
         </Reveal>
@@ -261,7 +261,7 @@ function Index() {
           </Reveal>
           <Reveal delay={0.1}>
             <Eyebrow tone="home-accent">UITGELICHTE CASE</Eyebrow>
-            <h2 className="mt-6 text-4xl leading-tight text-cream md:text-5xl">Sun Sauna &amp; Poolworld</h2>
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
             <p className="hand text-home-accent mt-8 text-2xl leading-snug md:text-3xl">
               “Wat kost een zwembad ongeveer?”
             </p>
@@ -297,7 +297,7 @@ function Index() {
       <Section tone="cream">
         <Reveal>
           <Eyebrow>Hoe we werken</Eyebrow>
-          <h2 className="mt-6 max-w-2xl text-4xl leading-tight md:text-5xl">
+          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
             Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
           </h2>
         </Reveal>
@@ -321,7 +321,7 @@ function Index() {
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
           <Reveal>
             <Eyebrow tone="sage">OVER ONS</Eyebrow>
-            <h2 className="mt-6 text-4xl leading-tight md:text-5xl">
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Nuchter, concreet en eerlijk over wat iets oplevert
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-cream/70">
