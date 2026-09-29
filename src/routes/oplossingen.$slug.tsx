@@ -225,19 +225,6 @@ function SolutionPage() {
             </Reveal>
           </div>
         </Section>
-      ) : solution.proofNote ? (
-        <Section>
-          <Reveal>
-            <Eyebrow>Nog geen losse case</Eyebrow>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/75">{solution.proofNote}</p>
-            <Link
-              to="/cases/sspw-zwembadconfigurator"
-              className="mt-4 inline-block text-sm font-semibold text-forest underline underline-offset-4"
-            >
-              Bekijk die case
-            </Link>
-          </Reveal>
-        </Section>
       ) : null}
 
       <Section tone="ink">
