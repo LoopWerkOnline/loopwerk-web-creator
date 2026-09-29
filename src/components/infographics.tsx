@@ -2,7 +2,8 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
-import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Mail, MessageSquare, Plus, Search, Sliders } from "lucide-react";
+import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Hand, Mail, MessageSquare, Plus, Search, Sliders, Workflow, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const forest = "var(--forest)";
@@ -467,6 +468,58 @@ export function SolutionJourney({
             <p className="mt-3 text-sm leading-snug text-forest">Offerte</p>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Generieke stappenflow (geen links): laatste stap krijgt de accentkleur als eindresultaat. */
+export function ProcessSteps({
+  items,
+  className,
+}: {
+  items: { label: string; icon: LucideIcon }[];
+  className?: string;
+}) {
+  const Arrow = () => (
+    <svg width="28" height="20" viewBox="0 0 28 20" fill="none" className="mt-9 shrink-0 text-home-accent" aria-hidden="true">
+      <path d="M0 10 H22" stroke="currentColor" strokeWidth="2" />
+      <path d="M16 3 L23 10 L16 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  return (
+    <div className={`overflow-x-auto ${className ?? ""}`}>
+      <div className="flex w-max items-start gap-3 px-1 sm:w-full sm:justify-between sm:gap-2">
+        {items.map((it, i) => {
+          const isLast = i === items.length - 1;
+          const Icon = it.icon;
+          return (
+            <div key={it.label} className="flex items-start gap-3">
+              {i > 0 ? <Arrow /> : null}
+              <div className="flex w-24 flex-col items-center text-center sm:w-28">
+                <div
+                  className={`flex h-16 w-16 items-center justify-center rounded-full sm:h-20 sm:w-20 ${
+                    isLast ? "bg-home-accent" : "bg-shell"
+                  }`}
+                >
+                  <Icon
+                    className={`h-7 w-7 ${isLast ? "text-white" : "text-forest"}`}
+                    strokeWidth={isLast ? 2.5 : 1.75}
+                    aria-hidden="true"
+                  />
+                </div>
+                <p
+                  className={`mt-3 text-sm leading-snug ${
+                    isLast ? "font-semibold text-ink" : "text-forest"
+                  }`}
+                >
+                  {it.label}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

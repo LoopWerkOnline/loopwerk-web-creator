@@ -1,13 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check, Hand, Workflow, Zap } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { SolutionJourney } from "@/components/infographics";
+import { ProcessSteps } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 import { solutions } from "@/lib/content";
 
-const journeySolutions = solutions
-  .filter((s) => s.journeyStep !== undefined)
-  .sort((a, b) => (a.journeyStep ?? 0) - (b.journeyStep ?? 0));
+const processSteps = [
+  { label: "Handmatig werk", icon: Hand },
+  { label: "Slimmer proces", icon: Workflow },
+  { label: "Automatisch waar het helpt", icon: Zap },
+  { label: "Meer tijd voor echt werk", icon: Check },
+];
 
 const title = "Oplossingen | LoopWerk";
 const description =
@@ -72,18 +76,18 @@ function OplossingenPage() {
 
       <Section>
         <Reveal>
-          <Eyebrow tone="home-accent">Van aanvraag tot offerte</Eyebrow>
+          <Eyebrow tone="home-accent">Van handwerk naar een slimmer proces</Eyebrow>
           <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-            Drie stappen, één doorlopend proces
+            Minder stappen. Minder gedoe. Meer gedaan.
           </h2>
           <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
-            Dit zijn geen drie losse producten — het is de weg die een aanvraag bij jullie al
-            aflegt, alleen dan zonder dat er iets blijft liggen: compleet binnenkomen, meteen
-            samengesteld en geprijsd, en opgevolgd tot hij gesloten is.
+            We kijken waar werk onnodig tijd kost, waar informatie blijft liggen en waar dezelfde
+            handelingen steeds terugkomen. Vervolgens maken we het proces eenvoudiger en slimmer —
+            passend bij hoe jullie bedrijf werkt.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
-          <SolutionJourney items={journeySolutions} className="mt-14" />
+          <ProcessSteps items={processSteps} className="mt-14" />
         </Reveal>
       </Section>
 
