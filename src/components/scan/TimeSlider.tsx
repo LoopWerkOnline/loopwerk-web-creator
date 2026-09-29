@@ -1,50 +1,39 @@
-/** Discrete slider over een reeks bandbreedtes (gebruikt voor zowel volume als tijdsduur). */
+/** Continue slider over een numeriek bereik (gebruikt voor zowel volume als tijdsduur). */
 export function TimeSlider({
-  options,
+  min,
+  max,
   value,
   onChange,
-  insight,
+  format,
+  minLabel,
+  maxLabel,
 }: {
-  options: { value: string; label: string }[];
-  value: string;
-  onChange: (value: string) => void;
-  insight?: string | undefined;
+  min: number;
+  max: number;
+  value: number;
+  onChange: (value: number) => void;
+  format: (value: number) => string;
+  minLabel: string;
+  maxLabel: string;
 }) {
-  const index = Math.max(
-    0,
-    options.findIndex((o) => o.value === value),
-  );
-  const current = options[index] ?? options[0];
-
   return (
     <div>
-      <p className="fade-up text-center text-4xl font-semibold text-forest md:text-5xl" key={current?.value}>
-        {current?.label}
-      </p>
+      <p className="text-center text-4xl font-semibold text-forest md:text-5xl">{format(value)}</p>
 
       <input
         type="range"
         className="scan-range mt-8"
-        min={0}
-        max={options.length - 1}
+        min={min}
+        max={max}
         step={1}
-        value={index}
-        onChange={(e) => {
-          const opt = options[Number(e.target.value)];
-          if (opt) onChange(opt.value);
-        }}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
       />
 
       <div className="mt-2 flex justify-between text-xs text-ink/40">
-        <span>{options[0]?.label}</span>
-        <span>{options[options.length - 1]?.label}</span>
+        <span>{minLabel}</span>
+        <span>{maxLabel}</span>
       </div>
-
-      {insight ? (
-        <p className="fade-up mt-7 rounded-xl border border-line bg-shell px-5 py-4 text-sm leading-relaxed text-ink/75" key={`insight-${insight}`}>
-          {insight}
-        </p>
-      ) : null}
     </div>
   );
 }

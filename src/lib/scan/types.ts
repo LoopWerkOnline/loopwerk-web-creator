@@ -5,9 +5,6 @@ export type ChoiceOption = {
   label: string;
 };
 
-export type VolumeOption = { value: string; label: string; midpoint: number };
-export type DurationOption = { value: string; label: string; minutes: number };
-
 /** Eén stap in de scan. `kind` bepaalt welk input-component wordt gerenderd. */
 export type ScanStep =
   | {
@@ -37,8 +34,10 @@ export type ScanStep =
 export type ScanAnswers = {
   process: string;
   processOther: string;
-  volume: string;
-  duration: string;
+  /** Aantal keer per week, continu (1 t/m 75; 75 betekent "75+"). */
+  volume: number;
+  /** Minuten per keer, continu (5 t/m 120; 120 betekent "120+"). */
+  duration: number;
   timeSinks: string[];
   repetition: number;
   judgment: number;
@@ -49,8 +48,8 @@ export type ScanAnswers = {
 export const initialAnswers: ScanAnswers = {
   process: "",
   processOther: "",
-  volume: "16-30",
-  duration: "30",
+  volume: 23,
+  duration: 30,
   timeSinks: [],
   repetition: 3,
   judgment: 3,

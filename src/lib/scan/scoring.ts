@@ -1,14 +1,10 @@
-import { durationOptions, volumeOptions } from "./questions";
 import type { ScanAnswers, ScanScore } from "./types";
 
 const manualWorkSinks = ["verzamelen", "opzoeken", "vragen", "overtypen", "controleren", "documenten"];
 
-/** Uren per week: frequentie (midden van de bandbreedte) × tijd per keer. */
+/** Uren per week: frequentie × tijd per keer. */
 export function hoursPerWeek(answers: ScanAnswers): number {
-  const volume = volumeOptions.find((o) => o.value === answers.volume);
-  const duration = durationOptions.find((o) => o.value === answers.duration);
-  if (!volume || !duration) return 0;
-  return (volume.midpoint * duration.minutes) / 60;
+  return (answers.volume * answers.duration) / 60;
 }
 
 function round1(n: number): number {

@@ -1,23 +1,17 @@
-import type { DurationOption, ScanStep, VolumeOption } from "./types";
+import type { ScanStep } from "./types";
 
-export const volumeOptions: VolumeOption[] = [
-  { value: "1-5", label: "1–5 per week", midpoint: 3 },
-  { value: "6-15", label: "6–15 per week", midpoint: 10 },
-  { value: "16-30", label: "16–30 per week", midpoint: 23 },
-  { value: "31-75", label: "31–75 per week", midpoint: 53 },
-  { value: "75+", label: "75+ per week", midpoint: 90 },
-];
+export const volumeRange = { min: 1, max: 75 };
+export const durationRange = { min: 5, max: 120 };
 
-export const durationOptions: DurationOption[] = [
-  { value: "5", label: "5 min", minutes: 5 },
-  { value: "10", label: "10 min", minutes: 10 },
-  { value: "20", label: "20 min", minutes: 20 },
-  { value: "30", label: "30 min", minutes: 30 },
-  { value: "45", label: "45 min", minutes: 45 },
-  { value: "60", label: "60 min", minutes: 60 },
-  { value: "90", label: "90 min", minutes: 90 },
-  { value: "120", label: "120+ min", minutes: 120 },
-];
+export function formatVolume(value: number): string {
+  const rounded = Math.round(value);
+  return rounded >= volumeRange.max ? `${volumeRange.max}+ per week` : `${rounded} per week`;
+}
+
+export function formatDuration(value: number): string {
+  const rounded = Math.round(value);
+  return rounded >= durationRange.max ? `${durationRange.max}+ min` : `${rounded} min`;
+}
 
 /**
  * Alle scan-stappen, centraal configureerbaar. Volgorde in de array = volgorde
