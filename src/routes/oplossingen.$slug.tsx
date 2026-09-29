@@ -1,10 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { BrowserFrame } from "@/components/BrowserFrame";
 import { Reveal } from "@/components/Reveal";
 import { SolutionCheck } from "@/components/solution/SolutionCheck";
-import { sspwStap1, sspwStap2, sspwStap3 } from "@/lib/assets";
 import { solutionBySlug, solutions, trajectSteps } from "@/lib/content";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
@@ -202,17 +201,18 @@ function SolutionPage() {
               lead.
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <Reveal><BrowserFrame src={sspwStap1} alt="Stap 1 van de configurator: formaat kiezen" label="Stap 1: Formaat" /></Reveal>
-            <Reveal delay={0.08}><BrowserFrame src={sspwStap2} alt="Stap 2 van de configurator: uitvoering en opties" label="Stap 2: Uitvoering" /></Reveal>
-            <Reveal delay={0.16}><BrowserFrame src={sspwStap3} alt="Stap 3 van de configurator: gegevens en prijsindicatie" label="Stap 3: Prijsindicatie" /></Reveal>
-          </div>
-          <Link
-            to="/cases/sspw-zwembadconfigurator"
-            className="mt-8 inline-block text-sm font-semibold text-forest underline underline-offset-4"
-          >
-            Lees de volledige case
-          </Link>
+          <Reveal delay={0.08}>
+            <Link
+              to="/cases/sspw-zwembadconfigurator"
+              className="group mt-10 inline-flex items-center gap-3 rounded-full border border-line bg-cream px-6 py-3.5 text-sm font-semibold text-forest transition-colors hover:border-home-accent hover:text-home-accent"
+            >
+              Bekijk de volledige case: SSPW zwembadconfigurator
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+          </Reveal>
         </Section>
       ) : solution.proofNote ? (
         <Section>
