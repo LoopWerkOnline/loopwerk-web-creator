@@ -1,17 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, Hand, Workflow, Zap } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { ProcessLoop } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 import { solutions } from "@/lib/content";
-
-const processSteps = [
-  { label: "Handmatig werk", icon: Hand },
-  { label: "Slimmer proces", icon: Workflow },
-  { label: "Automatisch waar het helpt", icon: Zap },
-  { label: "Meer tijd voor echt werk", icon: Check },
-];
 
 const title = "Oplossingen | LoopWerk";
 const description =
@@ -88,7 +79,11 @@ function OplossingenPage() {
             </p>
           </Reveal>
           <Reveal delay={0.1} className="flex items-center justify-center">
-            <ProcessLoop items={processSteps} className="w-full max-w-sm" />
+            <img
+              src="/oplossingen/proces-loop.webp"
+              alt="Vier stappen in een lus: handmatig werk, slimmer proces, automatisch waar het helpt, meer tijd voor echt werk"
+              className="w-full max-w-sm"
+            />
           </Reveal>
         </div>
       </Section>

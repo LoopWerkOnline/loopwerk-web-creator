@@ -2,7 +2,7 @@
  * Handgetekende SVG-infographics in de merkkleuren.
  * Bewust geen stockbeeld: diagrammen die het verhaal dragen.
  */
-import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Hand, Mail, MessageSquare, Plus, Search, Sliders, Workflow, Zap } from "lucide-react";
+import { Calendar, Check, Clock, Copy, Database, FileSpreadsheet, FileText, Mail, MessageSquare, Plus, Search, Sliders } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -521,94 +521,6 @@ export function ProcessSteps({
           );
         })}
       </div>
-    </div>
-  );
-}
-
-/**
- * Doorlopende lus (geen rechte lijn): drie stappen rond een cirkel, met de
- * laatste — het resultaat — groter en in de accentkleur, en een gestippelde
- * pijl die teruglust naar de eerste stap. Posities/curves zijn vaste
- * percentages, bedoeld voor precies deze vier stappen (geen generieke N-node
- * layout).
- */
-export function ProcessLoop({
-  items,
-  className,
-}: {
-  /** Precies 4 items: start, boven, rechts, resultaat (groot/accent, laatste). */
-  items: { label: string; icon: LucideIcon }[];
-  className?: string;
-}) {
-  const [i0, i1, i2, i3] = items;
-  const nodes = [
-    { ...i0!, x: 20, y: 47, r: 14 },
-    { ...i1!, x: 50, y: 20, r: 14 },
-    { ...i2!, x: 80, y: 47, r: 14 },
-    { ...i3!, x: 50, y: 78, r: 19, isFinal: true },
-  ] as const;
-
-  const arcs = [
-    { d: "M 20 47 Q 24.9 22.4 36.06 21.33", dashed: false },
-    { d: "M 50 20 Q 75.1 22.4 77.26 33.27", dashed: false },
-    { d: "M 80 47 Q 76.5 72.1 68.54 73.88", dashed: false },
-    { d: "M 50 78 Q 23.5 72.1 21.93 60.87", dashed: true },
-  ];
-
-  return (
-    <div className={`relative aspect-square w-full ${className ?? ""}`}>
-      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-        <defs>
-          <marker id="loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-            <path d="M0 0 L10 5 L0 10 z" fill="var(--home-accent)" />
-          </marker>
-        </defs>
-        {arcs.map((a, i) => (
-          <path
-            key={i}
-            d={a.d}
-            fill="none"
-            stroke="var(--home-accent)"
-            strokeWidth="1.6"
-            strokeDasharray={a.dashed ? "4 3" : undefined}
-            markerEnd="url(#loop-arrow)"
-          />
-        ))}
-      </svg>
-
-      {nodes.map((n) => {
-        const Icon = n.icon;
-        const isFinal = "isFinal" in n && n.isFinal;
-        return (
-          <div
-            key={n.label}
-            className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center"
-            style={{ left: `${n.x}%`, top: `${n.y}%`, width: `${n.r * 2}%` }}
-          >
-            <div
-              className={`flex aspect-square w-full flex-col items-center justify-center gap-2 rounded-full p-[12%] text-center shadow-lg ${
-                isFinal ? "bg-home-accent" : "bg-cream"
-              }`}
-            >
-              <span
-                className={`flex h-[42%] w-[42%] shrink-0 items-center justify-center rounded-full ${
-                  isFinal ? "bg-white/15" : "bg-shell"
-                }`}
-              >
-                <Icon
-                  className={`h-[55%] w-[55%] ${isFinal ? "text-white" : "text-forest"}`}
-                  strokeWidth={isFinal ? 2.5 : 1.75}
-                  aria-hidden="true"
-                />
-              </span>
-              {isFinal ? (
-                <p className="text-sm font-semibold leading-snug text-white">{n.label}</p>
-              ) : null}
-            </div>
-            {!isFinal ? <p className="mt-3 text-sm leading-snug text-forest">{n.label}</p> : null}
-          </div>
-        );
-      })}
     </div>
   );
 }
