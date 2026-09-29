@@ -77,7 +77,10 @@ function Index() {
 
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:pb-20 md:pt-40">
           <div className="max-w-3xl">
-            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+            <p
+              className="fade-up eyebrow text-sage"
+              style={{ animationDelay: "0s", fontSize: "0.875rem" }}
+            >
               Terugkerend werk. Geregeld.
             </p>
             <h1
@@ -154,7 +157,7 @@ function Index() {
       <Section>
         <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-24">
           <Reveal className="flex flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream sm:p-10 md:aspect-square md:p-12">
-            <Eyebrow tone="home-accent">Herkenbaar?</Eyebrow>
+            <Eyebrow tone="home-accent" size="lg">Herkenbaar?</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
               Eén klantvraag, vier keer handwerk
             </h2>
@@ -177,7 +180,7 @@ function Index() {
       <Section tone="shell">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <Eyebrow>Oplossingen</Eyebrow>
+            <Eyebrow size="lg">Oplossingen</Eyebrow>
             <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
               Bekende problemen, waar we al een richting voor hebben
             </h2>
@@ -212,7 +215,7 @@ function Index() {
       {/* Sectoren */}
       <Section>
         <Reveal>
-          <Eyebrow>Sectoren</Eyebrow>
+          <Eyebrow size="lg">Sectoren</Eyebrow>
           <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
             We kennen het werk waar de tijd in gaat zitten
           </h2>
@@ -260,7 +263,7 @@ function Index() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <Eyebrow tone="home-accent">UITGELICHTE CASE</Eyebrow>
+            <Eyebrow tone="home-accent" size="lg">UITGELICHTE CASE</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
             <p className="hand text-home-accent mt-8 text-2xl leading-snug md:text-3xl">
               “Wat kost een zwembad ongeveer?”
@@ -296,7 +299,7 @@ function Index() {
       {/* Hoe we werken */}
       <Section tone="cream">
         <Reveal>
-          <Eyebrow>Hoe we werken</Eyebrow>
+          <Eyebrow size="lg">Hoe we werken</Eyebrow>
           <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
             Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
           </h2>
@@ -308,7 +311,9 @@ function Index() {
             { n: "03", t: "Bouwen en bijstellen", b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen." },
           ].map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08} className="border-t border-line pt-6">
-              <span className="eyebrow text-home-accent">{s.n}</span>
+              <span className="eyebrow text-home-accent" style={{ fontSize: "0.875rem" }}>
+                {s.n}
+              </span>
               <h3 className="mt-3 text-2xl">{s.t}</h3>
               <p className="mt-2 leading-relaxed text-ink/70">{s.b}</p>
             </Reveal>
@@ -320,7 +325,7 @@ function Index() {
       <Section tone="ink">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
           <Reveal>
-            <Eyebrow tone="sage">OVER ONS</Eyebrow>
+            <Eyebrow tone="sage" size="lg">OVER ONS</Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Nuchter, concreet en eerlijk over wat iets oplevert
             </h2>

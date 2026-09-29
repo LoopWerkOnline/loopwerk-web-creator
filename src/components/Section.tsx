@@ -29,9 +29,11 @@ export function Section({
 export function Eyebrow({
   children,
   tone = "forest",
+  size = "default",
 }: {
   children: ReactNode;
   tone?: "forest" | "sage" | "copper" | "home-accent";
+  size?: "default" | "lg";
 }) {
   const colors = {
     forest: "text-forest",
@@ -39,5 +41,12 @@ export function Eyebrow({
     copper: "text-copper",
     "home-accent": "text-home-accent",
   } as const;
-  return <p className={`eyebrow ${colors[tone]}`}>{children}</p>;
+  return (
+    <p
+      className={`eyebrow ${colors[tone]}`}
+      style={size === "lg" ? { fontSize: "0.875rem" } : undefined}
+    >
+      {children}
+    </p>
+  );
 }
