@@ -11,11 +11,36 @@ const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedr
 const description =
   "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
 
-const factTicker: { k: string; v: string }[] = [
+const marqueeStats: { k: string; v: string }[] = [
   { k: "20 u", v: "handwerk weggehaald per maand" },
   { k: "3 stappen", v: "van klantvraag naar aanvraag" },
   { k: "1 tool", v: "al in gebruik vanaf dag één" },
 ];
+
+const marqueeQuotes: { text: string; author: string }[] = [
+  {
+    text: "There is nothing so useless as doing efficiently that which should not be done at all.",
+    author: "Peter Drucker",
+  },
+  {
+    text: "Automation applied to an efficient operation will magnify the efficiency.",
+    author: "Bill Gates",
+  },
+  { text: "Innovation is saying no to 1,000 things.", author: "Steve Jobs" },
+  {
+    text: "If you can’t describe what you are doing as a process, you don’t know what you’re doing.",
+    author: "W. Edwards Deming",
+  },
+];
+
+type TickerItem =
+  | ({ kind: "stat" } & (typeof marqueeStats)[number])
+  | ({ kind: "quote" } & (typeof marqueeQuotes)[number]);
+
+const factTicker: TickerItem[] = marqueeQuotes.flatMap((q, i) => [
+  { kind: "stat", ...marqueeStats[i % marqueeStats.length] },
+  { kind: "quote", ...q },
+]);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,17 +122,31 @@ function Index() {
           aria-hidden="true"
         />
         <div className="marquee flex w-max">
-          {[...factTicker, ...factTicker].map((s, i) => (
-            <div
-              key={i}
-              className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
-            >
-              <span className="text-3xl font-semibold text-home-accent md:text-4xl">
-                {s.k}
-              </span>
-              <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
-            </div>
-          ))}
+          {[...factTicker, ...factTicker].map((s, i) =>
+            s.kind === "stat" ? (
+              <div
+                key={i}
+                className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
+              >
+                <span className="text-3xl font-semibold text-home-accent md:text-4xl">
+                  {s.k}
+                </span>
+                <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
+              </div>
+            ) : (
+              <div
+                key={i}
+                className="flex shrink-0 flex-col justify-center gap-2 border-l border-cream/10 px-8 md:px-12"
+              >
+                <p className="max-w-[22rem] text-base italic leading-snug text-cream/90">
+                  “{s.text}”
+                </p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
+                  {s.author}
+                </p>
+              </div>
+            ),
+          )}
         </div>
       </Reveal>
 
