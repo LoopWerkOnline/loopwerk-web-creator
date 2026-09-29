@@ -29,7 +29,7 @@ export function Section({
 export function Eyebrow({
   children,
   tone = "forest",
-  size = "default",
+  size = "lg",
 }: {
   children: ReactNode;
   tone?: "forest" | "sage" | "copper" | "home-accent";

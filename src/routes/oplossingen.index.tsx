@@ -47,7 +47,10 @@ function OplossingenPage() {
         />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
           <div className="max-w-3xl">
-            <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+            <p
+              className="fade-up eyebrow text-sage"
+              style={{ animationDelay: "0s", fontSize: "0.875rem" }}
+            >
               Oplossingen
             </p>
             <h1 className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl" style={{ animationDelay: "0.08s" }}>

@@ -37,10 +37,13 @@ type TickerItem =
   | ({ kind: "stat" } & (typeof marqueeStats)[number])
   | ({ kind: "quote" } & (typeof marqueeQuotes)[number]);
 
-const factTicker: TickerItem[] = marqueeQuotes.flatMap((q, i) => [
-  { kind: "stat", ...marqueeStats[i % marqueeStats.length] },
-  { kind: "quote", ...q },
-]);
+const factTicker: TickerItem[] = marqueeQuotes.flatMap((q, i) => {
+  const stat = marqueeStats[i % marqueeStats.length]!;
+  return [
+    { kind: "stat" as const, ...stat },
+    { kind: "quote" as const, ...q },
+  ];
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({

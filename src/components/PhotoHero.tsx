@@ -32,7 +32,10 @@ export function PhotoHero({
       />
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
         <div className="max-w-3xl">
-          <p className="fade-up eyebrow text-sage" style={{ animationDelay: "0s" }}>
+          <p
+            className="fade-up eyebrow text-sage"
+            style={{ animationDelay: "0s", fontSize: "0.875rem" }}
+          >
             {eyebrow}
           </p>
           <h1
