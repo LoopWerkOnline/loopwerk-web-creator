@@ -78,7 +78,7 @@ function OplossingenPage() {
               — passend bij hoe jullie bedrijf werkt.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="flex items-center justify-center">
+          <Reveal delay={0.1} className="flex items-center justify-center md:justify-end">
             <img
               src="/oplossingen/proces-loop.webp"
               alt="Vier stappen in een lus: handmatig werk, slimmer proces, automatisch waar het helpt, meer tijd voor echt werk"
