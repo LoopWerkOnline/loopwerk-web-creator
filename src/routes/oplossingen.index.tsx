@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, Hand, Workflow, Zap } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
-import { ProcessSteps } from "@/components/infographics";
+import { ProcessLoop } from "@/components/infographics";
 import { Reveal } from "@/components/Reveal";
 import { solutions } from "@/lib/content";
 
@@ -75,20 +75,22 @@ function OplossingenPage() {
       </section>
 
       <Section>
-        <Reveal>
-          <Eyebrow tone="home-accent">Van handwerk naar een slimmer proces</Eyebrow>
-          <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-            Minder stappen. Minder gedoe. Meer gedaan.
-          </h2>
-          <p className="mt-4 max-w-2xl leading-relaxed text-ink/70">
-            We kijken waar werk onnodig tijd kost, waar informatie blijft liggen en waar dezelfde
-            handelingen steeds terugkomen. Vervolgens maken we het proces eenvoudiger en slimmer —
-            passend bij hoe jullie bedrijf werkt.
-          </p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <ProcessSteps items={processSteps} className="mt-14" />
-        </Reveal>
+        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-stretch">
+          <Reveal className="flex h-full flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream md:p-10">
+            <Eyebrow tone="home-accent">Van handwerk naar een slimmer proces</Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
+              Minder stappen. Minder gedoe. Meer gedaan.
+            </h2>
+            <p className="mt-4 leading-relaxed text-cream/75">
+              We kijken waar werk onnodig tijd kost, waar informatie blijft liggen en waar dezelfde
+              handelingen steeds terugkomen. Vervolgens maken we het proces eenvoudiger en slimmer
+              — passend bij hoe jullie bedrijf werkt.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} className="flex items-center justify-center">
+            <ProcessLoop items={processSteps} className="w-full max-w-sm" />
+          </Reveal>
+        </div>
       </Section>
 
       <Section tone="shell">
