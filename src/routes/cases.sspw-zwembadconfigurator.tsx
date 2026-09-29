@@ -183,35 +183,40 @@ function CaseSSPW() {
         <Reveal>
           <Eyebrow>Het resultaat</Eyebrow>
         </Reveal>
-        <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-start">
-          <Reveal>
-            <p className="text-2xl leading-snug">
-              Het gesprek gaat over uitvoering in plaats van over basisvragen, en elke aanvraag
-              komt compleet binnen.
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-ink/75">
-              Mensen komen beter voorbereid binnen en hebben eerder een realistisch beeld van wat
-              mogelijk is. Het gesprek met Jacques begint daardoor een stuk verder.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <ul className="space-y-4 text-ink/75">
+        <div className="mt-6 grid gap-10 md:grid-cols-2">
+          <div className="flex flex-col gap-10">
+            <Reveal>
+              <p className="text-2xl leading-snug">
+                Het gesprek gaat over uitvoering in plaats van over basisvragen, en elke aanvraag
+                komt compleet binnen.
+              </p>
+              <p className="mt-5 text-lg leading-relaxed text-ink/75">
+                Mensen komen beter voorbereid binnen en hebben eerder een realistisch beeld van wat
+                mogelijk is. Het gesprek met Jacques begint daardoor een stuk verder.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1} className="rounded-2xl border border-line bg-shell p-8 md:p-10">
+              <p className="hand text-3xl leading-snug text-forest md:text-4xl">
+                Een configurator vervangt het vakgesprek niet.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-ink/70">
+                Een zwembad blijft maatwerk en de definitieve prijs komt van SSPW zelf. Wat de tool
+                doet, is de eerste ronde uitvragen overnemen zodat het gesprek daarna verder begint.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal
+            delay={0.2}
+            className="flex h-full flex-col justify-center rounded-2xl bg-ink-hero p-8 text-cream md:p-10"
+          >
+            <ul className="space-y-4">
               {uitkomsten.map((li) => (
                 <li key={li} className="flex gap-3">
                   <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-home-accent" />
-                  <span className="text-base leading-relaxed">{li}</span>
+                  <span className="text-base leading-relaxed text-cream/85">{li}</span>
                 </li>
               ))}
             </ul>
-          </Reveal>
-          <Reveal delay={0.2} className="mt-[2px] rounded-2xl border border-line bg-shell p-8 md:p-10">
-            <p className="hand text-3xl leading-snug text-forest md:text-4xl">
-              Een configurator vervangt het vakgesprek niet.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-ink/70">
-              Een zwembad blijft maatwerk en de definitieve prijs komt van SSPW zelf. Wat de tool doet,
-              is de eerste ronde uitvragen overnemen zodat het gesprek daarna verder begint.
-            </p>
           </Reveal>
         </div>
       </Section>
