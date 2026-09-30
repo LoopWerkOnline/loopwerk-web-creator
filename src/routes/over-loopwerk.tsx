@@ -148,8 +148,8 @@ function OverLoopwerk() {
                     </div>
                   </div>
                   <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
-                    <p className="hand text-xl leading-snug text-cream">"{member.quote}"</p>
-                    <p className="text-xs uppercase tracking-[0.14em] text-sage">{member.name}</p>
+                    <p className="hand text-2xl leading-snug text-cream">"{member.quote}"</p>
+                    <p className="text-sm uppercase tracking-[0.14em] text-home-accent">{member.name}</p>
                   </div>
                 </div>
               </div>
