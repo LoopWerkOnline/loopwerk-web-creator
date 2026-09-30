@@ -4,6 +4,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PhotoHero } from "@/components/PhotoHero";
 import { Reveal } from "@/components/Reveal";
 import { Section, Eyebrow } from "@/components/Section";
+import { breadcrumbs, jsonLd, publisher, SITE_URL } from "@/lib/schema";
 import { formatDate, getPost, relatedPosts, type BlogAuthor, type BlogBlock } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -30,21 +31,28 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: t },
         { property: "og:description", content: post.excerpt },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: `https://www.loopwerkonline.nl${post.image}` },
+        { property: "og:image", content: `${SITE_URL}${post.image}` },
       ],
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: post.title,
-            description: post.excerpt,
-            datePublished: post.date,
-            author: { "@type": "Person", name: post.author.name },
-            publisher: { "@type": "Organization", name: "LoopWerk" },
-          }),
-        },
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          image: `${SITE_URL}${post.image}`,
+          datePublished: post.date,
+          dateModified: post.date,
+          inLanguage: "nl-NL",
+          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+          author: { "@type": "Person", name: post.author.name, jobTitle: post.author.role },
+          publisher,
+        }),
+        jsonLd(
+          breadcrumbs([
+            ["Blogs", "/blog"],
+            [post.title, `/blog/${post.slug}`],
+          ]),
+        ),
       ],
     };
   },

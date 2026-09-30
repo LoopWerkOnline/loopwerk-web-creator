@@ -104,6 +104,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:locale", content: "nl_NL" },
+      // Google Search Console (openbare verificatiecode, geen geheim).
+      { name: "google-site-verification", content: "5tVJV2s7YnpT70MagSk-KMXRnok6dQ_Lo6r2TntpUSk" },
       { property: "og:image", content: `${SITE_URL}/hero/hero-kantoor.jpg` },
     ],
     links: [

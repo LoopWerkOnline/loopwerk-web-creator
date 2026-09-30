@@ -21,23 +21,32 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
     return { ok: true };
   }
 
-  await saveToSupabase(lead);
+  // Alle kanalen tegelijk: valt er één uit (bv. database), dan komt de lead via de andere nog binnen.
+  const steps = [
+    ["supabase", saveToSupabase(lead)],
+    ["hubspot", hubspotFlow(lead)],
+    ["mail", notifyTeam(lead)],
+  ] as const;
+  const results = await Promise.allSettled(steps.map(([, p]) => p));
 
-  // Opslag is gelukt; HubSpot en mail mogen de bezoeker niet blokkeren.
-  const results = await Promise.allSettled([hubspotFlow(lead), notifyTeam(lead)]);
-  for (const r of results) {
-    if (r.status === "rejected") console.error("[leads]", r.reason);
-  }
+  let delivered = false;
+  results.forEach((r, i) => {
+    if (r.status === "rejected")
+      console.error(`[leads] ${steps[i]?.[0] ?? "stap"} mislukt:`, r.reason);
+    else if (r.value) delivered = true;
+  });
 
+  // Alleen als niets de lead heeft ontvangen, krijgt de bezoeker een foutmelding.
+  if (!delivered) throw new Error("Lead kon nergens worden opgeslagen");
   return { ok: true };
 }
 
-function env(name: string): string | undefined {
+export function env(name: string): string | undefined {
   const value = process.env[name];
   return value && value.length > 0 ? value : undefined;
 }
 
-function supabaseClient() {
+export function supabaseClient() {
   // Runtime-env (Vercel) gaat voor; anders de publieke waarden die Vite bij de build inbakt.
   const url = env("SUPABASE_URL") ?? import.meta.env["VITE_SUPABASE_URL"];
   const key = env("SUPABASE_PUBLISHABLE_KEY") ?? import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
@@ -59,7 +68,7 @@ function supabaseClient() {
   });
 }
 
-async function saveToSupabase(lead: LeadInput) {
+async function saveToSupabase(lead: LeadInput): Promise<boolean> {
   const supabase = supabaseClient();
 
   const { error } =
@@ -81,16 +90,18 @@ async function saveToSupabase(lead: LeadInput) {
         });
 
   if (error) throw new Error(`Supabase insert failed: ${error.message}`);
+  return true;
 }
 
 /** Eerst de formulierinzending (tracking), daarna de deal; een fout in stap 1 stopt stap 2 niet. */
-async function hubspotFlow(lead: LeadInput) {
+async function hubspotFlow(lead: LeadInput): Promise<boolean> {
+  let sent = false;
   try {
-    await sendToHubspot(lead);
+    sent = await sendToHubspot(lead);
   } catch (error) {
-    console.error("[leads]", error);
+    console.error("[leads] hubspot formulier mislukt:", error);
   }
-  await createHubspotDeal(lead);
+  return (await createHubspotDeal(lead)) || sent;
 }
 
 /** Fase-ID van "Nieuwe aanvraag" in de pijplijn "Loopwerk trajecten" (portal 149185560). */
@@ -107,9 +118,9 @@ async function hubspotApi(token: string, path: string, body?: unknown, method = 
 }
 
 /** Contact aanmaken of bijwerken (op e-mail) en er een deal aan koppelen. */
-async function createHubspotDeal(lead: LeadInput) {
+async function createHubspotDeal(lead: LeadInput): Promise<boolean> {
   const token = env("HUBSPOT_PRIVATE_APP_TOKEN");
-  if (!token) return;
+  if (!token) return false;
 
   const contactProps: Record<string, string> =
     lead.kind === "contact"
@@ -167,6 +178,7 @@ async function createHubspotDeal(lead: LeadInput) {
         : []),
     ],
   });
+  return true;
 }
 
 /** Bedrijf zoeken op naam; bestaat het niet, dan aanmaken met de bron van deze lead. */
@@ -190,10 +202,10 @@ async function findOrCreateCompany(token: string, lead: LeadInput): Promise<stri
   return created.id;
 }
 
-async function sendToHubspot(lead: LeadInput) {
+async function sendToHubspot(lead: LeadInput): Promise<boolean> {
   const portalId = env("HUBSPOT_PORTAL_ID");
   const formGuid = env(lead.kind === "contact" ? "HUBSPOT_FORM_CONTACT" : "HUBSPOT_FORM_SCAN");
-  if (!portalId || !formGuid) return;
+  if (!portalId || !formGuid) return false;
 
   const fields: Record<string, string | undefined> =
     lead.kind === "contact"
@@ -230,13 +242,14 @@ async function sendToHubspot(lead: LeadInput) {
     { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) },
   );
   if (!res.ok) throw new Error(`HubSpot ${res.status}: ${await res.text()}`);
+  return true;
 }
 
-async function notifyTeam(lead: LeadInput) {
+async function notifyTeam(lead: LeadInput): Promise<boolean> {
   const apiKey = env("RESEND_API_KEY");
   const to = env("LEAD_NOTIFY_TO");
   const from = env("LEAD_NOTIFY_FROM");
-  if (!apiKey || !to || !from) return;
+  if (!apiKey || !to || !from) return false;
 
   const subject =
     lead.kind === "contact"
@@ -274,4 +287,5 @@ async function notifyTeam(lead: LeadInput) {
     }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
+  return true;
 }
