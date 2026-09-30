@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HoeWeWerkenRouteImport } from './routes/hoe-we-werken'
 import { Route as OverLoopwerkRouteImport } from './routes/over-loopwerk'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
@@ -50,6 +51,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const DienstenRoute = DienstenRouteImport.update({
   id: '/diensten',
   path: '/diensten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HoeWeWerkenRoute = HoeWeWerkenRouteImport.update({
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
+  '/faq': typeof FaqRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
+  '/faq': typeof FaqRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/diensten': typeof DienstenRoute
+  '/faq': typeof FaqRoute
   '/hoe-we-werken': typeof HoeWeWerkenRoute
   '/over-loopwerk': typeof OverLoopwerkRoute
   '/over-ons': typeof OverOnsRoute
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/diensten'
+    | '/faq'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
@@ -248,6 +258,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/diensten'
+    | '/faq'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/diensten'
+    | '/faq'
     | '/hoe-we-werken'
     | '/over-loopwerk'
     | '/over-ons'
@@ -297,6 +309,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   DienstenRoute: typeof DienstenRoute
+  FaqRoute: typeof FaqRoute
   HoeWeWerkenRoute: typeof HoeWeWerkenRoute
   OverLoopwerkRoute: typeof OverLoopwerkRoute
   OverOnsRoute: typeof OverOnsRoute
@@ -344,6 +357,13 @@ declare module '@tanstack/react-router' {
       path: '/diensten'
       fullPath: '/diensten'
       preLoaderRoute: typeof DienstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hoe-we-werken': {
@@ -492,6 +512,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   DienstenRoute: DienstenRoute,
+  FaqRoute: FaqRoute,
   HoeWeWerkenRoute: HoeWeWerkenRoute,
   OverLoopwerkRoute: OverLoopwerkRoute,
   OverOnsRoute: OverOnsRoute,

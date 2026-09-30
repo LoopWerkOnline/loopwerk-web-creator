@@ -58,6 +58,11 @@ export function getSiteSections(): SiteSection[] {
           lastmod: changed("src/routes/over-loopwerk.tsx"),
         },
         { title: "Loopwerk Scan", path: "/scan", lastmod: changed("src/routes/scan.tsx") },
+        {
+          title: "FAQ",
+          path: "/faq",
+          lastmod: changed("src/routes/faq.tsx", "src/lib/content.ts"),
+        },
         { title: "Contact", path: "/contact", lastmod: changed("src/routes/contact.tsx") },
         {
           title: "Sitemap",

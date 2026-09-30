@@ -25,6 +25,7 @@ export function SiteFooter() {
                 { to: "/cases", label: "Cases" },
                 { to: "/blog", label: "Blogs" },
                 { to: "/over-loopwerk", label: "Over LoopWerk" },
+                { to: "/faq", label: "FAQ" },
                 { to: "/contact", label: "Contact" },
               ].map((l) => (
                 <li key={l.to}>

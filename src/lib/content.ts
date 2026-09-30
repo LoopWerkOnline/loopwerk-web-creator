@@ -318,38 +318,54 @@ export const trajectSteps: { n: string; t: string; b: string; jij: string }[] = 
   },
 ];
 
-/** Veelgestelde vragen. Nog niet op de site geplaatst; plek volgt na akkoord. */
+/** Veelgestelde vragen, getoond op /faq. Bron: LoopWerk_FAQ.docx (eerste 12 items), akkoord Levi. */
 export const faq: { q: string; a: string }[] = [
   {
-    q: "Wat kost het?",
-    a: "Dat hangt af van wat er gebouwd moet worden. Na de procesanalyse krijg je een voorstel met een vaste scope en prijs, zodat je vooraf weet waar je aan toe bent. Het eerste gesprek is vrijblijvend.",
+    q: "Werken jullie met onze bestaande software?",
+    a: "Ja. We kijken juist naar de software en systemen die jullie al gebruiken en bouwen daar waar mogelijk omheen. We wijzigen de bestaande software zelf niet, maar maken aanvullende tools of automatiseringen die stappen in het huidige proces eenvoudiger maken. Denk bijvoorbeeld aan gegevens automatisch verwerken, informatie voorbereiden of verschillende processtappen slimmer met elkaar verbinden.",
+  },
+  {
+    q: "Moeten we ons huidige systeem vervangen?",
+    a: "Nee, dat is meestal juist niet de bedoeling. LoopWerk probeert bestaande systemen zoveel mogelijk te behouden. We kijken waar in het huidige proces onnodig handmatig werk, dubbele invoer of vertraging ontstaat en bouwen een praktische oplossing om dat specifieke probleem te verminderen.",
   },
   {
     q: "Hoe lang duurt een traject?",
-    a: "Dat hangt af van de omvang, en de planning staat in het voorstel. We beginnen liever klein, met één onderdeel dat snel werkt, dan met een groot project dat pas na maanden iets oplevert.",
+    a: "We zijn voorstander van een snel en eenvoudig traject. Daarom proberen we projecten overzichtelijk te houden en starten we met een duidelijke eerste versie die het belangrijkste probleem oplost. Hoe lang een traject precies duurt, hangt af van de omvang van de oplossing en eventuele koppelingen, maar vooraf maken we duidelijk wat we gaan bouwen en wat de verwachte doorlooptijd is.",
   },
   {
-    q: "Moeten we nieuwe software aanschaffen?",
-    a: "Meestal niet. We bouwen waar het kan op wat je al gebruikt: je website, je Excel-bestanden, je CRM of je boekhoudpakket.",
+    q: "Wat kost maatwerkautomatisering?",
+    a: "Dat verschilt per situatie. De prijs hangt onder andere af van de complexiteit van het proces, de benodigde functionaliteit en eventuele koppelingen met bestaande systemen. We starten met een gratis en vrijblijvende kennismaking om het probleem te begrijpen. Daarna kunnen we aangeven welke oplossing passend is en wat deze ongeveer kost.",
   },
   {
-    q: "Voor wie is dit geschikt?",
-    a: "Voor bedrijven waar aanvragen te complex zijn voor een standaardformulier, te specifiek voor standaardsoftware, en waar te veel terugkerend werk in zit om het zo te laten.",
+    q: "Wie beheert de oplossing na oplevering?",
+    a: "Na oplevering is er altijd ruimte voor aftercare. We controleren samen of de oplossing goed werkt in de praktijk en helpen wanneer er nog vragen of kleine aanpassingen nodig zijn. Tegelijkertijd proberen we oplossingen zo te bouwen dat ze daarna zoveel mogelijk zelfstandig kunnen draaien. Waar input nodig is, moet de klant die eenvoudig zelf kunnen beheren zonder voor iedere kleine wijziging afhankelijk te zijn van LoopWerk. Als later onderhoud of grotere aanpassingen nodig zijn, kunnen we daar uiteraard bij ondersteunen.",
+  },
+  {
+    q: "Wat gebeurt er als een koppeling niet werkt?",
+    a: "Wanneer een oplossing afhankelijk is van een koppeling met externe software, houden we daar tijdens het ontwerp rekening mee. Waar nodig bouwen we bijvoorbeeld controles, foutmeldingen of een mogelijkheid om een stap handmatig uit te voeren. Omdat we de externe software zelf niet beheren, kunnen we die systemen niet aanpassen, maar we kunnen de LoopWerk-oplossing wel zo inrichten dat problemen zo duidelijk mogelijk worden opgevangen.",
+  },
+  {
+    q: "Waar worden onze gegevens opgeslagen?",
+    a: "Dat hangt af van de oplossing en van welke gegevens daadwerkelijk nodig zijn. We gebruiken passende en betrouwbare diensten voor hosting, databases en opslag. Klantgegevens worden gescheiden gehouden en bij oplossingen met een eigen database gebruiken we in principe een aparte omgeving per klant.",
+  },
+  {
+    q: "Kunnen jullie werken met persoonsgegevens?",
+    a: "Ja, wanneer persoonsgegevens noodzakelijk zijn voor het proces. We kijken eerst welke gegevens echt nodig zijn en proberen onnodige verwerking en opslag te voorkomen. Beveiliging, toegang en de manier waarop gegevens worden verwerkt nemen we mee in het ontwerp van de oplossing.",
   },
   {
     q: "Gebruiken jullie AI?",
-    a: "Alleen waar het aantoonbaar helpt, bijvoorbeeld om ontbrekende informatie in een aanvraag te herkennen of een mail om te zetten naar nette gegevens. Voor rekenregels en prijzen gebruiken we vaste logica: sneller en voorspelbaarder.",
+    a: "Alleen wanneer het aantoonbaar iets toevoegt. AI is voor LoopWerk geen doel op zich. Soms kan AI handig zijn om bijvoorbeeld informatie te structureren of tekst te verwerken. In andere situaties is een gewone automatisering, calculator of eenvoudige webtool betrouwbaarder en duidelijker. We kiezen de techniek die het probleem het eenvoudigst oplost.",
   },
   {
-    q: "Wat als standaardsoftware beter past?",
-    a: "Dan zeggen we dat. Ook als dat betekent dat wij niets bouwen.",
+    q: "Blijven wij eigenaar van onze data?",
+    a: "Ja. Bedrijfsgegevens, klantgegevens en andere klantspecifieke informatie blijven van de klant. LoopWerk kan generieke technische bouwstenen, componenten en werkwijzen hergebruiken, maar daarbij nemen we geen klantspecifieke of vertrouwelijke informatie mee naar andere projecten.",
   },
   {
-    q: "Wat gebeurt er na oplevering?",
-    a: "Je houdt een vast aanspreekpunt. Afspraken over beheer, aanpassingen en wat er gebeurt als iets niet werkt, leggen we vooraf vast in het voorstel.",
+    q: "Kunnen medewerkers handmatig ingrijpen?",
+    a: "Ja. Automatisering betekent niet dat alles volledig automatisch moet verlopen. Als menselijke controle belangrijk is, kunnen we de oplossing zo ontwerpen dat medewerkers informatie kunnen controleren, aanpassen of een stap zelf kunnen uitvoeren. De tool moet het werk ondersteunen, niet onnodig de controle overnemen.",
   },
   {
-    q: "Hoe gaan jullie om met onze gegevens?",
-    a: "Zorgvuldig en volgens de AVG. We verwerken alleen wat nodig is voor de tool, en afspraken over gegevens leggen we vast voordat we beginnen.",
+    q: "Is een bestaande SaaS-oplossing soms beter?",
+    a: "Ja. Als bestaande software het probleem al goed en betaalbaar oplost, is het meestal niet logisch om maatwerk te bouwen. We kijken daarom eerst naar de eenvoudigste werkbare oplossing. Maatwerk wordt vooral interessant wanneer bestaande software niet goed aansluit op jullie proces of wanneer er juist tussen bestaande systemen en handmatige stappen onnodig werk blijft liggen.",
   },
 ];
