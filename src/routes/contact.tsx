@@ -4,7 +4,8 @@ import { useRef, useState, type FormEvent } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { HoneypotField } from "@/components/HoneypotField";
-import { readHubspotUtk, submitLead } from "@/lib/leads.functions";
+import { HubspotFormError, submitHubspotForm } from "@/lib/hubspot-form";
+import { contactFollowUp } from "@/lib/leads.functions";
 
 const title = "Contact | plan een gesprek met LoopWerk";
 const description =
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "blocked";
 
 function Contact() {
   const { prefill } = Route.useSearch();
@@ -35,36 +36,63 @@ function Contact() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    setStatus("sending");
+    const data = new FormData(e.currentTarget);
+    const value = (name: string) => String(data.get(name) ?? "");
 
-    try {
-      await submitLead({
-        data: {
-          kind: "contact",
-          name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? ""),
-          company: String(data.get("company") ?? "") || undefined,
-          phone: String(data.get("phone") ?? "") || undefined,
-          message: String(data.get("message") ?? ""),
-          website: String(data.get("website") ?? "") || undefined,
-          startedAt: startedAt.current,
-          hutk: readHubspotUtk(),
-          pageUri: window.location.href,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
+    // Honeypot ingevuld: waarschijnlijk een bot. Niets versturen, wel het bedankbericht tonen.
+    if (value("website_hp")) {
+      setStatus("sent");
       return;
     }
-    form.reset();
+
+    const lead = {
+      kind: "contact" as const,
+      name: `${value("voornaam")} ${value("achternaam")}`.trim(),
+      email: value("email"),
+      company: value("bedrijf"),
+      phone: value("telefoon") || undefined,
+      message: value("knelpunt") || undefined,
+      startedAt: startedAt.current,
+      pageUri: window.location.href,
+    };
+
+    setStatus("sending");
+    try {
+      await submitHubspotForm([
+        { name: "firstname", value: value("voornaam") },
+        { name: "lastname", value: value("achternaam") },
+        { name: "email", value: value("email") },
+        { name: "company", value: value("bedrijf") },
+        { name: "phone", value: value("telefoon") },
+        { name: "loopwerk_knelpunt", value: value("knelpunt") },
+        { name: "loopwerk_leadbron", value: "websiteformulier" },
+      ]);
+    } catch (error) {
+      // Gratis e-mailadres (gmail e.d.) geweigerd: de bezoeker kan dat zelf oplossen.
+      if (error instanceof HubspotFormError && error.blockedEmail) {
+        setStatus("blocked");
+        return;
+      }
+      // Anders: lead via de server alsnog binnenhalen (deal + mail, of noodopslag).
+      try {
+        const res = await contactFollowUp({ data: { ...lead, fallback: true } });
+        setStatus(res.delivered ? "sent" : "error");
+      } catch {
+        setStatus("error");
+      }
+      return;
+    }
     setStatus("sent");
+
+    // Meldingsmail en deal op de achtergrond; een fout hier raakt de bezoeker niet.
+    contactFollowUp({ data: lead }).catch(() =>
+      console.error("[contact] vervolgstap (mail/deal) mislukt"),
+    );
   }
 
+  // Vaste tekstkleuren: anders erft het veld de lichte hero-kleur en is getypte tekst onzichtbaar.
   const field =
-    "mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 text-base outline-none transition-colors focus:border-forest";
+    "mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 text-base outline-none transition-colors focus:border-forest text-[#1f241f] caret-[#1f241f] placeholder:text-[#8a8579] contact-field";
 
   return (
     <>
@@ -97,75 +125,99 @@ function Contact() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <form
-              onSubmit={onSubmit}
-              className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9"
-            >
-              <HoneypotField />
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium text-ink">Naam *</span>
-                  <input
-                    name="name"
-                    required
-                    className={field}
-                    placeholder="Je voor- en achternaam"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium text-ink">E-mailadres *</span>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    className={field}
-                    placeholder="naam@bedrijf.nl"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium text-ink">Telefoonnummer</span>
-                  <input name="phone" className={field} placeholder="06 ..." />
-                </label>
-                <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
-                  <input name="company" className={field} />
-                </label>
-                <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    className={field}
-                    defaultValue={prefill}
-                    placeholder="Beschrijf kort jullie proces of het knelpunt."
-                  />
-                </label>
+            {status === "sent" ? (
+              <div className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9">
+                <p className="text-lg leading-relaxed text-forest" role="status">
+                  Dank je, we hebben je aanvraag. Je hoort binnen één werkdag van ons.
+                </p>
               </div>
-
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="mt-7 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            ) : (
+              <form
+                onSubmit={onSubmit}
+                className="relative h-full rounded-2xl border border-line bg-shell p-7 md:p-9"
               >
-                {status === "sending" ? "Versturen..." : "Verstuur aanvraag"}
-              </button>
+                <HoneypotField name="website_hp" />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="text-sm font-medium text-ink">Voornaam *</span>
+                    <input name="voornaam" required autoComplete="given-name" className={field} />
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-medium text-ink">Achternaam *</span>
+                    <input
+                      name="achternaam"
+                      required
+                      autoComplete="family-name"
+                      className={field}
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-medium text-ink">Zakelijk e-mailadres *</span>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      className={field}
+                      placeholder="naam@bedrijf.nl"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-medium text-ink">Bedrijfsnaam *</span>
+                    <input name="bedrijf" required autoComplete="organization" className={field} />
+                  </label>
+                  <label className="block sm:col-span-2">
+                    <span className="text-sm font-medium text-ink">Telefoonnummer</span>
+                    <input
+                      type="tel"
+                      name="telefoon"
+                      autoComplete="tel"
+                      className={field}
+                      placeholder="06 ..."
+                    />
+                  </label>
+                  <label className="block sm:col-span-2">
+                    <span className="text-sm font-medium text-ink">Waar loopt het vast?</span>
+                    <textarea
+                      name="knelpunt"
+                      rows={3}
+                      className={field}
+                      defaultValue={prefill}
+                      placeholder="Eén of twee zinnen is genoeg."
+                    />
+                  </label>
+                </div>
 
-              {status === "sent" ? (
-                <p className="mt-4 text-sm text-forest">
-                  Dankjewel, je bericht is binnen. We reageren binnen één werkdag.
-                </p>
-              ) : null}
-              {status === "error" ? (
-                <p className="mt-4 text-sm text-destructive">
-                  Er ging iets mis bij het versturen. Probeer het nog eens.
-                </p>
-              ) : null}
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="mt-7 w-full rounded-full bg-home-accent px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+                >
+                  {status === "sending" ? "Versturen…" : "Verstuur aanvraag"}
+                </button>
 
-              <p className="mt-4 text-xs text-ink/55">
-                Je gegevens gebruiken we alleen om op je aanvraag te reageren.
-              </p>
-            </form>
+                {status === "blocked" ? (
+                  <p className="mt-4 text-sm text-destructive" role="alert">
+                    Vul je zakelijke e-mailadres in. Adressen van bijvoorbeeld Gmail of Hotmail
+                    kunnen we via dit formulier niet aannemen.
+                  </p>
+                ) : null}
+                {status === "error" ? (
+                  <p className="mt-4 text-sm text-destructive" role="alert">
+                    Er ging iets mis bij het versturen. Mail ons op{" "}
+                    <a href="mailto:info@loopwerkonline.nl" className="underline">
+                      info@loopwerkonline.nl
+                    </a>
+                    .
+                  </p>
+                ) : null}
+
+                <p className="mt-4 text-xs text-ink/55">
+                  Je gegevens gebruiken we alleen om op je aanvraag te reageren. We slaan ze op in
+                  ons CRM (HubSpot, EU-datacenter).
+                </p>
+              </form>
+            )}
           </Reveal>
         </div>
       </Section>

@@ -35,12 +35,7 @@ function BlogIndex() {
             Praktisch en direct <span className="hand text-[1.1em]">toepasbaar</span>
           </>
         }
-      >
-        <p className="text-lg leading-relaxed text-cream/75">
-          Praktische tips over aanvragen, offertes en klanten vinden. Zonder jargon, zodat je er
-          vandaag mee aan de slag kunt.
-        </p>
-      </PhotoHero>
+      />
 
       <Section tone="cream">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

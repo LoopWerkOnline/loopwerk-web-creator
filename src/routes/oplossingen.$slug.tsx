@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SolutionCheck } from "@/components/solution/SolutionCheck";
 import { sspwZwembad } from "@/lib/assets";
 import { solutionBySlug, solutions, trajectSteps } from "@/lib/content";
+import { breadcrumbs, jsonLd, publisher, SITE_URL } from "@/lib/schema";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
   loader: ({ params }) => {
@@ -29,6 +30,24 @@ export const Route = createFileRoute("/oplossingen/$slug")({
         { property: "og:description", content: d },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+      ],
+      scripts: [
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: loaderData.solution.title,
+          description: d,
+          url: `${SITE_URL}/oplossingen/${loaderData.solution.slug}`,
+          provider: publisher,
+          areaServed: { "@type": "Country", name: "Nederland" },
+          inLanguage: "nl-NL",
+        }),
+        jsonLd(
+          breadcrumbs([
+            ["Oplossingen", "/oplossingen"],
+            [loaderData.solution.title, `/oplossingen/${loaderData.solution.slug}`],
+          ]),
+        ),
       ],
     };
   },

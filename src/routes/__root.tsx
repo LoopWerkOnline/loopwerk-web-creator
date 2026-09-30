@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -16,6 +17,9 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CookieBanner } from "@/components/CookieBanner";
 import { trackPageView } from "@/lib/tracking";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+/** Het enige adres dat zoekmachines moeten indexeren (ook als de site op vercel.app draait). */
+const SITE_URL = "https://www.loopwerkonline.nl";
 
 function NotFoundComponent() {
   return (
@@ -100,6 +104,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:locale", content: "nl_NL" },
+      // Google Search Console (openbare verificatiecode, geen geheim).
+      { name: "google-site-verification", content: "5tVJV2s7YnpT70MagSk-KMXRnok6dQ_Lo6r2TntpUSk" },
+      { property: "og:image", content: `${SITE_URL}/hero/hero-kantoor.jpg` },
     ],
     links: [
       {
@@ -125,7 +132,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "LoopWerk",
-  url: "https://www.loopwerkonline.nl",
+  url: SITE_URL,
+  logo: `${SITE_URL}/loopwerk-mark.png`,
   description:
     "LoopWerk bouwt praktische digitale tools en automatiseringen voor Nederlandse bedrijven.",
   email: "info@loopwerkonline.nl",
@@ -133,10 +141,15 @@ const organizationSchema = {
 };
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const canonical = `${SITE_URL}${pathname === "/" ? "/" : pathname.replace(/\/+$/, "")}`;
+
   return (
     <html lang="nl">
       <head>
         <HeadContent />
+        <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={canonical} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

@@ -21,7 +21,7 @@ import {
 import { seedAnswersFromSearch } from "@/lib/scan/seed";
 import { initialAnswers, type ScanAnswers } from "@/lib/scan/types";
 
-const title = "Loopwerk Scan | LoopWerk";
+const title = "Gratis Loopwerk Scan: waar verliest jouw bedrijf tijd? | LoopWerk";
 const description =
   "Waar blijft binnen jullie bedrijf onnodig tijd liggen? Kies één terugkerend proces en krijg in ± 4 minuten een eerste, concrete indicatie.";
 

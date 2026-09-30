@@ -19,7 +19,9 @@ import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
+import { Route as ApiStatusRouteImport } from './routes/api.status'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as CasesIndexRouteImport } from './routes/cases.index'
@@ -78,9 +80,19 @@ const SectorenRoute = SectorenRouteImport.update({
   path: '/sectoren',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WerkwijzeRoute = WerkwijzeRouteImport.update({
   id: '/werkwijze',
   path: '/werkwijze',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiStatusRoute = ApiStatusRouteImport.update({
+  id: '/api/status',
+  path: '/api/status',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -131,7 +143,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
@@ -151,7 +165,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
@@ -172,7 +188,9 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/werkwijze': typeof WerkwijzeRoute
+  '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/sspw-zwembadconfigurator': typeof CasesSspwZwembadconfiguratorRoute
   '/oplossingen/$slug': typeof OplossingenSlugRoute
@@ -194,7 +212,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap.xml'
     | '/werkwijze'
+    | '/api/status'
     | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
@@ -214,7 +234,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap.xml'
     | '/werkwijze'
+    | '/api/status'
     | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
@@ -234,7 +256,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap.xml'
     | '/werkwijze'
+    | '/api/status'
     | '/blog/$slug'
     | '/cases/sspw-zwembadconfigurator'
     | '/oplossingen/$slug'
@@ -255,7 +279,9 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WerkwijzeRoute: typeof WerkwijzeRoute
+  ApiStatusRoute: typeof ApiStatusRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CasesSspwZwembadconfiguratorRoute: typeof CasesSspwZwembadconfiguratorRoute
   OplossingenSlugRoute: typeof OplossingenSlugRoute
@@ -336,11 +362,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectorenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/werkwijze': {
       id: '/werkwijze'
       path: '/werkwijze'
       fullPath: '/werkwijze'
       preLoaderRoute: typeof WerkwijzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/status': {
+      id: '/api/status'
+      path: '/api/status'
+      fullPath: '/api/status'
+      preLoaderRoute: typeof ApiStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -418,7 +458,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WerkwijzeRoute: WerkwijzeRoute,
+  ApiStatusRoute: ApiStatusRoute,
   BlogSlugRoute: BlogSlugRoute,
   CasesSspwZwembadconfiguratorRoute: CasesSspwZwembadconfiguratorRoute,
   OplossingenSlugRoute: OplossingenSlugRoute,

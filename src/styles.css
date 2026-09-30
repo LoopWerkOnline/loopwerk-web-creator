@@ -108,6 +108,11 @@
     border-color: var(--color-border);
   }
 
+  /* Donker achter de pagina: bij door-scrollen (Mac/telefoon) geen lichte balk boven of onder. */
+  html {
+    background-color: var(--ink-hero);
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -279,4 +284,12 @@ input[type="range"].scan-range::-moz-range-thumb {
   border: 3px solid var(--cream);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+}
+
+/* Contactformulier: bij autofill kleurt de browser de tekst zelf; houd hem donker en leesbaar. */
+.contact-field:-webkit-autofill,
+.contact-field:-webkit-autofill:hover,
+.contact-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: #1f241f;
+  caret-color: #1f241f;
 }
