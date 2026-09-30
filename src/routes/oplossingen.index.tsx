@@ -4,7 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { solutions } from "@/lib/content";
 
-const title = "Oplossingen | LoopWerk";
+const title = "Oplossingen | configurator, aanvraagflows en koppelingen | LoopWerk";
 const description =
   "Vier richtingen waarin we bedrijven helpen: een slimme configurator, complete aanvragen, systeemkoppelingen en automatische opvolging.";
 
