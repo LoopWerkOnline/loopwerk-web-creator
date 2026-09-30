@@ -83,6 +83,9 @@ export function SiteFooter() {
             <Link to="/cookies" className="hover:text-cream">
               Cookies
             </Link>
+            <Link to="/sitemap" className="hover:text-cream">
+              Sitemap
+            </Link>
             {trackingConfigured ? (
               <button
                 type="button"

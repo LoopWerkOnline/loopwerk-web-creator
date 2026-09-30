@@ -39,6 +39,8 @@ export type BlogPost = {
   excerpt: string;
   /** ISO-datum, bv. 2026-09-24 */
   date: string;
+  /** Datum van de laatste inhoudelijke wijziging (optioneel, voor de sitemap). */
+  updated?: string;
   author: BlogAuthor;
   readingMinutes: number;
   /** Reeks of sector, getoond boven de titel. */
