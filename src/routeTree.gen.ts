@@ -19,7 +19,9 @@ import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SectorenRouteImport } from './routes/sectoren'
+import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapDotxslRouteImport } from './routes/sitemap[.]xsl'
 import { Route as WerkwijzeRouteImport } from './routes/werkwijze'
 import { Route as ApiStatusRouteImport } from './routes/api.status'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
@@ -80,9 +82,19 @@ const SectorenRoute = SectorenRouteImport.update({
   path: '/sectoren',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxslRoute = SitemapDotxslRouteImport.update({
+  id: '/sitemap.xsl',
+  path: '/sitemap.xsl',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WerkwijzeRoute = WerkwijzeRouteImport.update({
@@ -143,7 +155,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sitemap.xsl': typeof SitemapDotxslRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -165,7 +179,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sitemap.xsl': typeof SitemapDotxslRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -188,7 +204,9 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/sectoren': typeof SectorenRouteWithChildren
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sitemap.xsl': typeof SitemapDotxslRoute
   '/werkwijze': typeof WerkwijzeRoute
   '/api/status': typeof ApiStatusRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -212,7 +230,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap'
     | '/sitemap.xml'
+    | '/sitemap.xsl'
     | '/werkwijze'
     | '/api/status'
     | '/blog/$slug'
@@ -234,7 +254,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap'
     | '/sitemap.xml'
+    | '/sitemap.xsl'
     | '/werkwijze'
     | '/api/status'
     | '/blog/$slug'
@@ -256,7 +278,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/sectoren'
+    | '/sitemap'
     | '/sitemap.xml'
+    | '/sitemap.xsl'
     | '/werkwijze'
     | '/api/status'
     | '/blog/$slug'
@@ -279,7 +303,9 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SectorenRoute: typeof SectorenRouteWithChildren
+  SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SitemapDotxslRoute: typeof SitemapDotxslRoute
   WerkwijzeRoute: typeof WerkwijzeRoute
   ApiStatusRoute: typeof ApiStatusRoute
   BlogSlugRoute: typeof BlogSlugRoute
@@ -362,11 +388,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectorenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xsl': {
+      id: '/sitemap.xsl'
+      path: '/sitemap.xsl'
+      fullPath: '/sitemap.xsl'
+      preLoaderRoute: typeof SitemapDotxslRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/werkwijze': {
@@ -458,7 +498,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SectorenRoute: SectorenRouteWithChildren,
+  SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SitemapDotxslRoute: SitemapDotxslRoute,
   WerkwijzeRoute: WerkwijzeRoute,
   ApiStatusRoute: ApiStatusRoute,
   BlogSlugRoute: BlogSlugRoute,

@@ -1,40 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { blogPosts } from "@/lib/blog";
-import { cases } from "@/lib/cases";
-import { solutions } from "@/lib/content";
+import { absoluteUrl, getSiteSections } from "@/lib/site-pages";
 
-const SITE_URL = "https://www.loopwerkonline.nl";
-
-/** Vaste pagina's. Oplossingen, cases en blogs komen automatisch uit de content. */
-const staticPages = [
-  "/",
-  "/oplossingen",
-  "/cases",
-  "/blog",
-  "/over-loopwerk",
-  "/scan",
-  "/contact",
-  "/privacy",
-  "/cookies",
-];
-
+/** XML-sitemap voor zoekmachines; in de browser opgemaakt via /sitemap.xsl. */
 function buildSitemap(): string {
-  const urls: { loc: string; lastmod?: string }[] = [
-    ...staticPages.map((path) => ({ loc: path })),
-    ...solutions.map((s) => ({ loc: `/oplossingen/${s.slug}` })),
-    ...cases.map((c) => ({ loc: c.href })),
-    ...blogPosts.map((p) => ({ loc: `/blog/${p.slug}`, lastmod: p.date })),
-  ];
-  const body = urls
+  const urls = getSiteSections()
+    .flatMap((s) => s.pages)
     .map(
-      (u) =>
-        `  <url>\n    <loc>${SITE_URL}${u.loc === "/" ? "/" : u.loc}</loc>${
-          u.lastmod ? `\n    <lastmod>${u.lastmod}</lastmod>` : ""
-        }\n  </url>`,
+      (p) =>
+        `  <url>\n    <loc>${absoluteUrl(p.path)}</loc>\n    <lastmod>${p.lastmod}</lastmod>\n  </url>`,
     )
     .join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
