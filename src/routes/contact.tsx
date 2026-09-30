@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { HoneypotField } from "@/components/HoneypotField";
 import { submitHubspotForm } from "@/lib/hubspot-form";
+import { contactFollowUp } from "@/lib/leads.functions";
 
 const title = "Contact | plan een gesprek met LoopWerk";
 const description =
@@ -30,6 +31,8 @@ type Status = "idle" | "sending" | "sent" | "error";
 function Contact() {
   const { prefill } = Route.useSearch();
   const [status, setStatus] = useState<Status>("idle");
+
+  const startedAt = useRef(Date.now());
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -58,6 +61,20 @@ function Contact() {
       return;
     }
     setStatus("sent");
+
+    // Meldingsmail en deal op de achtergrond; een fout hier raakt de bezoeker niet.
+    contactFollowUp({
+      data: {
+        kind: "contact",
+        name: `${value("voornaam")} ${value("achternaam")}`.trim(),
+        email: value("email"),
+        company: value("bedrijf"),
+        phone: value("telefoon") || undefined,
+        message: value("knelpunt") || undefined,
+        startedAt: startedAt.current,
+        pageUri: window.location.href,
+      },
+    }).catch(() => console.error("[contact] vervolgstap (mail/deal) mislukt"));
   }
 
   // Vaste tekstkleuren: anders erft het veld de lichte hero-kleur en is getypte tekst onzichtbaar.

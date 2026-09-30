@@ -41,6 +41,21 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
   return { ok: true };
 }
 
+/**
+ * Contactformulier: de inzending zelf ging al vanuit de browser naar HubSpot.
+ * Hier alleen nog de meldingsmail en de deal (geen Supabase, geen tweede formulierinzending).
+ */
+export async function handleContactFollowUp(lead: LeadInput): Promise<{ ok: true }> {
+  if (lead.website || Date.now() - lead.startedAt < MIN_FILL_MS) return { ok: true };
+
+  const results = await Promise.allSettled([createHubspotDeal(lead), notifyTeam(lead)]);
+  results.forEach((r, i) => {
+    if (r.status === "rejected")
+      console.error(`[contact] ${i === 0 ? "deal" : "mail"} mislukt:`, r.reason);
+  });
+  return { ok: true };
+}
+
 export function env(name: string): string | undefined {
   const value = process.env[name];
   return value && value.length > 0 ? value : undefined;

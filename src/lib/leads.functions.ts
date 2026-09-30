@@ -54,6 +54,31 @@ export const submitLead = createServerFn({ method: "POST" })
     return handleLead(data);
   });
 
+/**
+ * Vervolgstap na een geslaagde HubSpot-inzending van het contactformulier:
+ * meldingsmail naar het team en een deal in HubSpot. Slaat niets op in Supabase.
+ */
+const contactFollowUpSchema = z.object({
+  kind: z.literal("contact"),
+  name: z.string().trim().min(1).max(200),
+  email: z.string().trim().email().max(200),
+  company: z.string().trim().min(1).max(200),
+  phone: z.string().trim().max(50).optional(),
+  message: z.string().trim().max(5000).optional(),
+  website: z.string().max(500).optional(),
+  startedAt: z.number(),
+  pageUri: z.string().max(500).optional(),
+});
+
+export const contactFollowUp = createServerFn({ method: "POST" })
+  .inputValidator((data: z.infer<typeof contactFollowUpSchema>) =>
+    contactFollowUpSchema.parse(data),
+  )
+  .handler(async ({ data }) => {
+    const { handleContactFollowUp } = await import("./leads.server");
+    return handleContactFollowUp(data);
+  });
+
 /** Leest de HubSpot-trackingcookie (alleen gezet als de HubSpot-trackingcode draait). */
 export function readHubspotUtk(): string | undefined {
   if (typeof document === "undefined") return undefined;
