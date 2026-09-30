@@ -108,6 +108,11 @@
     border-color: var(--color-border);
   }
 
+  /* Donker achter de pagina: bij door-scrollen (Mac/telefoon) geen lichte balk boven of onder. */
+  html {
+    background-color: var(--ink-hero);
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

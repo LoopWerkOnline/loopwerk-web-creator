@@ -4,7 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { HoneypotField } from "@/components/HoneypotField";
-import { submitHubspotForm } from "@/lib/hubspot-form";
+import { HubspotFormError, submitHubspotForm } from "@/lib/hubspot-form";
 import { contactFollowUp } from "@/lib/leads.functions";
 
 const title = "Contact | plan een gesprek met LoopWerk";
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "blocked";
 
 function Contact() {
   const { prefill } = Route.useSearch();
@@ -45,6 +45,17 @@ function Contact() {
       return;
     }
 
+    const lead = {
+      kind: "contact" as const,
+      name: `${value("voornaam")} ${value("achternaam")}`.trim(),
+      email: value("email"),
+      company: value("bedrijf"),
+      phone: value("telefoon") || undefined,
+      message: value("knelpunt") || undefined,
+      startedAt: startedAt.current,
+      pageUri: window.location.href,
+    };
+
     setStatus("sending");
     try {
       await submitHubspotForm([
@@ -56,25 +67,27 @@ function Contact() {
         { name: "loopwerk_knelpunt", value: value("knelpunt") },
         { name: "loopwerk_leadbron", value: "websiteformulier" },
       ]);
-    } catch {
-      setStatus("error");
+    } catch (error) {
+      // Gratis e-mailadres (gmail e.d.) geweigerd: de bezoeker kan dat zelf oplossen.
+      if (error instanceof HubspotFormError && error.blockedEmail) {
+        setStatus("blocked");
+        return;
+      }
+      // Anders: lead via de server alsnog binnenhalen (deal + mail, of noodopslag).
+      try {
+        const res = await contactFollowUp({ data: { ...lead, fallback: true } });
+        setStatus(res.delivered ? "sent" : "error");
+      } catch {
+        setStatus("error");
+      }
       return;
     }
     setStatus("sent");
 
     // Meldingsmail en deal op de achtergrond; een fout hier raakt de bezoeker niet.
-    contactFollowUp({
-      data: {
-        kind: "contact",
-        name: `${value("voornaam")} ${value("achternaam")}`.trim(),
-        email: value("email"),
-        company: value("bedrijf"),
-        phone: value("telefoon") || undefined,
-        message: value("knelpunt") || undefined,
-        startedAt: startedAt.current,
-        pageUri: window.location.href,
-      },
-    }).catch(() => console.error("[contact] vervolgstap (mail/deal) mislukt"));
+    contactFollowUp({ data: lead }).catch(() =>
+      console.error("[contact] vervolgstap (mail/deal) mislukt"),
+    );
   }
 
   // Vaste tekstkleuren: anders erft het veld de lichte hero-kleur en is getypte tekst onzichtbaar.
@@ -183,6 +196,12 @@ function Contact() {
                   {status === "sending" ? "Versturen…" : "Verstuur aanvraag"}
                 </button>
 
+                {status === "blocked" ? (
+                  <p className="mt-4 text-sm text-destructive" role="alert">
+                    Vul je zakelijke e-mailadres in. Adressen van bijvoorbeeld Gmail of Hotmail
+                    kunnen we via dit formulier niet aannemen.
+                  </p>
+                ) : null}
                 {status === "error" ? (
                   <p className="mt-4 text-sm text-destructive" role="alert">
                     Er ging iets mis bij het versturen. Mail ons op{" "}

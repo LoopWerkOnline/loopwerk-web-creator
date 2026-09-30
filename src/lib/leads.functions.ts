@@ -68,6 +68,8 @@ const contactFollowUpSchema = z.object({
   website: z.string().max(500).optional(),
   startedAt: z.number(),
   pageUri: z.string().max(500).optional(),
+  /** true = HubSpot weigerde het formulier; dan deal/mail en zo nodig noodopslag. */
+  fallback: z.boolean().optional(),
 });
 
 export const contactFollowUp = createServerFn({ method: "POST" })
@@ -76,7 +78,8 @@ export const contactFollowUp = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const { handleContactFollowUp } = await import("./leads.server");
-    return handleContactFollowUp(data);
+    const { fallback, ...lead } = data;
+    return handleContactFollowUp(lead, { fallback: fallback === true });
   });
 
 /** Leest de HubSpot-trackingcookie (alleen gezet als de HubSpot-trackingcode draait). */

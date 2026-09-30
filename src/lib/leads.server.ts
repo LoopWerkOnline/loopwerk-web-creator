@@ -45,15 +45,30 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
  * Contactformulier: de inzending zelf ging al vanuit de browser naar HubSpot.
  * Hier alleen nog de meldingsmail en de deal (geen Supabase, geen tweede formulierinzending).
  */
-export async function handleContactFollowUp(lead: LeadInput): Promise<{ ok: true }> {
-  if (lead.website || Date.now() - lead.startedAt < MIN_FILL_MS) return { ok: true };
+export async function handleContactFollowUp(
+  lead: LeadInput,
+  opts: { fallback?: boolean } = {},
+): Promise<{ ok: true; delivered: boolean }> {
+  if (lead.website || Date.now() - lead.startedAt < MIN_FILL_MS)
+    return { ok: true, delivered: true };
 
   const results = await Promise.allSettled([createHubspotDeal(lead), notifyTeam(lead)]);
+  let delivered = false;
   results.forEach((r, i) => {
     if (r.status === "rejected")
       console.error(`[contact] ${i === 0 ? "deal" : "mail"} mislukt:`, r.reason);
+    else if (r.value) delivered = true;
   });
-  return { ok: true };
+
+  // Noodvangnet: HubSpot weigerde het formulier én deal/mail kwamen niet door. Dan pas opslaan.
+  if (opts.fallback && !delivered) {
+    try {
+      delivered = await saveToSupabase(lead);
+    } catch (error) {
+      console.error("[contact] noodopslag mislukt:", error);
+    }
+  }
+  return { ok: true, delivered };
 }
 
 export function env(name: string): string | undefined {
