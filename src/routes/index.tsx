@@ -17,20 +17,11 @@ const marqueeStats: { k: string; v: string }[] = [
   { k: "1 tool", v: "al in gebruik vanaf dag één" },
 ];
 
-const marqueeQuotes: { text: string; author: string }[] = [
-  {
-    text: "There is nothing so useless as doing efficiently that which should not be done at all.",
-    author: "Peter Drucker",
-  },
-  {
-    text: "Automation applied to an efficient operation will magnify the efficiency.",
-    author: "Bill Gates",
-  },
-  { text: "Innovation is saying no to 1,000 things.", author: "Steve Jobs" },
-  {
-    text: "If you can’t describe what you are doing as a process, you don’t know what you’re doing.",
-    author: "W. Edwards Deming",
-  },
+const marqueeQuotes: { text: string; author?: string }[] = [
+  { text: "Handmatig werk is prima. Tot je het elke dag opnieuw doet." },
+  { text: "Tijd besparen begint niet bij harder werken, maar bij slimmer inrichten." },
+  { text: "Laat systemen het voorwerk doen. Mensen het echte werk." },
+  { text: "Automatisering moet werk wegnemen, geen nieuw werk creëren." },
 ];
 
 type TickerItem =
@@ -147,9 +138,11 @@ function Index() {
                 <p className="max-w-[22rem] text-base italic leading-snug text-cream/90">
                   “{s.text}”
                 </p>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
-                  {s.author}
-                </p>
+                {s.author ? (
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
+                    {s.author}
+                  </p>
+                ) : null}
               </div>
             ),
           )}

@@ -22,31 +22,30 @@ export const Route = createFileRoute("/over-loopwerk")({
   component: OverLoopwerk,
 });
 
-/**
- * Quotes zijn nog placeholders — nog geen echte, door henzelf goedgekeurde
- * uitspraken. Vervangen zodra Levi/Gianni/Shaquil hun eigen zin aanleveren.
- */
 const team = [
   {
     name: "Levi Kempen",
     initials: "LK",
     role: "Mede-oprichter",
     color: "var(--forest)",
-    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+    quote:
+      "Ik wil vooral dingen maken die mensen in hun dagelijkse werk écht gebruiken, niet iets wat na een maand alweer vergeten is.",
   },
   {
     name: "Gianni Geurtjens",
     initials: "GG",
     role: "Mede-oprichter",
     color: "var(--home-accent)",
-    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+    quote:
+      "We zijn LoopWerk begonnen omdat we zagen hoeveel tijd bedrijven kwijt zijn aan kleine dingen die steeds opnieuw terugkomen.",
   },
   {
     name: "Shaquil Reyes",
     initials: "SR",
     role: "Mede-oprichter",
     color: "var(--ink-hero)",
-    quote: "Nog toe te voegen — jouw eigen zin in één regel.",
+    quote:
+      "Het leukste vind ik als we iets bouwen waarvan een ondernemer achteraf zegt: dit had ik eigenlijk veel eerder moeten doen.",
   },
 ];
 
@@ -149,8 +148,8 @@ function OverLoopwerk() {
                     </div>
                   </div>
                   <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
-                    <p className="hand text-xl leading-snug text-cream">"{member.quote}"</p>
-                    <p className="text-xs uppercase tracking-[0.14em] text-sage">{member.name}</p>
+                    <p className="hand text-2xl leading-snug text-cream">"{member.quote}"</p>
+                    <p className="text-sm uppercase tracking-[0.14em] text-home-accent">{member.name}</p>
                   </div>
                 </div>
               </div>

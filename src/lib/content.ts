@@ -3,20 +3,6 @@
  * Eén bestand, zodat overzichten, detailpagina's en homepageblokken niet uit elkaar lopen.
  */
 
-/** Interactieve "herken je dit?"-check die doorlinkt naar een voorgevulde Scan. */
-export type SolutionCheck = {
-  items: { id: string; label: string }[];
-  /** Duidingszinnen, oplopend. De tekst met de hoogste `min` die nog <= aantal aangevinkt is, wordt getoond. */
-  readouts: { min: number; text: string }[];
-  ctaLabel: string;
-  /** Moet een bestaande waarde zijn uit de "process"-opties in lib/scan/questions.ts. */
-  scanProcess: string;
-  /** Bestaande waarden uit de "timeSinks"-opties. */
-  scanTimeSinks?: string[];
-  /** Bestaande waarden uit de "sources"-opties. */
-  scanSources?: string[];
-};
-
 export type Solution = {
   slug: string;
   title: string;
@@ -32,8 +18,6 @@ export type Solution = {
   approach?: string;
   /** Eerlijk en concreet: waar AI wel of juist niet in deze oplossing zit. Geen AI-hype, wel specifiek. */
   aiNote?: string;
-  /** Interactieve zelf-check i.p.v. de statische signals-bullets. */
-  check?: SolutionCheck;
   /** Concrete, bescheiden scope-belofte voor de eerste maand. Geen resultaatclaim. */
   firstMonth?: string;
   /** Voor niet-featured oplossingen: eerlijke brug naar bewezen werk elders i.p.v. een stilzwijgend ontbrekende case. */
@@ -135,25 +119,6 @@ export const solutions: Solution[] = [
       "We beginnen bij de systemen die jullie al gebruiken — mail, Excel, het CRM — en leggen vast welk systeem leidend is per soort gegeven. Vanaf dat moment hoeft niemand meer hetzelfde drie keer in te voeren: het komt vanzelf op de juiste plek terecht.",
     aiNote:
       "Waar AI hier wel inzit: een ongestructureerde aanvraag (mail, PDF) wordt omgezet in nette velden voor het CRM, in plaats van dat iemand het overtypt.",
-    check: {
-      items: [
-        { id: "drie-systemen", label: "Dezelfde klantgegevens staan in mail, Excel en het CRM — en niet altijd hetzelfde." },
-        { id: "export-import", label: "Iemand exporteert of importeert wekelijks een bestand tussen twee systemen." },
-        { id: "fouten-laat", label: "Fouten in gegevens komen pas aan het licht bij de facturatie of aflevering." },
-        { id: "dubbel-bijwerken", label: "Nieuwe informatie moet in meerdere systemen apart worden bijgewerkt." },
-      ],
-      readouts: [
-        { min: 0, text: "Klik aan wat herkenbaar is." },
-        { min: 1, text: "Dat is al een concreet punt om te bekijken." },
-        { min: 2, text: "Dit patroon — gegevens die je meerdere keren met de hand overneemt — komt vaker voor dan bedrijven zelf denken." },
-        { min: 3, text: "Met dit patroon is een koppeling meestal de moeite van uitzoeken waard." },
-        { min: 4, text: "Alle vier herkenbaar? Dan zit hier waarschijnlijk reële tijdswinst, en is dit een goed moment om het scherper te laten uitrekenen." },
-      ],
-      ctaLabel: "Wil je weten hoeveel tijd dit kost? Doe de scan (4 min) →",
-      scanProcess: "overnemen",
-      scanTimeSinks: ["overtypen", "controleren"],
-      scanSources: ["email", "excel", "crm"],
-    },
     firstMonth:
       "Een werkende koppeling tussen twee van jullie systemen — bijvoorbeeld de mailbox waar aanvragen binnenkomen en het CRM — getest op aanvragen die er al lagen. Geen demo met nepdata: gewoon jullie eigen gegevens, één keer goed verwerkt.",
     proofNote:
@@ -224,7 +189,7 @@ export const sectors: Sector[] = [
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
     seen: [
-      "Veel tijd verdwijnt niet op de bouwplaats, maar ervoor en erna. Denk aan opnames verwerken, materiaal berekenen, werkbonnen bijhouden en administratie achteraf. Juist daar liggen vaak simpele kansen om werk weg te automatiseren.",
+      "Veel tijd verdwijnt niet op de bouwplaats, maar ervoor en erna. Denk aan opnames verwerken, materiaal berekenen, werkbonnen bijhouden en administratie achteraf. Juist daar liggen vaak simpele kansen om werk te automatiseren.",
       "Calculaties in een spreadsheet die per project wordt gekopieerd.",
       "Planning en administratie die achter de uitvoering aan lopen.",
     ],

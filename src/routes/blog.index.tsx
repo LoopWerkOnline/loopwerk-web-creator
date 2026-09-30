@@ -54,10 +54,9 @@ function BlogIndex() {
                 />
                 <div className="flex flex-1 flex-col p-7">
                   <p className="eyebrow text-home-accent">{p.label}</p>
-                  <h2 className="mt-4 text-2xl leading-snug group-hover:underline group-hover:underline-offset-4">
+                  <h2 className="mt-4 flex-1 text-2xl leading-snug group-hover:underline group-hover:underline-offset-4">
                     {p.title}
                   </h2>
-                  <p className="mt-4 flex-1 leading-relaxed text-ink/70">{p.excerpt}</p>
                   <p className="mt-6 text-sm text-ink/55">
                     {p.author.name} · {formatDate(p.date)} · {p.readingMinutes} min lezen
                   </p>
