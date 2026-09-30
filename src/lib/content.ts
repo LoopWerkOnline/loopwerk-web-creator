@@ -189,7 +189,7 @@ export const sectors: Sector[] = [
     intro:
       "Werk komt binnen via mail, telefoon en via-via. Voordat er een prijs op tafel ligt, is er al een opname geweest, een leverancier gebeld en een calculatie gemaakt.",
     seen: [
-      "Veel tijd verdwijnt niet op de bouwplaats, maar ervoor en erna. Denk aan opnames verwerken, materiaal berekenen, werkbonnen bijhouden en administratie achteraf. Juist daar liggen vaak simpele kansen om werk weg te automatiseren.",
+      "Veel tijd verdwijnt niet op de bouwplaats, maar ervoor en erna. Denk aan opnames verwerken, materiaal berekenen, werkbonnen bijhouden en administratie achteraf. Juist daar liggen vaak simpele kansen om werk te automatiseren.",
       "Calculaties in een spreadsheet die per project wordt gekopieerd.",
       "Planning en administratie die achter de uitvoering aan lopen.",
     ],
