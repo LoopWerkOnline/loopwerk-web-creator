@@ -78,7 +78,7 @@ async function saveToSupabase(lead: LeadInput): Promise<boolean> {
           email: lead.email,
           company: lead.company || null,
           phone: lead.phone || null,
-          message: lead.message,
+          message: lead.message ?? "",
         })
       : await supabase.from("scan_leads").insert({
           first_name: lead.firstName,
@@ -153,7 +153,7 @@ async function createHubspotDeal(lead: LeadInput): Promise<boolean> {
   const who = lead.kind === "contact" ? lead.name : lead.firstName;
   const description =
     lead.kind === "contact"
-      ? lead.message
+      ? lead.message || "Geen toelichting gegeven."
       : `Loopwerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100). Proces: ${lead.process || "-"}. Richting: ${lead.richting}.`;
 
   await hubspotApi(token, "/crm/v3/objects/deals", {
@@ -264,7 +264,7 @@ async function notifyTeam(lead: LeadInput): Promise<boolean> {
           `Bedrijf: ${lead.company || "-"}`,
           `Telefoon: ${lead.phone || "-"}`,
           "",
-          lead.message,
+          lead.message || "(geen toelichting)",
         ]
       : [
           `Naam: ${lead.firstName}`,

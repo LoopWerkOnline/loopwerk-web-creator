@@ -24,8 +24,10 @@ const leadSchema = z.discriminatedUnion("kind", [
     kind: z.literal("contact"),
     name: z.string().trim().min(1).max(200),
     phone: z.string().trim().max(50).optional(),
-    message: z.string().trim().min(1).max(5000),
+    message: z.string().trim().max(5000).optional(),
     ...shared,
+    // Bij contact is de bedrijfsnaam verplicht (overschrijft de optionele uit `shared`).
+    company: z.string().trim().min(1).max(200),
   }),
   z.object({
     kind: z.literal("scan"),

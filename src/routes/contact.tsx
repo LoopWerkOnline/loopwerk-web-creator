@@ -45,9 +45,9 @@ function Contact() {
           kind: "contact",
           name: String(data.get("name") ?? ""),
           email: String(data.get("email") ?? ""),
-          company: String(data.get("company") ?? "") || undefined,
+          company: String(data.get("company") ?? ""),
           phone: String(data.get("phone") ?? "") || undefined,
-          message: String(data.get("message") ?? ""),
+          message: String(data.get("message") ?? "") || undefined,
           website: String(data.get("website") ?? "") || undefined,
           startedAt: startedAt.current,
           hutk: readHubspotUtk(),
@@ -108,37 +108,46 @@ function Contact() {
                   <input
                     name="name"
                     required
+                    autoComplete="name"
                     className={field}
                     placeholder="Je voor- en achternaam"
                   />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-ink">E-mailadres *</span>
+                  <span className="text-sm font-medium text-ink">Zakelijk e-mailadres *</span>
                   <input
                     type="email"
                     name="email"
                     required
+                    autoComplete="email"
                     className={field}
                     placeholder="naam@bedrijf.nl"
                   />
                 </label>
                 <label className="block">
+                  <span className="text-sm font-medium text-ink">Bedrijfsnaam *</span>
+                  <input name="company" required autoComplete="organization" className={field} />
+                </label>
+                <label className="block sm:col-span-2">
                   <span className="text-sm font-medium text-ink">Telefoonnummer</span>
-                  <input name="phone" className={field} placeholder="06 ..." />
+                  <input
+                    type="tel"
+                    name="phone"
+                    autoComplete="tel"
+                    className={field}
+                    placeholder="06 ..."
+                  />
                 </label>
                 <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium text-ink">Bedrijfsnaam</span>
-                  <input name="company" className={field} />
-                </label>
-                <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium text-ink">Waar loopt het vast? *</span>
+                  <span className="text-sm font-medium text-ink">
+                    Waar kunnen we je mee helpen?
+                  </span>
                   <textarea
                     name="message"
-                    required
-                    rows={5}
+                    rows={3}
                     className={field}
                     defaultValue={prefill}
-                    placeholder="Beschrijf kort jullie proces of het knelpunt."
+                    placeholder="Eén of twee zinnen is genoeg."
                   />
                 </label>
               </div>
