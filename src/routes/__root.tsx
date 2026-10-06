@@ -138,7 +138,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "LoopWerk",
   url: SITE_URL,
-  logo: `${SITE_URL}/loopwerk-mark.png`,
+  logo: `${SITE_URL}/favicon-512.png`,
   description:
     "LoopWerk bouwt praktische digitale tools en automatiseringen voor Nederlandse bedrijven.",
   email: "info@loopwerkonline.nl",
