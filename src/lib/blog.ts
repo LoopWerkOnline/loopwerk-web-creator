@@ -338,6 +338,227 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "6-terugkerende-werkzaamheden-die-je-het-beste-kunt-automatiseren",
+    title: "6 terugkerende werkzaamheden die je het beste kunt automatiseren",
+    excerpt:
+      "Niet iedere handmatige taak hoeft geautomatiseerd te worden. Zes soorten terugkerend werk waar automatisering wél vaak loont, wat je beter laat liggen, en wanneer je er geen AI voor nodig hebt.",
+    date: "2026-10-13",
+    author: blogAuthors.shaquil,
+    readingMinutes: 9,
+    label: "Achter de aanvraag",
+    image: "/oplossingen/opl-1.jpg",
+    imageAlt: "Laptop met een dashboard vol cijfers op een werktafel",
+    body: [
+      {
+        type: "p",
+        text: "Niet iedere handmatige taak hoeft geautomatiseerd te worden. Een medewerker die één keer per maand vijf minuten bezig is met het bijwerken van een bestand, hoeft daar waarschijnlijk geen nieuwe digitale oplossing voor te krijgen.",
+      },
+      {
+        type: "p",
+        text: "Maar wanneer hetzelfde werk iedere dag of iedere week terugkomt, steeds volgens ongeveer dezelfde stappen verloopt en weinig menselijk oordeel vereist, wordt automatisering een stuk interessanter.",
+      },
+      {
+        type: "p",
+        text: "De vraag is daarom niet: “Wat kunnen we allemaal automatiseren?” Maar: “Welke terugkerende werkzaamheden kosten structureel tijd zonder dat daar veel menselijke aandacht voor nodig is?”",
+      },
+      {
+        type: "p",
+        text: "Onderzoek naar automatisering laat al langer hetzelfde patroon zien. Vooral het verzamelen en verwerken van gegevens en werkzaamheden in voorspelbare omgevingen zijn technisch relatief geschikt voor automatisering. Taken waarbij persoonlijke interactie, expertise of complexe beslissingen nodig zijn, zijn veel moeilijker volledig te automatiseren.",
+      },
+      { type: "h2", text: "Wanneer is een taak geschikt voor automatisering?" },
+      {
+        type: "p",
+        text: "Voordat je naar specifieke werkzaamheden kijkt, helpt het om een terugkerende taak langs een paar simpele vragen te leggen. Komt de taak vaak terug? Worden ongeveer dezelfde stappen iedere keer opnieuw uitgevoerd? Kost het iedere keer enkele minuten of langer? Worden gegevens handmatig gekopieerd of overgetypt? Ontstaan er regelmatig fouten of ontbreekt er informatie? Hoeft een medewerker meestal geen complexe beslissing te nemen, en is redelijk duidelijk wat er in verschillende situaties moet gebeuren?",
+      },
+      {
+        type: "p",
+        text: "Hoe vaker het antwoord ja is, hoe interessanter de taak meestal wordt.",
+      },
+      {
+        type: "p",
+        text: "Dat betekent overigens niet dat alles volledig automatisch moet verlopen. Vaak is het juist beter om het voorbereidende werk te automatiseren en een medewerker de laatste controle te laten uitvoeren.",
+      },
+      {
+        type: "p",
+        text: "Dat idee zien we ook terug in onderzoek van de International Labour Organization. De ILO concludeert dat de invloed van AI op werk waarschijnlijk vaker leidt tot verandering van taken binnen een functie dan tot volledige vervanging van functies. Administratieve beroepen en werkzaamheden zoals data-invoer en boekhoudkundige verwerking behoren daarbij tot de werkzaamheden met de hoogste blootstelling aan automatisering (bron: ILO, 2025).",
+      },
+      { type: "h2", text: "1. Gegevens handmatig overnemen" },
+      {
+        type: "p",
+        text: "Een klant vult informatie in via een formulier. Een medewerker opent vervolgens de aanvraag, kopieert de naam naar een Excel-bestand, zet het adres in het administratiesysteem en neemt andere gegevens opnieuw over in een offerte.",
+      },
+      {
+        type: "p",
+        text: "Op zichzelf kost iedere handeling misschien maar een paar minuten. Maar wanneer dit tientallen keren per maand gebeurt, loopt dat snel op. Dit soort gegevensverwerking is een logisch startpunt voor automatisering, omdat de stappen meestal goed voorspelbaar zijn.",
+      },
+      {
+        type: "p",
+        text: "Zo ziet het er handmatig uit: de aanvraag komt binnen, een medewerker opent de e-mail, kopieert de gegevens, opent een ander systeem, plakt de gegevens en controleert alles. Slimmer ingericht komt de aanvraag binnen, worden de gegevens automatisch opgeslagen, is de relevante informatie direct beschikbaar voor de volgende stap en controleert de medewerker alleen waar dat nodig is.",
+      },
+      {
+        type: "p",
+        text: "Dat bespaart niet alleen handelingen, maar verkleint ook de kans dat informatie verkeerd wordt overgenomen. Ook onderzoek van McKinsey naar duizenden verschillende werkzaamheden wijst gegevens verzamelen en verwerken al langere tijd aan als activiteiten met relatief veel automatiseringspotentieel (bron: McKinsey Global Institute).",
+      },
+      { type: "h2", text: "2. Incomplete aanvragen controleren en aanvullen" },
+      {
+        type: "p",
+        text: "Een nieuwe aanvraag klinkt positief. Totdat blijkt dat de helft van de informatie ontbreekt. Welke afmetingen heeft het product? Wat is het adres? Welke uitvoering wil de klant? Zijn er foto’s beschikbaar?",
+      },
+      {
+        type: "p",
+        text: "Wanneer medewerkers dat iedere keer achteraf moeten uitzoeken, ontstaat er een proces van e-mails, telefoontjes en wachten op antwoorden.",
+      },
+      {
+        type: "p",
+        text: "Een betere oplossing is vaak niet om het beantwoorden van die vragen te automatiseren, maar om ervoor te zorgen dat de juiste informatie eerder wordt verzameld. Een digitale aanvraagflow kan bijvoorbeeld afhankelijk van eerdere antwoorden andere vragen stellen en controleren of verplichte informatie aanwezig is voordat de aanvraag wordt verstuurd.",
+      },
+      {
+        type: "p",
+        text: "Daardoor verandert het proces van aanvraag, ontbrekende informatie, contact opnemen, wachten op de klant, aanvullen en pas dan verwerken, naar: complete aanvraag, controle, verwerking.",
+      },
+      {
+        type: "p",
+        text: "Automatisering betekent dus niet altijd dat een computer het werk van een medewerker overneemt. Soms betekent het vooral dat het proces zo wordt ingericht dat onnodig werk überhaupt niet meer ontstaat.",
+      },
+      { type: "h2", text: "3. Terugkerende calculaties en prijsberekeningen" },
+      {
+        type: "p",
+        text: "Veel bedrijven maken regelmatig ongeveer dezelfde berekening. Denk aan prijzen op basis van oppervlakte, aantallen, materiaalkeuze, reistijd, formaat, type werkzaamheden, vaste toeslagen of combinaties van opties.",
+      },
+      {
+        type: "p",
+        text: "Wanneer iemand iedere aanvraag opnieuw in Excel opent, waardes invoert en dezelfde formules toepast, is het interessant om te onderzoeken of een deel hiervan geautomatiseerd kan worden. Een eenvoudige calculator kan bijvoorbeeld direct een interne calculatie voorbereiden. Of een klant kan eerst zelf een indicatieve prijs krijgen, waarna een medewerker alleen uitzonderingen of definitieve offertes beoordeelt.",
+      },
+      {
+        type: "p",
+        text: "Dat betekent niet dat iedere offerte automatisch verstuurd moet worden. Juist bij prijsstelling is menselijke controle vaak belangrijk. De automatisering kan vooral het voorwerk uitvoeren. En omdat het hier om vaste rekenregels gaat, is AI daar bewust niet voor nodig.",
+      },
+      {
+        type: "p",
+        text: "Stel dat een bedrijf 30 calculaties per maand maakt en het verzamelen, invoeren en berekenen gemiddeld 15 minuten kost. Dat is 450 minuten, oftewel 7,5 uur per maand. Wanneer een digitale flow de helft van dat voorbereidende werk wegneemt, scheelt dat al bijna vier uur per maand.",
+      },
+      {
+        type: "p",
+        text: "De exacte winst verschilt natuurlijk per bedrijf. Daarom moet eerst gekeken worden naar het bestaande proces voordat bepaald kan worden of automatisering financieel interessant is.",
+      },
+      { type: "h2", text: "4. Opvolging en reminders" },
+      {
+        type: "p",
+        text: "Een offerte is verstuurd. En daarna? Bij veel kleine bedrijven hangt opvolging af van iemand die onthoudt dat er nog gereageerd moet worden. Dat werkt zolang het aantal aanvragen beperkt blijft. Maar zodra er meerdere klanten, offertes en projecten tegelijk lopen, worden dingen makkelijker vergeten.",
+      },
+      {
+        type: "p",
+        text: "Juist eenvoudige opvolging laat zich vaak goed automatiseren. Bijvoorbeeld: een offerte is verstuurd, na zeven dagen is er geen reactie, en de medewerker krijgt een herinnering. Of: een aanvraag wordt ontvangen, de klant krijgt automatisch een ontvangstbevestiging en een medewerker krijgt de taak om de aanvraag te beoordelen.",
+      },
+      {
+        type: "p",
+        text: "Het hoeft dus niet altijd automatisch een e-mail naar de klant te zijn. Soms is een interne reminder voldoende. Het voordeel zit vooral in het feit dat de volgende stap niet meer afhankelijk is van iemands geheugen.",
+      },
+      { type: "h2", text: "5. Documenten en bestanden verwerken" },
+      {
+        type: "p",
+        text: "Ook bestanden veroorzaken verrassend veel handmatig werk. Een offerte komt binnen als pdf. Een foto wordt per mail verstuurd. Een formulier staat ergens anders opgeslagen. Vervolgens moet iemand het bestand downloaden, een naam geven, in de juiste map plaatsen en misschien gegevens eruit overnemen.",
+      },
+      {
+        type: "p",
+        text: "Wanneer dit incidenteel gebeurt, is dat geen probleem. Wanneer dezelfde handelingen iedere dag terugkomen, wordt het interessant. Een oplossing kan bijvoorbeeld automatisch bestanden op de juiste plek opslaan, een vaste bestandsnaam gebruiken, documenten aan een aanvraag koppelen, informatie uit een formulier verwerken of een collega informeren dat een bestand beschikbaar is.",
+      },
+      {
+        type: "p",
+        text: "Ook hier hoeft AI niet automatisch onderdeel van de oplossing te zijn. Wanneer de regels vooraf duidelijk zijn, is een normale automatisering vaak eenvoudiger en betrouwbaarder. AI wordt pas interessanter wanneer informatie minder gestructureerd is, bijvoorbeeld wanneer gegevens uit verschillende soorten documenten of vrije tekst moeten worden herkend.",
+      },
+      { type: "h2", text: "6. Standaard administratieve voorbereiding" },
+      {
+        type: "p",
+        text: "Administratief werk is een brede categorie, maar juist hier zitten vaak veel kleine terugkerende taken. Denk aan gegevens klaarzetten voor facturatie, standaardgegevens verwerken, lijsten bijwerken, informatie tussen systemen verplaatsen, periodieke overzichten voorbereiden en standaarddocumenten genereren.",
+      },
+      {
+        type: "p",
+        text: "Dat sluit ook aan bij recente Nederlandse cijfers. Het CBS onderzocht in 2025 het AI-gebruik bij Nederlandse microbedrijven met 2 tot 9 werkzame personen. Van de microbedrijven die AI gebruikten, zette 25,9% AI in voor administratieve processen of bestuurstaken. Marketing en verkoop stonden met 32,7% op de eerste plaats (bron: CBS, 2026).",
+      },
+      {
+        type: "p",
+        text: "Dat betekent niet dat administratief werk automatisch met AI opgelost moet worden. Integendeel. Veel administratieve processen bestaan uit vaste regels en hebben helemaal geen AI nodig.",
+      },
+      {
+        type: "p",
+        text: "Ook breder neemt automatisering een belangrijkere plaats in bij Nederlandse bedrijven. Uit de Conjunctuurenquête Nederland van april 2026 bleek dat bedrijven met personeelstekorten automatisering steeds vaker als maatregel inzetten. Van alle bedrijven had 64% last van personeelstekorten; voor bijna de helft van de bedrijven mét een personeelstekort was meer automatiseren de belangrijkste maatregel (bron: CBS, 3 juni 2026).",
+      },
+      { type: "h2", text: "Wat moet je juist niet als eerste automatiseren?" },
+      {
+        type: "p",
+        text: "Er zijn ook werkzaamheden waarbij automatisering meestal niet het beste startpunt is. Denk aan complexe gesprekken met klanten, uitzonderlijke situaties die iedere keer anders zijn, strategische beslissingen, werk waarbij ervaring en vakkennis centraal staan, processen die zelf nog voortdurend veranderen en taken die nauwelijks voorkomen.",
+      },
+      {
+        type: "p",
+        text: "Ook werkzaamheden waarbij fouten grote financiële, juridische of veiligheidsgevolgen kunnen hebben verdienen extra voorzichtigheid.",
+      },
+      {
+        type: "p",
+        text: "Een belangrijk uitgangspunt is daarom: automatiseer eerst het voorspelbare werk rondom de beslissing, niet automatisch de beslissing zelf. Een systeem kan bijvoorbeeld alle informatie voor een offerte verzamelen en een calculatie voorbereiden. De medewerker kan vervolgens bepalen of de offerte daadwerkelijk klopt. Dat combineert snelheid met menselijke controle.",
+      },
+      { type: "h2", text: "AI is niet automatisch de oplossing" },
+      {
+        type: "p",
+        text: "Automatisering en AI worden tegenwoordig vaak in één adem genoemd. Maar ze betekenen niet hetzelfde.",
+      },
+      {
+        type: "p",
+        text: "Stel dat iedere aanvraag boven €10.000 door een medewerker gecontroleerd moet worden. Daar is geen AI voor nodig. Een simpele regel kan voldoende zijn: ligt het bedrag boven €10.000, dan gaat de aanvraag naar een medewerker.",
+      },
+      {
+        type: "p",
+        text: "AI wordt interessanter wanneer informatie niet netjes gestructureerd is of wanneer er bijvoorbeeld tekst geïnterpreteerd, gecategoriseerd of samengevat moet worden.",
+      },
+      {
+        type: "p",
+        text: "Dat onderscheid is belangrijk, zeker voor kleine bedrijven. Een eenvoudige regelgestuurde oplossing is vaak goedkoper, beter uitlegbaar, makkelijker te onderhouden en voorspelbaarder. Gebruik AI daarom alleen wanneer het daadwerkelijk iets toevoegt aan het proces.",
+      },
+      { type: "h2", text: "Begin niet met de grootste automatisering" },
+      {
+        type: "p",
+        text: "Het is verleidelijk om direct naar het volledige bedrijfsproces te kijken. Van eerste klantcontact tot factuur. Maar voor een klein bedrijf is het vaak verstandiger om één duidelijk knelpunt te pakken.",
+      },
+      {
+        type: "p",
+        text: "Bijvoorbeeld: aanvragen komen regelmatig incompleet binnen. De gewenste situatie is dat iedere aanvraag de informatie bevat die nodig is om een offerte te maken. De oplossing is dan een gestructureerde aanvraagflow die controleert of de noodzakelijke gegevens aanwezig zijn.",
+      },
+      {
+        type: "p",
+        text: "Of: offertes worden regelmatig te laat opgevolgd. De gewenste situatie is dat iedere openstaande offerte automatisch opnieuw onder de aandacht komt. De oplossing is dan een eenvoudige automatische opvolgflow.",
+      },
+      {
+        type: "p",
+        text: "Dat is overzichtelijker, goedkoper en makkelijker te testen dan direct het volledige bedrijf te digitaliseren.",
+      },
+      { type: "h2", text: "Zoek naar werk dat vaak terugkomt" },
+      {
+        type: "p",
+        text: "De interessantste automatiseringen zijn meestal niet de meest indrukwekkende. Het zijn vaak simpele werkzaamheden die medewerkers iedere dag opnieuw uitvoeren: gegevens overtypen, informatie controleren, een berekening voorbereiden, een bestand verplaatsen of een reminder sturen.",
+      },
+      {
+        type: "p",
+        text: "Per handeling lijkt de tijdwinst klein. Maar juist doordat het werk steeds opnieuw terugkomt, kan het totaal groot worden.",
+      },
+      {
+        type: "p",
+        text: "Onderzoek van de OECD onder mkb-bedrijven laat zien dat bedrijven die AI gebruiken vooral waarde ervaren wanneer technologie praktisch werk verbetert. In de 2025 D4SME Survey gaf 43% van de AI-gebruikende respondenten aan een gematigde impact te ervaren, bijvoorbeeld door minder handmatige taken of een hogere nauwkeurigheid. Nog eens 18% rapporteerde een duidelijke verbetering in efficiëntie, productiviteit of besluitvorming. Slechts 6% noemde de impact echt transformerend (bron: OECD, 2025).",
+      },
+      {
+        type: "p",
+        text: "Dat is eigenlijk precies de juiste verwachting voor een klein bedrijf. Digitalisering hoeft je onderneming niet volledig te veranderen. Als één terugkerend proces iedere week eenvoudiger, sneller en betrouwbaarder wordt, kan dat al genoeg zijn.",
+      },
+      {
+        type: "p",
+        text: "Dat ene terugkerende proces uitzoeken, en samen kijken of het de moeite van automatiseren waard is: daar helpen wij bij LoopWerk graag bij.",
+      },
+      {
+        type: "p",
+        text: "Bronnen: CBS, Gebruik van AI-technologie door Nederlandse microbedrijven (2026) en Bedrijven zetten meer in op automatisering door personeelstekort (3 juni 2026); OECD, SME Digitalisation for Competitiveness — de 2025 D4SME Survey; International Labour Organization, Generative AI and Jobs: A Refined Global Index of Occupational Exposure (2025); McKinsey Global Institute, AI, automation, and the future of work.",
+      },
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
