@@ -123,15 +123,23 @@ function SolutionPage() {
       )}
 
       <Section>
-        <div className="grid gap-14 md:grid-cols-2">
-          <Reveal className="rounded-2xl bg-ink-hero p-8 text-cream md:p-10">
-            <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
-            <p className="mt-3 text-sm leading-relaxed text-cream/70">
-              Klik aan wat herkenbaar is. Hoe meer het is, hoe groter de kans dat hier iets te winnen
-              valt.
-            </p>
-            <SolutionCheck signals={solution.signals} tone="dark" />
-          </Reveal>
+        <div className="grid gap-14 md:grid-cols-2 md:items-start">
+          <div className="flex flex-col gap-6">
+            <Reveal className="rounded-2xl bg-ink-hero p-8 text-cream md:p-10">
+              <Eyebrow tone="home-accent">Wat we vaak zien</Eyebrow>
+              <p className="mt-3 text-sm leading-relaxed text-cream/70">
+                Klik aan wat herkenbaar is. Hoe meer het is, hoe groter de kans dat hier iets te
+                winnen valt.
+              </p>
+              <SolutionCheck signals={solution.signals} tone="dark" />
+            </Reveal>
+            {solution.firstMonth ? (
+              <Reveal delay={0.1} className="rounded-xl border border-line bg-shell p-8">
+                <p className="hand text-2xl text-forest">Wat je er de eerste maand van ziet</p>
+                <p className="mt-3 leading-relaxed text-ink/75">{solution.firstMonth}</p>
+              </Reveal>
+            ) : null}
+          </div>
           <Reveal delay={0.1}>
             <div className="rounded-xl border border-line bg-shell p-8">
               <p className="hand text-2xl text-forest">Zo pakken we het aan</p>
@@ -150,12 +158,6 @@ function SolutionPage() {
                 ))}
               </ol>
             </div>
-            {solution.firstMonth ? (
-              <div className="mt-6 rounded-xl border border-line bg-shell p-8">
-                <p className="hand text-2xl text-forest">Wat je er de eerste maand van ziet</p>
-                <p className="mt-3 leading-relaxed text-ink/75">{solution.firstMonth}</p>
-              </div>
-            ) : null}
             {solution.aiNote ? (
               <div className="mt-6 rounded-xl border border-home-accent/30 p-6">
                 <Eyebrow tone="home-accent">AI, concreet</Eyebrow>
