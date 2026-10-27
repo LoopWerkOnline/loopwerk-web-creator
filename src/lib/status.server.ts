@@ -1,4 +1,4 @@
-import { teamEmail } from "./email-templates";
+import { confirmationEmail, teamEmail } from "./email-templates";
 import { env, notifyFrom, notifyTo } from "./leads.server";
 
 /**
@@ -179,6 +179,35 @@ export async function testMail() {
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     return { naar: to, van: from, status: res.status, antwoord: (await res.text()).slice(0, 1500) };
+  } catch (error) {
+    return { fout: String(error) };
+  }
+}
+
+let lastConfirmTest = 0;
+
+/** Proef-bevestigingsmail, alleen naar adressen op loopwerkonline.nl. Hooguit eens per minuut. */
+export async function testConfirmation(to: string) {
+  if (!/^[^@\s]+@loopwerkonline\.nl$/i.test(to)) return { fout: "alleen @loopwerkonline.nl" };
+  if (Date.now() - lastConfirmTest < 60_000) return { overgeslagen: "max 1 test per minuut" };
+  lastConfirmTest = Date.now();
+  const key = env("RESEND_API_KEY");
+  if (!key) return { fout: "mist RESEND_API_KEY" };
+  const mail = confirmationEmail({
+    kind: "contact",
+    name: "Test",
+    firstName: "Test",
+    email: to,
+    message: "Dit is een proef van de bevestigingsmail.",
+  });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: env("LEAD_CONFIRM_FROM") ?? notifyFrom(), to: [to], ...mail }),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    return { naar: to, status: res.status, antwoord: (await res.text()).slice(0, 1500) };
   } catch (error) {
     return { fout: String(error) };
   }

@@ -15,6 +15,8 @@ const C = {
   muted: "#6b6a5f",
   accent: "#b07a5a",
   forest: "#233628",
+  sage: "#a9b8a0",
+  cream: "#fcf5ed",
 };
 const SANS = "Arial,Helvetica,sans-serif";
 const SERIF = "Georgia,'Times New Roman',serif";
@@ -44,37 +46,51 @@ function details(rows: [string, string | undefined][]): string {
         `<tr><td style="padding:10px 0;${i ? `border-top:1px solid ${C.line};` : ""}font-family:${SANS};font-size:13px;color:${C.muted};width:130px;vertical-align:top">${esc(k)}</td><td style="padding:10px 0;${i ? `border-top:1px solid ${C.line};` : ""}font-family:${SANS};font-size:15px;color:${C.ink};vertical-align:top">${multiline(v!)}</td></tr>`,
     )
     .join("");
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.shell};border:1px solid ${C.line};border-radius:12px;padding:6px 18px;margin:8px 0 24px">${body}</table>`;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page};border:1px solid ${C.line};border-radius:14px;padding:4px 20px;margin:0 0 28px">${body}</table>`;
 }
 
 const p = (html: string) =>
   `<p style="margin:0 0 16px;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.ink}">${html}</p>`;
 
-const heading = (text: string) =>
-  `<h1 style="margin:0 0 16px;font-family:${SERIF};font-weight:normal;font-size:28px;line-height:1.2;color:${C.ink}">${esc(text)}</h1>`;
-
-const eyebrow = (text: string) =>
+const sectionLabel = (text: string) =>
   `<p style="margin:0 0 10px;font-family:${SANS};font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:${C.accent}">${esc(text)}</p>`;
 
-function layout(opts: { preheader: string; body: string; footerNote: string }): string {
+const quote = (text: string) =>
+  `<div style="margin:0 0 28px;padding:4px 0 4px 18px;border-left:3px solid ${C.accent};font-family:${SERIF};font-size:18px;line-height:1.5;color:${C.ink}">${multiline(text)}</div>`;
+
+function layout(opts: {
+  preheader: string;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  body: string;
+  footerNote: string;
+}): string {
   return `<!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>LoopWerk</title></head>
-<body style="margin:0;padding:0;background:${C.page}">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(opts.preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page}"><tr><td align="center" style="padding:32px 16px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px">
-<tr><td style="padding:0 4px 20px">
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><title>LoopWerk</title></head>
+<body style="margin:0;padding:0;background:${C.shell};-webkit-text-size-adjust:100%">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(opts.preheader)}&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.shell}"><tr><td align="center" style="padding:36px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;border-collapse:separate">
+
+<tr><td style="background:${C.forest};border-radius:20px 20px 0 0;padding:28px 36px 36px">
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="vertical-align:middle"><img src="${SITE}/loopwerk-mark.png" width="32" height="33" alt="" style="display:block;border:0"></td>
-<td style="vertical-align:middle;padding-left:10px;font-family:${SERIF};font-size:22px;color:${C.forest}">LoopWerk</td>
+<td style="vertical-align:middle"><img src="${SITE}/email/loopwerk-mark-cream.png" width="30" height="31" alt="" style="display:block;border:0"></td>
+<td style="vertical-align:middle;padding-left:10px;font-family:${SERIF};font-size:22px;color:${C.cream}">LoopWerk</td>
 </tr></table>
+<p style="margin:36px 0 12px;font-family:${SANS};font-size:11px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;color:${C.sage}">${esc(opts.eyebrow)}</p>
+<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:34px;line-height:1.15;color:${C.cream}">${esc(opts.title)}</h1>
+<p style="margin:14px 0 0;font-family:${SANS};font-size:16px;line-height:1.6;color:#d9d4c7">${esc(opts.lead)}</p>
 </td></tr>
-<tr><td style="background:${C.card};border:1px solid ${C.line};border-radius:16px;padding:32px 28px">${opts.body}</td></tr>
-<tr><td style="padding:22px 4px 0;font-family:${SANS};font-size:12px;line-height:1.6;color:${C.muted}">
+
+<tr><td style="background:${C.card};padding:32px 36px 36px;border-radius:0 0 20px 20px">${opts.body}</td></tr>
+
+<tr><td style="padding:24px 36px 0;font-family:${SANS};font-size:12px;line-height:1.7;color:${C.muted};text-align:center">
 ${esc(opts.footerNote)}<br>
 ${esc(company.name)} · ${esc(company.address)} · KvK ${esc(company.kvk)}<br>
-<a href="${SITE}" style="color:${C.muted}">loopwerkonline.nl</a> · <a href="mailto:${esc(company.email)}" style="color:${C.muted}">${esc(company.email)}</a>
+<a href="${SITE}" style="color:${C.muted};text-decoration:underline">loopwerkonline.nl</a> &nbsp;·&nbsp; <a href="mailto:${esc(company.email)}" style="color:${C.muted};text-decoration:underline">${esc(company.email)}</a>
 </td></tr>
+
 </table>
 </td></tr></table>
 </body></html>`;
@@ -130,20 +146,12 @@ export function teamEmail(
   ];
 
   const body = [
-    eyebrow(lead.kind === "contact" ? "Nieuwe aanvraag" : "Nieuwe scan"),
-    heading(
-      lead.kind === "contact"
-        ? `${lead.firstName} wil iets bespreken`
-        : `${lead.firstName} deed de scan`,
-    ),
-    p(
-      lead.kind === "contact"
-        ? "Via het contactformulier op de website. We beloven een reactie binnen één werkdag."
-        : "Via de Loopwerk Scan. We beloven binnen één werkdag een korte analyse.",
-    ),
+    sectionLabel("Gegevens"),
     details(rows),
-    ...(lead.kind === "scan" ? [details([["Antwoorden", lead.summary]])] : []),
-    `<div>${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je Loopwerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
+    ...(lead.kind === "scan"
+      ? [sectionLabel("Antwoorden"), details([["Scan", lead.summary]])]
+      : []),
+    `<div style="margin-top:4px">${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je Loopwerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
   ].join("");
 
   const text = [
@@ -160,6 +168,15 @@ export function teamEmail(
     text,
     html: layout({
       preheader: `${who} · ${lead.email}`,
+      eyebrow: lead.kind === "contact" ? "Nieuwe aanvraag" : "Nieuwe scan",
+      title:
+        lead.kind === "contact"
+          ? `${lead.firstName} wil iets bespreken`
+          : `${lead.firstName} deed de scan`,
+      lead:
+        lead.kind === "contact"
+          ? "Binnengekomen via het contactformulier. We beloven een reactie binnen één werkdag."
+          : "Binnengekomen via de Loopwerk Scan. We beloven binnen één werkdag een korte analyse.",
       body,
       footerNote:
         "Interne melding van het websiteformulier. Beantwoorden gaat direct naar de aanvrager.",
@@ -182,7 +199,7 @@ export function confirmationEmail(
 
   const intro =
     lead.kind === "contact"
-      ? "Dank je voor je bericht. We hebben je aanvraag goed ontvangen en kijken er zelf naar."
+      ? "We hebben je aanvraag goed ontvangen en kijken er zelf naar. Binnen één werkdag hoor je van ons."
       : `Dank je voor het invullen van de Loopwerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.scoreLabel}.`;
 
   const steps =
@@ -201,16 +218,13 @@ export function confirmationEmail(
   const stepsHtml = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 24px">${steps
     .map(
       (s, i) =>
-        `<tr><td style="width:36px;vertical-align:top;padding:6px 0"><div style="width:26px;height:26px;border-radius:13px;background:${C.forest};color:#ffffff;font-family:${SANS};font-size:13px;font-weight:bold;line-height:26px;text-align:center">${i + 1}</div></td><td style="vertical-align:top;padding:8px 0;font-family:${SANS};font-size:15px;line-height:1.5;color:${C.ink}">${esc(s)}</td></tr>`,
+        `<tr><td style="width:40px;vertical-align:top;padding:6px 0"><div style="width:28px;height:28px;border-radius:14px;background:${C.shell};border:1px solid ${C.line};color:${C.accent};font-family:${SANS};font-size:13px;font-weight:bold;line-height:28px;text-align:center">${i + 1}</div></td><td style="vertical-align:top;padding:10px 0 10px 4px;font-family:${SANS};font-size:15px;line-height:1.5;color:${C.ink}">${esc(s)}</td></tr>`,
     )
     .join("")}</table>`;
 
   const body = [
-    eyebrow(lead.kind === "contact" ? "Aanvraag ontvangen" : "Scan ontvangen"),
-    heading(`Hoi ${lead.firstName}, je aanvraag is binnen`),
-    p(esc(intro)),
-    lead.kind === "contact" && lead.message ? details([["Je schreef", lead.message]]) : "",
-    `<p style="margin:8px 0 4px;font-family:${SANS};font-size:13px;font-weight:bold;color:${C.ink}">Wat er nu gebeurt</p>`,
+    lead.kind === "contact" && lead.message ? sectionLabel("Je bericht") + quote(lead.message) : "",
+    sectionLabel("Wat er nu gebeurt"),
     stepsHtml,
     p(
       "Wil je alvast iets aanvullen, zoals een voorbeeld van een aanvraag of offerte? Antwoord dan gewoon op deze mail.",
@@ -243,6 +257,9 @@ export function confirmationEmail(
         lead.kind === "contact"
           ? "Je hoort binnen één werkdag van ons."
           : "Binnen één werkdag krijg je een korte analyse.",
+      eyebrow: lead.kind === "contact" ? "Aanvraag ontvangen" : "Scan ontvangen",
+      title: `Dank je, ${lead.firstName}. We gaan ermee aan de slag.`,
+      lead: intro,
       body,
       footerNote: "Je ontvangt deze mail omdat je een formulier invulde op loopwerkonline.nl.",
     }),
