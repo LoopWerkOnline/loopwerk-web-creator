@@ -108,3 +108,39 @@ export async function getStatus() {
   cache = { at: Date.now(), body };
   return body;
 }
+
+let lastFormTest = 0;
+
+/**
+ * Proefinzending naar het HubSpot-contactformulier, om te zien wat HubSpot terugstuurt.
+ * Maakt/actualiseert één vast testcontact. Hooguit eens per 5 minuten.
+ */
+export async function testHubspotForm() {
+  if (Date.now() - lastFormTest < 5 * 60_000) return { overgeslagen: "max 1 test per 5 minuten" };
+  lastFormTest = Date.now();
+  const path = "/submissions/v3/integration/submit/149185560/885c831f-54c3-4789-9932-ef759c4fb567";
+  const fields = [
+    ["firstname", "Websitetest"],
+    ["lastname", "Statuscheck"],
+    ["email", "websitetest@loopwerkonline.nl"],
+    ["company", "LoopWerk test"],
+  ].map(([name, value]) => ({ objectTypeId: "0-1", name, value }));
+  const out: Record<string, unknown> = {};
+  for (const host of ["https://api-eu1.hsforms.com", "https://api.hsforms.com"]) {
+    try {
+      const res = await fetch(host + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields,
+          context: { pageUri: "https://www.loopwerkonline.nl/contact", pageName: "Statuscheck" },
+        }),
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+      });
+      out[host] = { status: res.status, antwoord: (await res.text()).slice(0, 1500) };
+    } catch (error) {
+      out[host] = { fout: String(error) };
+    }
+  }
+  return out;
+}
