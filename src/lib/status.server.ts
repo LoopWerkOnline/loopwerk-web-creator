@@ -1,3 +1,4 @@
+import { teamEmail } from "./email-templates";
 import { env, notifyFrom, notifyTo } from "./leads.server";
 
 /**
@@ -164,8 +165,16 @@ export async function testMail() {
       body: JSON.stringify({
         from,
         to,
+        ...teamEmail({
+          kind: "contact",
+          name: "Testmail Website",
+          firstName: "Testmail",
+          email: "websitetest@loopwerkonline.nl",
+          company: "LoopWerk test",
+          message:
+            "Dit is een testmelding van de website (statuscheck). Komt deze aan, dan werkt de meldingsmail.",
+        }),
         subject: "Testmail website LoopWerk",
-        text: "Dit is een testmail van de website (statuscheck). Komt deze aan, dan werkt de meldingsmail.",
       }),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });

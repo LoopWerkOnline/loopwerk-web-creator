@@ -1,3 +1,4 @@
+import { confirmationEmail, teamEmail } from "./email-templates";
 import type { LeadInput } from "./leads.functions";
 
 /**
@@ -273,55 +274,57 @@ async function sendToHubspot(lead: LeadInput): Promise<boolean> {
   return true;
 }
 
-async function notifyTeam(lead: LeadInput): Promise<boolean> {
-  const apiKey = env("RESEND_API_KEY");
-  const to = notifyTo();
-  const from = notifyFrom();
-  if (!apiKey || !to || !from) return false;
+/** Gegevens in de vorm die de mailtemplates verwachten. */
+function mailLead(lead: LeadInput) {
+  const base = {
+    email: lead.email,
+    company: lead.company,
+    phone: lead.kind === "contact" ? lead.phone : undefined,
+  };
+  return lead.kind === "contact"
+    ? {
+        ...base,
+        kind: "contact" as const,
+        name: lead.name,
+        firstName: lead.name.split(" ")[0] ?? lead.name,
+        message: lead.message,
+      }
+    : {
+        ...base,
+        kind: "scan" as const,
+        name: lead.firstName,
+        firstName: lead.firstName,
+        process: lead.process,
+        scoreLabel: lead.score.bandLabel,
+        score: lead.score.total,
+        richting: lead.richting,
+        summary: scanSummary(lead),
+      };
+}
 
-  const subject =
-    lead.kind === "contact"
-      ? `Nieuwe aanvraag via de site: ${lead.name}${lead.company ? ` (${lead.company})` : ""}`
-      : `Nieuwe scan: ${lead.firstName}${lead.company ? ` (${lead.company})` : ""} — ${lead.score.total}/100`;
-
-  const lines =
-    lead.kind === "contact"
-      ? [
-          `Naam: ${lead.name}`,
-          `E-mail: ${lead.email}`,
-          `Bedrijf: ${lead.company || "-"}`,
-          `Telefoon: ${lead.phone || "-"}`,
-          "",
-          lead.message || "(geen toelichting)",
-        ]
-      : [
-          `Naam: ${lead.firstName}`,
-          `E-mail: ${lead.email}`,
-          `Bedrijf: ${lead.company || "-"}`,
-          `Proces: ${lead.process || "-"}`,
-          "",
-          scanSummary(lead),
-        ];
-
+async function sendMail(apiKey: string, payload: Record<string, unknown>): Promise<boolean> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from,
-      to: to.split(",").map((s) => s.trim()),
-      reply_to: lead.email,
-      subject,
-      text: lines.join("\n"),
-    }),
+    body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
   return true;
 }
 
-function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, (c) =>
-    c === "&" ? "&amp;" : c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === '"' ? "&quot;" : "&#39;",
-  );
+/** Meldingsmail naar het team (LEAD_NOTIFY_TO, standaard info@). Beantwoorden gaat naar de aanvrager. */
+async function notifyTeam(lead: LeadInput): Promise<boolean> {
+  const apiKey = env("RESEND_API_KEY");
+  if (!apiKey) return false;
+  const mail = teamEmail(mailLead(lead));
+  return sendMail(apiKey, {
+    from: notifyFrom(),
+    to: notifyTo()
+      .split(",")
+      .map((s) => s.trim()),
+    reply_to: lead.email,
+    ...mail,
+  });
 }
 
 /**
@@ -330,56 +333,13 @@ function escapeHtml(value: string): string {
  */
 async function sendConfirmation(lead: LeadInput): Promise<boolean> {
   const apiKey = env("RESEND_API_KEY");
-  const from = env("LEAD_CONFIRM_FROM") ?? notifyFrom();
+  if (!apiKey) return false;
   const replyTo = notifyTo().split(",")[0]?.trim();
-  if (!apiKey || !from) return false;
-
-  const firstName =
-    lead.kind === "contact" ? (lead.name.split(" ")[0] ?? lead.name) : lead.firstName;
-  const subject =
-    lead.kind === "contact"
-      ? "We hebben je aanvraag ontvangen | LoopWerk"
-      : "Je Loopwerk Scan is binnen | LoopWerk";
-
-  const paragraphs =
-    lead.kind === "contact"
-      ? [
-          `Hoi ${firstName},`,
-          "Dank je voor je bericht. We hebben je aanvraag goed ontvangen en kijken er zelf naar. Binnen één werkdag hoor je van ons.",
-          ...(lead.message ? [`Je schreef: "${lead.message}"`] : []),
-          "Wil je alvast iets aanvullen, zoals een voorbeeld van een aanvraag of offerte? Antwoord dan gewoon op deze mail.",
-        ]
-      : [
-          `Hoi ${firstName},`,
-          `Dank je voor het invullen van de Loopwerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.score.bandLabel}.`,
-          "Binnen één werkdag sturen we je een korte analyse met wat we zien en waar je het beste kunt beginnen.",
-          "Vragen of iets aanvullen? Antwoord gewoon op deze mail.",
-        ];
-  const sign = ["Groet,", "Levi, Gianni en Shaquil", "LoopWerk · www.loopwerkonline.nl"];
-
-  const text = `${paragraphs.join("\n\n")}\n\n${sign.join("\n")}`;
-  const html = `<!doctype html><html lang="nl"><body style="margin:0;background:#fcf5ed;font-family:Arial,Helvetica,sans-serif;color:#1f241f">
-<div style="max-width:560px;margin:0 auto;padding:32px 24px">
-<p style="margin:0 0 24px;font-family:Georgia,serif;font-size:22px">LoopWerk</p>
-<div style="background:#ffffff;border:1px solid #e5ddd0;border-radius:16px;padding:28px">
-${paragraphs.map((p) => `<p style="margin:0 0 16px;font-size:15px;line-height:1.6">${escapeHtml(p)}</p>`).join("")}
-<p style="margin:24px 0 0;font-size:15px;line-height:1.6">Groet,<br>Levi, Gianni en Shaquil<br><span style="color:#b07a5a">LoopWerk</span></p>
-</div>
-<p style="margin:20px 0 0;font-size:12px;color:#8a8579">Je ontvangt deze mail omdat je een formulier invulde op <a href="https://www.loopwerkonline.nl" style="color:#8a8579">loopwerkonline.nl</a>.</p>
-</div></body></html>`;
-
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from,
-      to: [lead.email],
-      ...(replyTo ? { reply_to: replyTo } : {}),
-      subject,
-      text,
-      html,
-    }),
+  const mail = confirmationEmail(mailLead(lead));
+  return sendMail(apiKey, {
+    from: env("LEAD_CONFIRM_FROM") ?? notifyFrom(),
+    to: [lead.email],
+    ...(replyTo ? { reply_to: replyTo } : {}),
+    ...mail,
   });
-  if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
-  return true;
 }
