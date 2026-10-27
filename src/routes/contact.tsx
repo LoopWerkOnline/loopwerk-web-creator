@@ -152,7 +152,7 @@ function Contact() {
                     />
                   </label>
                   <label className="block">
-                    <span className="text-sm font-medium text-ink">Zakelijk e-mailadres *</span>
+                    <span className="text-sm font-medium text-ink">E-mailadres *</span>
                     <input
                       type="email"
                       name="email"
