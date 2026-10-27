@@ -25,3 +25,17 @@ export function breadcrumbs(items: [name: string, path: string][]) {
 export function jsonLd(data: unknown) {
   return { type: "application/ld+json", children: JSON.stringify(data) };
 }
+
+/** FAQPage: vragen en antwoorden als paren, zodat zoekmachines en AI-tools ze herkennen. */
+export function faqPage(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "nl-NL",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+}

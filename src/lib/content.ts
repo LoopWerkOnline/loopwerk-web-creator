@@ -25,6 +25,8 @@ export type Solution = {
   /** Volgorde binnen de "Van aanvraag tot offerte"-flow op het overzicht. Ontbreekt = losse capability. */
   journeyStep?: number;
   featured?: boolean;
+  /** Drie vragen die bij deze oplossing horen; getoond op de pagina en als FAQPage-schema. */
+  faq?: FaqItem[];
   /** Sfeerbeeld voor de oplossingsslider én de paginahero. */
   image?: string;
   imageAlt?: string;
@@ -60,14 +62,29 @@ export const solutions: Solution[] = [
       "Hier zit bewust geen AI in: vaste rekenregels voor prijzen en opties werken sneller en voorspelbaarder dan een taalmodel dat ernaar moet raden.",
     journeyStep: 2,
     featured: true,
+    faq: [
+      {
+        q: "Kan ik de prijzen daarna zelf aanpassen?",
+        a: "Ja. Prijzen, staffels en toeslagen staan op één plek. Pas je daar iets aan, dan rekenen de configurator en de conceptofferte meteen met de nieuwe prijs. Geen Excel meer die je op drie plekken moet bijwerken.",
+      },
+      {
+        q: "Schrikt een prijs op de website klanten niet af?",
+        a: "Het is een prijsindicatie, geen definitieve offerte. Bij Sun Sauna & Poolworld komen mensen daardoor binnen met een realistisch beeld van maat, uitvoering en prijsrichting, en gaat het gesprek over de uitvoering in plaats van over de basisvragen.",
+        link: { label: "Bekijk de case van SSPW", path: "/cases/sspw-zwembadconfigurator" },
+      },
+      {
+        q: "Werkt het ook als bijna elke klus anders is?",
+        a: "Als er vaste regels in je prijs zitten, zoals maten, materialen en opties, dan wel. Wordt een aanvraag echt maatwerk, dan zegt de configurator dat eerlijk en stuurt hij de aanvraag door voor een persoonlijk voorstel. Je hebt dan nog steeds alle gegevens in één keer binnen.",
+        link: { label: "Bespreek je proces", path: "/contact" },
+      },
+    ],
     image: "/oplossingen/opl-1.jpg",
     imageAlt: "Laptop met een dashboard vol cijfers op een werktafel",
   },
   {
     slug: "complete-aanvragen",
     title: "Complete aanvragen",
-    short:
-      "Nooit meer drie keer mailen voor dezelfde informatie — vraag het in één keer, vooraf.",
+    short: "Nooit meer drie keer mailen voor dezelfde informatie — vraag het in één keer, vooraf.",
     intro:
       "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Wie vooraf weet wat nodig is, kan dat ook vooraf uitvragen — zonder er meteen een volledige configurator van te maken.",
     signals: [
@@ -90,6 +107,21 @@ export const solutions: Solution[] = [
     aiNote:
       "Waar AI hier wel inzit: een binnenkomende aanvraag wordt gecheckt op ontbrekende informatie, en het systeem stelt zelf de gerichte vervolgvraag — een medewerker hoeft niet eerst te lezen wat er mist.",
     journeyStep: 1,
+    faq: [
+      {
+        q: "Haakt een klant niet af als het formulier langer wordt?",
+        a: "Het formulier vraagt alleen wat bij die aanvraag nodig is. De antwoorden bepalen de volgende vraag, dus niemand krijgt een lange lijst velden voor zijn neus. Een paar vragen vooraf scheelt jou drie mails achteraf.",
+      },
+      {
+        q: "Kunnen klanten foto's en tekeningen meesturen?",
+        a: "Ja. Bestanden worden meteen met een nette naam aan de juiste aanvraag gekoppeld, in plaats van dat ze los in een mailbox belanden en je ze later moet zoeken.",
+      },
+      {
+        q: "Kan dit ook op het formulier dat ik al heb?",
+        a: "Vaak wel. We kijken eerst wat je huidige formulier doet en waar de aanvragen nu terechtkomen. Soms is uitbreiden genoeg, soms is een nieuw formulier sneller. De scan laat zien waar bij jou het meeste te halen valt.",
+        link: { label: "Doe de scan", path: "/scan" },
+      },
+    ],
     image: "/oplossingen/opl-2.jpg",
     imageAlt: "Materiaalstalen die op een tafel worden uitgelegd",
   },
@@ -123,6 +155,20 @@ export const solutions: Solution[] = [
       "Een werkende koppeling tussen twee van jullie systemen — bijvoorbeeld de mailbox waar aanvragen binnenkomen en het CRM — getest op aanvragen die er al lagen. Geen demo met nepdata: gewoon jullie eigen gegevens, één keer goed verwerkt.",
     proofNote:
       "Mail, spreadsheet en CRM aan elkaar knopen is precies wat we bouwden binnen de zwembadconfigurator voor Sun Sauna & Poolworld — daar liep de koppeling van configurator naar CRM. Geen losse case voor dit exacte scenario, wel dezelfde bouwstenen en dezelfde manier van werken.",
+    faq: [
+      {
+        q: "Welke systemen kunnen jullie koppelen?",
+        a: "Bijna alles wat een koppeling, een export of een mailbox heeft: je CRM, je boekhoudpakket, Excel of SharePoint en je mail. Ons eigen websiteformulier gaat bijvoorbeeld rechtstreeks naar HubSpot. We kijken eerst wat jouw systemen toelaten, voordat we iets beloven.",
+      },
+      {
+        q: "Wat als twee systemen elkaar tegenspreken?",
+        a: "Dat leggen we vooraf vast: per soort gegeven welk systeem leidend is. Klantgegevens komen bijvoorbeeld uit het CRM en prijzen uit de calculatie. Dan weet iedereen welke versie klopt.",
+      },
+      {
+        q: "Kan ik terugzien wat er automatisch is doorgezet?",
+        a: "Ja. Elke stap wordt bijgehouden, dus je ziet wat er wanneer is verwerkt en waar iets is blijven hangen. Lukt een stap niet, dan krijg je een melding en kun je hem met de hand afmaken.",
+      },
+    ],
     image: "/oplossingen/opl-4.jpg",
     imageAlt: "Tablet met grafieken naast papieren rapportages",
   },
@@ -153,6 +199,21 @@ export const solutions: Solution[] = [
     aiNote:
       "Waar AI hier wel inzit: een concept-vervolgmail die past bij de situatie wordt automatisch opgesteld; een mens keurt 'm goed voor verzending.",
     journeyStep: 3,
+    faq: [
+      {
+        q: "Gaan er dan mails uit zonder dat ik het weet?",
+        a: "Alleen als je dat wilt. Standaard staat er een concept-vervolgmail klaar die iemand nog naleest en verstuurt. Pas als je er vertrouwen in hebt, kun je bepaalde berichten vanzelf laten gaan.",
+      },
+      {
+        q: "Werkt dit met het systeem dat we al gebruiken?",
+        a: "Meestal wel. Herinneringen en statussen kunnen in je bestaande CRM of in je mail komen. Je hoeft er geen nieuw pakket voor te leren.",
+        link: { label: "Bekijk systeemkoppelingen", path: "/oplossingen/systeemkoppelingen" },
+      },
+      {
+        q: "Wat als de klant intussen al gebeld heeft?",
+        a: "Dan zet je de status van de offerte op bijgewerkt en stoppen de herinneringen. De opvolging volgt wat er echt gebeurt, niet een vast schema dat doorloopt.",
+      },
+    ],
     image: "/oplossingen/opl-5.png",
     imageAlt: "Ondernemer aan de telefoon die aantekeningen maakt achter zijn laptop",
   },
@@ -182,7 +243,8 @@ export const sectors: Sector[] = [
   {
     slug: "bouw-en-installatie",
     title: "Bouw & installatie",
-    short: "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
+    short:
+      "Aanvragen, opnames, materiaalkeuzes, calculaties, planning en terugkerende administratie.",
     flowLabel: "van opname naar offerte",
     image: "/sectoren/sector-bouw.jpg",
     imageAlt: "Vakman metselt een wand op een bouwplaats",
@@ -205,7 +267,8 @@ export const sectors: Sector[] = [
   {
     slug: "maakindustrie-en-machinebouw",
     title: "Maakindustrie & machinebouw",
-    short: "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
+    short:
+      "Technische aanvragen, opties, uitvoeringen, calculaties en overdracht naar andere systemen.",
     flowLabel: "configureren zonder engineering",
     image: "/sectoren/sector-machinebouw.jpg",
     imageAlt: "Rupsvoertuig met bak op een terrein in de mist",
@@ -227,7 +290,8 @@ export const sectors: Sector[] = [
   {
     slug: "handel-en-groothandel",
     title: "Handel & groothandel",
-    short: "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
+    short:
+      "Productvragen, prijzen, voorwaarden, orders en gegevens die tussen systemen worden overgenomen.",
     flowLabel: "prijs en voorwaarden helder",
     image: "/sectoren/sector-handel.jpg",
     imageAlt: "Afgewerkte badkamer met sanitair en tegelwerk",
@@ -244,7 +308,8 @@ export const sectors: Sector[] = [
       "Kortingsstaffels zijn niet eenduidig vastgelegd.",
     ],
     solutions: ["slimme-configurator", "systeemkoppelingen", "complete-aanvragen"],
-    custom: "Jullie klantafspraken, staffels en de systemen waar de order uiteindelijk in moet landen.",
+    custom:
+      "Jullie klantafspraken, staffels en de systemen waar de order uiteindelijk in moet landen.",
   },
   {
     slug: "transport-en-logistiek",
@@ -266,7 +331,8 @@ export const sectors: Sector[] = [
       "Aanvragen worden niet centraal vastgelegd.",
     ],
     solutions: ["slimme-configurator", "automatische-opvolging", "systeemkoppelingen"],
-    custom: "Jullie uitvoeringen, toeslagen en de doorlooptijd die je richting klant wilt communiceren.",
+    custom:
+      "Jullie uitvoeringen, toeslagen en de doorlooptijd die je richting klant wilt communiceren.",
   },
 ];
 
@@ -318,54 +384,78 @@ export const trajectSteps: { n: string; t: string; b: string; jij: string }[] = 
   },
 ];
 
-/** Veelgestelde vragen, getoond op /faq. Bron: LoopWerk_FAQ.docx (eerste 12 items), akkoord Levi. */
-export const faq: { q: string; a: string }[] = [
+/** Vraag en antwoord, met een link naar de pagina waar het verder gaat. */
+export type FaqItem = { q: string; a: string; link?: { label: string; path: string } };
+
+/**
+ * Veelgestelde vragen op /faq, ook als FAQPage-schema. Vragen zoals klanten ze stellen, met
+ * een voorbeeld en een link per antwoord. Basis: LoopWerk_FAQ.docx (akkoord Levi).
+ * Geen prijsindicatie zolang het prijsmodel niet vaststaat.
+ */
+export const faq: FaqItem[] = [
   {
-    q: "Werken jullie met onze bestaande software?",
-    a: "Ja. We kijken juist naar de software en systemen die jullie al gebruiken en bouwen daar waar mogelijk omheen. We wijzigen de bestaande software zelf niet, maar maken aanvullende tools of automatiseringen die stappen in het huidige proces eenvoudiger maken. Denk bijvoorbeeld aan gegevens automatisch verwerken, informatie voorbereiden of verschillende processtappen slimmer met elkaar verbinden.",
+    q: "Kan ik offertes automatisch laten maken?",
+    a: "Grotendeels wel. De klant kiest zelf maten en opties in een configurator op je website, vaste rekenregels maken daar een prijs en een conceptofferte van, en jij kijkt hem na voordat hij de deur uit gaat. Bij Sun Sauna & Poolworld werkt het zo: bezoekers stellen op sspw.nl hun zwembad samen en SSPW krijgt een conceptofferte plus de complete aanvraag binnen. Voor de prijs gebruiken we bewust geen AI, want rekenregels zijn voorspelbaar en een taalmodel is dat niet.",
+    link: { label: "Bekijk de slimme configurator", path: "/oplossingen/slimme-configurator" },
   },
   {
-    q: "Moeten we ons huidige systeem vervangen?",
-    a: "Nee, dat is meestal juist niet de bedoeling. LoopWerk probeert bestaande systemen zoveel mogelijk te behouden. We kijken waar in het huidige proces onnodig handmatig werk, dubbele invoer of vertraging ontstaat en bouwen een praktische oplossing om dat specifieke probleem te verminderen.",
+    q: "Kan mijn websiteformulier direct in mijn CRM?",
+    a: "Ja, en dat is vaak de snelste winst. Het formulier stuurt de gegevens naar je CRM en tegelijk een melding naar je inbox, zodat niemand meer hoeft over te typen. Op onze eigen site gaat elke aanvraag zo naar HubSpot en naar onze mail. Valt een van de twee uit, dan komt de aanvraag via de andere toch binnen.",
+    link: { label: "Bekijk systeemkoppelingen", path: "/oplossingen/systeemkoppelingen" },
   },
   {
-    q: "Hoe lang duurt een traject?",
-    a: "We zijn voorstander van een snel en eenvoudig traject. Daarom proberen we projecten overzichtelijk te houden en starten we met een duidelijke eerste versie die het belangrijkste probleem oplost. Hoe lang een traject precies duurt, hangt af van de omvang van de oplossing en eventuele koppelingen, maar vooraf maken we duidelijk wat we gaan bouwen en wat de verwachte doorlooptijd is.",
+    q: "Moet ik mijn huidige software vervangen?",
+    a: "Nee. We bouwen om je bestaande systemen heen: je mailbox, Excel, je CRM of je boekhoudpakket blijven gewoon in gebruik. Wat we toevoegen haalt het overtypen en het heen-en-weer mailen tussen die systemen weg. Bij SSPW draait de configurator gewoon op hun eigen website.",
+    link: { label: "Bekijk systeemkoppelingen", path: "/oplossingen/systeemkoppelingen" },
   },
   {
-    q: "Wat kost maatwerkautomatisering?",
-    a: "Dat verschilt per situatie. De prijs hangt onder andere af van de complexiteit van het proces, de benodigde functionaliteit en eventuele koppelingen met bestaande systemen. We starten met een gratis en vrijblijvende kennismaking om het probleem te begrijpen. Daarna kunnen we aangeven welke oplossing passend is en wat deze ongeveer kost.",
+    q: "Hoe snel staat er iets dat werkt?",
+    a: "Een eerste versie staat er meestal binnen 3 à 6 weken. We beginnen bij het grootste knelpunt en bouwen niet alles tegelijk. Een koppeling tussen twee systemen, bijvoorbeeld je mailbox en je CRM, werkt vaak al in de eerste maand, getest op aanvragen die je al had liggen. Vooraf spreken we af wat er in die eerste versie zit.",
+    link: { label: "Zo pakken we het aan", path: "/oplossingen" },
   },
   {
-    q: "Wie beheert de oplossing na oplevering?",
-    a: "Na oplevering is er altijd ruimte voor aftercare. We controleren samen of de oplossing goed werkt in de praktijk en helpen wanneer er nog vragen of kleine aanpassingen nodig zijn. Tegelijkertijd proberen we oplossingen zo te bouwen dat ze daarna zoveel mogelijk zelfstandig kunnen draaien. Waar input nodig is, moet de klant die eenvoudig zelf kunnen beheren zonder voor iedere kleine wijziging afhankelijk te zijn van LoopWerk. Als later onderhoud of grotere aanpassingen nodig zijn, kunnen we daar uiteraard bij ondersteunen.",
+    q: "Wat kost het?",
+    a: "Dat hangt vooral af van hoeveel systemen erbij komen kijken en hoeveel regels en uitzonderingen je proces heeft. Een formulier dat naar je CRM gaat is iets anders dan een configurator met honderden productcombinaties. Het eerste gesprek is gratis. Daarna krijg je een voorstel waarin staat wat we bouwen en wat het kost, voordat er iets gebeurt. Wil je eerst zelf zien waar de winst zit, doe dan de scan.",
+    link: { label: "Doe de scan", path: "/scan" },
   },
   {
-    q: "Wat gebeurt er als een koppeling niet werkt?",
-    a: "Wanneer een oplossing afhankelijk is van een koppeling met externe software, houden we daar tijdens het ontwerp rekening mee. Waar nodig bouwen we bijvoorbeeld controles, foutmeldingen of een mogelijkheid om een stap handmatig uit te voeren. Omdat we de externe software zelf niet beheren, kunnen we die systemen niet aanpassen, maar we kunnen de LoopWerk-oplossing wel zo inrichten dat problemen zo duidelijk mogelijk worden opgevangen.",
+    q: "Hoe zorg ik dat aanvragen compleet binnenkomen?",
+    a: "Door vooraf te vragen wat je anders achteraf moet navragen. Een formulier dat meebeweegt met de antwoorden vraagt per soort aanvraag alleen wat nodig is: maten, foto's, adres of gewenste planning. Bij SSPW kwam vroeger vaak alleen “Wat kost een zwembad ongeveer?” binnen. Nu komen aanvragen binnen met maat, uitvoering en contactgegevens.",
+    link: { label: "Bekijk complete aanvragen", path: "/oplossingen/complete-aanvragen" },
   },
   {
-    q: "Waar worden onze gegevens opgeslagen?",
-    a: "Dat hangt af van de oplossing en van welke gegevens daadwerkelijk nodig zijn. We gebruiken passende en betrouwbare diensten voor hosting, databases en opslag. Klantgegevens worden gescheiden gehouden en bij oplossingen met een eigen database gebruiken we in principe een aparte omgeving per klant.",
+    q: "Hoe voorkom ik dat offertes blijven liggen?",
+    a: "Door opvolgen niet van iemands geheugen te laten afhangen. Elke offerte krijgt een status en een termijn. Hoor je bijvoorbeeld na een week niets, dan staat er een concept-vervolgmail voor je klaar die je alleen nog hoeft na te lezen. In één overzicht zie je wat er openstaat en hoe lang al.",
+    link: { label: "Bekijk automatische opvolging", path: "/oplossingen/automatische-opvolging" },
   },
   {
-    q: "Kunnen jullie werken met persoonsgegevens?",
-    a: "Ja, wanneer persoonsgegevens noodzakelijk zijn voor het proces. We kijken eerst welke gegevens echt nodig zijn en proberen onnodige verwerking en opslag te voorkomen. Beveiliging, toegang en de manier waarop gegevens worden verwerkt nemen we mee in het ontwerp van de oplossing.",
+    q: "Wie beheert het als het eenmaal draait?",
+    a: "Je kunt de dagelijkse dingen zelf aanpassen, zoals prijzen, opties en teksten, zonder ons te bellen. We bouwen het zo dat die op één plek staan. Na de livegang kijken we de eerste echte aanvragen met je mee en stellen we bij waar het in de praktijk anders loopt. Voor grotere aanpassingen of onderhoud later kun je bij ons terecht.",
+    link: { label: "Zo pakken we het aan", path: "/oplossingen" },
+  },
+  {
+    q: "Wat als een koppeling een keer niet werkt?",
+    a: "Daar houden we vanaf het begin rekening mee. We zorgen dat een aanvraag niet verloren gaat: die komt dan via een tweede route binnen, bijvoorbeeld per mail, en je krijgt een melding. Systemen van anderen kunnen we niet aanpassen, maar we kunnen wel zorgen dat je merkt wanneer er iets hapert en dat je de stap dan met de hand kunt doen.",
+    link: { label: "Bekijk systeemkoppelingen", path: "/oplossingen/systeemkoppelingen" },
+  },
+  {
+    q: "Waar staan onze gegevens en van wie zijn ze?",
+    a: "Ze blijven van jou. We slaan alleen op wat het proces echt nodig heeft, liefst in de systemen die je al gebruikt, zoals je eigen CRM. Waar een eigen database nodig is, krijgt elke klant een aparte omgeving. Persoonsgegevens verwerken we alleen als het moet, en beveiliging en toegang nemen we mee in het ontwerp. Generieke bouwstenen hergebruiken we wel, maar jouw gegevens nemen we nooit mee naar een ander project.",
+    link: { label: "Stel je vraag", path: "/contact" },
   },
   {
     q: "Gebruiken jullie AI?",
-    a: "Alleen wanneer het aantoonbaar iets toevoegt. AI is voor LoopWerk geen doel op zich. Soms kan AI handig zijn om bijvoorbeeld informatie te structureren of tekst te verwerken. In andere situaties is een gewone automatisering, calculator of eenvoudige webtool betrouwbaarder en duidelijker. We kiezen de techniek die het probleem het eenvoudigst oplost.",
+    a: "Alleen waar het aantoonbaar werk scheelt. Bijvoorbeeld om in een binnenkomende aanvraag te zien welke informatie ontbreekt, om een mail of pdf om te zetten in nette velden voor je CRM, of om een vervolgmail voor te bereiden die een mens nog goedkeurt. Voor prijzen en rekenregels gebruiken we het niet. In onze blogs laten we zien wat AI wel en niet goed doet.",
+    link: { label: "Lees de blogs", path: "/blog" },
   },
   {
-    q: "Blijven wij eigenaar van onze data?",
-    a: "Ja. Bedrijfsgegevens, klantgegevens en andere klantspecifieke informatie blijven van de klant. LoopWerk kan generieke technische bouwstenen, componenten en werkwijzen hergebruiken, maar daarbij nemen we geen klantspecifieke of vertrouwelijke informatie mee naar andere projecten.",
+    q: "Kunnen mijn medewerkers zelf nog ingrijpen?",
+    a: "Ja. Jij bepaalt wat vanzelf mag gaan en wat iemand eerst moet nakijken. Een conceptofferte of een vervolgmail kan bijvoorbeeld klaarstaan zonder dat hij automatisch verstuurd wordt. De tool neemt het overtypen en uitzoeken over, niet de beslissing.",
+    link: { label: "Bekijk automatische opvolging", path: "/oplossingen/automatische-opvolging" },
   },
   {
-    q: "Kunnen medewerkers handmatig ingrijpen?",
-    a: "Ja. Automatisering betekent niet dat alles volledig automatisch moet verlopen. Als menselijke controle belangrijk is, kunnen we de oplossing zo ontwerpen dat medewerkers informatie kunnen controleren, aanpassen of een stap zelf kunnen uitvoeren. De tool moet het werk ondersteunen, niet onnodig de controle overnemen.",
-  },
-  {
-    q: "Is een bestaande SaaS-oplossing soms beter?",
-    a: "Ja. Als bestaande software het probleem al goed en betaalbaar oplost, is het meestal niet logisch om maatwerk te bouwen. We kijken daarom eerst naar de eenvoudigste werkbare oplossing. Maatwerk wordt vooral interessant wanneer bestaande software niet goed aansluit op jullie proces of wanneer er juist tussen bestaande systemen en handmatige stappen onnodig werk blijft liggen.",
+    q: "Is gewone standaardsoftware niet beter?",
+    a: "Soms wel, en dan zeggen we dat ook. Als een bestaand pakket je probleem goed en betaalbaar oplost, heeft maatwerk geen zin. Maatwerk loont vooral als je proces niet in een standaardpakket past, of als het werk juist tussen je systemen blijft liggen: overtypen, navragen, opvolgen. De scan geeft je in een paar minuten een eerste beeld.",
+    link: { label: "Doe de scan", path: "/scan" },
   },
 ];

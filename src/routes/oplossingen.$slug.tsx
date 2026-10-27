@@ -3,10 +3,11 @@ import { ArrowRight } from "lucide-react";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { FaqList } from "@/components/faq/FaqList";
 import { SolutionCheck } from "@/components/solution/SolutionCheck";
 import { sspwZwembad } from "@/lib/assets";
 import { solutionBySlug, solutions, trajectSteps } from "@/lib/content";
-import { breadcrumbs, jsonLd, publisher, SITE_URL } from "@/lib/schema";
+import { breadcrumbs, faqPage, jsonLd, publisher, SITE_URL } from "@/lib/schema";
 
 export const Route = createFileRoute("/oplossingen/$slug")({
   loader: ({ params }) => {
@@ -48,6 +49,7 @@ export const Route = createFileRoute("/oplossingen/$slug")({
             [loaderData.solution.title, `/oplossingen/${loaderData.solution.slug}`],
           ]),
         ),
+        ...(loaderData.solution.faq ? [jsonLd(faqPage(loaderData.solution.faq))] : []),
       ],
     };
   },
@@ -211,6 +213,28 @@ function SolutionPage() {
           </Reveal>
         </div>
       </Section>
+
+      {solution.faq ? (
+        <Section>
+          <div className="mx-auto max-w-3xl">
+            <Reveal>
+              <Eyebrow>Veelgestelde vragen</Eyebrow>
+              <h2 className="mt-6 text-3xl md:text-4xl">
+                Vragen over {solution.title.toLowerCase()}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1} className="mt-8">
+              <FaqList items={solution.faq} />
+              <Link
+                to="/faq"
+                className="mt-6 inline-block text-sm text-ink/60 underline underline-offset-4 hover:text-ink"
+              >
+                Meer vragen en antwoorden
+              </Link>
+            </Reveal>
+          </div>
+        </Section>
+      ) : null}
 
       {solution.featured ? (
         <Section>

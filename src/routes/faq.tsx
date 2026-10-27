@@ -2,17 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import { FaqList } from "@/components/faq/FaqList";
 import { faq } from "@/lib/content";
+import { breadcrumbs, faqPage, jsonLd } from "@/lib/schema";
 
 const title = "Veelgestelde vragen | LoopWerk";
 const description =
-  "Antwoord op de vragen die we het vaakst krijgen over maatwerkautomatisering, bestaande systemen, gegevens en AI.";
+  "Kun je offertes automatisch laten maken? Kan je websiteformulier direct in je CRM? Antwoorden op de vragen die we het vaakst krijgen, met voorbeelden.";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
@@ -24,6 +20,7 @@ export const Route = createFileRoute("/faq")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [jsonLd(faqPage(faq)), jsonLd(breadcrumbs([["Veelgestelde vragen", "/faq"]]))],
   }),
   component: Faq,
 });
@@ -48,18 +45,7 @@ function Faq() {
       <Section>
         <Reveal>
           <div className="mx-auto max-w-3xl">
-            <Accordion type="single" collapsible>
-              {faq.map((item, i) => (
-                <AccordionItem key={item.q} value={`item-${i}`}>
-                  <AccordionTrigger className="text-lg leading-snug text-ink">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="leading-relaxed text-ink/70">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <FaqList items={faq} />
           </div>
         </Reveal>
       </Section>
