@@ -49,8 +49,10 @@ function Privacy() {
       <h2>Met wie we gegevens delen</h2>
       <p>We verkopen geen gegevens. We werken met deze verwerkers:</p>
       <ul>
-        <li>Supabase: opslag van formulierinzendingen.</li>
-        <li>HubSpot: ons klantsysteem (CRM), voor opvolging van aanvragen.</li>
+        <li>
+          HubSpot: ons klantsysteem (CRM), waarin formulierinzendingen worden opgeslagen en
+          opgevolgd.
+        </li>
         <li>Resend: het versturen van e-mailnotificaties.</li>
         <li>Vercel: hosting van de website.</li>
         <li>Google (Analytics): alleen na toestemming.</li>

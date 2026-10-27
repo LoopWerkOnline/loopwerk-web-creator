@@ -3,7 +3,7 @@ import { z } from "zod";
 
 /**
  * Eén ingang voor alle leads van de site (contactformulier en scan).
- * Draait op de server: opslaan in Supabase, doorsturen naar HubSpot en een
+ * Draait op de server: doorsturen naar HubSpot (contact + deal) en een
  * notificatiemail naar het team. De server-logica staat in leads.server.ts
  * zodat env-variabelen nooit in de client-bundle belanden.
  */
@@ -56,7 +56,7 @@ export const submitLead = createServerFn({ method: "POST" })
 
 /**
  * Vervolgstap na een geslaagde HubSpot-inzending van het contactformulier:
- * meldingsmail naar het team en een deal in HubSpot. Slaat niets op in Supabase.
+ * meldingsmail naar het team en een deal in HubSpot.
  */
 const contactFollowUpSchema = z.object({
   kind: z.literal("contact"),

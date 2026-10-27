@@ -1,15 +1,12 @@
-import { createClient } from "@supabase/supabase-js";
-
-import type { Database, Json } from "@/integrations/supabase/types";
 import type { LeadInput } from "./leads.functions";
 
 /**
  * Server-only. Configuratie komt uit env-variabelen (Vercel → Settings → Environment Variables):
- * - SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY — opslag (insert-only via RLS); valt terug op VITE_SUPABASE_*
- * - HUBSPOT_PORTAL_ID, HUBSPOT_FORM_CONTACT, HUBSPOT_FORM_SCAN — optioneel (formulierinzending)
+ * Leads worden opgeslagen in HubSpot (geen eigen database).
+ * - HUBSPOT_PORTAL_ID / HUBSPOT_FORM_SCAN — optioneel; standaard het openbare portal en het contactformulier
  * - HUBSPOT_PRIVATE_APP_TOKEN — optioneel (deal aanmaken); HUBSPOT_DEAL_PIPELINE / HUBSPOT_DEAL_STAGE
  *   overschrijven de pijplijn ("default" = Loopwerk trajecten) en fase ("Nieuwe aanvraag")
- * - RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM — optioneel
+ * - RESEND_API_KEY — meldingsmail + bevestiging; LEAD_NOTIFY_TO / LEAD_NOTIFY_FROM optioneel
  * Ontbreekt een optionele variabele, dan wordt die stap overgeslagen.
  */
 
@@ -21,9 +18,8 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
     return { ok: true };
   }
 
-  // Alle kanalen tegelijk: valt er één uit (bv. database), dan komt de lead via de andere nog binnen.
+  // Beide kanalen tegelijk: valt er één uit, dan komt de lead via de andere nog binnen.
   const steps = [
-    ["supabase", saveToSupabase(lead)],
     ["hubspot", hubspotFlow(lead)],
     ["mail", notifyTeam(lead)],
   ] as const;
@@ -61,12 +57,12 @@ export async function handleContactFollowUp(
     else if (r.value) delivered = true;
   });
 
-  // Noodvangnet: HubSpot weigerde het formulier én deal/mail kwamen niet door. Dan pas opslaan.
+  // Noodvangnet: de browser kreeg HubSpot niet bereikt. Dan via de server nog een poging.
   if (opts.fallback && !delivered) {
     try {
-      delivered = await saveToSupabase(lead);
+      delivered = await sendToHubspot(lead);
     } catch (error) {
-      console.error("[contact] noodopslag mislukt:", error);
+      console.error("[contact] HubSpot via server mislukt:", error);
     }
   }
   // Bevestiging naar de bezoeker: na een geslaagde HubSpot-inzending, of als de vangnetten werkten.
@@ -83,53 +79,6 @@ export const notifyFrom = () => env("LEAD_NOTIFY_FROM") ?? "LoopWerk <noreply@lo
 export function env(name: string): string | undefined {
   const value = process.env[name];
   return value && value.length > 0 ? value : undefined;
-}
-
-export function supabaseClient() {
-  // Runtime-env (Vercel) gaat voor; anders de publieke waarden die Vite bij de build inbakt.
-  const url = env("SUPABASE_URL") ?? import.meta.env["VITE_SUPABASE_URL"];
-  const key = env("SUPABASE_PUBLISHABLE_KEY") ?? import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
-  if (!url || !key) throw new Error("Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY");
-
-  return createClient<Database>(url, key, {
-    global: {
-      fetch: (input: RequestInfo | URL, init?: RequestInit) => {
-        const headers = new Headers(init?.headers);
-        // Nieuwe Supabase-keys zijn geen JWT; niet als Bearer meesturen.
-        if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`) {
-          headers.delete("Authorization");
-        }
-        headers.set("apikey", key);
-        return fetch(input, { ...init, headers });
-      },
-    },
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-}
-
-async function saveToSupabase(lead: LeadInput): Promise<boolean> {
-  const supabase = supabaseClient();
-
-  const { error } =
-    lead.kind === "contact"
-      ? await supabase.from("contact_requests").insert({
-          name: lead.name,
-          email: lead.email,
-          company: lead.company || null,
-          phone: lead.phone || null,
-          message: lead.message ?? "",
-        })
-      : await supabase.from("scan_leads").insert({
-          first_name: lead.firstName,
-          email: lead.email,
-          company: lead.company || null,
-          answers: lead.answers as Json,
-          score: lead.score as Json,
-          richting: lead.richting,
-        });
-
-  if (error) throw new Error(`Supabase insert failed: ${error.message}`);
-  return true;
 }
 
 /** Eerst de formulierinzending (tracking), daarna de deal; een fout in stap 1 stopt stap 2 niet. */
@@ -191,9 +140,7 @@ async function createHubspotDeal(lead: LeadInput): Promise<boolean> {
 
   const who = lead.kind === "contact" ? lead.name : lead.firstName;
   const description =
-    lead.kind === "contact"
-      ? lead.message || "Geen toelichting gegeven."
-      : `Loopwerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100). Proces: ${lead.process || "-"}. Richting: ${lead.richting}.`;
+    lead.kind === "contact" ? lead.message || "Geen toelichting gegeven." : scanSummary(lead);
 
   await hubspotApi(token, "/crm/v3/objects/deals", {
     properties: {
@@ -241,10 +188,31 @@ async function findOrCreateCompany(token: string, lead: LeadInput): Promise<stri
   return created.id;
 }
 
+/** Openbare HubSpot-gegevens (geen geheim). Scan gebruikt standaard het contactformulier. */
+const HUBSPOT_PORTAL = "149185560";
+const HUBSPOT_CONTACT_FORM = "885c831f-54c3-4789-9932-ef759c4fb567";
+
+/** Leesbare samenvatting van de scan, voor HubSpot en de meldingsmail. */
+function scanSummary(lead: Extract<LeadInput, { kind: "scan" }>): string {
+  const answers = Object.entries(lead.answers)
+    .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : String(v)}`)
+    .join("\n");
+  return [
+    `Loopwerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100)`,
+    `Proces: ${lead.process || "-"}`,
+    `Richting: ${lead.richting}`,
+    answers ? `\nAntwoorden:\n${answers}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+/** Formulierinzending via de HubSpot Forms API (server-side). Velden die niet op het formulier staan worden weggelaten. */
 async function sendToHubspot(lead: LeadInput): Promise<boolean> {
-  const portalId = env("HUBSPOT_PORTAL_ID");
-  const formGuid = env(lead.kind === "contact" ? "HUBSPOT_FORM_CONTACT" : "HUBSPOT_FORM_SCAN");
-  if (!portalId || !formGuid) return false;
+  const portalId = env("HUBSPOT_PORTAL_ID") ?? HUBSPOT_PORTAL;
+  const formGuid =
+    (lead.kind === "scan" ? env("HUBSPOT_FORM_SCAN") : env("HUBSPOT_FORM_CONTACT")) ??
+    HUBSPOT_CONTACT_FORM;
 
   const fields: Record<string, string | undefined> =
     lead.kind === "contact"
@@ -254,7 +222,8 @@ async function sendToHubspot(lead: LeadInput): Promise<boolean> {
           email: lead.email,
           company: lead.company,
           phone: lead.phone,
-          message: lead.message,
+          loopwerk_knelpunt: lead.message,
+          loopwerk_leadbron: "websiteformulier",
         }
       : {
           firstname: lead.firstName,
@@ -263,23 +232,43 @@ async function sendToHubspot(lead: LeadInput): Promise<boolean> {
           scan_score: String(lead.score.total),
           scan_richting: lead.richting,
           scan_proces: lead.process,
+          loopwerk_knelpunt: scanSummary(lead).slice(0, 5000),
+          loopwerk_leadbron: "scan",
         };
 
-  const body = {
-    fields: Object.entries(fields)
-      .filter(([, value]) => value)
-      .map(([name, value]) => ({ objectTypeId: "0-1", name, value })),
-    context: {
-      hutk: lead.hutk,
-      pageUri: lead.pageUri,
-      pageName: lead.kind === "contact" ? "Contact" : "Loopwerk Scan",
-    },
+  const post = async (names: string[]) => {
+    const body = {
+      fields: Object.entries(fields)
+        .filter(([name, value]) => value && names.includes(name))
+        .map(([name, value]) => ({ objectTypeId: "0-1", name, value })),
+      context: {
+        ...(lead.hutk ? { hutk: lead.hutk } : {}),
+        ...(lead.pageUri ? { pageUri: lead.pageUri } : {}),
+        pageName: lead.kind === "contact" ? "Contact" : "Loopwerk Scan",
+      },
+    };
+    return fetch(
+      `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      },
+    );
   };
 
-  const res = await fetch(
-    `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`,
-    { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) },
-  );
+  let names = Object.keys(fields);
+  let res = await post(names);
+  if (res.status === 400) {
+    const text = await res.text();
+    const missing = [...text.matchAll(/fields\.([a-z0-9_]+)/gi)].map((m) => m[1]);
+    if (text.includes("FIELD_NOT_IN_FORM_DEFINITION") && missing.length) {
+      names = names.filter((n) => !missing.includes(n));
+      res = await post(names);
+    } else {
+      throw new Error(`HubSpot 400: ${text}`);
+    }
+  }
   if (!res.ok) throw new Error(`HubSpot ${res.status}: ${await res.text()}`);
   return true;
 }
@@ -310,8 +299,8 @@ async function notifyTeam(lead: LeadInput): Promise<boolean> {
           `E-mail: ${lead.email}`,
           `Bedrijf: ${lead.company || "-"}`,
           `Proces: ${lead.process || "-"}`,
-          `Uitkomst: ${lead.score.bandLabel} (${lead.score.total}/100)`,
-          `Richting: ${lead.richting}`,
+          "",
+          scanSummary(lead),
         ];
 
   const res = await fetch("https://api.resend.com/emails", {

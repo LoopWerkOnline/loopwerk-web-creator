@@ -14,31 +14,6 @@ async function probe(url: string, init: RequestInit): Promise<Response> {
   return fetch(url, { ...init, signal: AbortSignal.timeout(TIMEOUT_MS) });
 }
 
-async function supabaseTable(table: string): Promise<Check> {
-  const url = env("SUPABASE_URL") ?? import.meta.env["VITE_SUPABASE_URL"];
-  const key = env("SUPABASE_PUBLISHABLE_KEY") ?? import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
-  if (!url || !key) return { ingesteld: false, status: "niet ingesteld" };
-  try {
-    // Alleen lezen, 0 rijen: bestaat de tabel en mag de site erbij?
-    const res = await probe(`${url}/rest/v1/${table}?select=id&limit=0`, {
-      headers: { apikey: key },
-    });
-    if (res.ok) return { ingesteld: true, status: "ok" };
-    const text = await res.text();
-    // De site mag alleen invoegen, niet lezen: "permission denied" betekent dat de tabel bestaat.
-    if (text.includes("42501")) return { ingesteld: true, status: "ok", detail: "tabel bestaat" };
-    return {
-      ingesteld: true,
-      status: "fout",
-      detail: text.includes("PGRST205")
-        ? "tabel bestaat niet (migratie nog niet uitgevoerd)"
-        : `HTTP ${res.status}`,
-    };
-  } catch (error) {
-    return { ingesteld: true, status: "fout", detail: String(error) };
-  }
-}
-
 async function hubspotObject(token: string, object: string): Promise<Check> {
   try {
     const res = await probe(`https://api.hubapi.com/crm/v3/objects/${object}?limit=1`, {
@@ -89,21 +64,12 @@ async function resend(): Promise<Check> {
   }
 }
 
-function configured(names: string[]): Check {
-  const missing = names.filter((n) => !env(n));
-  return missing.length
-    ? { ingesteld: false, status: "niet ingesteld", detail: `mist ${missing.join(", ")}` }
-    : { ingesteld: true, status: "ok" };
-}
-
 export async function getStatus() {
   // Hooguit eens per minuut echt controleren, zodat de route geen API-limieten opmaakt.
   if (cache && Date.now() - cache.at < 60_000) return cache.body;
 
   const token = env("HUBSPOT_PRIVATE_APP_TOKEN");
-  const [contact, scan, contacts, companies, deals, mail] = await Promise.all([
-    supabaseTable("contact_requests"),
-    supabaseTable("scan_leads"),
+  const [contacts, companies, deals, mail] = await Promise.all([
     token ? hubspotObject(token, "contacts") : null,
     token ? hubspotObject(token, "companies") : null,
     token ? hubspotObject(token, "deals") : null,
@@ -117,9 +83,12 @@ export async function getStatus() {
 
   const body = {
     gecontroleerd: new Date().toISOString(),
-    database: { contact_requests: contact, scan_leads: scan },
     hubspot: {
-      formulieren: configured(["HUBSPOT_PORTAL_ID", "HUBSPOT_FORM_CONTACT", "HUBSPOT_FORM_SCAN"]),
+      formulieren: {
+        ingesteld: true,
+        status: "ok",
+        detail: "contact en scan via het HubSpot-contactformulier (openbaar formulier-ID)",
+      } satisfies Check,
       contacten: contacts ?? notSet,
       bedrijven: companies ?? notSet,
       deals: deals ?? notSet,

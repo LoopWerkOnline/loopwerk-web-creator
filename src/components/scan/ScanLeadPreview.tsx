@@ -13,7 +13,7 @@ import { ScanMethodology } from "./ScanMethodology";
 /**
  * De gebundelde sectie direct na het scorescherm: twee acties bovenaan
  * (analyse opvragen / gesprek plannen), en pas na het invullen een preview
- * van de analyse. Het formulier gaat via submitLead naar Supabase, HubSpot
+ * van de analyse. Het formulier gaat via submitLead naar HubSpot
  * en een notificatiemail voor het team.
  */
 export function ScanLeadPreview({
