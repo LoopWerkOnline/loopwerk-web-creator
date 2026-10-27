@@ -18,8 +18,8 @@ const C = {
   sage: "#a9b8a0",
   cream: "#fcf5ed",
 };
-const SANS = "Arial,Helvetica,sans-serif";
-const SERIF = "Georgia,'Times New Roman',serif";
+const SANS = "'Instrument Sans',Arial,Helvetica,sans-serif";
+const SERIF = "'Instrument Serif',Georgia,'Times New Roman',serif";
 
 export function esc(value: string): string {
   return value.replace(/[&<>"']/g, (c) =>
@@ -34,29 +34,40 @@ function button(href: string, label: string, primary = true): string {
   const style = primary
     ? `background:${C.accent};color:#ffffff;border:1px solid ${C.accent}`
     : `background:#ffffff;color:${C.ink};border:1px solid ${C.line}`;
-  return `<a href="${esc(href)}" style="${style};display:inline-block;padding:12px 22px;border-radius:999px;font-family:${SANS};font-size:14px;font-weight:bold;text-decoration:none;margin:0 8px 8px 0">${esc(label)}</a>`;
+  return `<a href="${esc(href)}" style="${style};display:inline-block;padding:14px 26px;border-radius:999px;font-family:${SANS};font-size:14px;font-weight:600;text-decoration:none;margin:0 8px 10px 0">${esc(label)}</a>`;
 }
 
-/** Rijen label/waarde in een licht kader. Lege waarden worden overgeslagen. */
+/** Rijen label/waarde, rustig onder elkaar met dunne lijnen. Lege waarden worden overgeslagen. */
 function details(rows: [string, string | undefined][]): string {
   const body = rows
     .filter(([, v]) => v && v.trim())
     .map(
-      ([k, v], i) =>
-        `<tr><td style="padding:10px 0;${i ? `border-top:1px solid ${C.line};` : ""}font-family:${SANS};font-size:13px;color:${C.muted};width:130px;vertical-align:top">${esc(k)}</td><td style="padding:10px 0;${i ? `border-top:1px solid ${C.line};` : ""}font-family:${SANS};font-size:15px;color:${C.ink};vertical-align:top">${multiline(v!)}</td></tr>`,
+      ([k, v]) =>
+        `<tr><td style="padding:14px 0;border-top:1px solid ${C.line};font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:${C.muted};width:150px;vertical-align:top;line-height:20px">${esc(k)}</td><td style="padding:14px 0;border-top:1px solid ${C.line};font-family:${SANS};font-size:16px;line-height:1.5;color:${C.ink};vertical-align:top">${multiline(v!)}</td></tr>`,
     )
     .join("");
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page};border:1px solid ${C.line};border-radius:14px;padding:4px 20px;margin:0 0 28px">${body}</table>`;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid ${C.line};margin:0 0 36px">${body}</table>`;
 }
 
 const p = (html: string) =>
-  `<p style="margin:0 0 16px;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.ink}">${html}</p>`;
+  `<p style="margin:0 0 18px;font-family:${SANS};font-size:16px;line-height:1.65;color:${C.ink}">${html}</p>`;
 
 const sectionLabel = (text: string) =>
-  `<p style="margin:0 0 10px;font-family:${SANS};font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:${C.accent}">${esc(text)}</p>`;
+  `<p style="margin:0 0 14px;font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:${C.accent}">${esc(text)}</p>`;
 
+/** Citaat in een zacht vlak, met een groot aanhalingsteken. */
 const quote = (text: string) =>
-  `<div style="margin:0 0 28px;padding:4px 0 4px 18px;border-left:3px solid ${C.accent};font-family:${SERIF};font-size:18px;line-height:1.5;color:${C.ink}">${multiline(text)}</div>`;
+  `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 36px"><tr><td bgcolor="${C.page}" style="background:${C.page};border-radius:16px;padding:22px 28px 24px"><div style="font-family:${SERIF};font-size:48px;line-height:36px;height:30px;color:${C.accent}">&ldquo;</div><div style="font-family:${SERIF};font-size:22px;line-height:1.45;color:${C.ink}">${multiline(text)}</div></td></tr></table>`;
+
+/** Genummerde stappen in redactionele stijl: groot serif-cijfer, dunne lijn erboven. */
+function steps(items: string[]): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 32px">${items
+    .map(
+      (s, i) =>
+        `<tr><td style="width:56px;vertical-align:top;padding:16px 0;border-top:1px solid ${C.line};font-family:${SERIF};font-size:28px;line-height:28px;color:${C.accent}">0${i + 1}</td><td style="vertical-align:top;padding:18px 0 16px;border-top:1px solid ${C.line};font-family:${SANS};font-size:16px;line-height:1.55;color:${C.ink}">${esc(s)}</td></tr>`,
+    )
+    .join("")}</table>`;
+}
 
 function layout(opts: {
   preheader: string;
@@ -67,25 +78,34 @@ function layout(opts: {
   footerNote: string;
 }): string {
   return `<!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><title>LoopWerk</title></head>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><title>LoopWerk</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>@media (max-width:620px){.px{padding-left:24px!important;padding-right:24px!important}.h1{font-size:32px!important}}</style></head>
 <body style="margin:0;padding:0;background:${C.shell};-webkit-text-size-adjust:100%">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(opts.preheader)}&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.shell}"><tr><td align="center" style="padding:36px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${C.shell}" style="background:${C.shell}"><tr><td align="center" style="padding:32px 12px 40px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;border-collapse:separate">
 
-<tr><td style="background:${C.forest};border-radius:20px 20px 0 0;padding:28px 36px 36px">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="vertical-align:middle"><img src="${SITE}/email/loopwerk-mark-cream.png" width="30" height="31" alt="" style="display:block;border:0"></td>
-<td style="vertical-align:middle;padding-left:10px;font-family:${SERIF};font-size:22px;color:${C.cream}">LoopWerk</td>
+<tr><td style="padding:0 8px 20px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="vertical-align:middle;width:34px"><img src="${SITE}/email/loopwerk-mark.png" width="26" height="27" alt="" style="display:block;border:0"></td>
+<td style="vertical-align:middle;font-family:${SERIF};font-size:24px;color:${C.ink}">LoopWerk</td>
+<td align="right" style="vertical-align:middle;font-family:${SANS};font-size:12px;color:${C.muted}"><a href="${SITE}" style="color:${C.muted};text-decoration:none">loopwerkonline.nl</a></td>
 </tr></table>
-<p style="margin:36px 0 12px;font-family:${SANS};font-size:11px;font-weight:bold;letter-spacing:2.5px;text-transform:uppercase;color:${C.sage}">${esc(opts.eyebrow)}</p>
-<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:34px;line-height:1.15;color:${C.cream}">${esc(opts.title)}</h1>
-<p style="margin:14px 0 0;font-family:${SANS};font-size:16px;line-height:1.6;color:#d9d4c7">${esc(opts.lead)}</p>
 </td></tr>
 
-<tr><td style="background:${C.card};padding:32px 36px 36px;border-radius:0 0 20px 20px">${opts.body}</td></tr>
+<tr><td bgcolor="${C.forest}" style="background:${C.forest};border-radius:24px 24px 0 0;line-height:0;font-size:0"><img src="${SITE}/email/header.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0;border-radius:24px 24px 0 0"></td></tr>
 
-<tr><td style="padding:24px 36px 0;font-family:${SANS};font-size:12px;line-height:1.7;color:${C.muted};text-align:center">
+<tr><td class="px" bgcolor="${C.forest}" style="background:${C.forest};padding:4px 44px 44px">
+<p style="margin:0 0 14px;font-family:${SANS};font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:${C.sage}">${esc(opts.eyebrow)}</p>
+<h1 class="h1" style="margin:0;font-family:${SERIF};font-weight:normal;font-size:40px;line-height:1.1;color:${C.cream}">${esc(opts.title)}</h1>
+<p style="margin:18px 0 0;font-family:${SANS};font-size:16px;line-height:1.65;color:#d9d4c7">${esc(opts.lead)}</p>
+</td></tr>
+
+<tr><td class="px" bgcolor="${C.card}" style="background:${C.card};padding:40px 44px 44px;border-radius:0 0 24px 24px">${opts.body}</td></tr>
+
+<tr><td align="center" style="padding:32px 24px 0;font-family:${SANS};font-size:12px;line-height:1.8;color:${C.muted};text-align:center">
+<img src="${SITE}/email/loopwerk-mark.png" width="20" height="21" alt="" style="display:block;margin:0 auto 12px;border:0;opacity:.7">
 ${esc(opts.footerNote)}<br>
 ${esc(company.name)} · ${esc(company.address)} · KvK ${esc(company.kvk)}<br>
 <a href="${SITE}" style="color:${C.muted};text-decoration:underline">loopwerkonline.nl</a> &nbsp;·&nbsp; <a href="mailto:${esc(company.email)}" style="color:${C.muted};text-decoration:underline">${esc(company.email)}</a>
@@ -97,7 +117,7 @@ ${esc(company.name)} · ${esc(company.address)} · KvK ${esc(company.kvk)}<br>
 }
 
 const signature = () =>
-  `<p style="margin:24px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:${C.ink}">Groet,<br>Levi, Gianni en Shaquil<br><span style="color:${C.accent}">LoopWerk</span></p>`;
+  `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px"><tr><td style="padding-top:24px;border-top:1px solid ${C.line}"><p style="margin:0 0 4px;font-family:${SANS};font-size:15px;color:${C.muted}">Groet,</p><p style="margin:0;font-family:${SERIF};font-size:24px;line-height:1.3;color:${C.ink}">Levi, Gianni en Shaquil</p><p style="margin:4px 0 0;font-family:${SANS};font-size:13px;color:${C.accent}">LoopWerk</p></td></tr></table>`;
 
 type Base = {
   firstName: string;
@@ -134,10 +154,7 @@ export function teamEmail(
     ["Bedrijf", lead.company],
     ["Telefoon", lead.phone],
     ...(lead.kind === "contact"
-      ? ([["Waar loopt het vast?", lead.message || "Geen toelichting gegeven."]] as [
-          string,
-          string,
-        ][])
+      ? []
       : ([
           ["Proces", lead.process],
           ["Uitkomst", `${lead.scoreLabel} (${lead.score}/100)`],
@@ -146,18 +163,23 @@ export function teamEmail(
   ];
 
   const body = [
+    lead.kind === "contact"
+      ? sectionLabel("Waar loopt het vast?") +
+        (lead.message ? quote(lead.message) : p("Geen toelichting gegeven."))
+      : "",
     sectionLabel("Gegevens"),
     details(rows),
     ...(lead.kind === "scan"
       ? [sectionLabel("Antwoorden"), details([["Scan", lead.summary]])]
       : []),
-    `<div style="margin-top:4px">${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je Loopwerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
+    `<div>${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je Loopwerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
   ].join("");
 
   const text = [
     subject,
     "",
     ...rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`),
+    ...(lead.kind === "contact" ? [`Waar loopt het vast?: ${lead.message || "-"}`] : []),
     ...(lead.kind === "scan" ? ["", lead.summary] : []),
     "",
     "Antwoorden op deze mail gaat direct naar de aanvrager.",
@@ -202,7 +224,7 @@ export function confirmationEmail(
       ? "We hebben je aanvraag goed ontvangen en kijken er zelf naar. Binnen één werkdag hoor je van ons."
       : `Dank je voor het invullen van de Loopwerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.scoreLabel}.`;
 
-  const steps =
+  const stepList =
     lead.kind === "contact"
       ? [
           "We lezen je aanvraag en kijken waar in je proces het werk blijft hangen.",
@@ -215,21 +237,14 @@ export function confirmationEmail(
           "Wil je het daarna bespreken? Dan plannen we een kort gesprek.",
         ];
 
-  const stepsHtml = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 24px">${steps
-    .map(
-      (s, i) =>
-        `<tr><td style="width:40px;vertical-align:top;padding:6px 0"><div style="width:28px;height:28px;border-radius:14px;background:${C.shell};border:1px solid ${C.line};color:${C.accent};font-family:${SANS};font-size:13px;font-weight:bold;line-height:28px;text-align:center">${i + 1}</div></td><td style="vertical-align:top;padding:10px 0 10px 4px;font-family:${SANS};font-size:15px;line-height:1.5;color:${C.ink}">${esc(s)}</td></tr>`,
-    )
-    .join("")}</table>`;
-
   const body = [
     lead.kind === "contact" && lead.message ? sectionLabel("Je bericht") + quote(lead.message) : "",
     sectionLabel("Wat er nu gebeurt"),
-    stepsHtml,
+    steps(stepList),
     p(
       "Wil je alvast iets aanvullen, zoals een voorbeeld van een aanvraag of offerte? Antwoord dan gewoon op deze mail.",
     ),
-    `<div style="margin-top:8px">${button(`${SITE}/cases`, "Bekijk onze cases")}${button(`${SITE}/blog`, "Lees de blogs", false)}</div>`,
+    `<div style="margin-top:12px">${button(`${SITE}/cases`, "Bekijk onze cases")}${button(`${SITE}/blog`, "Lees de blogs", false)}</div>`,
     signature(),
   ].join("");
 
@@ -240,7 +255,7 @@ export function confirmationEmail(
     ...(lead.kind === "contact" && lead.message ? ["", `Je schreef: "${lead.message}"`] : []),
     "",
     "Wat er nu gebeurt:",
-    ...steps.map((s, i) => `${i + 1}. ${s}`),
+    ...stepList.map((s, i) => `${i + 1}. ${s}`),
     "",
     "Wil je alvast iets aanvullen? Antwoord dan gewoon op deze mail.",
     "",
