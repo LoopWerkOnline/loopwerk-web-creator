@@ -38,6 +38,7 @@ export async function handleLead(lead: LeadInput): Promise<{ ok: true }> {
 
   // Alleen als niets de lead heeft ontvangen, krijgt de bezoeker een foutmelding.
   if (!delivered) throw new Error("Lead kon nergens worden opgeslagen");
+  await sendConfirmation(lead).catch((e) => console.error("[leads] bevestiging mislukt:", e));
   return { ok: true };
 }
 
@@ -67,6 +68,10 @@ export async function handleContactFollowUp(
     } catch (error) {
       console.error("[contact] noodopslag mislukt:", error);
     }
+  }
+  // Bevestiging naar de bezoeker: na een geslaagde HubSpot-inzending, of als de vangnetten werkten.
+  if (!opts.fallback || delivered) {
+    await sendConfirmation(lead).catch((e) => console.error("[contact] bevestiging mislukt:", e));
   }
   return { ok: true, delivered };
 }
@@ -314,6 +319,72 @@ async function notifyTeam(lead: LeadInput): Promise<boolean> {
       reply_to: lead.email,
       subject,
       text: lines.join("\n"),
+    }),
+  });
+  if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
+  return true;
+}
+
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, (c) =>
+    c === "&" ? "&amp;" : c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === '"' ? "&quot;" : "&#39;",
+  );
+}
+
+/**
+ * Bevestigingsmail naar de bezoeker. Afzender: LEAD_CONFIRM_FROM of anders LEAD_NOTIFY_FROM.
+ * Antwoorden gaan naar het team (eerste adres uit LEAD_NOTIFY_TO).
+ */
+async function sendConfirmation(lead: LeadInput): Promise<boolean> {
+  const apiKey = env("RESEND_API_KEY");
+  const from = env("LEAD_CONFIRM_FROM") ?? env("LEAD_NOTIFY_FROM");
+  const replyTo = env("LEAD_NOTIFY_TO")?.split(",")[0]?.trim();
+  if (!apiKey || !from) return false;
+
+  const firstName =
+    lead.kind === "contact" ? (lead.name.split(" ")[0] ?? lead.name) : lead.firstName;
+  const subject =
+    lead.kind === "contact"
+      ? "We hebben je aanvraag ontvangen | LoopWerk"
+      : "Je Loopwerk Scan is binnen | LoopWerk";
+
+  const paragraphs =
+    lead.kind === "contact"
+      ? [
+          `Hoi ${firstName},`,
+          "Dank je voor je bericht. We hebben je aanvraag goed ontvangen en kijken er zelf naar. Binnen één werkdag hoor je van ons.",
+          ...(lead.message ? [`Je schreef: "${lead.message}"`] : []),
+          "Wil je alvast iets aanvullen, zoals een voorbeeld van een aanvraag of offerte? Antwoord dan gewoon op deze mail.",
+        ]
+      : [
+          `Hoi ${firstName},`,
+          `Dank je voor het invullen van de Loopwerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.score.bandLabel}.`,
+          "Binnen één werkdag sturen we je een korte analyse met wat we zien en waar je het beste kunt beginnen.",
+          "Vragen of iets aanvullen? Antwoord gewoon op deze mail.",
+        ];
+  const sign = ["Groet,", "Levi, Gianni en Shaquil", "LoopWerk · www.loopwerkonline.nl"];
+
+  const text = `${paragraphs.join("\n\n")}\n\n${sign.join("\n")}`;
+  const html = `<!doctype html><html lang="nl"><body style="margin:0;background:#fcf5ed;font-family:Arial,Helvetica,sans-serif;color:#1f241f">
+<div style="max-width:560px;margin:0 auto;padding:32px 24px">
+<p style="margin:0 0 24px;font-family:Georgia,serif;font-size:22px">LoopWerk</p>
+<div style="background:#ffffff;border:1px solid #e5ddd0;border-radius:16px;padding:28px">
+${paragraphs.map((p) => `<p style="margin:0 0 16px;font-size:15px;line-height:1.6">${escapeHtml(p)}</p>`).join("")}
+<p style="margin:24px 0 0;font-size:15px;line-height:1.6">Groet,<br>Levi, Gianni en Shaquil<br><span style="color:#b07a5a">LoopWerk</span></p>
+</div>
+<p style="margin:20px 0 0;font-size:12px;color:#8a8579">Je ontvangt deze mail omdat je een formulier invulde op <a href="https://www.loopwerkonline.nl" style="color:#8a8579">loopwerkonline.nl</a>.</p>
+</div></body></html>`;
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from,
+      to: [lead.email],
+      ...(replyTo ? { reply_to: replyTo } : {}),
+      subject,
+      text,
+      html,
     }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
