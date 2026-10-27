@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { RecognitionFlow } from "@/components/infographics";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
+import { SSPW_CONFIGURATOR_URL } from "@/lib/cases";
 
 const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedrijven";
 const description =
@@ -279,7 +280,7 @@ function Index() {
                 <span aria-hidden="true">→</span>
               </Link>
               <a
-                href="https://offer-calculator-sspw.vercel.app/"
+                href={SSPW_CONFIGURATOR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-semibold text-cream/90 underline underline-offset-4"

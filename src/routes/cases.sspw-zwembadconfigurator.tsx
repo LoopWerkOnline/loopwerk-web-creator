@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { Reveal } from "@/components/Reveal";
+import { SSPW_CONFIGURATOR_URL } from "@/lib/cases";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 
 const sspwZwembad = "/cases/sspw-belfeld.jpg";
@@ -11,7 +12,7 @@ const title = "Case: zwembadconfigurator voor Sun Sauna & Poolworld | LoopWerk";
 const description =
   "Hoe Jacques van Sun Sauna & Poolworld het prijsgesprek naar voren haalde: een configurator die bezoekers zelf door maten, opties en prijsrichting leidt en elke aanvraag compleet binnenbrengt.";
 
-const configuratorUrl = "https://offer-calculator-sspw.vercel.app/";
+const configuratorUrl = SSPW_CONFIGURATOR_URL;
 
 export const Route = createFileRoute("/cases/sspw-zwembadconfigurator")({
   head: () => ({

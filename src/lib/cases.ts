@@ -20,6 +20,9 @@ export type CaseStudy = {
   status: "live" | "in-productie";
 };
 
+/** Live configurator van SSPW. Eén plek: case-kaart, casepagina en homepage linken hiernaar. */
+export const SSPW_CONFIGURATOR_URL = "https://offer-calculator-sspw.vercel.app/";
+
 export const cases: CaseStudy[] = [
   {
     slug: "sspw-zwembadconfigurator",
@@ -34,7 +37,7 @@ export const cases: CaseStudy[] = [
     image: "/cases/sspw-belfeld.jpg",
     imageAlt: "Bouwkundig zwembad, project van Sun Sauna & Poolworld te Belfeld",
     href: "/cases/sspw-zwembadconfigurator",
-    liveUrl: "https://offer-calculator-sspw.vercel.app/",
+    liveUrl: SSPW_CONFIGURATOR_URL,
     status: "live",
   },
 ];
