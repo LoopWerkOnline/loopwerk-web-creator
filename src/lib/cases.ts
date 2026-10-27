@@ -20,8 +20,9 @@ export type CaseStudy = {
   status: "live" | "in-productie";
 };
 
-/** Live configurator van SSPW. Eén plek: case-kaart, casepagina en homepage linken hiernaar. */
-export const SSPW_CONFIGURATOR_URL = "https://offer-calculator-sspw.vercel.app/";
+/** Configurator op de site van SSPW. Eén plek: case-kaart, casepagina en homepage linken hiernaar. */
+export const SSPW_CONFIGURATOR_URL =
+  "https://sspw.nl/verschillende-soorten-zwembaden/bouwkundige-zwembaden/";
 
 export const cases: CaseStudy[] = [
   {

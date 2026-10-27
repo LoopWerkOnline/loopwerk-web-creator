@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 import { solutions } from "@/lib/content";
 import { CONSENT_EVENT, trackingConfigured } from "@/lib/tracking";
+import { company } from "@/lib/company";
 
 export function SiteFooter() {
   return (
@@ -57,10 +58,12 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-sage">Contact</p>
             <ul className="mt-4 space-y-2 text-sm text-cream/75">
-              <li>Nederland</li>
+              <li>{company.name}</li>
+              <li>{company.address}</li>
+              <li>KvK {company.kvk}</li>
               <li>
                 <a
-                  href="mailto:info@loopwerkonline.nl"
+                  href={`mailto:${company.email}`}
                   className="underline underline-offset-4 hover:text-cream"
                 >
                   info@loopwerkonline.nl

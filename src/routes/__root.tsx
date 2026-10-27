@@ -17,6 +17,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CookieBanner } from "@/components/CookieBanner";
 import { trackPageView } from "@/lib/tracking";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { company } from "@/lib/company";
 
 /** Het enige adres dat zoekmachines moeten indexeren (ook als de site op vercel.app draait). */
 const SITE_URL = "https://www.loopwerkonline.nl";
@@ -141,7 +142,16 @@ const organizationSchema = {
   logo: `${SITE_URL}/favicon-512.png`,
   description:
     "LoopWerk bouwt praktische digitale tools en automatiseringen voor Nederlandse bedrijven.",
-  email: "info@loopwerkonline.nl",
+  legalName: company.name,
+  email: company.email,
+  taxID: `KvK ${company.kvk}`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Lingsweg 11",
+    postalCode: "5931 KX",
+    addressLocality: "Tegelen",
+    addressCountry: "NL",
+  },
   areaServed: "NL",
 };
 
