@@ -116,7 +116,7 @@ export function ScanLeadPreview({
                     <input name="company" className={field} placeholder="Bedrijfsnaam" />
                   </label>
                   <label className="block sm:col-span-2">
-                    <span className="text-sm font-medium text-ink">Zakelijk e-mailadres</span>
+                    <span className="text-sm font-medium text-ink">E-mailadres</span>
                     <input
                       type="email"
                       name="email"
