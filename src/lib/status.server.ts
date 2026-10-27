@@ -1,4 +1,4 @@
-import { env } from "./leads.server";
+import { env, notifyFrom } from "./leads.server";
 
 /**
  * Server-only. Controleert per koppeling of hij is ingesteld en of hij echt antwoordt.
@@ -62,16 +62,8 @@ async function hubspotObject(token: string, object: string): Promise<Check> {
 
 async function resend(): Promise<Check> {
   const key = env("RESEND_API_KEY");
-  const to = env("LEAD_NOTIFY_TO");
-  const from = env("LEAD_NOTIFY_FROM");
-  if (!key || !to || !from) {
-    const missing = [
-      !key && "RESEND_API_KEY",
-      !to && "LEAD_NOTIFY_TO",
-      !from && "LEAD_NOTIFY_FROM",
-    ].filter(Boolean);
-    return { ingesteld: false, status: "niet ingesteld", detail: `mist ${missing.join(", ")}` };
-  }
+  const from = notifyFrom();
+  if (!key) return { ingesteld: false, status: "niet ingesteld", detail: "mist RESEND_API_KEY" };
   try {
     const res = await probe("https://api.resend.com/domains", {
       headers: { Authorization: `Bearer ${key}` },

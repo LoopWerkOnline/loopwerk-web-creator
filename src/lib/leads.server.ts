@@ -76,6 +76,10 @@ export async function handleContactFollowUp(
   return { ok: true, delivered };
 }
 
+/** Ontvanger en afzender van de mails. Geen geheimen: standaardwaarden, te overschrijven via env. */
+export const notifyTo = () => env("LEAD_NOTIFY_TO") ?? "info@loopwerkonline.nl";
+export const notifyFrom = () => env("LEAD_NOTIFY_FROM") ?? "LoopWerk <noreply@loopwerkonline.nl>";
+
 export function env(name: string): string | undefined {
   const value = process.env[name];
   return value && value.length > 0 ? value : undefined;
@@ -282,8 +286,8 @@ async function sendToHubspot(lead: LeadInput): Promise<boolean> {
 
 async function notifyTeam(lead: LeadInput): Promise<boolean> {
   const apiKey = env("RESEND_API_KEY");
-  const to = env("LEAD_NOTIFY_TO");
-  const from = env("LEAD_NOTIFY_FROM");
+  const to = notifyTo();
+  const from = notifyFrom();
   if (!apiKey || !to || !from) return false;
 
   const subject =
@@ -337,8 +341,8 @@ function escapeHtml(value: string): string {
  */
 async function sendConfirmation(lead: LeadInput): Promise<boolean> {
   const apiKey = env("RESEND_API_KEY");
-  const from = env("LEAD_CONFIRM_FROM") ?? env("LEAD_NOTIFY_FROM");
-  const replyTo = env("LEAD_NOTIFY_TO")?.split(",")[0]?.trim();
+  const from = env("LEAD_CONFIRM_FROM") ?? notifyFrom();
+  const replyTo = notifyTo().split(",")[0]?.trim();
   if (!apiKey || !from) return false;
 
   const firstName =
