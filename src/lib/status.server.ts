@@ -1,4 +1,4 @@
-import { env, notifyFrom } from "./leads.server";
+import { env, notifyFrom, notifyTo } from "./leads.server";
 
 /**
  * Server-only. Controleert per koppeling of hij is ingesteld en of hij echt antwoordt.
@@ -143,4 +143,34 @@ export async function testHubspotForm() {
     }
   }
   return out;
+}
+
+let lastMailTest = 0;
+
+/** Proefmail via Resend naar de meldingsontvanger, om te zien wat Resend terugstuurt. Hooguit eens per 5 minuten. */
+export async function testMail() {
+  if (Date.now() - lastMailTest < 5 * 60_000) return { overgeslagen: "max 1 test per 5 minuten" };
+  lastMailTest = Date.now();
+  const key = env("RESEND_API_KEY");
+  if (!key) return { fout: "mist RESEND_API_KEY" };
+  const to = notifyTo()
+    .split(",")
+    .map((s) => s.trim());
+  const from = notifyFrom();
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to,
+        subject: "Testmail website LoopWerk",
+        text: "Dit is een testmail van de website (statuscheck). Komt deze aan, dan werkt de meldingsmail.",
+      }),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    return { naar: to, van: from, status: res.status, antwoord: (await res.text()).slice(0, 1500) };
+  } catch (error) {
+    return { fout: String(error) };
+  }
 }

@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check } from "lucide-react";
 import { useRef, useState, type FormEvent } from "react";
 
 import { Section, Eyebrow } from "@/components/Section";
@@ -104,7 +105,8 @@ function Contact() {
 
   return (
     <>
-      <Section tone="hero">
+      {/* flex-1: de donkere sectie loopt door tot de footer, ook als de pagina kort is. */}
+      <Section tone="hero" className="flex-1">
         <div className="grid gap-16 md:grid-cols-[1fr_1.1fr]">
           <Reveal>
             <Eyebrow tone="sage">Contact</Eyebrow>
@@ -134,10 +136,36 @@ function Contact() {
 
           <Reveal delay={0.1}>
             {status === "sent" ? (
-              <div className="h-full rounded-2xl border border-line bg-shell p-7 md:p-9">
-                <p className="text-lg leading-relaxed text-forest" role="status">
-                  Dank je, we hebben je aanvraag. Je hoort binnen één werkdag van ons.
+              <div
+                className="rounded-2xl border border-line bg-shell p-7 text-ink md:p-9"
+                role="status"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-cream">
+                  <Check className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+                  Dank je, je aanvraag is binnen
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-ink/75">
+                  Je hoort binnen één werkdag van ons. We hebben je ook een bevestiging gemaild.
                 </p>
+                <div className="mt-8 border-t border-line pt-6">
+                  <p className="text-sm font-semibold text-ink">Alvast verder kijken?</p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <Link
+                      to="/cases"
+                      className="rounded-full bg-home-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    >
+                      Bekijk onze cases
+                    </Link>
+                    <Link
+                      to="/blog"
+                      className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
+                    >
+                      Lees de blogs
+                    </Link>
+                  </div>
+                </div>
               </div>
             ) : (
               <form
