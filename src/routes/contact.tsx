@@ -31,6 +31,8 @@ type Status = "idle" | "sending" | "sent" | "error" | "blocked";
 function Contact() {
   const { prefill } = Route.useSearch();
   const [status, setStatus] = useState<Status>("idle");
+  // Korte foutcode onder de melding, zodat we zonder console kunnen zien wat er misging.
+  const [errorCode, setErrorCode] = useState("");
 
   const startedAt = useRef(Date.now());
 
@@ -68,6 +70,11 @@ function Contact() {
         { name: "loopwerk_leadbron", value: "websiteformulier" },
       ]);
     } catch (error) {
+      setErrorCode(
+        error instanceof HubspotFormError
+          ? `HubSpot ${error.status} ${error.errorTypes.join(", ")}`
+          : `netwerk: ${error instanceof Error ? error.message : String(error)}`,
+      );
       // Gratis e-mailadres (gmail e.d.) geweigerd: de bezoeker kan dat zelf oplossen.
       if (error instanceof HubspotFormError && error.blockedEmail) {
         setStatus("blocked");
@@ -78,6 +85,7 @@ function Contact() {
         const res = await contactFollowUp({ data: { ...lead, fallback: true } });
         setStatus(res.delivered ? "sent" : "error");
       } catch {
+        setErrorCode((c) => `${c} · server niet bereikt`);
         setStatus("error");
       }
       return;
@@ -209,6 +217,9 @@ function Contact() {
                       info@loopwerkonline.nl
                     </a>
                     .
+                    {errorCode ? (
+                      <span className="mt-1 block text-xs text-ink/50">Foutcode: {errorCode}</span>
+                    ) : null}
                   </p>
                 ) : null}
 
