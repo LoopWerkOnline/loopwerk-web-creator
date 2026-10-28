@@ -59,8 +59,8 @@ export function SiteFooter() {
             <p className="eyebrow text-sage">Contact</p>
             <ul className="mt-4 space-y-2 text-sm text-cream/75">
               <li>{company.name}</li>
-              <li>{company.address}</li>
               <li>KvK {company.kvk}</li>
+              <li>Btw {company.vatId}</li>
               <li>
                 <a
                   href={`mailto:${company.email}`}
@@ -83,6 +83,11 @@ export function SiteFooter() {
                 >
                   LinkedIn
                 </a>
+              </li>
+              <li className="pt-2 text-cream/55">
+                {company.address}
+                <br />
+                Postadres, geen bezoekadres
               </li>
             </ul>
           </div>

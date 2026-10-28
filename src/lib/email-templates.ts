@@ -107,7 +107,7 @@ function layout(opts: {
 <tr><td align="center" style="padding:32px 24px 0;font-family:${SANS};font-size:12px;line-height:1.8;color:${C.muted};text-align:center">
 <img src="${SITE}/email/loopwerk-mark.png" width="20" height="21" alt="" style="display:block;margin:0 auto 12px;border:0;opacity:.7">
 ${esc(opts.footerNote)}<br>
-${esc(company.name)} · ${esc(company.address)} · KvK ${esc(company.kvk)}<br>
+${esc(company.name)} · ${esc(company.city)} · KvK ${esc(company.kvk)}<br>
 <a href="${SITE}" style="color:${C.muted};text-decoration:underline">loopwerkonline.nl</a> &nbsp;·&nbsp; <a href="mailto:${esc(company.email)}" style="color:${C.muted};text-decoration:underline">${esc(company.email)}</a>
 </td></tr>
 

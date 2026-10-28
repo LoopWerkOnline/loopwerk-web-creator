@@ -145,8 +145,11 @@ const organizationSchema = {
   legalName: company.name,
   email: company.email,
   taxID: `KvK ${company.kvk}`,
+  vatID: company.vatId,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Lingsweg 11",
+    postalCode: "5931 KX",
     addressLocality: "Tegelen",
     addressCountry: "NL",
   },
