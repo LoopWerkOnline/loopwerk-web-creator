@@ -147,8 +147,6 @@ const organizationSchema = {
   taxID: `KvK ${company.kvk}`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Lingsweg 11",
-    postalCode: "5931 KX",
     addressLocality: "Tegelen",
     addressCountry: "NL",
   },
