@@ -21,7 +21,7 @@ import {
 import { seedAnswersFromSearch } from "@/lib/scan/seed";
 import { initialAnswers, type ScanAnswers } from "@/lib/scan/types";
 
-const title = "Gratis Loopwerk Scan: waar verliest jouw bedrijf tijd? | LoopWerk";
+const title = "Gratis LoopWerk Scan: waar verliest jouw bedrijf tijd? | LoopWerk";
 const description =
   "Waar blijft binnen jullie bedrijf onnodig tijd liggen? Kies één terugkerend proces en krijg in ± 4 minuten een eerste, concrete indicatie.";
 
@@ -102,7 +102,7 @@ function ScanPage() {
       <div className="flex min-h-[100dvh] flex-col md:flex-row">
         <div className="order-2 flex w-full flex-col justify-center bg-cream px-5 py-16 md:order-1 md:w-3/5 md:px-16 md:py-20">
           <div className="mx-auto w-full max-w-xl">
-            <Eyebrow tone="forest">Loopwerk Scan</Eyebrow>
+            <Eyebrow tone="forest">LoopWerk Scan</Eyebrow>
             <h1 className="mt-6 text-4xl leading-[1.1] md:text-6xl">
               Waar blijft binnen jullie bedrijf onnodig tijd liggen?
             </h1>
@@ -150,7 +150,7 @@ function ScanPage() {
     const paragraphs = buildAdviceParagraphs(answers, score);
     const judgmentAdvice = buildJudgmentAdvice(answers);
     const firstStep = buildFirstStep(answers);
-    const contactPrefill = `Ik deed de Loopwerk Scan. Uitkomst: ${score.bandLabel} (${score.total}/100), richting "${richting.label}".`;
+    const contactPrefill = `Ik deed de LoopWerk Scan. Uitkomst: ${score.bandLabel} (${score.total}/100), richting "${richting.label}".`;
 
     return (
       <>

@@ -36,11 +36,21 @@ function gitDates(): Record<string, string> {
   return out;
 }
 
+/** Teamfoto's die er al staan (public/team/*.webp); zonder foto toont de site de initialen. */
+function teamPhotos(): string[] {
+  try {
+    return readdirSync("public/team").filter((f) => f.endsWith(".webp"));
+  } catch {
+    return [];
+  }
+}
+
 export default defineConfig({
   vite: {
     define: {
       __GIT_DATES__: JSON.stringify(gitDates()),
       __BUILD_DATE__: JSON.stringify(buildDate),
+      __TEAM_PHOTOS__: JSON.stringify(teamPhotos()),
     },
   },
   // Hosting draait op Vercel (niet Lovable/Cloudflare): bouw expliciet voor Vercel.

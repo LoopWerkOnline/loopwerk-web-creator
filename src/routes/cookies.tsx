@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { LegalPage } from "@/components/LegalPage";
+import { formatLegalDate, legal } from "@/lib/legal";
 import { CONSENT_EVENT } from "@/lib/tracking";
 
 const title = "Cookiebeleid | LoopWerk";
@@ -20,7 +21,11 @@ export const Route = createFileRoute("/cookies")({
 
 function Cookies() {
   return (
-    <LegalPage eyebrow="Cookies" title="Cookiebeleid" updated="24 september 2026">
+    <LegalPage
+      eyebrow="Cookies"
+      title="Cookiebeleid"
+      updated={formatLegalDate(legal.cookies.updated)}
+    >
       <p>
         We plaatsen alleen analytische en marketingcookies als je daar toestemming voor geeft.
         Zonder toestemming werkt de site gewoon, en laden we geen meetscripts.

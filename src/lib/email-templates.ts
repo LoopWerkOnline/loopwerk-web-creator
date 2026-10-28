@@ -79,7 +79,7 @@ function layout(opts: {
 }): string {
   return `<!doctype html>
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><title>LoopWerk</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<link href="${SITE}/fonts/fonts.css" rel="stylesheet">
 <style>@media (max-width:620px){.px{padding-left:24px!important;padding-right:24px!important}.h1{font-size:32px!important}}</style></head>
 <body style="margin:0;padding:0;background:${C.shell};-webkit-text-size-adjust:100%">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(opts.preheader)}&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;</div>
@@ -172,7 +172,7 @@ export function teamEmail(
     ...(lead.kind === "scan"
       ? [sectionLabel("Antwoorden"), details([["Scan", lead.summary]])]
       : []),
-    `<div>${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je Loopwerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
+    `<div>${button(`mailto:${lead.email}?subject=${encodeURIComponent(lead.kind === "contact" ? "Re: je aanvraag bij LoopWerk" : "Je LoopWerk Scan")}`, `Beantwoord ${lead.firstName}`)}${lead.phone ? button(`tel:${lead.phone.replace(/[^+\d]/g, "")}`, "Bel", false) : ""}${button("https://app-eu1.hubspot.com/contacts/149185560/objects/0-1/views/all/list", "Open HubSpot", false)}</div>`,
   ].join("");
 
   const text = [
@@ -198,7 +198,7 @@ export function teamEmail(
       lead:
         lead.kind === "contact"
           ? "Binnengekomen via het contactformulier. We beloven een reactie binnen één werkdag."
-          : "Binnengekomen via de Loopwerk Scan. We beloven binnen één werkdag een korte analyse.",
+          : "Binnengekomen via de LoopWerk Scan. We beloven binnen één werkdag een korte analyse.",
       body,
       footerNote:
         "Interne melding van het websiteformulier. Beantwoorden gaat direct naar de aanvrager.",
@@ -217,12 +217,12 @@ export function confirmationEmail(
   const subject =
     lead.kind === "contact"
       ? "We hebben je aanvraag ontvangen | LoopWerk"
-      : "Je Loopwerk Scan is binnen | LoopWerk";
+      : "Je LoopWerk Scan is binnen | LoopWerk";
 
   const intro =
     lead.kind === "contact"
       ? "We hebben je aanvraag goed ontvangen en kijken er zelf naar. Binnen één werkdag hoor je van ons."
-      : `Dank je voor het invullen van de Loopwerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.scoreLabel}.`;
+      : `Dank je voor het invullen van de LoopWerk Scan${lead.process ? ` voor "${lead.process}"` : ""}. Je uitkomst: ${lead.scoreLabel}.`;
 
   const stepList =
     lead.kind === "contact"

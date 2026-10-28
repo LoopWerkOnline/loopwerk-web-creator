@@ -253,7 +253,11 @@ function Contact() {
 
                 <p className="mt-4 text-xs text-ink/55">
                   Je gegevens gebruiken we alleen om op je aanvraag te reageren. We slaan ze op in
-                  ons CRM (HubSpot, EU-datacenter).
+                  ons CRM (HubSpot, EU-datacenter). Lees onze{" "}
+                  <Link to="/privacy" className="underline underline-offset-4 hover:text-ink">
+                    privacyverklaring
+                  </Link>
+                  .
                 </p>
               </form>
             )}

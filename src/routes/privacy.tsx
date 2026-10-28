@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { LegalPage } from "@/components/LegalPage";
 import { company } from "@/lib/company";
+import { formatLegalDate, legal } from "@/lib/legal";
 
 const title = "Privacyverklaring | LoopWerk";
 const description = "Welke gegevens LoopWerk verwerkt, waarom, hoe lang en met wie.";
@@ -20,7 +21,11 @@ export const Route = createFileRoute("/privacy")({
 
 function Privacy() {
   return (
-    <LegalPage eyebrow="Privacy" title="Privacyverklaring" updated="24 september 2026">
+    <LegalPage
+      eyebrow="Privacy"
+      title="Privacyverklaring"
+      updated={formatLegalDate(legal.privacy.updated)}
+    >
       <p>
         {company.name} (hierna: LoopWerk), postadres {company.address} (geen bezoekadres), KvK{" "}
         {company.kvk}, is verantwoordelijk voor de verwerking van persoonsgegevens via deze website.
@@ -35,7 +40,7 @@ function Privacy() {
           verzoek om contact (uitvoering van een overeenkomst, of stappen daarvoor).
         </li>
         <li>
-          <strong>Loopwerk Scan:</strong> voornaam, e-mailadres, bedrijfsnaam en je antwoorden en
+          <strong>LoopWerk Scan:</strong> voornaam, e-mailadres, bedrijfsnaam en je antwoorden en
           uitkomst van de scan. We gebruiken dit om je de analyse te sturen en daarover contact op
           te nemen. Grondslag: je verzoek om de analyse.
         </li>
@@ -53,7 +58,10 @@ function Privacy() {
           HubSpot: ons klantsysteem (CRM), waarin formulierinzendingen worden opgeslagen en
           opgevolgd.
         </li>
-        <li>Resend: het versturen van e-mailnotificaties.</li>
+        <li>
+          Resend: het versturen van e-mail, zoals de melding aan ons en de bevestiging die je krijgt
+          nadat je een formulier hebt ingevuld.
+        </li>
         <li>Vercel: hosting van de website.</li>
         <li>Google (Analytics): alleen na toestemming.</li>
       </ul>
@@ -80,7 +88,8 @@ function Privacy() {
       <h2>Beveiliging</h2>
       <p>
         De website werkt via een versleutelde verbinding (HTTPS). Formuliergegevens zijn alleen
-        toegankelijk voor het LoopWerk-team.
+        toegankelijk voor het LoopWerk-team. Lettertypes en andere bestanden van de site laden we
+        vanaf onze eigen server; zonder toestemming gaat er niets naar Google of andere partijen.
       </p>
     </LegalPage>
   );

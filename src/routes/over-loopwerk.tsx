@@ -22,10 +22,15 @@ export const Route = createFileRoute("/over-loopwerk")({
   component: OverLoopwerk,
 });
 
+/** Bestandsnamen in public/team/ (vierkant, min. 600×600, WebP). Staat er geen foto, dan initialen. */
+declare const __TEAM_PHOTOS__: string[];
+const teamPhotos = __TEAM_PHOTOS__;
+
 const team = [
   {
     name: "Levi Kempen",
     initials: "LK",
+    photo: "levi-kempen.webp",
     role: "Mede-oprichter",
     color: "var(--forest)",
     quote:
@@ -34,6 +39,7 @@ const team = [
   {
     name: "Gianni Geurtjens",
     initials: "GG",
+    photo: "gianni-geurtjens.webp",
     role: "Mede-oprichter",
     color: "var(--home-accent)",
     quote:
@@ -42,6 +48,7 @@ const team = [
   {
     name: "Shaquil Reyes",
     initials: "SR",
+    photo: "shaquil-reyes.webp",
     role: "Mede-oprichter",
     color: "var(--ink-hero)",
     quote:
@@ -52,23 +59,19 @@ const team = [
 const beliefs = [
   {
     title: "Eerst het proces, dan de techniek",
-    body:
-      "Een tool is pas nuttig als hij aansluit op hoe er nu gewerkt wordt. We beginnen bij wat er gebeurt, niet bij wat er technisch kan.",
+    body: "Een tool is pas nuttig als hij aansluit op hoe er nu gewerkt wordt. We beginnen bij wat er gebeurt, niet bij wat er technisch kan.",
   },
   {
     title: "Liever iets kleins dat werkt",
-    body:
-      "Een werkende oplossing voor één knelpunt levert meer op dan een plan voor een compleet systeem dat er nooit komt.",
+    body: "Een werkende oplossing voor één knelpunt levert meer op dan een plan voor een compleet systeem dat er nooit komt.",
   },
   {
     title: "Eerlijk over wat het oplevert",
-    body:
-      "Als automatiseren de moeite niet waard is, zeggen we dat. Dat is op de lange termijn prettiger samenwerken.",
+    body: "Als automatiseren de moeite niet waard is, zeggen we dat. Dat is op de lange termijn prettiger samenwerken.",
   },
   {
     title: "AI waar het helpt, niet als etalage",
-    body:
-      "We zetten AI in als het aantoonbaar tijd scheelt, met een mens die controleert waar het ertoe doet.",
+    body: "We zetten AI in als het aantoonbaar tijd scheelt, met een mens die controleert waar het ertoe doet.",
   },
 ];
 
@@ -114,9 +117,9 @@ function OverLoopwerk() {
               className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
               style={{ animationDelay: "0.16s" }}
             >
-              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal voor
-              werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens overtypen,
-              opvolgen. Niet spannend, wel waar de tijd in gaat.
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal
+              voor werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens
+              overtypen, opvolgen. Niet spannend, wel waar de tijd in gaat.
             </p>
           </div>
         </div>
@@ -135,13 +138,24 @@ function OverLoopwerk() {
               <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
                 <div className="flip-inner h-full w-full">
                   <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
-                    <span
-                      className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
-                      style={{ backgroundColor: member.color }}
-                      aria-hidden="true"
-                    >
-                      {member.initials}
-                    </span>
+                    {teamPhotos.includes(member.photo) ? (
+                      <img
+                        src={`/team/${member.photo}`}
+                        alt={`${member.name}, ${member.role.toLowerCase()} LoopWerk`}
+                        width={160}
+                        height={160}
+                        loading="lazy"
+                        className="h-20 w-20 rounded-full object-cover"
+                      />
+                    ) : (
+                      <span
+                        className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
+                        style={{ backgroundColor: member.color }}
+                        aria-hidden="true"
+                      >
+                        {member.initials}
+                      </span>
+                    )}
                     <div>
                       <p className="font-display text-xl text-ink">{member.name}</p>
                       <p className="mt-1 text-sm text-ink/55">{member.role}</p>
@@ -149,7 +163,9 @@ function OverLoopwerk() {
                   </div>
                   <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
                     <p className="hand text-2xl leading-snug text-cream">"{member.quote}"</p>
-                    <p className="text-sm uppercase tracking-[0.14em] text-home-accent">{member.name}</p>
+                    <p className="text-sm uppercase tracking-[0.14em] text-home-accent">
+                      {member.name}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -162,7 +178,9 @@ function OverLoopwerk() {
         <div className="grid gap-14 md:grid-cols-2">
           <Reveal>
             <Eyebrow tone="home-accent">De naam</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Het mechanisme dat blijft draaien</h2>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+              Het mechanisme dat blijft draaien
+            </h2>
             <div className="mt-6 rounded-xl border border-line bg-shell p-6">
               <p className="font-display text-2xl text-ink">loop·werk</p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
@@ -174,20 +192,22 @@ function OverLoopwerk() {
               </p>
             </div>
             <p className="mt-5 leading-relaxed text-ink/75">
-              Dat is precies wat wij bouwen — alleen dan voor jullie proces: het mechanisme dat blijft
-              draaien zonder dat iemand het iedere keer met de hand hoeft op te winden.
+              Dat is precies wat wij bouwen — alleen dan voor jullie proces: het mechanisme dat
+              blijft draaien zonder dat iemand het iedere keer met de hand hoeft op te winden.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <Eyebrow tone="home-accent">Hoe het begon</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">Ontstaan uit eigen frustratie</h2>
+            <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
+              Ontstaan uit eigen frustratie
+            </h2>
             <p className="mt-5 leading-relaxed text-ink/75">
               We werkten zelf bij bedrijven waar het steeds op hetzelfde vastliep: een aanvraag die
-              drie keer werd overgetypt, een prijs die telkens opnieuw werd uitgezocht, een klant die
-              per ongeluk niet meer werd opgevolgd — niet omdat er slecht werk werd geleverd, maar
-              omdat het proces zelf in de weg zat. Alle tijd die daarin verdween, ging niet naar het
-              werk waar een bedrijf écht goed in is. Dat was frustrerend genoeg om zelf iets te bouwen
-              dat die loop doorbreekt. Vandaar Loopwerk.
+              drie keer werd overgetypt, een prijs die telkens opnieuw werd uitgezocht, een klant
+              die per ongeluk niet meer werd opgevolgd — niet omdat er slecht werk werd geleverd,
+              maar omdat het proces zelf in de weg zat. Alle tijd die daarin verdween, ging niet
+              naar het werk waar een bedrijf écht goed in is. Dat was frustrerend genoeg om zelf
+              iets te bouwen dat die loop doorbreekt. Vandaar LoopWerk.
             </p>
           </Reveal>
         </div>
@@ -201,7 +221,11 @@ function OverLoopwerk() {
         <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_1fr]">
           <div className="grid gap-5 sm:grid-cols-2">
             {beliefs.map((b, i) => (
-              <Reveal key={b.title} delay={i * 0.08} className="rounded-2xl border border-line bg-cream p-6">
+              <Reveal
+                key={b.title}
+                delay={i * 0.08}
+                className="rounded-2xl border border-line bg-cream p-6"
+              >
                 <h3 className="text-xl leading-snug text-home-accent">{b.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-ink/70">{b.body}</p>
               </Reveal>

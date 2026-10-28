@@ -11,7 +11,7 @@ const plainNav: NavItem[] = [
   { to: "/cases", label: "Cases" },
   { to: "/scan", label: "Doe de scan" },
   { to: "/blog", label: "Blogs" },
-  { to: "/over-loopwerk", label: "Over Ons" },
+  { to: "/over-loopwerk", label: "Over LoopWerk" },
 ];
 
 export function SiteHeader() {
@@ -192,7 +192,7 @@ export function SiteHeader() {
               onClick={closeMenu}
               className="rounded-md px-2 py-3 text-base font-medium text-foreground/80 hover:bg-secondary"
             >
-              Over Ons
+              Over LoopWerk
             </Link>
             <Link
               to="/contact"

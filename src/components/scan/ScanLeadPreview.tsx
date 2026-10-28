@@ -140,7 +140,11 @@ export function ScanLeadPreview({
                 ) : null}
                 <p className="mt-4 text-xs text-ink/55">
                   Je gegevens gebruiken we alleen om je de analyse te sturen en op je uitkomst te
-                  reageren.
+                  reageren. We slaan ze op in ons CRM (HubSpot, EU-datacenter). Lees onze{" "}
+                  <Link to="/privacy" className="underline underline-offset-4 hover:text-ink">
+                    privacyverklaring
+                  </Link>
+                  .
                 </p>
               </form>
             ) : (

@@ -12,9 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="robots" content="noindex"/>
         <title>Sitemap LoopWerk</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap"/>
+        <link rel="stylesheet" href="/fonts/fonts.css"/>
         <style>
           * { box-sizing: border-box; }
           body { margin: 0; background: #fcf5ed; color: #1f241f; font-family: "Instrument Sans", system-ui, sans-serif; line-height: 1.55; }

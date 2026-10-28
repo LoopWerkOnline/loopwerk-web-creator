@@ -199,7 +199,7 @@ function scanSummary(lead: Extract<LeadInput, { kind: "scan" }>): string {
     .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : String(v)}`)
     .join("\n");
   return [
-    `Loopwerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100)`,
+    `LoopWerk Scan: ${lead.score.bandLabel} (${lead.score.total}/100)`,
     `Proces: ${lead.process || "-"}`,
     `Richting: ${lead.richting}`,
     answers ? `\nAntwoorden:\n${answers}` : "",
@@ -245,7 +245,7 @@ async function sendToHubspot(lead: LeadInput): Promise<boolean> {
       context: {
         ...(lead.hutk ? { hutk: lead.hutk } : {}),
         ...(lead.pageUri ? { pageUri: lead.pageUri } : {}),
-        pageName: lead.kind === "contact" ? "Contact" : "Loopwerk Scan",
+        pageName: lead.kind === "contact" ? "Contact" : "LoopWerk Scan",
       },
     };
     return fetch(
