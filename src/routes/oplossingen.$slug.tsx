@@ -21,7 +21,7 @@ export const Route = createFileRoute("/oplossingen/$slug")({
         meta: [{ title: "Oplossing niet gevonden | LoopWerk" }, { name: "robots", content: "noindex" }],
       };
     }
-    const t = `${loaderData.solution.title} | LoopWerk`;
+    const t = loaderData.solution.seoTitle;
     const d = loaderData.solution.short;
     return {
       meta: [

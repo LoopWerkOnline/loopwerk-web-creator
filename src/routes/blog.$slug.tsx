@@ -23,13 +23,14 @@ export const Route = createFileRoute("/blog/$slug")({
       };
     }
     const { post } = loaderData;
-    const t = `${post.title} | LoopWerk`;
+    const t = post.seoTitle ?? `${post.title} | LoopWerk`;
+    const d = post.metaDescription ?? post.excerpt;
     return {
       meta: [
         { title: t },
-        { name: "description", content: post.excerpt },
+        { name: "description", content: d },
         { property: "og:title", content: t },
-        { property: "og:description", content: post.excerpt },
+        { property: "og:description", content: d },
         { property: "og:type", content: "article" },
         { property: "og:image", content: `${SITE_URL}${post.image}` },
       ],

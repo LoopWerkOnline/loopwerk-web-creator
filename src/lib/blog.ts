@@ -36,7 +36,11 @@ export const blogAuthors = {
 export type BlogPost = {
   slug: string;
   title: string;
+  /** Kortere titel voor Google (max. ± 60 tekens) als de gewone titel te lang is. */
+  seoTitle?: string;
   excerpt: string;
+  /** Kortere omschrijving voor Google (max. ± 155 tekens) als het excerpt te lang is. */
+  metaDescription?: string;
   /** ISO-datum, bv. 2026-09-24 */
   date: string;
   /** Datum van de laatste inhoudelijke wijziging (optioneel, voor de sitemap). */
@@ -54,6 +58,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "5-chatgpt-prompts-om-sneller-nieuwe-klanten-te-vinden-installatiebedrijf",
     title: "5 ChatGPT-prompts om sneller nieuwe klanten te vinden als installatiebedrijf",
+    seoTitle: "ChatGPT-prompts voor installateurs: sneller klanten vinden",
     excerpt:
       "Geen verhaal over de toekomst van AI, maar vijf prompts die je vandaag kunt kopiëren. Van je ideale klant bepalen tot een aanvraag nalopen.",
     date: "2026-09-24",
@@ -155,6 +160,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "6-redenen-waarom-kleine-bedrijven-achterlopen-met-digitalisering",
     title: "6 redenen waarom kleine bedrijven achterlopen met digitalisering",
+    seoTitle: "6 redenen waarom kleine bedrijven achterlopen met digitalisering",
+    metaDescription:
+      "Kleine bedrijven digitaliseren trager dan grote. Zes redenen waarom, en wanneer digitaliseren voor een klein bedrijf wél de moeite waard is.",
     excerpt:
       "Grote bedrijven digitaliseren gemiddeld sneller dan kleine. Dat is niet per se een probleem, en al helemaal geen reden om zelf maar alles tegelijk aan te pakken. Zes redenen waarom kleinere bedrijven achterblijven, en wanneer digitalisering wél de moeite waard is.",
     date: "2026-09-30",
@@ -341,6 +349,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "6-terugkerende-werkzaamheden-die-je-het-beste-kunt-automatiseren",
     title: "6 terugkerende werkzaamheden die je het beste kunt automatiseren",
+    seoTitle: "6 terugkerende taken die je het beste kunt automatiseren",
+    metaDescription:
+      "Niet elke handmatige taak hoeft geautomatiseerd. Zes soorten terugkerend werk waar het wél loont, wat je beter laat liggen en wanneer je geen AI nodig hebt.",
     excerpt:
       "Niet iedere handmatige taak hoeft geautomatiseerd te worden. Zes soorten terugkerend werk waar automatisering wél vaak loont, wat je beter laat liggen, en wanneer je er geen AI voor nodig hebt.",
     date: "2026-10-13",

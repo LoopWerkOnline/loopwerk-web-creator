@@ -298,7 +298,7 @@ function Index() {
         <Reveal>
           <Eyebrow size="lg">Hoe we werken</Eyebrow>
           <h2 className="mt-6 max-w-2xl text-3xl leading-tight md:text-4xl">
-            Kijken naar jou proces, bepalen wat beter kan, dan pas bouwen
+            Kijken naar jouw proces, bepalen wat beter kan, dan pas bouwen
           </h2>
         </Reveal>
         <div className="mt-12 grid gap-8 md:grid-cols-3">

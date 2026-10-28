@@ -10,7 +10,7 @@ const sspwZwembad = "/cases/sspw-belfeld.jpg";
 
 const title = "Case: zwembadconfigurator voor Sun Sauna & Poolworld | LoopWerk";
 const description =
-  "Hoe Jacques van Sun Sauna & Poolworld het prijsgesprek naar voren haalde: een configurator die bezoekers zelf door maten, opties en prijsrichting leidt en elke aanvraag compleet binnenbrengt.";
+  "Hoe Sun Sauna & Poolworld het prijsgesprek naar voren haalde: een configurator die elke aanvraag compleet binnenbrengt, met maat, opties en prijs.";
 
 const configuratorUrl = SSPW_CONFIGURATOR_URL;
 

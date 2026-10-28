@@ -6,6 +6,8 @@
 export type Solution = {
   slug: string;
   title: string;
+  /** Titel voor Google en het browsertabblad, met de woorden waarop gezocht wordt. */
+  seoTitle: string;
   short: string;
   intro: string;
   /** Wat we binnen bedrijven vaak zien gebeuren. */
@@ -36,6 +38,7 @@ export const solutions: Solution[] = [
   {
     slug: "slimme-configurator",
     title: "Slimme configurator",
+    seoTitle: "Offerteconfigurator voor je website | LoopWerk",
     short:
       "Klant stelt zelf maten en opties samen, ziet direct een prijsindicatie, en jullie krijgen een complete aanvraag.",
     intro:
@@ -84,6 +87,7 @@ export const solutions: Solution[] = [
   {
     slug: "complete-aanvragen",
     title: "Complete aanvragen",
+    seoTitle: "Aanvraagformulier dat in één keer alles uitvraagt | LoopWerk",
     short: "Nooit meer drie keer mailen voor dezelfde informatie — vraag het in één keer, vooraf.",
     intro:
       "Een onvolledige aanvraag kost al snel drie mails en twee dagen. Wie vooraf weet wat nodig is, kan dat ook vooraf uitvragen — zonder er meteen een volledige configurator van te maken.",
@@ -128,6 +132,7 @@ export const solutions: Solution[] = [
   {
     slug: "systeemkoppelingen",
     title: "Systeemkoppelingen",
+    seoTitle: "Websiteformulier, mail en Excel koppelen aan je CRM | LoopWerk",
     short:
       "Dezelfde gegevens drie keer overtypen in mail, Excel en het CRM. Dat werk kan een koppeling net zo goed doen.",
     intro:
@@ -175,6 +180,7 @@ export const solutions: Solution[] = [
   {
     slug: "automatische-opvolging",
     title: "Automatische opvolging",
+    seoTitle: "Offertes automatisch opvolgen zonder dat iets blijft liggen",
     short:
       "Een offerte die blijft liggen omdat niemand het meer bijhoudt, hoeft niet van iemands geheugen af te hangen.",
     intro:
