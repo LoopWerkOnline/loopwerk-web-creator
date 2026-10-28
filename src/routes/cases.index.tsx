@@ -68,10 +68,6 @@ function Cases() {
             </Reveal>
           ))}
         </div>
-
-        <p className="mt-10 text-sm text-ink/60">
-          Meer cases volgen zodra lopende trajecten zijn opgeleverd.
-        </p>
       </Section>
     </>
   );
