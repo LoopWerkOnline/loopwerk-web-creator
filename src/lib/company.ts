@@ -4,4 +4,5 @@ export const company = {
   address: "Lingsweg 11, 5931 KX Tegelen",
   kvk: "42166628",
   email: "info@loopwerkonline.nl",
+  linkedin: "https://www.linkedin.com/company/loopwerkonline/",
 };

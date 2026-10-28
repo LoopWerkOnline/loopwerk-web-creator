@@ -74,6 +74,16 @@ export function SiteFooter() {
                   Stuur een bericht
                 </Link>
               </li>
+              <li>
+                <a
+                  href={company.linkedin}
+                  target="_blank"
+                  rel="noopener"
+                  className="underline underline-offset-4 hover:text-cream"
+                >
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
         </div>

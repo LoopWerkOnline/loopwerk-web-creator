@@ -153,6 +153,7 @@ const organizationSchema = {
     addressCountry: "NL",
   },
   areaServed: "NL",
+  sameAs: [company.linkedin],
 };
 
 function RootShell({ children }: { children: ReactNode }) {
