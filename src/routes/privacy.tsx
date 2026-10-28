@@ -22,8 +22,8 @@ function Privacy() {
   return (
     <LegalPage eyebrow="Privacy" title="Privacyverklaring" updated="24 september 2026">
       <p>
-        {company.name} (hierna: LoopWerk), gevestigd in {company.address}, KvK {company.kvk}, is verantwoordelijk
-        voor de verwerking van persoonsgegevens via deze website. Vragen? Mail naar{" "}
+        {company.name} (hierna: LoopWerk), gevestigd in {company.address}, KvK {company.kvk}, is
+        verantwoordelijk voor de verwerking van persoonsgegevens via deze website. Vragen? Mail naar{" "}
         <a href={`mailto:${company.email}`}>{company.email}</a>.
       </p>
 
