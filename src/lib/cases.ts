@@ -12,6 +12,8 @@ export type CaseStudy = {
   title: string;
   description: string;
   result: string;
+  /** Optionele kernregel, als eerste getoond op de case-kaart. */
+  highlight?: string;
   image: string;
   imageAlt: string;
   /** Interne route naar de volledige case. */
@@ -31,6 +33,7 @@ export const cases: CaseStudy[] = [
     logo: "/cases/sspw-logo.png",
     logoAlt: "Logo van Sun Sauna & Poolworld",
     title: "Zwembadconfigurator",
+    highlight: "Van 45 naar 3 minuten per offerte.",
     description:
       "Bezoekers stellen in drie stappen zelf hun zwembad samen, zien wat standaard inbegrepen is en krijgen een realistische prijsindicatie.",
     result:

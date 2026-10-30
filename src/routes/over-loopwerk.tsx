@@ -108,7 +108,7 @@ function OverLoopwerk() {
               Over LoopWerk
             </p>
             <h1
-              className="fade-up mt-6 text-4xl leading-[1.1] md:text-6xl"
+              className="fade-up mt-6 text-balance text-4xl leading-[1.1] md:text-6xl"
               style={{ animationDelay: "0.08s" }}
             >
               Wij houden van werk dat <span className="hand text-[1.15em]">vanzelf</span> gaat lopen
@@ -117,9 +117,10 @@ function OverLoopwerk() {
               className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
               style={{ animationDelay: "0.16s" }}
             >
-              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Meestal
-              voor werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens
-              overtypen, opvolgen. Niet spannend, wel waar de tijd in gaat.
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven, vooral
+              voor het werk dat elke week terugkomt: aanvragen uitvragen, prijzen opzoeken, gegevens
+              overtypen en klanten opvolgen. Niet het spannendste werk, maar wel waar de meeste tijd
+              in gaat zitten.
             </p>
           </div>
         </div>

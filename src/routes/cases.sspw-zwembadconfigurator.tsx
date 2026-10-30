@@ -10,7 +10,7 @@ const sspwZwembad = "/cases/sspw-belfeld.jpg";
 
 const title = "Case: zwembadconfigurator voor Sun Sauna & Poolworld | LoopWerk";
 const description =
-  "Hoe Sun Sauna & Poolworld het prijsgesprek naar voren haalde: een configurator die elke aanvraag compleet binnenbrengt, met maat, opties en prijs.";
+  "Hoe Sun Sauna & Poolworld van 45 naar 3 minuten per offerte ging: een configurator die bezoekers zelf door maten, opties en prijsrichting leidt.";
 
 const configuratorUrl = SSPW_CONFIGURATOR_URL;
 
@@ -183,6 +183,16 @@ function CaseSSPW() {
       <Section>
         <Reveal>
           <Eyebrow>Het resultaat</Eyebrow>
+          <div className="mt-6 flex flex-wrap items-center gap-4 rounded-2xl bg-ink-hero px-8 py-7 md:px-10">
+            <span className="text-3xl font-semibold text-home-accent md:text-4xl">
+              45 → 3 minuten
+            </span>
+            <span className="max-w-[11rem] text-sm leading-snug text-cream/85">per offerte</span>
+          </div>
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink/75">
+            Een offerte uitwerken kostte SSPW zo&apos;n 45 minuten. Nu komt de aanvraag binnen met
+            keuzes, maten en prijsrichting, en is het nog 3 minuten werk.
+          </p>
         </Reveal>
         <div className="mt-6 grid gap-10 md:grid-cols-2">
           <div className="flex flex-col gap-10">

@@ -12,7 +12,9 @@ export function CaseCard({ c }: { c: CaseStudy }) {
             <p className="eyebrow text-forest">{c.client}</p>
             <span
               className={`rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide ${
-                c.status === "live" ? "bg-forest/10 text-forest" : "bg-home-accent/10 text-home-accent"
+                c.status === "live"
+                  ? "bg-forest/10 text-forest"
+                  : "bg-home-accent/10 text-home-accent"
               }`}
             >
               {c.status === "live" ? "Live" : "In productie"}
@@ -21,6 +23,9 @@ export function CaseCard({ c }: { c: CaseStudy }) {
 
           <h2 className="mt-3 text-4xl leading-tight">{c.title}</h2>
 
+          {c.highlight ? (
+            <p className="mt-4 font-medium leading-relaxed text-ink">{c.highlight}</p>
+          ) : null}
           <p className="mt-4 leading-relaxed text-ink/70">{c.description}</p>
           <p className="mt-4 font-medium leading-relaxed text-ink">{c.result}</p>
 
@@ -46,7 +51,11 @@ export function CaseCard({ c }: { c: CaseStudy }) {
 
         {c.logo ? (
           <div className="mx-auto flex aspect-[16/9] w-full max-w-2xl items-center justify-center rounded-xl bg-shell p-8">
-            <img src={c.logo} alt={c.logoAlt ?? c.client} className="max-h-48 w-auto object-contain md:max-h-56" />
+            <img
+              src={c.logo}
+              alt={c.logoAlt ?? c.client}
+              className="max-h-48 w-auto object-contain md:max-h-56"
+            />
           </div>
         ) : (
           <img

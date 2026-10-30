@@ -16,13 +16,14 @@ const marqueeStats: { k: string; v: string }[] = [
   { k: "20 u", v: "handwerk weggehaald per maand" },
   { k: "3 stappen", v: "van klantvraag naar aanvraag" },
   { k: "1 tool", v: "al in gebruik vanaf dag één" },
+  { k: "45 → 3 min", v: "per offerte bij SSPW" },
 ];
 
 const marqueeQuotes: { text: string; author?: string }[] = [
   { text: "Handmatig werk is prima. Tot je het elke dag opnieuw doet." },
   { text: "Tijd besparen begint niet bij harder werken, maar bij slimmer inrichten." },
-  { text: "Laat systemen het voorwerk doen. Mensen het echte werk." },
   { text: "Automatisering moet werk wegnemen, geen nieuw werk creëren." },
+  { text: "Laat systemen het voorwerk doen. Mensen het echte werk." },
 ];
 
 type TickerItem =
