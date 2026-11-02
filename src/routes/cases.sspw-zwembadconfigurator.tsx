@@ -221,9 +221,6 @@ function CaseSSPW() {
             </ul>
           </Reveal>
         </div>
-        <Reveal delay={0.1} className="mt-12">
-          <CaseReviewBlock review={SSPW_REVIEW} />
-        </Reveal>
       </Section>
 
       <Section tone="ink">
@@ -254,6 +251,9 @@ function CaseSSPW() {
               Bekijk sspw.nl
             </a>
           </div>
+        </Reveal>
+        <Reveal delay={0.1} className="mt-14 border-t border-cream/15 pt-10">
+          <CaseReviewBlock review={SSPW_REVIEW} />
         </Reveal>
       </Section>
     </>
