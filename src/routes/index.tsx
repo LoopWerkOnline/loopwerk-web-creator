@@ -6,7 +6,8 @@ import { Reveal } from "@/components/Reveal";
 import { RecognitionFlow } from "@/components/infographics";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
-import { SSPW_CONFIGURATOR_URL } from "@/lib/cases";
+import { CaseReviewShort } from "@/components/CaseReview";
+import { SSPW_CONFIGURATOR_URL, SSPW_REVIEW } from "@/lib/cases";
 
 const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedrijven";
 const description =
@@ -271,6 +272,7 @@ function Index() {
             <p className="mt-4 leading-relaxed text-cream/75">
               Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en begint het gesprek met Jacques een stuk verder.
             </p>
+            <CaseReviewShort review={SSPW_REVIEW} />
             <div className="mt-8 flex flex-col items-start gap-4">
               <Link
                 to="/cases/sspw-zwembadconfigurator"

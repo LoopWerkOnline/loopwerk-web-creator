@@ -3,7 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { Reveal } from "@/components/Reveal";
-import { SSPW_CONFIGURATOR_URL } from "@/lib/cases";
+import { CaseReviewBlock } from "@/components/CaseReview";
+import { SSPW_CONFIGURATOR_URL, SSPW_REVIEW } from "@/lib/cases";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 
 const sspwZwembad = "/cases/sspw-belfeld.jpg";
@@ -220,6 +221,9 @@ function CaseSSPW() {
             </ul>
           </Reveal>
         </div>
+        <Reveal delay={0.1} className="mt-12">
+          <CaseReviewBlock review={SSPW_REVIEW} />
+        </Reveal>
       </Section>
 
       <Section tone="ink">
