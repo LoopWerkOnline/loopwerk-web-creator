@@ -191,20 +191,34 @@ function OverLoopwerk() {
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Het mechanisme dat blijft draaien
             </h2>
-            <div className="mt-6 rounded-xl border border-line bg-shell p-6">
-              <p className="font-display text-2xl text-ink">loop·werk</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
+            <div className="relative mt-8 overflow-hidden rounded-2xl border border-line bg-shell p-7 md:p-9">
+              <img
+                src="/loopwerk-mark.png"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 opacity-[0.06]"
+              />
+              <p className="font-display text-5xl leading-none text-ink md:text-6xl">loop·werk</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-home-accent">
                 zelfstandig naamwoord · het
               </p>
-              <p className="mt-4 italic leading-relaxed text-ink/75">
-                Het mechanisme dat een klok laat lopen: de tandwielen en veren die er samen voor
-                zorgen dat hij vanzelf blijft draaien.
-              </p>
+              <ol className="mt-7 space-y-5 border-t border-line pt-6">
+                <li className="flex gap-4">
+                  <span className="font-display text-xl leading-7 text-home-accent">1</span>
+                  <p className="font-display text-xl leading-snug text-ink/85">
+                    Het mechanisme dat een klok laat lopen: de tandwielen en veren die er samen voor
+                    zorgen dat hij vanzelf blijft draaien.
+                  </p>
+                </li>
+                <li className="flex gap-4">
+                  <span className="font-display text-xl leading-7 text-home-accent">2</span>
+                  <p className="leading-relaxed text-ink/75">
+                    Hetzelfde, maar dan voor jullie bedrijf: tools en automatiseringen die vanzelf
+                    blijven lopen, zonder dat iemand ze elke dag opnieuw hoeft op te winden.
+                  </p>
+                </li>
+              </ol>
             </div>
-            <p className="mt-5 leading-relaxed text-ink/75">
-              Zo'n mechanisme bouwen wij ook, maar dan voor jullie bedrijf. Iets wat vanzelf blijft
-              lopen, zonder dat iemand het elke dag opnieuw hoeft op te winden.
-            </p>
           </Reveal>
           <Reveal delay={0.1}>
             <Eyebrow tone="home-accent">Hoe het begon</Eyebrow>
