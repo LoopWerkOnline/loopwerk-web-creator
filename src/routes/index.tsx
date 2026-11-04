@@ -348,9 +348,19 @@ function Index() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="hand text-3xl text-sage">
-              Vertel wat er nu handmatig gaat, dan zeggen wij of er iets te winnen valt.
-            </p>
+            <figure>
+              <img
+                src="/team/team-groep.webp"
+                alt="Shaquil Reyes, Levi Kempen en Gianni Geurtjens, de oprichters van LoopWerk"
+                width={534}
+                height={357}
+                loading="lazy"
+                className="aspect-[3/2] w-full rounded-2xl object-cover"
+              />
+              <figcaption className="hand mt-5 text-2xl leading-snug text-sage md:text-3xl">
+                Vertel wat er nu handmatig gaat, dan zeggen wij of er iets te winnen valt.
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </Section>

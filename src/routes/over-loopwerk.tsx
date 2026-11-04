@@ -138,7 +138,7 @@ function OverLoopwerk() {
               <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
                 <div className="flip-inner h-full w-full">
                   {teamPhotos.includes(member.photo) ? (
-                    <div className="flip-face absolute inset-0 overflow-hidden rounded-2xl border border-line bg-ink-hero">
+                    <div className="flip-face absolute inset-0 overflow-hidden rounded-2xl border border-line bg-[#2b1a10]">
                       <img
                         src={`/team/${member.photo}`}
                         alt={`${member.name}, ${member.role.toLowerCase()} LoopWerk`}
@@ -146,7 +146,7 @@ function OverLoopwerk() {
                         className="absolute inset-0 h-full w-full object-cover object-top"
                       />
                       <div
-                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-hero/90 via-ink-hero/40 to-transparent"
+                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#1c110a]/90 via-[#1c110a]/40 to-transparent"
                         aria-hidden="true"
                       />
                       <div className="absolute inset-x-0 bottom-0 p-6">
