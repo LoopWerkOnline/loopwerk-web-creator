@@ -202,8 +202,8 @@ function OverLoopwerk() {
               </p>
             </div>
             <p className="mt-5 leading-relaxed text-ink/75">
-              Dat is precies wat wij bouwen — alleen dan voor jullie proces: het mechanisme dat
-              blijft draaien zonder dat iemand het iedere keer met de hand hoeft op te winden.
+              Zo'n mechanisme bouwen wij ook, maar dan voor jullie bedrijf. Iets wat vanzelf blijft
+              lopen, zonder dat iemand het elke dag opnieuw hoeft op te winden.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
