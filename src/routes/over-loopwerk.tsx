@@ -189,9 +189,6 @@ function OverLoopwerk() {
                 className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 opacity-[0.06]"
               />
               <p className="font-display text-5xl leading-none text-ink md:text-6xl">loop·werk</p>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-home-accent">
-                zelfstandig naamwoord · het
-              </p>
               <ol className="mt-7 space-y-5 border-t border-line pt-6">
                 <li className="flex gap-4">
                   <span className="font-display text-xl leading-7 text-home-accent">1</span>
