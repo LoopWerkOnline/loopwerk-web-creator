@@ -78,30 +78,9 @@ const beliefs = [
 function OverLoopwerk() {
   return (
     <>
-      <section className="relative isolate flex min-h-[680px] items-end overflow-hidden bg-ink-hero text-cream md:min-h-[560px]">
-        <img
-          src="/team/team-groep-breed.webp"
-          alt="Shaquil Reyes, Levi Kempen en Gianni Geurtjens, de oprichters van LoopWerk"
-          className="absolute inset-x-0 top-20 -z-20 h-[280px] w-full object-cover object-top [mask-image:linear-gradient(to_bottom,#000_55%,transparent)] md:inset-x-auto md:top-auto md:right-0 md:bottom-0 md:h-[88%] md:w-[62%] md:object-[50%_15%] md:[mask-image:linear-gradient(to_right,transparent,#000_35%)]"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-ink-hero/40 md:bg-ink-hero/10"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute right-0 top-[12%] -z-10 hidden h-28 w-[62%] bg-gradient-to-b from-ink-hero to-transparent md:block"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
-          <div className="max-w-3xl">
+      <section className="relative isolate overflow-hidden bg-ink-hero text-cream">
+        <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-5 pb-14 pt-28 md:grid-cols-[1.15fr_1fr] md:items-end md:gap-14 md:pb-16 md:pt-36">
+          <div>
             <p
               className="fade-up eyebrow text-sage"
               style={{ animationDelay: "0s", fontSize: "0.875rem" }}
@@ -124,6 +103,19 @@ function OverLoopwerk() {
               in gaat zitten.
             </p>
           </div>
+          <figure
+            className="fade-up mx-auto w-full max-w-[520px]"
+            style={{ animationDelay: "0.24s" }}
+          >
+            <img
+              src="/team/team-groep.webp"
+              alt="Shaquil Reyes, Levi Kempen en Gianni Geurtjens, de oprichters van LoopWerk"
+              width={534}
+              height={357}
+              className="w-full rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-cream/10"
+            />
+            <figcaption className="mt-3 text-sm text-cream/55">Shaquil, Levi en Gianni</figcaption>
+          </figure>
         </div>
       </section>
 
