@@ -114,7 +114,6 @@ function OverLoopwerk() {
               height={357}
               className="w-full rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-cream/10"
             />
-            <figcaption className="mt-3 text-sm text-cream/55">Shaquil, Levi en Gianni</figcaption>
           </figure>
         </div>
       </section>
