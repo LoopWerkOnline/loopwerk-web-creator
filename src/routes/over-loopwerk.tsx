@@ -22,7 +22,7 @@ export const Route = createFileRoute("/over-loopwerk")({
   component: OverLoopwerk,
 });
 
-/** Bestandsnamen in public/team/ (vierkant, min. 600×600, WebP). Staat er geen foto, dan initialen. */
+/** Bestandsnamen in public/team/ (staand 3:4, min. 900×1200, WebP). Staat er geen foto, dan initialen. */
 declare const __TEAM_PHOTOS__: string[];
 const teamPhotos = __TEAM_PHOTOS__;
 
@@ -137,17 +137,25 @@ function OverLoopwerk() {
             <Reveal key={member.name} delay={i * 0.08}>
               <div className="flip-scene aspect-[3/4] w-full" tabIndex={0}>
                 <div className="flip-inner h-full w-full">
-                  <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
-                    {teamPhotos.includes(member.photo) ? (
+                  {teamPhotos.includes(member.photo) ? (
+                    <div className="flip-face absolute inset-0 overflow-hidden rounded-2xl border border-line bg-ink-hero">
                       <img
                         src={`/team/${member.photo}`}
                         alt={`${member.name}, ${member.role.toLowerCase()} LoopWerk`}
-                        width={160}
-                        height={160}
                         loading="lazy"
-                        className="h-20 w-20 rounded-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover object-top"
                       />
-                    ) : (
+                      <div
+                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-hero/90 via-ink-hero/40 to-transparent"
+                        aria-hidden="true"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 p-6">
+                        <p className="font-display text-2xl text-cream">{member.name}</p>
+                        <p className="mt-1 text-sm text-cream/75">{member.role}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flip-face absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-cream p-6 text-center">
                       <span
                         className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-semibold text-white"
                         style={{ backgroundColor: member.color }}
@@ -155,12 +163,12 @@ function OverLoopwerk() {
                       >
                         {member.initials}
                       </span>
-                    )}
-                    <div>
-                      <p className="font-display text-xl text-ink">{member.name}</p>
-                      <p className="mt-1 text-sm text-ink/55">{member.role}</p>
+                      <div>
+                        <p className="font-display text-xl text-ink">{member.name}</p>
+                        <p className="mt-1 text-sm text-ink/55">{member.role}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-2xl bg-ink-hero p-7 text-center">
                     <p className="hand text-2xl leading-snug text-cream">"{member.quote}"</p>
                     <p className="text-sm uppercase tracking-[0.14em] text-home-accent">
