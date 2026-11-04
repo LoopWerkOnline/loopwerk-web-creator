@@ -33,8 +33,7 @@ const team = [
     photo: "levi-kempen.webp",
     role: "Mede-oprichter",
     color: "var(--forest)",
-    quote:
-      "Ik wil vooral dingen maken die mensen in hun dagelijkse werk écht gebruiken, niet iets wat na een maand alweer vergeten is.",
+    quote: "Lui genoeg om alles te automatiseren, fanatiek genoeg om het goed te doen.",
   },
   {
     name: "Gianni Geurtjens",
