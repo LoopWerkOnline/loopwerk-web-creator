@@ -78,13 +78,20 @@ const beliefs = [
 function OverLoopwerk() {
   return (
     <>
-      <section className="relative isolate flex min-h-[440px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[500px] md:min-h-[560px]">
+      <section className="relative isolate flex min-h-[680px] items-end overflow-hidden bg-ink-hero text-cream md:min-h-[560px]">
         <img
-          src="/over-loopwerk-hero.jpg"
-          alt="Team dat samen achter laptops aan een project werkt"
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
+          src="/team/team-groep-breed.webp"
+          alt="Shaquil Reyes, Levi Kempen en Gianni Geurtjens, de oprichters van LoopWerk"
+          className="absolute inset-x-0 top-20 -z-20 h-[280px] w-full object-cover object-top [mask-image:linear-gradient(to_bottom,#000_55%,transparent)] md:inset-x-auto md:top-auto md:right-0 md:bottom-0 md:h-[88%] md:w-[62%] md:object-[50%_15%] md:[mask-image:linear-gradient(to_right,transparent,#000_35%)]"
         />
-        <div className="absolute inset-0 -z-10 bg-ink-hero/40" aria-hidden="true" />
+        <div
+          className="absolute inset-0 -z-10 bg-ink-hero/40 md:bg-ink-hero/10"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute right-0 top-[12%] -z-10 hidden h-28 w-[62%] bg-gradient-to-b from-ink-hero to-transparent md:block"
+          aria-hidden="true"
+        />
         <div
           className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
           aria-hidden="true"
@@ -92,12 +99,6 @@ function OverLoopwerk() {
         <div
           className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
           aria-hidden="true"
-        />
-        <img
-          src="/loopwerk-mark.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-10 -top-10 -z-10 h-56 w-56 opacity-[0.08] brightness-0 invert md:h-72 md:w-72"
         />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-28 md:pb-16 md:pt-32">
           <div className="max-w-3xl">
