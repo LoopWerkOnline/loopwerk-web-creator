@@ -109,8 +109,8 @@ function OverLoopwerk() {
             <img
               src="/team/team-groep.webp"
               alt="Shaquil Reyes, Levi Kempen en Gianni Geurtjens, de oprichters van LoopWerk"
-              width={534}
-              height={357}
+              width={1200}
+              height={801}
               className="w-full rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-cream/10"
             />
           </figure>
