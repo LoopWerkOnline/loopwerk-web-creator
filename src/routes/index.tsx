@@ -1,9 +1,11 @@
+import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Section, Eyebrow } from "@/components/Section";
 import { VideoFrame } from "@/components/VideoFrame";
 import { Reveal } from "@/components/Reveal";
 import { RecognitionFlow } from "@/components/infographics";
+import { LiquidBackground } from "@/components/LiquidBackground";
 const demoVideo = "/cases/SSPW_configurator_demo_V2_HQ.mp4";
 import { solutions, sectors } from "@/lib/content";
 import { CaseReviewShort } from "@/components/CaseReview";
@@ -12,6 +14,8 @@ import { SSPW_CONFIGURATOR_URL, SSPW_REVIEW } from "@/lib/cases";
 const title = "LoopWerk | digitale tools en automatisering voor Nederlandse bedrijven";
 const description =
   "Wij bouwen praktische tools en automatiseringen die handmatig werk uit je proces halen. Bekende problemen, een bestaande basis en maatwerk waar het telt.";
+
+const heroWords = "Werk dat elke week terugkomt, hoeft geen handwerk te blijven".split(" ");
 
 const marqueeStats: { k: string; v: string }[] = [
   { k: "20 u", v: "handwerk weggehaald per maand" },
@@ -58,19 +62,8 @@ function Index() {
     <>
       {/* Hero */}
       <section className="relative isolate flex min-h-[600px] items-end overflow-hidden bg-ink-hero text-cream sm:min-h-[680px] md:min-h-[820px]">
-        <img
-          src="/hero/hero-kantoor.jpg"
-          alt="Lichte kantoorruimte met glazen gevel en uitzicht op groen"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[78%_45%] md:object-[64%_55%]"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-hero/90 via-ink-hero/45 to-transparent md:from-ink-hero/85 md:via-ink-hero/30 md:to-transparent"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-hero via-ink-hero/25 to-transparent"
-          aria-hidden="true"
-        />
+        <LiquidBackground />
+        <div className="grain absolute inset-0 -z-10" aria-hidden="true" />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:pb-20 md:pt-40">
           <div className="max-w-3xl">
@@ -80,20 +73,27 @@ function Index() {
             >
               Terugkerend werk. Geregeld.
             </p>
-            <h1
-              className="fade-up mt-6 text-5xl leading-[1.05] md:text-[4.4rem]"
-              style={{ animationDelay: "0.08s" }}
-            >
-              Werk dat elke week terugkomt, hoeft geen{" "}
-              <span className="hand text-home-accent text-[1.15em]">handwerk</span>{" "}te blijven
+            <h1 className="mt-6 text-5xl leading-[1.05] md:text-[4.4rem]">
+              {heroWords.map((w, i) => (
+                <Fragment key={i}>
+                  <span className="word-in" style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
+                    {w === "handwerk" ? (
+                      <span className="hand text-home-accent text-[1.15em]">handwerk</span>
+                    ) : (
+                      w
+                    )}
+                  </span>{" "}
+                </Fragment>
+              ))}
             </h1>
             <p
               className="fade-up mt-7 max-w-xl text-lg leading-relaxed text-cream/80"
-              style={{ animationDelay: "0.16s" }}
+              style={{ animationDelay: "1.05s" }}
             >
-              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
+              LoopWerk bouwt digitale tools en automatiseringen voor Nederlandse bedrijven. Vanuit
+              een herkenbaar probleem ontwikkelen wij een oplossing die aansluit op jullie proces.
             </p>
-            <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: "0.24s" }}>
+            <div className="fade-up mt-9 flex flex-wrap gap-3" style={{ animationDelay: "1.15s" }}>
               <Link
                 to="/contact"
                 className="rounded-full bg-home-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -128,9 +128,7 @@ function Index() {
                 key={i}
                 className="flex shrink-0 items-center gap-4 border-l border-cream/10 px-8 first:border-l-0 md:px-12"
               >
-                <span className="text-3xl font-semibold text-home-accent md:text-4xl">
-                  {s.k}
-                </span>
+                <span className="text-3xl font-semibold text-home-accent md:text-4xl">{s.k}</span>
                 <span className="max-w-[11rem] text-sm leading-snug text-cream/85">{s.v}</span>
               </div>
             ) : (
@@ -156,7 +154,9 @@ function Index() {
       <Section>
         <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-24">
           <Reveal className="flex flex-col justify-center rounded-3xl bg-ink-hero p-8 text-cream sm:p-10 md:aspect-square md:p-12">
-            <Eyebrow tone="home-accent" size="lg">Herkenbaar?</Eyebrow>
+            <Eyebrow tone="home-accent" size="lg">
+              Herkenbaar?
+            </Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
               Eén klantvraag, vier keer handwerk
             </h2>
@@ -184,7 +184,10 @@ function Index() {
               Bekende problemen, waar we al een richting voor hebben
             </h2>
           </div>
-          <Link to="/oplossingen" className="text-sm font-semibold text-forest underline underline-offset-4">
+          <Link
+            to="/oplossingen"
+            className="text-sm font-semibold text-forest underline underline-offset-4"
+          >
             Alle oplossingen
           </Link>
         </Reveal>
@@ -237,7 +240,9 @@ function Index() {
                       <span className="text-xs font-semibold uppercase tracking-[0.14em] text-home-accent">
                         Herkenbaar?
                       </span>
-                      <p className="text-sm leading-snug text-cream/90 md:text-base md:leading-relaxed">{s.seen[0]}</p>
+                      <p className="text-sm leading-snug text-cream/90 md:text-base md:leading-relaxed">
+                        {s.seen[0]}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -248,7 +253,6 @@ function Index() {
           ))}
         </div>
       </Section>
-
 
       {/* Uitgelichte case */}
       <Section tone="ink">
@@ -262,16 +266,26 @@ function Index() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <Eyebrow tone="home-accent" size="lg">UITGELICHTE CASE</Eyebrow>
-            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">Sun Sauna &amp; Poolworld</h2>
+            <Eyebrow tone="home-accent" size="lg">
+              UITGELICHTE CASE
+            </Eyebrow>
+            <h2 className="mt-6 text-3xl leading-tight text-cream md:text-4xl">
+              Sun Sauna &amp; Poolworld
+            </h2>
             <p className="hand text-home-accent mt-8 text-2xl leading-snug md:text-3xl">
               “Wat kost een zwembad ongeveer?”
             </p>
             <p className="mt-6 leading-relaxed text-cream/75">
-              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms kwam pas bij de uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat de klant in gedachten had.
+              Voor Jacques begon een aanvraag vaak pas echt in de zaak. Klanten kwamen langs om
+              samen een zwembad samen te stellen. Zo’n gesprek kon al snel een uur duren, en soms
+              kwam pas bij de uiteindelijke prijs naar voren dat die helemaal niet aansloot bij wat
+              de klant in gedachten had.
             </p>
             <p className="mt-4 leading-relaxed text-cream/75">
-              Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en begint het gesprek met Jacques een stuk verder.
+              Samen met SSPW bouwden we daarom een configurator die klanten vooraf door de
+              belangrijkste keuzes en de bijbehorende prijsrichting leidt. Zo komen mensen beter
+              voorbereid binnen, hebben ze eerder een realistisch beeld van wat mogelijk is en
+              begint het gesprek met Jacques een stuk verder.
             </p>
             <CaseReviewShort review={SSPW_REVIEW} />
             <div className="mt-8 flex flex-col items-start gap-4">
@@ -295,7 +309,6 @@ function Index() {
         </div>
       </Section>
 
-
       {/* Hoe we werken */}
       <Section tone="cream">
         <Reveal>
@@ -306,9 +319,21 @@ function Index() {
         </Reveal>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {[
-            { n: "01", t: "Proces doorlopen", b: "We kijken mee met hoe het nu gaat en waar de tijd blijft hangen." },
-            { n: "02", t: "Waarde bepalen", b: "Levert het te weinig op, dan zeggen we dat voordat er iets gebouwd wordt." },
-            { n: "03", t: "Bouwen en bijstellen", b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen." },
+            {
+              n: "01",
+              t: "Proces doorlopen",
+              b: "We kijken mee met hoe het nu gaat en waar de tijd blijft hangen.",
+            },
+            {
+              n: "02",
+              t: "Waarde bepalen",
+              b: "Levert het te weinig op, dan zeggen we dat voordat er iets gebouwd wordt.",
+            },
+            {
+              n: "03",
+              t: "Bouwen en bijstellen",
+              b: "Bestaande basis, maatwerk waar nodig, en meekijken bij de eerste echte aanvragen.",
+            },
           ].map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08} className="border-t border-line pt-6">
               <span className="eyebrow text-home-accent" style={{ fontSize: "0.875rem" }}>
@@ -325,7 +350,9 @@ function Index() {
       <Section tone="ink">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
           <Reveal>
-            <Eyebrow tone="sage" size="lg">OVER ONS</Eyebrow>
+            <Eyebrow tone="sage" size="lg">
+              OVER ONS
+            </Eyebrow>
             <h2 className="mt-6 text-3xl leading-tight md:text-4xl">
               Nuchter, concreet en eerlijk over wat iets oplevert
             </h2>
